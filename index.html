@@ -33,6 +33,9 @@
 
 * { box-sizing: border-box; }
 
+/* The `hidden` attribute must win over class-level `display: flex` (modal, stage, wildcard) */
+[hidden] { display: none !important; }
+
 html, body {
   margin: 0;
   padding: 0;
