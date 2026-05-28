@@ -196,6 +196,11 @@ html, body {
   background: radial-gradient(ellipse, rgba(176,81,47,.28), rgba(176,81,47,0) 70%);
   filter: blur(3px);
 }
+.hands {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  z-index: 3; pointer-events: none;
+  filter: drop-shadow(0 12px 18px rgba(176,81,47,.3));
+}
 .particles { position: absolute; inset: 0; pointer-events: none; }
 .particle {
   position: absolute; width: 4px; height: 4px; border-radius: 50%;
@@ -352,6 +357,10 @@ html, body {
   background: var(--paper); border: 1px solid var(--line); border-radius: 12px;
   padding: 12px 16px;
 }
+a.market-item { text-decoration: none; transition: border-color .16s ease, box-shadow .16s ease, transform .12s ease; }
+a.market-item:hover { border-color: var(--clay-soft); box-shadow: var(--shadow); }
+.market-go { color: var(--clay); font-size: 12px; margin-left: 5px; opacity: .55; }
+a.market-item:hover .market-go { opacity: 1; }
 .market-q { font-size: 14px; color: var(--ink); flex: 1; }
 .market-prob {
   font-family: var(--serif); font-size: 20px; font-weight: 600; color: var(--clay-deep);
@@ -485,6 +494,26 @@ html, body {
         <div class="orb-core"></div>
       </div>
       <div class="orb-base"></div>
+      <svg class="hands" viewBox="0 0 320 360" aria-hidden="true">
+        <defs>
+          <linearGradient id="handGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#E3B7A6"/>
+            <stop offset=".55" stop-color="#CC785C"/>
+            <stop offset="1" stop-color="#B0512F"/>
+          </linearGradient>
+          <linearGradient id="handGlow" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#FBF1E9" stop-opacity=".7"/>
+            <stop offset="1" stop-color="#FBF1E9" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <g fill="url(#handGrad)" stroke="#9c4527" stroke-width="1.4" stroke-linejoin="round">
+          <path d="M62,250 C58,230 66,222 76,228 C82,232 84,236 88,234 C90,222 98,214 108,220 C114,224 116,228 120,228 C122,216 130,210 140,216 C146,220 148,224 152,226 C154,218 162,216 170,224 C176,230 180,240 180,250 C182,278 170,300 140,308 C110,314 78,306 66,284 C60,272 60,258 62,250 Z"/>
+          <path d="M258,250 C262,230 254,222 244,228 C238,232 236,236 232,234 C230,222 222,214 212,220 C206,224 204,228 200,228 C198,216 190,210 180,216 C174,220 172,224 168,226 C166,218 158,216 150,224 C144,230 140,240 140,250 C138,278 150,300 180,308 C210,314 242,306 254,284 C260,272 260,258 258,250 Z"/>
+        </g>
+        <g fill="url(#handGlow)" stroke="none">
+          <path d="M70,250 C68,236 74,230 82,234 C92,224 104,222 116,228 C126,218 138,216 150,222 C160,216 172,218 180,228 C182,240 180,248 178,252 C150,246 96,246 70,250 Z" opacity=".5"/>
+        </g>
+      </svg>
       <div class="particles" id="particles"></div>
     </div>
     <p class="oracle-status" id="oracleStatus">正在召喚神諭…</p>
@@ -784,12 +813,14 @@ html, body {
       let yesIdx = outcomes.findIndex((o) => /yes/i.test(o));
       if (yesIdx < 0) yesIdx = 0;
       const prob = prices[yesIdx];
+      const slug = (Array.isArray(m.events) && m.events[0] && m.events[0].slug) || m.slug || null;
       return {
         question: m.question,
         prob: isFinite(prob) ? prob : null,
         outcome: outcomes[yesIdx] || 'Yes',
         volume: Number(m.volumeNum || m.volume || 0),
         endDate: m.endDate || null,
+        url: slug ? `https://polymarket.com/event/${slug}` : null,
       };
     });
   }
@@ -1088,10 +1119,11 @@ ${wikiBlock}
     if (markets.length) {
       el.marketList.innerHTML = '';
       markets.forEach((m) => {
-        const item = document.createElement('div');
-        item.className = 'market-item';
+        const item = document.createElement(m.url ? 'a' : 'div');
+        item.className = 'market-item' + (m.url ? ' market-item-link' : '');
+        if (m.url) { item.href = m.url; item.target = '_blank'; item.rel = 'noopener'; }
         item.innerHTML = `
-          <span class="market-q">${escapeHtml(m.question)}</span>
+          <span class="market-q">${escapeHtml(m.question)}${m.url ? ' <span class="market-go">↗</span>' : ''}</span>
           <span class="market-prob">${m.prob != null ? Math.round(m.prob * 100) + '%' : '—'}</span>
           <span class="market-vol">${Math.round(m.volume).toLocaleString()}</span>`;
         el.marketList.appendChild(item);
