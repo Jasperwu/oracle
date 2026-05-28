@@ -168,6 +168,42 @@ html, body {
 }
 .spark { filter: drop-shadow(0 0 3px rgba(204,120,92,.55)); animation: twinkle 3.2s ease-in-out infinite; }
 @keyframes twinkle { 0%, 100% { opacity: .25; } 50% { opacity: 1; } }
+
+/* scout board (multi-agent loading) */
+.scout-board {
+  margin-top: 22px; width: min(420px, 86vw);
+  display: flex; flex-direction: column; gap: 7px;
+}
+.scout-row {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13.5px; color: var(--ink-soft);
+  background: rgba(250,249,245,.7); border: 1px solid var(--line);
+  border-radius: 10px; padding: 8px 13px;
+  opacity: 0; transform: translateY(6px); animation: scoutRowIn .4s ease forwards;
+}
+@keyframes scoutRowIn { to { opacity: 1; transform: translateY(0); } }
+.scout-emoji { font-size: 15px; }
+.scout-name { flex: 1; font-weight: 500; color: var(--ink); }
+.scout-status { font-size: 12.5px; color: var(--ink-faint); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.scout-row.scanning .scout-status { color: var(--clay); }
+.scout-row.scanning { border-color: var(--clay-soft); }
+.scout-row.done .scout-status { color: #5a8a5a; }
+
+/* scout findings (results) */
+.scout-findings { max-width: 1040px; margin: 30px auto 0; width: 100%; }
+.scout-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; align-items: start; }
+.scout-card { background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; box-shadow: var(--shadow); }
+.scout-card-head { display: flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 600; color: var(--ink-soft); margin: 0 0 12px; }
+.scout-signal { padding: 11px 0; border-top: 1px solid var(--line); }
+.scout-signal:first-of-type { border-top: none; padding-top: 2px; }
+.scout-signal-txt { font-size: 13.5px; color: var(--ink); line-height: 1.45; }
+.scout-sowhat { font-size: 12.5px; color: var(--ink-soft); margin: 5px 0 0; }
+.scout-sowhat b { color: var(--clay-deep); font-weight: 600; }
+.fringe-meter { display: flex; align-items: center; gap: 7px; margin-top: 7px; }
+.fringe-track { flex: 1; height: 5px; background: var(--paper-2); border-radius: 999px; overflow: hidden; }
+.fringe-fill { height: 100%; background: linear-gradient(90deg, var(--clay-soft), var(--clay-deep)); border-radius: 999px; }
+.fringe-num { font-size: 11px; color: var(--ink-faint); white-space: nowrap; font-variant-numeric: tabular-nums; }
+@media (max-width: 820px) { .scout-grid { grid-template-columns: 1fr; } }
 .particles { position: absolute; inset: 0; pointer-events: none; }
 .particle {
   position: absolute; width: 4px; height: 4px; border-radius: 50%;
@@ -538,6 +574,7 @@ a.market-item:hover .market-go { opacity: 1; }
     </div>
     <p class="oracle-status" id="oracleStatus">正在召喚神諭…</p>
     <p class="oracle-sub" id="oracleSub"></p>
+    <div class="scout-board" id="scoutBoard" hidden></div>
   </div>
 
   <!-- ACT 3 — Futures cone -->
@@ -656,6 +693,12 @@ a.market-item:hover .market-go { opacity: 1; }
       </div>
     </div>
 
+    <!-- fringe signals gathered by the scout agents -->
+    <div class="scout-findings" id="scoutFindings" hidden>
+      <p class="market-source-title">🛰️ AI 偵察員蒐集到的邊緣訊號</p>
+      <div class="scout-grid" id="scoutGrid"></div>
+    </div>
+
     <!-- market source -->
     <div class="market-source" id="marketSource" hidden>
       <p class="market-source-title">📊 即時佐證 · 預測市場(Polymarket + Kalshi)</p>
@@ -686,6 +729,10 @@ a.market-item:hover .market-go { opacity: 1; }
         <input type="checkbox" id="webSearchToggle" checked />
         <span>讓 Claude 自主上網搜尋查證（web search，每次預測約多花幾美分）</span>
       </label>
+      <label class="toggle-row">
+        <input type="checkbox" id="deepScanToggle" checked />
+        <span>多代理人 fringe 深掃（派出 5 個偵察員並行掃描邊緣訊號 — 更完整，但較慢、費用較高）</span>
+      </label>
       <div class="modal-actions">
         <button class="btn-ghost" id="clearKey">清除金鑰</button>
         <button class="btn-solid" id="saveKey">儲存</button>
@@ -707,6 +754,7 @@ a.market-item:hover .market-go { opacity: 1; }
   const LS_KEY = 'oracle_api_key';
   const LS_MODEL = 'oracle_model';
   const LS_WEBSEARCH = 'oracle_websearch';
+  const LS_DEEPSCAN = 'oracle_deepscan';
   const GAMMA = 'https://gamma-api.polymarket.com/markets';
   const KALSHI = 'https://api.elections.kalshi.com/trade-api/v2/markets';
   const GDELT = 'https://api.gdeltproject.org/api/v2/doc/doc';
@@ -739,6 +787,9 @@ a.market-item:hover .market-go { opacity: 1; }
     marketList: $('marketList'),
     cone: $('coneSvg'),
     coneDots: $('coneDots'),
+    scoutBoard: $('scoutBoard'),
+    scoutFindings: $('scoutFindings'),
+    scoutGrid: $('scoutGrid'),
     newsCard: $('newsCard'),
     newsList: $('newsList'),
     buzzCard: $('buzzCard'),
@@ -752,6 +803,7 @@ a.market-item:hover .market-go { opacity: 1; }
     apiKeyInput: $('apiKeyInput'),
     modelSelect: $('modelSelect'),
     webSearchToggle: $('webSearchToggle'),
+    deepScanToggle: $('deepScanToggle'),
     saveKey: $('saveKey'),
     clearKey: $('clearKey'),
   };
@@ -760,6 +812,7 @@ a.market-item:hover .market-go { opacity: 1; }
   const getKey = () => localStorage.getItem(LS_KEY) || '';
   const getModel = () => localStorage.getItem(LS_MODEL) || 'claude-sonnet-4-6';
   const getWebSearch = () => localStorage.getItem(LS_WEBSEARCH) !== '0';
+  const getDeepScan = () => localStorage.getItem(LS_DEEPSCAN) !== '0';
 
   function refreshByokNote() {
     if (getKey()) {
@@ -776,6 +829,7 @@ a.market-item:hover .market-go { opacity: 1; }
     el.apiKeyInput.value = getKey();
     el.modelSelect.value = getModel();
     el.webSearchToggle.checked = getWebSearch();
+    el.deepScanToggle.checked = getDeepScan();
     el.modalBackdrop.hidden = false;
   }
   function closeModal() { el.modalBackdrop.hidden = true; }
@@ -789,6 +843,7 @@ a.market-item:hover .market-go { opacity: 1; }
     if (k) localStorage.setItem(LS_KEY, k); else localStorage.removeItem(LS_KEY);
     localStorage.setItem(LS_MODEL, el.modelSelect.value);
     localStorage.setItem(LS_WEBSEARCH, el.webSearchToggle.checked ? '1' : '0');
+    localStorage.setItem(LS_DEEPSCAN, el.deepScanToggle.checked ? '1' : '0');
     refreshByokNote();
     closeModal();
   });
@@ -1062,45 +1117,131 @@ a.market-item:hover .market-go { opacity: 1; }
     return Date.UTC(+m[1], +m[2] - 1, +m[3], +m[4], +m[5], +m[6]);
   }
 
-  /* ---------- Claude ---------- */
-  function buildPrompt(keyword, sig) {
-    const { markets, news, buzz, wiki } = sig;
-    const mkt = markets.length
-      ? markets.map((m) =>
+  /* ---------- Claude: signal blocks shared by scouts + synthesizer ---------- */
+  function marketBlock(sig) {
+    return sig.markets.length
+      ? sig.markets.map((m) =>
           `- [${m.source || '市場'}] "${m.question}" → ${m.outcome} ${m.prob != null ? Math.round(m.prob * 100) + '%' : 'n/a'}` +
-          ` (成交量 ${Math.round(m.volume).toLocaleString()}` +
-          `${m.endDate ? '，到期 ' + m.endDate.slice(0, 10) : ''})`
+          ` (成交量 ${Math.round(m.volume).toLocaleString()}${m.endDate ? '，到期 ' + m.endDate.slice(0, 10) : ''})`
         ).join('\n')
       : '（無直接相關的預測市場）';
-
-    const newsBlock = news.length
-      ? news.map((n) => `- ${n.title}（${n.domain}）`).join('\n')
-      : '（過去 3 天 GDELT 無相關新聞）';
-
-    const buzzBlock = buzz.length
-      ? buzz.map((b) => `- ${b.title}（👍${b.points} 💬${b.comments}）`).join('\n')
-      : '（Hacker News 無近期相關討論）';
-
-    const wikiBlock = wiki
-      ? `維基百科「${wiki.title}」過去 30 天瀏覽量 ${wiki.total.toLocaleString()}，` +
-        `近期相對前期${wiki.change >= 0 ? '上升' : '下降'} ${Math.abs(wiki.change)}%（關注度${wiki.change >= 10 ? '升溫' : wiki.change <= -10 ? '降溫' : '持平'}）。`
+  }
+  function newsBlock(sig) {
+    return sig.news.length ? sig.news.map((n) => `- ${n.title}（${n.domain}）`).join('\n') : '（過去 3 天 GDELT 無相關新聞）';
+  }
+  function buzzBlock(sig) {
+    return sig.buzz.length ? sig.buzz.map((b) => `- ${b.title}（👍${b.points} 💬${b.comments}）`).join('\n') : '（Hacker News 無近期相關討論）';
+  }
+  function wikiBlock(sig) {
+    return sig.wiki
+      ? `維基百科「${sig.wiki.title}」過去 30 天瀏覽量 ${sig.wiki.total.toLocaleString()}，近期相對前期${sig.wiki.change >= 0 ? '上升' : '下降'} ${Math.abs(sig.wiki.change)}%（關注度${sig.wiki.change >= 10 ? '升溫' : sig.wiki.change <= -10 ? '降溫' : '持平'}）。`
       : '（無維基百科關注度資料）';
+  }
+
+  function extractJSON(text) {
+    let t = text.trim().replace(/^```(?:json)?/i, '').replace(/```$/, '').trim();
+    try { return JSON.parse(t); } catch {}
+    const s = t.indexOf('{'), e = t.lastIndexOf('}');
+    if (s >= 0 && e > s) return JSON.parse(t.slice(s, e + 1));
+    throw new Error('無法解析回傳的格式');
+  }
+
+  /* ---------- low-level Claude call ---------- */
+  async function callClaude(system, userContent, { webSearch = false, maxTokens = 1600, maxUses = 3 } = {}) {
+    const body = {
+      model: getModel(),
+      max_tokens: maxTokens,
+      system,
+      messages: [{ role: 'user', content: userContent }],
+    };
+    if (webSearch) body.tools = [{ type: 'web_search_20250305', name: 'web_search', max_uses: maxUses }];
+
+    const res = await fetch(ANTHROPIC, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        'x-api-key': getKey(),
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true',
+      },
+      body: JSON.stringify(body),
+    });
+    if (!res.ok) {
+      let detail = '';
+      try { detail = (await res.json()).error?.message || ''; } catch {}
+      if (res.status === 401) throw new Error('金鑰無效或未授權（401）。請到右上角重新設定 API 金鑰。');
+      throw new Error(`Claude API 錯誤 ${res.status}${detail ? '：' + detail : ''}`);
+    }
+    const data = await res.json();
+    const blocks = data.content || [];
+    const text = blocks.filter((b) => b.type === 'text').map((b) => b.text || '').join('');
+    const sources = [];
+    blocks.forEach((b) => {
+      (b.citations || []).forEach((c) => {
+        if (c.url && !sources.some((s) => s.url === c.url)) sources.push({ url: c.url, title: c.title || c.url });
+      });
+    });
+    return { text, sources };
+  }
+
+  /* ---------- fringe-signal scout agents ---------- */
+  const SCOUTS = [
+    { id: 'research', name: '研究前沿', emoji: '🔬', domain: '學術論文、開源專案、實驗室突破（arXiv / GitHub / 研究機構）', task: '找出最新、但尚未普及的研究、技術原型或開源動態。', ctx: null },
+    { id: 'markets', name: '市場與資本', emoji: '📊', domain: '預測市場、創投募資、新創與大廠動向', task: '從下列市場數據與你查到的資本動向中，挖出隱含的早期訊號。', ctx: (sig) => `【可參考的市場數據】\n${marketBlock(sig)}` },
+    { id: 'culture', name: '社群與亞文化', emoji: '💬', domain: '小眾社群、indie maker、Product Hunt、新興使用行為', task: '找出正在邊緣社群醞釀、尚未進入主流的行為或產品趨勢。', ctx: (sig) => `【可參考的社群討論】\n${buzzBlock(sig)}` },
+    { id: 'policy', name: '政策與監管', emoji: '⚖️', domain: '法規、標準、政府與產業政策', task: '找出可能改變賽局的法規／政策早期跡象。', ctx: (sig) => `【可參考的近期新聞】\n${newsBlock(sig)}` },
+    { id: 'contrarian', name: '逆勢訊號', emoji: '🎲', domain: '異常值、被主流忽視或嘲笑、但有跡可循的觀點', task: '刻意尋找與共識相反、被低估、或被視為瘋狂卻有早期證據的訊號。', ctx: null },
+  ];
+
+  async function runScout(keyword, scout, sig) {
+    const system = `你是一位「${scout.name}」訊號偵察員（scout agent）。任務是針對指定主題，在「${scout.domain}」這個領域掃描「邊緣訊號／弱訊號」——大多數人還沒注意到、卻可能預示未來轉折的早期跡象。刻意避開顯而易見的主流頭條。你的回覆必須「只」是使用者要求的 JSON。`;
+    const user = `主題：「${keyword}」
+
+${scout.ctx ? scout.ctx(sig) + '\n\n' : ''}${scout.task}${getWebSearch() ? '善用 web search 查證最新發展。' : ''}
+
+只回傳有效 JSON（不要 markdown、不要多餘文字），全部繁體中文：
+{"signals":[{"signal":"訊號描述","fringe":0,"evidence":"依據或出處","soWhat":"對產品/設計的潛在意涵"}]}
+給 2–4 個訊號。fringe 為 0–100 的整數，越高代表越邊緣、越冷門。`;
+    try {
+      const { text, sources } = await callClaude(system, user, { webSearch: getWebSearch(), maxTokens: 1200, maxUses: 2 });
+      const parsed = extractJSON(text);
+      const signals = Array.isArray(parsed.signals) ? parsed.signals.slice(0, 4) : [];
+      return { scout, signals, sources };
+    } catch { return { scout, signals: [], sources: [] }; }
+  }
+
+  function runScouts(keyword, sig, onProgress) {
+    return Promise.all(SCOUTS.map(async (scout) => {
+      onProgress && onProgress(scout.id, 'scanning');
+      const r = await runScout(keyword, scout, sig);
+      onProgress && onProgress(scout.id, 'done', r.signals.length);
+      return r;
+    }));
+  }
+
+  /* ---------- synthesizer: scouts + data -> futures cone ---------- */
+  function buildSynthPrompt(keyword, sig, scoutResults) {
+    const scoutBlock = (scoutResults && scoutResults.length)
+      ? scoutResults.map((r) => r.signals.length
+          ? `【${r.scout.name}】\n` + r.signals.map((s) => `- (邊緣度 ${s.fringe}/100) ${s.signal}｜依據：${s.evidence}｜意涵：${s.soWhat}`).join('\n')
+          : `【${r.scout.name}】（無顯著訊號）`).join('\n\n')
+      : '';
 
     return `關鍵詞：「${keyword}」
-
+${scoutBlock ? '\n【AI 偵察員蒐集到的邊緣訊號】\n' + scoutBlock + '\n' : ''}
 【預測市場即時賠率 · Polymarket + Kalshi】
-${mkt}
+${marketBlock(sig)}
 
 【過去 3 天全球新聞 · GDELT】
-${newsBlock}
+${newsBlock(sig)}
 
 【Hacker News 社群討論】
-${buzzBlock}
+${buzzBlock(sig)}
 
 【Wikipedia 關注度趨勢】
-${wikiBlock}
+${wikiBlock(sig)}
 
-請以一位敏銳的 futurist 角色，整合上述「預測市場機率」「過去 3 天新聞事件」「社群討論熱度」「關注度趨勢」，並善用你的 web search 工具查證或補充最新發展，推演這個主題在未來 18 個月如何展開。drivers 與 rationale 請盡量引用上述真實數據或你查到的事實。
+請以一位敏銳的 futurist 角色，整合上述偵察員訊號、預測市場機率、新聞事件、社群熱度與關注度趨勢${getWebSearch() ? '，並善用 web search 查證或補充最新發展' : ''}，推演這個主題在未來 18 個月如何展開。drivers 與 rationale 請盡量引用上述真實訊號或數據；越邊緣但有支撐的訊號越值得放進較遠的 horizon。
 
 務必只回傳符合下列結構的有效 JSON（不要 markdown、不要程式碼框、不要多餘文字），全部欄位以繁體中文撰寫：
 {
@@ -1124,64 +1265,63 @@ ${wikiBlock}
 每個 horizon 請給 2–3 個 events。likelihood 只能是 probable、plausible、possible 三者之一，越近期的、越有市場/訊號支撐的越偏 probable。`;
   }
 
-  function extractJSON(text) {
-    let t = text.trim().replace(/^```(?:json)?/i, '').replace(/```$/, '').trim();
-    try { return JSON.parse(t); } catch {}
-    const s = t.indexOf('{'), e = t.lastIndexOf('}');
-    if (s >= 0 && e > s) return JSON.parse(t.slice(s, e + 1));
-    throw new Error('無法解析神諭回傳的格式');
+  async function askOracle(keyword, sig, scoutResults) {
+    const system = '你是一位頂尖的未來學家（futurist），擅長把偵察員蒐集的邊緣訊號、預測市場數據與趨勢轉化為具體、可信、富洞察力的未來情境。語氣冷靜、精準、帶一點神諭的詩意。你的最終回覆必須「只」包含使用者要求的 JSON 物件，不要任何前後說明文字。';
+    const { text, sources } = await callClaude(system, buildSynthPrompt(keyword, sig, scoutResults), {
+      webSearch: getWebSearch(), maxTokens: 3000, maxUses: 4,
+    });
+    return { result: extractJSON(text), sources };
   }
 
-  async function askClaude(keyword, sig) {
-    const body = {
-      model: getModel(),
-      max_tokens: 3000,
-      system: '你是一位頂尖的未來學家（futurist），擅長把預測市場數據、社群訊號與趨勢轉化為具體、可信、富洞察力的未來情境。語氣冷靜、精準、帶一點神諭的詩意。你的最終回覆必須「只」包含使用者要求的 JSON 物件，不要任何前後說明文字。',
-      messages: [{ role: 'user', content: buildPrompt(keyword, sig) }],
-    };
-    if (getWebSearch()) {
-      body.tools = [{ type: 'web_search_20250305', name: 'web_search', max_uses: 4 }];
+  /* ---------- scout board (loading) + findings (results) ---------- */
+  function initScoutBoard() {
+    el.scoutBoard.innerHTML = SCOUTS.map((s, i) =>
+      `<div class="scout-row" id="scout-${s.id}" style="animation-delay:${(i * 0.06).toFixed(2)}s">
+         <span class="scout-emoji">${s.emoji}</span>
+         <span class="scout-name">${escapeHtml(s.name)}</span>
+         <span class="scout-status" id="scoutStatus-${s.id}">待命</span>
+       </div>`).join('');
+    el.scoutBoard.hidden = false;
+  }
+  function updateScout(id, state, count) {
+    const row = $('scout-' + id), st = $('scoutStatus-' + id);
+    if (!row || !st) return;
+    if (state === 'scanning') { row.classList.add('scanning'); st.textContent = '掃描中…'; }
+    else if (state === 'done') {
+      row.classList.remove('scanning'); row.classList.add('done');
+      st.textContent = count > 0 ? `✓ ${count} 個訊號` : '— 無顯著訊號';
     }
+  }
+  function hideScoutBoard() { if (el.scoutBoard) { el.scoutBoard.hidden = true; el.scoutBoard.innerHTML = ''; } }
 
-    const res = await fetch(ANTHROPIC, {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-        'x-api-key': getKey(),
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-access': 'true',
-      },
-      body: JSON.stringify(body),
-    });
-
-    if (!res.ok) {
-      let detail = '';
-      try { detail = (await res.json()).error?.message || ''; } catch {}
-      if (res.status === 401) throw new Error('金鑰無效或未授權（401）。請到右上角重新設定 API 金鑰。');
-      throw new Error(`Claude API 錯誤 ${res.status}${detail ? '：' + detail : ''}`);
-    }
-    const data = await res.json();
-    const blocks = data.content || [];
-    const text = blocks.filter((b) => b.type === 'text').map((b) => b.text || '').join('');
-
-    // collect web-search citations, if any
-    const sources = [];
-    blocks.forEach((b) => {
-      (b.citations || []).forEach((c) => {
-        if (c.url && !sources.some((s) => s.url === c.url)) {
-          sources.push({ url: c.url, title: c.title || c.url });
-        }
-      });
-    });
-
-    return { result: extractJSON(text), sources };
+  function renderScoutFindings(scoutResults) {
+    if (!el.scoutFindings) return;
+    const withSignals = (scoutResults || []).filter((r) => r.signals && r.signals.length);
+    if (!withSignals.length) { el.scoutFindings.hidden = true; return; }
+    el.scoutGrid.innerHTML = withSignals.map((r) => `
+      <div class="scout-card">
+        <p class="scout-card-head">${r.scout.emoji} ${escapeHtml(r.scout.name)}</p>
+        ${r.signals.map((s) => {
+          const f = Math.max(0, Math.min(100, Math.round(+s.fringe || 0)));
+          return `<div class="scout-signal">
+            <div class="scout-signal-txt">${escapeHtml(s.signal || '')}</div>
+            ${s.soWhat ? `<p class="scout-sowhat"><b>意涵</b> · ${escapeHtml(s.soWhat)}</p>` : ''}
+            <div class="fringe-meter">
+              <div class="fringe-track"><div class="fringe-fill" style="width:${f}%"></div></div>
+              <span class="fringe-num">邊緣度 ${f}</span>
+            </div>
+          </div>`;
+        }).join('')}
+      </div>`).join('');
+    el.scoutFindings.hidden = false;
   }
 
   /* ---------- rendering ---------- */
   const LIKE_LABEL = { probable: '最可能', plausible: '合理', possible: '有可能' };
 
-  function render(data, sig, sources) {
+  function render(data, sig, sources, scoutResults) {
     const { markets, news, buzz, wiki } = sig;
+    renderScoutFindings(scoutResults);
     el.resultTopic.textContent = (data.topic || '').toUpperCase() || 'FORESIGHT';
     el.resultSummary.textContent = data.summary || '';
 
@@ -1449,12 +1589,12 @@ ${wikiBlock}
   }
 
   /* ---------- overlay control ---------- */
-  function showOverlay() {
+  function showOverlay(cycle = true) {
     seedParticles();
     el.overlay.classList.remove('fade-out');
     el.overlay.classList.add('show');
     el.overlay.setAttribute('aria-hidden', 'false');
-    startStatusCycle();
+    if (cycle) startStatusCycle();
   }
   function hideOverlay() {
     stopStatusCycle();
@@ -1462,6 +1602,7 @@ ${wikiBlock}
     setTimeout(() => {
       el.overlay.classList.remove('show', 'fade-out');
       el.overlay.setAttribute('aria-hidden', 'true');
+      hideScoutBoard();
     }, 600);
   }
 
@@ -1474,8 +1615,10 @@ ${wikiBlock}
       return;
     }
 
-    showOverlay();
+    const deep = getDeepScan();
+    showOverlay(!deep);
     const startedAt = Date.now();
+    let scoutResults = [];
     try {
       const [pmMarkets, kalshiMarkets, news, buzz, wiki] = await Promise.all([
         fetchMarkets(keyword),
@@ -1486,13 +1629,23 @@ ${wikiBlock}
       ]);
       const markets = mergeMarkets(pmMarkets, kalshiMarkets);
       const sig = { markets, news, buzz, wiki };
-      const { result, sources } = await askClaude(keyword, sig);
+
+      if (deep) {
+        el.status.textContent = '派出 AI 偵察員掃描邊緣訊號…';
+        el.sub.textContent = `${SCOUTS.length} 個並行 agent`;
+        initScoutBoard();
+        scoutResults = await runScouts(keyword, sig, updateScout);
+        el.status.textContent = '綜合所有訊號，推演未來…';
+        el.sub.textContent = '對齊 3–18 個月的時間錐';
+      }
+
+      const { result, sources } = await askOracle(keyword, sig, scoutResults);
 
       // keep the oracle on screen for at least the full ritual
       const elapsed = Date.now() - startedAt;
       if (elapsed < 3200) await new Promise((r) => setTimeout(r, 3200 - elapsed));
 
-      render(result, sig, sources);
+      render(result, sig, sources, scoutResults);
       hideOverlay();
       el.stageInput.hidden = true;
       el.stageResults.hidden = false;
