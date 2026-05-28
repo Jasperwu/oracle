@@ -236,14 +236,40 @@ html, body {
 }
 .reset-btn:hover { color: var(--clay); border-color: var(--clay-soft); }
 
-.cone-wrap { max-width: 1040px; margin: 0 auto 8px; width: 100%; }
-.cone { width: 100%; height: auto; }
+.cone-wrap { max-width: 1040px; margin: 0 auto 8px; width: 100%; perspective: 1300px; }
+.cone { width: 100%; height: auto; transition: transform .3s ease; will-change: transform; }
 .cone .band { transform-origin: 60px 210px; animation: bandIn 1s ease forwards; opacity: 0; }
 .band-possible { animation-delay: .05s; }
 .band-plausible { animation-delay: .2s; }
 .band-probable  { animation-delay: .35s; }
 @keyframes bandIn { from { opacity: 0; transform: scaleX(.4); } to { opacity: 1; transform: scaleX(1); } }
 .cone .grid { stroke: var(--clay); stroke-opacity: .25; stroke-dasharray: 4 6; }
+
+/* horizon rings + time ticks */
+.hring { fill: none; stroke: var(--clay); stroke-opacity: .3; stroke-dasharray: 3 7; }
+.htick { font-family: var(--sans); fill: var(--ink-faint); font-size: 13px; font-weight: 500; }
+
+/* event dots plotted inside the cone */
+.cone-dot { cursor: pointer; opacity: 0; animation: dotIn .5s ease forwards; }
+@keyframes dotIn { from { opacity: 0; } to { opacity: 1; } }
+.dot-halo { fill: var(--clay); opacity: 0; pointer-events: none; transition: opacity .15s ease; }
+.dot-core { transition: r .15s ease; }
+.dot-probable  .dot-core { fill: var(--clay);  stroke: #fff; stroke-width: 2; }
+.dot-plausible .dot-core { fill: var(--clay-soft); stroke: var(--clay-deep); stroke-width: 1.5; }
+.dot-possible  .dot-core { fill: var(--paper); stroke: var(--clay); stroke-width: 1.5; }
+.cone-dot:hover .dot-core, .cone-dot.active .dot-core { r: 10; }
+.cone-dot:hover .dot-halo, .cone-dot.active .dot-halo { opacity: .18; }
+.cone-hint { text-align: center; font-size: 12.5px; color: var(--ink-faint); margin: 4px auto 0; max-width: 760px; }
+
+/* card highlight driven by the cone */
+.event.event-hl { background: var(--paper-2); box-shadow: inset 3px 0 0 var(--clay); border-radius: 8px; }
+.event.event-pulse { animation: evPulse 1.2s ease; }
+@keyframes evPulse { 0%,100% { background: transparent; } 30% { background: var(--clay-soft); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .cone { transition: none !important; transform: none !important; }
+  .cone-dot { animation: none; opacity: 1; }
+}
 .now-glow { fill: var(--clay); opacity: .18; animation: pulse2 2.6s ease-in-out infinite; }
 @keyframes pulse2 { 0%,100% { r: 22px; opacity:.18; } 50% { r: 30px; opacity:.08; } }
 .now-dot { fill: var(--clay); }
@@ -361,6 +387,12 @@ a.market-item { text-decoration: none; transition: border-color .16s ease, box-s
 a.market-item:hover { border-color: var(--clay-soft); box-shadow: var(--shadow); }
 .market-go { color: var(--clay); font-size: 12px; margin-left: 5px; opacity: .55; }
 a.market-item:hover .market-go { opacity: 1; }
+.market-src {
+  font-size: 10.5px; font-weight: 600; padding: 2px 7px; border-radius: 999px;
+  margin-right: 9px; vertical-align: middle; letter-spacing: .02em;
+}
+.src-poly { background: var(--clay-soft); color: var(--clay-deep); }
+.src-kalshi { background: #d6e8df; color: #2f6b4f; }
 .market-q { font-size: 14px; color: var(--ink); flex: 1; }
 .market-prob {
   font-family: var(--serif); font-size: 20px; font-weight: 600; color: var(--clay-deep);
@@ -530,7 +562,7 @@ a.market-item:hover .market-go { opacity: 1; }
 
     <!-- The cone of futures -->
     <div class="cone-wrap">
-      <svg class="cone" viewBox="0 0 1000 420" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <svg class="cone" id="coneSvg" viewBox="0 0 1000 420" preserveAspectRatio="xMidYMid meet">
         <defs>
           <linearGradient id="gPossible" x1="0" y1="0" x2="1" y2="0">
             <stop offset="0" stop-color="#CC785C" stop-opacity="0"/>
@@ -553,20 +585,29 @@ a.market-item:hover .market-go { opacity: 1; }
         <!-- probable (inner) -->
         <path class="band band-probable" d="M60,210 L960,165 L960,255 Z" fill="url(#gProbable)"/>
 
-        <!-- horizon gridlines -->
-        <line class="grid" x1="360" y1="40" x2="360" y2="380"/>
-        <line class="grid" x1="660" y1="40" x2="660" y2="380"/>
+        <!-- horizon rings (elliptical cross-sections give the cone depth) -->
+        <g class="horizon-rings">
+          <ellipse class="hring" cx="360" cy="210" rx="16" ry="60"/>
+          <ellipse class="hring" cx="660" cy="210" rx="24" ry="120"/>
+          <ellipse class="hring" cx="900" cy="210" rx="32" ry="168"/>
+        </g>
+
+        <!-- plotted event dots are injected here -->
+        <g class="cone-dots" id="coneDots"></g>
 
         <!-- apex / NOW -->
         <circle class="now-glow" cx="60" cy="210" r="26"/>
         <circle class="now-dot" cx="60" cy="210" r="7"/>
         <text class="now-label" x="60" y="250">現在</text>
 
-        <text class="axis-label" x="210" y="405">　</text>
+        <text class="htick" x="360" y="408" text-anchor="middle">3–6 個月</text>
+        <text class="htick" x="660" y="408" text-anchor="middle">6–12 個月</text>
+        <text class="htick" x="900" y="408" text-anchor="middle">12–18 個月</text>
         <text class="band-label" x="950" y="180" text-anchor="end">最可能 Probable</text>
         <text class="band-label" x="950" y="100" text-anchor="end">合理 Plausible</text>
         <text class="band-label" x="950" y="48"  text-anchor="end">有可能 Possible</text>
       </svg>
+      <p class="cone-hint">每個光點是一個預測事件 — 越靠中軸越「最可能」，越外側越「有可能」。滑過或點擊光點可對應到下方卡片。</p>
     </div>
 
     <!-- signals strip -->
@@ -599,7 +640,7 @@ a.market-item:hover .market-go { opacity: 1; }
 
     <!-- market source -->
     <div class="market-source" id="marketSource" hidden>
-      <p class="market-source-title">📊 即時佐證 · Polymarket 預測市場</p>
+      <p class="market-source-title">📊 即時佐證 · 預測市場(Polymarket + Kalshi)</p>
       <div class="market-list" id="marketList"></div>
     </div>
 
@@ -649,6 +690,7 @@ a.market-item:hover .market-go { opacity: 1; }
   const LS_MODEL = 'oracle_model';
   const LS_WEBSEARCH = 'oracle_websearch';
   const GAMMA = 'https://gamma-api.polymarket.com/markets';
+  const KALSHI = 'https://api.elections.kalshi.com/trade-api/v2/markets';
   const GDELT = 'https://api.gdeltproject.org/api/v2/doc/doc';
   const HN = 'https://hn.algolia.com/api/v1/search_by_date';
   const WIKI_SEARCH = 'https://en.wikipedia.org/w/api.php';
@@ -677,6 +719,9 @@ a.market-item:hover .market-go { opacity: 1; }
     wildcardText: $('wildcardText'),
     marketSource: $('marketSource'),
     marketList: $('marketList'),
+    cone: $('coneSvg'),
+    coneDots: $('coneDots'),
+    coneWrap: null,
     newsCard: $('newsCard'),
     newsList: $('newsList'),
     buzzCard: $('buzzCard'),
@@ -821,8 +866,49 @@ a.market-item:hover .market-go { opacity: 1; }
         volume: Number(m.volumeNum || m.volume || 0),
         endDate: m.endDate || null,
         url: slug ? `https://polymarket.com/event/${slug}` : null,
+        source: 'Polymarket',
       };
     });
+  }
+
+  /* ---------- Kalshi: regulated US prediction market ---------- */
+  async function fetchKalshi(keyword) {
+    // NOTE: pure-frontend access depends on Kalshi sending CORS headers.
+    // If blocked, this resolves to [] and the rest of the oracle is unaffected.
+    try {
+      const res = await fetch(`${KALSHI}?status=open&limit=1000`, { headers: { Accept: 'application/json' } });
+      if (!res.ok) return [];
+      const data = await res.json();
+      const list = Array.isArray(data.markets) ? data.markets : [];
+      const kw = keyword.toLowerCase();
+      const tokens = kw.split(/\s+/).filter(Boolean);
+      const matches = list.filter((m) => {
+        const t = `${m.title || ''} ${m.yes_sub_title || ''} ${m.subtitle || ''}`.toLowerCase();
+        return t.includes(kw) || tokens.some((tok) => t.includes(tok));
+      });
+      matches.sort((a, b) => (b.volume || 0) - (a.volume || 0));
+      return matches.slice(0, 6).map((m) => {
+        const cents = (typeof m.last_price === 'number' && m.last_price > 0) ? m.last_price
+          : (typeof m.yes_bid === 'number' && typeof m.yes_ask === 'number') ? (m.yes_bid + m.yes_ask) / 2
+          : (typeof m.yes_bid === 'number') ? m.yes_bid : null;
+        return {
+          question: m.title + (m.yes_sub_title ? ' — ' + m.yes_sub_title : ''),
+          prob: cents != null ? cents / 100 : null,
+          outcome: 'Yes',
+          volume: Number(m.volume || 0),
+          endDate: m.close_time || null,
+          url: m.event_ticker ? `https://kalshi.com/markets/${String(m.event_ticker).toLowerCase()}` : null,
+          source: 'Kalshi',
+        };
+      });
+    } catch { return []; }
+  }
+
+  function mergeMarkets(a, b) {
+    return [...(a || []), ...(b || [])]
+      .filter((m) => m && m.question)
+      .sort((x, y) => (y.volume || 0) - (x.volume || 0))
+      .slice(0, 8);
   }
 
   /* ---------- GDELT: last 3 days of global news ---------- */
@@ -926,11 +1012,11 @@ a.market-item:hover .market-go { opacity: 1; }
     const { markets, news, buzz, wiki } = sig;
     const mkt = markets.length
       ? markets.map((m) =>
-          `- "${m.question}" → ${m.outcome} ${m.prob != null ? Math.round(m.prob * 100) + '%' : 'n/a'}` +
+          `- [${m.source || '市場'}] "${m.question}" → ${m.outcome} ${m.prob != null ? Math.round(m.prob * 100) + '%' : 'n/a'}` +
           ` (成交量 ${Math.round(m.volume).toLocaleString()}` +
           `${m.endDate ? '，到期 ' + m.endDate.slice(0, 10) : ''})`
         ).join('\n')
-      : '（無直接相關的 Polymarket 市場）';
+      : '（無直接相關的預測市場）';
 
     const newsBlock = news.length
       ? news.map((n) => `- ${n.title}（${n.domain}）`).join('\n')
@@ -947,7 +1033,7 @@ a.market-item:hover .market-go { opacity: 1; }
 
     return `關鍵詞：「${keyword}」
 
-【Polymarket 預測市場即時賠率】
+【預測市場即時賠率 · Polymarket + Kalshi】
 ${mkt}
 
 【過去 3 天全球新聞 · GDELT】
@@ -1055,12 +1141,12 @@ ${wikiBlock}
 
     // horizons
     el.horizons.innerHTML = '';
-    (data.horizons || []).forEach((h) => {
+    (data.horizons || []).forEach((h, hi) => {
       const card = document.createElement('div');
       card.className = 'horizon';
-      const events = (h.events || []).map((ev) => {
+      const events = (h.events || []).map((ev, ei) => {
         const lk = ['probable', 'plausible', 'possible'].includes(ev.likelihood) ? ev.likelihood : 'possible';
-        return `<div class="event">
+        return `<div class="event" id="ev-${hi}-${ei}" data-eid="${hi}-${ei}">
             <div class="event-top">
               <span class="event-title">${escapeHtml(ev.title || '')}</span>
               <span class="like like-${lk}">${LIKE_LABEL[lk]}</span>
@@ -1074,6 +1160,9 @@ ${wikiBlock}
         ${events}`;
       el.horizons.appendChild(card);
     });
+
+    // plot each event as a dot inside the futures cone
+    plotCone(data);
 
     // wildcard
     if (data.wildcard) {
@@ -1122,8 +1211,9 @@ ${wikiBlock}
         const item = document.createElement(m.url ? 'a' : 'div');
         item.className = 'market-item' + (m.url ? ' market-item-link' : '');
         if (m.url) { item.href = m.url; item.target = '_blank'; item.rel = 'noopener'; }
+        const srcCls = m.source === 'Kalshi' ? 'src-kalshi' : 'src-poly';
         item.innerHTML = `
-          <span class="market-q">${escapeHtml(m.question)}${m.url ? ' <span class="market-go">↗</span>' : ''}</span>
+          <span class="market-q">${m.source ? `<span class="market-src ${srcCls}">${escapeHtml(m.source)}</span>` : ''}${escapeHtml(m.question)}${m.url ? ' <span class="market-go">↗</span>' : ''}</span>
           <span class="market-prob">${m.prob != null ? Math.round(m.prob * 100) + '%' : '—'}</span>
           <span class="market-vol">${Math.round(m.volume).toLocaleString()}</span>`;
         el.marketList.appendChild(item);
@@ -1152,6 +1242,56 @@ ${wikiBlock}
     const area = `M0,${h} ` + pts.map((p) => `L${p[0].toFixed(1)},${p[1].toFixed(1)}`).join(' ') + ` L${w},${h} Z`;
     return `<svg class="sparkline" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none">
       <path class="spark-area" d="${area}"/><path d="${line}"/></svg>`;
+  }
+
+  /* ---------- cone plotting ---------- */
+  const SVG_NS = 'http://www.w3.org/2000/svg';
+  const CONE = { apexX: 60, apexY: 210, span: 900, halfMax: 180 };
+  const HORIZON_X = [360, 660, 900];
+  const LIK_FRAC = { probable: 0.24, plausible: 0.52, possible: 0.8 };
+  const halfHeightAt = (x) => ((x - CONE.apexX) / CONE.span) * CONE.halfMax;
+
+  function plotCone(data) {
+    if (!el.coneDots) return;
+    el.coneDots.innerHTML = '';
+    (data.horizons || []).forEach((h, hi) => {
+      const baseX = HORIZON_X[Math.min(hi, HORIZON_X.length - 1)];
+      (h.events || []).forEach((ev, ei) => {
+        const lk = ['probable', 'plausible', 'possible'].includes(ev.likelihood) ? ev.likelihood : 'possible';
+        const dir = ei % 2 === 0 ? -1 : 1;
+        const tier = Math.floor(ei / 2);
+        const frac = Math.min(LIK_FRAC[lk] + tier * 0.16, 0.95);
+        const x = baseX + dir * 8;
+        const y = CONE.apexY + dir * frac * halfHeightAt(x);
+
+        const g = document.createElementNS(SVG_NS, 'g');
+        g.setAttribute('class', `cone-dot dot-${lk}`);
+        g.setAttribute('data-eid', `${hi}-${ei}`);
+        g.style.animationDelay = (0.6 + (hi * 3 + ei) * 0.07) + 's';
+        g.appendChild(mkCircle('dot-halo', x, y, 16));
+        g.appendChild(mkCircle('dot-core', x, y, 7));
+        const title = document.createElementNS(SVG_NS, 'title');
+        title.textContent = `${ev.title || ''} · ${LIKE_LABEL[lk]}`;
+        g.appendChild(title);
+        el.coneDots.appendChild(g);
+      });
+    });
+  }
+
+  function mkCircle(cls, x, y, r) {
+    const c = document.createElementNS(SVG_NS, 'circle');
+    c.setAttribute('class', cls);
+    c.setAttribute('cx', x.toFixed(1));
+    c.setAttribute('cy', y.toFixed(1));
+    c.setAttribute('r', r);
+    return c;
+  }
+
+  function setEventActive(eid, on) {
+    const dot = el.coneDots && el.coneDots.querySelector(`.cone-dot[data-eid="${eid}"]`);
+    const card = document.getElementById('ev-' + eid);
+    if (dot) dot.classList.toggle('active', on);
+    if (card) card.classList.toggle('event-hl', on);
   }
 
   function escapeAttr(s) { return escapeHtml(s).replace(/`/g, '&#96;'); }
@@ -1205,12 +1345,14 @@ ${wikiBlock}
     showOverlay();
     const startedAt = Date.now();
     try {
-      const [markets, news, buzz, wiki] = await Promise.all([
+      const [pmMarkets, kalshiMarkets, news, buzz, wiki] = await Promise.all([
         fetchMarkets(keyword),
+        fetchKalshi(keyword),
         fetchGdelt(keyword),
         fetchHN(keyword),
         fetchWikiTrend(keyword),
       ]);
+      const markets = mergeMarkets(pmMarkets, kalshiMarkets);
       const sig = { markets, news, buzz, wiki };
       const { result, sources } = await askClaude(keyword, sig);
 
@@ -1241,6 +1383,44 @@ ${wikiBlock}
     el.keyword.value = '';
     el.keyword.focus();
   });
+
+  /* ---------- cone interactions: dot <-> card ---------- */
+  if (el.coneDots) {
+    el.coneDots.addEventListener('mouseover', (e) => {
+      const g = e.target.closest('.cone-dot'); if (g) setEventActive(g.dataset.eid, true);
+    });
+    el.coneDots.addEventListener('mouseout', (e) => {
+      const g = e.target.closest('.cone-dot'); if (g) setEventActive(g.dataset.eid, false);
+    });
+    el.coneDots.addEventListener('click', (e) => {
+      const g = e.target.closest('.cone-dot'); if (!g) return;
+      const card = document.getElementById('ev-' + g.dataset.eid);
+      if (card) {
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        card.classList.add('event-pulse');
+        setTimeout(() => card.classList.remove('event-pulse'), 1200);
+      }
+    });
+  }
+  el.horizons.addEventListener('mouseover', (e) => {
+    const ev = e.target.closest('.event'); if (ev && ev.dataset.eid) setEventActive(ev.dataset.eid, true);
+  });
+  el.horizons.addEventListener('mouseout', (e) => {
+    const ev = e.target.closest('.event'); if (ev && ev.dataset.eid) setEventActive(ev.dataset.eid, false);
+  });
+
+  /* ---------- subtle 3D parallax on the cone ---------- */
+  el.coneWrap = document.querySelector('.cone-wrap');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (el.coneWrap && el.cone && !reduceMotion) {
+    el.coneWrap.addEventListener('mousemove', (e) => {
+      const r = el.coneWrap.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width - 0.5;
+      const py = (e.clientY - r.top) / r.height - 0.5;
+      el.cone.style.transform = `rotateY(${(px * 10).toFixed(2)}deg) rotateX(${(-py * 6).toFixed(2)}deg)`;
+    });
+    el.coneWrap.addEventListener('mouseleave', () => { el.cone.style.transform = ''; });
+  }
 
   refreshByokNote();
 })();
