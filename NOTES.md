@@ -5,6 +5,24 @@
 
 ---
 
+## 2026-05-29 · Polymarket 改「search 優先 + 分頁 fallback」
+
+**動機**:與其拉 2000 筆回來猜，不如直接用平台的全文搜尋只要相關的。
+**作法**:
+- 新增 `GAMMA_SEARCH = .../public-search`。`searchPolymarket(queries)` 用 keyword + entities
+  打全文搜尋（每詞 limit_per_type=20、events_status=active），攤平 events 底下的 markets、去重。
+  這能抓到「market 的 question 不含關鍵字、但所屬 event 含」的盤口（NBA 季後賽常見）。
+- 抽出共用 `rankPolymarket()` + `normalizePolymarket()`，search 與分頁兩條路共用。
+- `fetchMarkets`：① search 優先（`requireScore:false`，因 search 已做相關性）；② 空了或失敗
+  → 退回原本的分頁 + 相關性過濾（`requireScore:true`）。失敗有保底不會壞。
+- Kalshi 維持 cursor 分頁（公開 API 無全文搜尋）。
+
+**風險**:沙箱擋外網，**無法當場驗證 public-search 的真實回傳格式（欄位/巢狀）**。
+程式對 `data.events[].markets` 與 `data.markets` 都做了防呆，但**務必實機驗證**；
+若 search 打歪會自動 fallback 到分頁，不致全空。
+
+---
+
 ## 2026-05-29 · 候選池太小:NBA 市場只剩 1 個 → 分頁加寬
 
 **回饋(實測「NBA playoff 2026」)**:預測市場只剩 1 個，但 Polymarket NBA 版有一大堆。

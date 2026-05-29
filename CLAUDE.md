@@ -51,9 +51,12 @@
 - **綜合 agent 雙重身分**:短/中/長期是**同一個** agent(`askOracle`)一次產出;其 system
   prompt 動態拼接成「領域專家(`expert`)+ 未來學家(futurist)」——既懂門道又會推演;
   `expert` 為空時退回純 futurist。
-- **抓取吃 entities**:`fetchMarkets/fetchKalshi` 用 `maxRelevance`(對 keyword + 所有
-  entities 取最高分)過濾;`fetchGdelt/fetchHN/fetchWikiTrend` 在原關鍵詞無果時用
-  `entities[0]` fallback。門檻統一 5、各取 8 筆。
+- **抓取吃 entities**:`fetchMarkets` **search 優先**(`GAMMA_SEARCH` /public-search,
+  用 keyword+entities 全文搜尋)→ 空了或失敗才 fallback 到分頁(offset 0/500/1000/1500)+
+  `maxRelevance` 過濾;共用 `rankPolymarket`/`normalizePolymarket`。`fetchKalshi` 用 cursor
+  分頁(無全文搜尋)+ `maxRelevance`。`fetchGdelt/fetchHN/fetchWikiTrend` 在原關鍵詞無果時用
+  `entities[0]` fallback;HN 結果再套相關性過濾濾掉科技雜訊。
+  `relevanceScore` 有 `STOPWORDS`:通用詞(world/league/power/ranking…)單獨命中不算數。
 - `runScout` 吃動態 `domain/task/angle`,並把 `signalDigest`(市場/新聞/HN/Wiki 摘要)
   餵給每位探員;移除寫死的「產品/設計意涵」,改問「對主題未來走向代表什麼」。
 - 綜合 prompt (`buildSynthPrompt`) 加上「緊扣主題、別硬拗成做產品」的硬性指示。

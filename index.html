@@ -780,6 +780,7 @@ a.market-item:hover .market-go { opacity: 1; }
   const LS_WEBSEARCH = 'oracle_websearch';
   const LS_DEEPSCAN = 'oracle_deepscan';
   const GAMMA = 'https://gamma-api.polymarket.com/markets';
+  const GAMMA_SEARCH = 'https://gamma-api.polymarket.com/public-search';
   const KALSHI = 'https://api.elections.kalshi.com/trade-api/v2/markets';
   const GDELT = 'https://api.gdeltproject.org/api/v2/doc/doc';
   const HN = 'https://hn.algolia.com/api/v1/search_by_date';
@@ -974,52 +975,86 @@ a.market-item:hover .market-go { opacity: 1; }
     return best;
   }
 
-  async function fetchMarkets(keyword, entities = []) {
-    // Polymarket has thousands of active markets; the top-500-by-volume slice
-    // is dominated by mega-volume markets (e.g. World Cup) and misses
-    // mid-volume ones (many NBA series). Page through to widen the candidate
-    // pool so relevant-but-smaller markets are actually considered.
-    const pageReq = (offset) =>
-      fetch(`${GAMMA}?closed=false&active=true&limit=500&offset=${offset}&order=volumeNum&ascending=false`,
-            { headers: { Accept: 'application/json' } })
-        .then((r) => (r.ok ? r.json() : []))
-        .catch(() => []);
-    let raw = [];
-    try {
-      const pages = await Promise.all([0, 500, 1000, 1500].map(pageReq));
-      raw = pages.flat().filter((m) => m && m.question);
-    } catch { return []; }
-    if (!raw.length) return [];
-
-    const queries = [keyword, ...entities];
-    const threshold = 5;
-
+  // shape one raw Gamma market into our common signal object
+  function normalizePolymarket(m) {
+    const outcomes = parseList(m.outcomes);
+    const prices = parseList(m.outcomePrices).map(Number);
+    let yesIdx = outcomes.findIndex((o) => /yes/i.test(o));
+    if (yesIdx < 0) yesIdx = 0;
+    const prob = prices[yesIdx];
+    const slug = (Array.isArray(m.events) && m.events[0] && m.events[0].slug) || m.slug || null;
+    return {
+      question: m.question,
+      prob: isFinite(prob) ? prob : null,
+      outcome: outcomes[yesIdx] || 'Yes',
+      volume: Number(m.volumeNum || m.volume || 0),
+      endDate: m.endDate || null,
+      url: slug ? `https://polymarket.com/event/${slug}` : null,
+      source: 'Polymarket',
+    };
+  }
+  function rankPolymarket(raw, queries, { requireScore = true } = {}) {
     const scored = raw.map((m) => {
       const eventTitles = Array.isArray(m.events) ? m.events.map((e) => e.title || '').join(' ') : '';
       const secondary = `${m.description || ''} ${eventTitles} ${m.groupItemTitle || ''}`;
       return { m, score: maxRelevance(m.question, secondary, queries) };
     })
-    .filter((x) => x.score >= threshold)
+    .filter((x) => (requireScore ? x.score >= 5 : true))
     .sort((a, b) => (b.score - a.score) || (Number(b.m.volumeNum || b.m.volume || 0) - Number(a.m.volumeNum || a.m.volume || 0)))
     .slice(0, 8);
+    return scored.map(({ m }) => normalizePolymarket(m));
+  }
 
-    return scored.map(({ m }) => {
-      const outcomes = parseList(m.outcomes);
-      const prices = parseList(m.outcomePrices).map(Number);
-      let yesIdx = outcomes.findIndex((o) => /yes/i.test(o));
-      if (yesIdx < 0) yesIdx = 0;
-      const prob = prices[yesIdx];
-      const slug = (Array.isArray(m.events) && m.events[0] && m.events[0].slug) || m.slug || null;
-      return {
-        question: m.question,
-        prob: isFinite(prob) ? prob : null,
-        outcome: outcomes[yesIdx] || 'Yes',
-        volume: Number(m.volumeNum || m.volume || 0),
-        endDate: m.endDate || null,
-        url: slug ? `https://polymarket.com/event/${slug}` : null,
-        source: 'Polymarket',
-      };
-    });
+  // ask Polymarket's full-text search directly for the topic + entities, so
+  // we get markets relevant to the keyword (incl. ones whose own question text
+  // doesn't contain it, but whose event does) without scanning thousands.
+  async function searchPolymarket(queries) {
+    const seen = new Set(), markets = [];
+    const reqs = queries.slice(0, 4).map((q) =>
+      fetch(`${GAMMA_SEARCH}?q=${encodeURIComponent(q)}&limit_per_type=20&events_status=active`,
+            { headers: { Accept: 'application/json' } })
+        .then((r) => (r.ok ? r.json() : null))
+        .catch(() => null));
+    const results = await Promise.all(reqs);
+    for (const data of results) {
+      if (!data) continue;
+      // public-search returns events; markets live under each event
+      const events = Array.isArray(data.events) ? data.events : [];
+      const flat = Array.isArray(data.markets) ? data.markets : [];
+      const pool = flat.concat(events.flatMap((e) =>
+        (Array.isArray(e.markets) ? e.markets : []).map((mk) => ({ ...mk, events: [e] }))));
+      for (const m of pool) {
+        if (!m || !m.question || m.closed || m.active === false) continue;
+        if (seen.has(m.question)) continue;
+        seen.add(m.question);
+        markets.push(m);
+      }
+    }
+    return markets;
+  }
+
+  async function fetchMarkets(keyword, entities = []) {
+    const queries = [keyword, ...entities];
+
+    // 1) search-first: full-text search is more precise, faster, and cheaper
+    try {
+      const hits = await searchPolymarket(queries);
+      const ranked = rankPolymarket(hits, queries, { requireScore: false });
+      if (ranked.length) return ranked;
+    } catch {}
+
+    // 2) fallback: page through markets-by-volume and relevance-filter, in
+    // case the search endpoint changes or returns nothing.
+    const pageReq = (offset) =>
+      fetch(`${GAMMA}?closed=false&active=true&limit=500&offset=${offset}&order=volumeNum&ascending=false`,
+            { headers: { Accept: 'application/json' } })
+        .then((r) => (r.ok ? r.json() : []))
+        .catch(() => []);
+    try {
+      const pages = await Promise.all([0, 500, 1000, 1500].map(pageReq));
+      const raw = pages.flat().filter((m) => m && m.question);
+      return raw.length ? rankPolymarket(raw, queries, { requireScore: true }) : [];
+    } catch { return []; }
   }
 
   /* ---------- Kalshi: regulated US prediction market ---------- */
