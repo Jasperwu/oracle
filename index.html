@@ -1197,6 +1197,8 @@ a.market-item:hover .market-go { opacity: 1; }
   }
 
   /* ---------- low-level Claude call ---------- */
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
   async function callClaude(system, userContent, { webSearch = false, maxTokens = 1600, maxUses = 3 } = {}) {
     const body = {
       model: getModel(),
@@ -1206,20 +1208,33 @@ a.market-item:hover .market-go { opacity: 1; }
     };
     if (webSearch) body.tools = [{ type: 'web_search_20250305', name: 'web_search', max_uses: maxUses }];
 
-    const res = await fetch(ANTHROPIC, {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-        'x-api-key': getKey(),
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-access': 'true',
-      },
-      body: JSON.stringify(body),
-    });
+    // retry on rate-limit (429) / overloaded (529): honour Retry-After, else exp backoff
+    const maxRetries = 5;
+    let res;
+    for (let attempt = 0; ; attempt++) {
+      res = await fetch(ANTHROPIC, {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          'x-api-key': getKey(),
+          'anthropic-version': '2023-06-01',
+          'anthropic-dangerous-direct-browser-access': 'true',
+        },
+        body: JSON.stringify(body),
+      });
+      if ((res.status === 429 || res.status === 529) && attempt < maxRetries) {
+        const ra = parseFloat(res.headers.get('retry-after'));
+        const waitMs = Number.isFinite(ra) ? ra * 1000 : Math.min(2000 * 2 ** attempt, 30000);
+        await sleep(waitMs);
+        continue;
+      }
+      break;
+    }
     if (!res.ok) {
       let detail = '';
       try { detail = (await res.json()).error?.message || ''; } catch {}
       if (res.status === 401) throw new Error('金鑰無效或未授權（401）。請到右上角重新設定 API 金鑰。');
+      if (res.status === 429) throw new Error(`Claude API 速率限制（429），多次重試後仍未通過。請稍候再試，或升級用量級別。${detail ? '\n' + detail : ''}`);
       throw new Error(`Claude API 錯誤 ${res.status}${detail ? '：' + detail : ''}`);
     }
     const data = await res.json();
@@ -1260,13 +1275,24 @@ ${scout.ctx ? scout.ctx(sig) + '\n\n' : ''}${scout.task}${getWebSearch() ? '善�
     } catch { return { scout, signals: [], sources: [] }; }
   }
 
+  // limit concurrency to avoid bursting past the per-minute token rate limit;
+    // all scouts still run, just at most CONCURRENCY in flight at once.
   function runScouts(keyword, sig, onProgress) {
-    return Promise.all(SCOUTS.map(async (scout) => {
-      onProgress && onProgress(scout.id, 'scanning');
-      const r = await runScout(keyword, scout, sig);
-      onProgress && onProgress(scout.id, 'done', r.signals.length);
-      return r;
-    }));
+    const CONCURRENCY = 2, STAGGER_MS = 350;
+    const results = new Array(SCOUTS.length);
+    let next = 0;
+    async function worker() {
+      while (next < SCOUTS.length) {
+        const i = next++;
+        const scout = SCOUTS[i];
+        if (i >= CONCURRENCY) await sleep(STAGGER_MS);
+        onProgress && onProgress(scout.id, 'scanning');
+        const r = await runScout(keyword, scout, sig);
+        onProgress && onProgress(scout.id, 'done', r.signals.length);
+        results[i] = r;
+      }
+    }
+    return Promise.all(Array.from({ length: Math.min(CONCURRENCY, SCOUTS.length) }, worker)).then(() => results);
   }
 
   /* ---------- synthesizer: scouts + data -> futures cone ---------- */
