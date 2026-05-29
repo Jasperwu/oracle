@@ -5,6 +5,30 @@
 
 ---
 
+## 2026-05-29 · 選擇標準:動態混編 stance + fringe 接進未來錐
+
+**使用者洞察**:選擇標準該 balance —— 強訊號=最可能發生→靠近錐**中心**；越 niche→錐**外圍**。
+且**抓取階段就要 balance**，不能只修最後顯示。
+**診斷**:① 抓取層 8 來源全偏 hot（成交量/star/活躍度/互動排序），niche 在源頭就被濾掉；
+② scout prompt 說「主流也行邊緣也行」=沒標準；③ 錐圖 Y 只看 `likelihood`，scout 的 `fringe`
+**只顯示在卡片進度條、完全沒進錐圖**——中心/外圍的隱喻是假的。
+
+**決策**:**動態混編**（非固定配額）。
+**實作**:
+1. **stance**：`understandTopic` 為每個 scout 指派 `stance`（hot/niche/mixed），prompt 要求整隊平衡
+   （約 2 hot / 2 niche / 1 mixed）；模型沒給就用 `STANCE_SLOTS` fallback。`DEFAULT_SCOUTS` 也帶 stance。
+2. **抓取分工**：`STANCE_BRIEF` 依 stance 改寫每個 scout 的 system/task/fringe 指示——
+   hot 聚焦主流確定（fringe 0–35）、niche 專挖冷門早期（fringe 55–95）、mixed 兼顧。
+   這就是「抓取階段的 balance」：有人負責中心、有人負責外圍。
+3. **fringe 進錐圖**：綜合 agent 的每個 event 也輸出 `fringe`；`plotCone` 的 Y 改成
+   `LIK_FRAC[lk]*0.45 + fringeFrac*0.55`——主流高確定→中心軸，niche 冷門→外圍。缺 fringe 退回只看 likelihood。
+   Node 實測:probable+fringe5→0.14(中心)、possible+fringe90→0.86(外圍)。
+
+**取捨**:stance 分工讓 niche scout 更依賴 web search 挖長尾（hot/star 類 API 本質是熱度榜，
+抓不到未紅的東西）→ web search 量仍是成本/429 風險。
+
+---
+
 ## 2026-05-29 · scout 訊號上限 4 → 6
 
 **現象(fandom and K-pop,動態組隊讚:飯圈觀察/平台偵探/商業解碼/認同探員/黑暗面鏡)**：

@@ -59,7 +59,13 @@
   HN 結果再套相關性過濾濾掉科技雜訊。
   `relevanceScore` 有 `STOPWORDS`:通用詞(world/league/power/ranking…)單獨命中不算數。
   市場卡片:`m.url` 有才渲染成可點 `<a>`,沒有則 `<div>` —— 所以 slug 必須正確。
-- `runScout` 吃動態 `domain/task/angle`,並把 `signalDigest`(市場/新聞/HN/Wiki 摘要)
+- **選擇標準 = 動態混編 stance**(2026-05-29):`understandTopic` 為每個 scout 指派
+  `stance`(hot 追主流確定 / niche 挖冷門早期 / mixed 兼顧),整隊平衡(約 2 hot/2 niche/1 mixed)。
+  `STANCE_BRIEF` 依 stance 改寫 scout 的 system/task/fringe 指示 → **抓取階段就分工**(有人顧中心、
+  有人顧外圍),不再全偏 hot。`STANCE_SLOTS` 為 fallback。
+- **fringe 串進未來錐**:綜合 agent 的每個 event 也輸出 `fringe`;`plotCone` 的 Y 用
+  `LIK_FRAC[lk]*0.45 + fringe*0.55`——主流高確定→中心軸,niche 冷門→外圍。這才讓「中心 vs 外圍」名副其實。
+- `runScout` 吃動態 `domain/task/angle/stance`,並把 `signalDigest`(市場/新聞/HN/Wiki 摘要)
   餵給每位探員;移除寫死的「產品/設計意涵」,改問「對主題未來走向代表什麼」。
   **失敗處理**:`runScoutOnce` 為單次嘗試;`runScout` attempt 1 帶 web search,失敗→attempt 2
   **去掉 web search** 降級重試,兩次都掛才回 `error:true`。UI 區分「⚠ 連線失敗」(`.errored`)

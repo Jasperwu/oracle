@@ -1444,19 +1444,25 @@ a.market-item:hover .market-go { opacity: 1; }
   /* ---------- fringe-signal scout agents ----------
      Scouts are assembled dynamically per topic by understandTopic(); these
      generic ones are only a fallback if that step fails. */
+  // stance balances the team: 'hot' chases mainstream/high-signal, 'niche'
+  // hunts weak/early/fringe signals, 'mixed' does both. Drives both the
+  // scout prompt (what to look for) and the cone (centre vs. outer edge).
   const DEFAULT_SCOUTS = [
-    { id: 'scout0', name: '研究前沿', emoji: '🔬', domain: '研究、技術、專業分析', task: '找出與主題相關、最新但尚未普及的進展或分析。' },
-    { id: 'scout1', name: '市場與資本', emoji: '📊', domain: '預測市場、資金與投注動向', task: '從市場數據與資金動向中挖出隱含的早期訊號。' },
-    { id: 'scout2', name: '社群熱度', emoji: '💬', domain: '社群討論、輿論與新興行為', task: '找出社群正在醞釀、尚未進入主流的趨勢。' },
-    { id: 'scout3', name: '政策與制度', emoji: '⚖️', domain: '規則、制度、官方與權威動向', task: '找出可能改變賽局的制度面早期跡象。' },
-    { id: 'scout4', name: '逆勢訊號', emoji: '🎲', domain: '異常值、被低估或被忽視的觀點', task: '刻意尋找與共識相反、被低估卻有早期證據的訊號。' },
+    { id: 'scout0', name: '主流前沿', emoji: '🔥', domain: '主流重大進展、當紅焦點', task: '找出當前最受關注、最確定的重大進展。', stance: 'hot' },
+    { id: 'scout1', name: '市場與資本', emoji: '📊', domain: '預測市場、資金與投注動向', task: '從市場數據與資金動向中挖出較確定的趨勢。', stance: 'hot' },
+    { id: 'scout2', name: '邊緣弱訊號', emoji: '🌱', domain: '冷門、早期、尚未普及的跡象', task: '挖出大多數人還沒注意到、卻可能預示轉折的早期弱訊號。', stance: 'niche' },
+    { id: 'scout3', name: '逆勢訊號', emoji: '🎲', domain: '異常值、被低估或被忽視的觀點', task: '刻意尋找與共識相反、被低估卻有早期證據的冷門訊號。', stance: 'niche' },
+    { id: 'scout4', name: '綜觀者', emoji: '🧭', domain: '跨面向觀察', task: '兼顧主流與邊緣，補上其他偵察員的盲點。', stance: 'mixed' },
   ];
+  // fallback stance order if the model omits one — keeps the team balanced
+  const STANCE_SLOTS = ['hot', 'hot', 'niche', 'niche', 'mixed'];
+  const STANCE_OK = new Set(['hot', 'niche', 'mixed']);
   let activeScouts = DEFAULT_SCOUTS;
 
   /* understand the topic up front: expand search entities + assemble a
      topic-specific scout team. One cheap Claude call; falls back gracefully. */
   async function understandTopic(keyword) {
-    const system = '你是一位敏銳的研究主編。使用者給你一個主題關鍵詞，你要做三件事：(1) 判斷這個主題的真正所指與領域，展開出實際可用於檢索的「實體與同義詞」；(2) 為這個主題量身編一支 5 人偵察小隊，每位專精一個與「這個主題」最相關的角度；(3) 指派一位最適合綜合分析這個主題的「領域專家」身分。重點：角度與專家身分都必須貼合主題本身。例如「NBA power rank」的偵察角度應是賽季戰績走勢、冠軍賠率、球員傷病與交易、選秀、球迷敘事，專家身分應是「資深 NBA 籃球分析師」——而不是「排名演算法專家」或「產品經理」。你只回傳 JSON。';
+    const system = '你是一位敏銳的研究主編。使用者給你一個主題關鍵詞，你要做三件事：(1) 判斷這個主題的真正所指與領域，展開出實際可用於檢索的「實體與同義詞」；(2) 為這個主題量身編一支 5 人偵察小隊，每位專精一個與「這個主題」最相關的角度，並為每位指派一個 stance（hot＝追主流/當紅/高確定度的重大進展；niche＝挖冷門/早期/被忽視的弱訊號；mixed＝兩者兼顧）；(3) 指派一位最適合綜合分析這個主題的「領域專家」身分。重要：整支小隊的 stance 要刻意平衡——大致 2 個 hot、2 個 niche、1 個 mixed，讓主流與邊緣訊號都有人負責。角度與專家身分都必須貼合主題本身。例如「NBA power rank」的偵察角度應是賽季戰績走勢、冠軍賠率、球員傷病與交易、選秀、球迷敘事，專家身分應是「資深 NBA 籃球分析師」——而不是「排名演算法專家」或「產品經理」。你只回傳 JSON。';
     const user = `主題關鍵詞：「${keyword}」
 
 只回傳有效 JSON（不要 markdown、不要多餘文字），全部以繁體中文（實體可保留原文/英文）：
@@ -1465,23 +1471,27 @@ a.market-item:hover .market-go { opacity: 1; }
   "entities": ["用於檢索的核心實體或專有名詞，3–8 個，含可能的英文原名與關鍵同義詞"],
   "expert": "最適合綜合分析此主題的領域專家身分（例：資深 NBA 籃球分析師 / 半導體產業分析師），緊扣主題",
   "scouts": [
-    {"name":"偵察員名稱（4 字內）","emoji":"一個貼切的 emoji","domain":"這位專精的領域（緊扣主題）","task":"他要找什麼樣的訊號","angle":"特別關注的切入點"}
+    {"name":"偵察員名稱（4 字內）","emoji":"一個貼切的 emoji","domain":"這位專精的領域（緊扣主題）","task":"他要找什麼樣的訊號","angle":"特別關注的切入點","stance":"hot 或 niche 或 mixed"}
   ]
 }
-scouts 請剛好 5 位，角度彼此互補、且全部緊扣「${keyword}」這個主題。`;
+scouts 請剛好 5 位，角度彼此互補、且全部緊扣「${keyword}」這個主題；stance 要平衡（約 2 hot、2 niche、1 mixed）。`;
     try {
       const { text } = await callClaude(system, user, { maxTokens: 900 });
       const parsed = extractJSON(text);
       const scouts = Array.isArray(parsed.scouts) ? parsed.scouts.slice(0, 5) : [];
       if (scouts.length) {
-        activeScouts = scouts.map((s, i) => ({
-          id: 'scout' + i,
-          name: String(s.name || DEFAULT_SCOUTS[i % 5].name).slice(0, 8),
-          emoji: s.emoji || DEFAULT_SCOUTS[i % 5].emoji,
-          domain: String(s.domain || '').slice(0, 60) || DEFAULT_SCOUTS[i % 5].domain,
-          task: String(s.task || '').slice(0, 120) || DEFAULT_SCOUTS[i % 5].task,
-          angle: String(s.angle || '').slice(0, 120),
-        }));
+        activeScouts = scouts.map((s, i) => {
+          const st = String(s.stance || '').toLowerCase().trim();
+          return {
+            id: 'scout' + i,
+            name: String(s.name || DEFAULT_SCOUTS[i % 5].name).slice(0, 8),
+            emoji: s.emoji || DEFAULT_SCOUTS[i % 5].emoji,
+            domain: String(s.domain || '').slice(0, 60) || DEFAULT_SCOUTS[i % 5].domain,
+            task: String(s.task || '').slice(0, 120) || DEFAULT_SCOUTS[i % 5].task,
+            angle: String(s.angle || '').slice(0, 120),
+            stance: STANCE_OK.has(st) ? st : STANCE_SLOTS[i % STANCE_SLOTS.length],
+          };
+        });
       } else {
         activeScouts = DEFAULT_SCOUTS;
       }
@@ -1499,18 +1509,37 @@ scouts 請剛好 5 位，角度彼此互補、且全部緊扣「${keyword}」這
     return `【預測市場即時賠率】\n${marketBlock(sig)}\n\n【近期新聞 · GDELT】\n${newsBlock(sig)}\n\n【社群討論 · Hacker News】\n${buzzBlock(sig)}\n\n【開發動能 · GitHub】\n${githubBlock(sig)}\n\n【技術問答熱度 · Stack Overflow】\n${stackBlock(sig)}\n\n【社群即時聲量 · Bluesky】\n${blueskyBlock(sig)}\n\n【關注度趨勢 · Wikipedia】\n${wikiBlock(sig)}`;
   }
 
+  const STANCE_BRIEF = {
+    hot: {
+      sys: '你偏重「主流訊號」——找當前最受關注、最確定、影響力最大的重大進展。',
+      task: '聚焦主流、當紅、高確定度的重大進展（這些是錐狀圖中心、最可能發生的核心趨勢）。刻意避開過於冷僻的小道消息。',
+      fringe: '你的訊號 fringe 多落在 0–35（主流、確定度高）。',
+    },
+    niche: {
+      sys: '你偏重「邊緣弱訊號」——挖大多數人還沒注意到、冷門、早期、被低估、卻可能預示轉折的跡象。',
+      task: '刻意尋找冷門、早期、邊緣、被忽視的弱訊號（這些是錐狀圖外圍、低機率但高想像空間的可能）。避開人盡皆知的主流頭條。',
+      fringe: '你的訊號 fringe 多落在 55–95（越冷門越邊緣給越高）。',
+    },
+    mixed: {
+      sys: '你兼顧主流與邊緣——既報重大確定的進展，也補上被忽視的早期訊號。',
+      task: '主流重大進展與邊緣早期訊號都要涵蓋，補上其他偵察員的盲點。',
+      fringe: '你的訊號 fringe 視實際冷門程度落在 0–95 皆可。',
+    },
+  };
   function scoutPrompts(keyword, scout, sig, ws) {
-    const system = `你是一位專責「${scout.name}」的訊號偵察員（scout agent），鎖定的領域是「${scout.domain}」。任務是針對指定主題，從你的領域角度找出最新、最相關、且能預示未來走向的訊號——可以是主流的重大進展，也可以是被低估的早期跡象。務必緊扣主題本身（不要把主題硬拗成別的領域）。你的回覆必須「只」是使用者要求的 JSON。`;
+    const brief = STANCE_BRIEF[scout.stance] || STANCE_BRIEF.mixed;
+    const system = `你是一位專責「${scout.name}」的訊號偵察員（scout agent），鎖定的領域是「${scout.domain}」。${brief.sys}任務是針對指定主題，從你的領域角度找出相關、且能預示未來走向的訊號。務必緊扣主題本身（不要把主題硬拗成別的領域）。你的回覆必須「只」是使用者要求的 JSON。`;
     const user = `主題：「${keyword}」
 
 你這位偵察員的任務：${scout.task}
-${scout.angle ? `特別關注：${scout.angle}\n` : ''}${ws ? `\n請主動用 web search，以你的領域視角（${scout.domain}）查詢與「${keyword}」相關的最新資訊——下不同於其他領域的查詢字詞，挖出你這個角度獨有的發現。\n` : ''}
+你的偵察取向：${brief.task}
+${scout.angle ? `特別關注：${scout.angle}\n` : ''}${ws ? `\n請主動用 web search，以你的領域視角（${scout.domain}）查詢與「${keyword}」相關的資訊——下不同於其他領域的查詢字詞，挖出你這個取向獨有的發現。\n` : ''}
 以下是已蒐集到的共用即時資料，可作為佐證或起點（與你領域相關才引用，不相關就略過）：
 ${signalDigest(sig)}
 
 只回傳有效 JSON（不要 markdown、不要多餘文字），全部繁體中文：
 {"signals":[{"signal":"訊號描述","fringe":0,"evidence":"依據或出處（引用你查到的或上面的真實資料）","soWhat":"這對主題的未來走向代表什麼"}]}
-請務必給 3–6 個訊號：即使沒有現成的即時資料，也要基於你這個領域的專業知識與常識，針對主題提出有根據的判斷；只有在主題與你的領域真的毫不相干時才回空陣列。fringe 為 0–100 的整數，越高代表越邊緣、越冷門；主流重大訊號給低分也沒關係。`;
+請務必給 3–6 個訊號：即使沒有現成的即時資料，也要基於你這個領域的專業知識與常識，針對主題提出有根據的判斷；只有在主題與你的領域真的毫不相干時才回空陣列。fringe 為 0–100 的整數，越高代表越邊緣、越冷門。${brief.fringe}`;
     return { system, user };
   }
 
@@ -1609,7 +1638,7 @@ ${wikiBlock(sig)}
       "range": "3–6 個月",
       "headline": "這個區段的標題",
       "events": [
-        {"title": "可能事件", "likelihood": "probable|plausible|possible", "rationale": "簡短依據（可引用上面的市場機率或訊號）"}
+        {"title": "可能事件", "likelihood": "probable|plausible|possible", "fringe": 0, "rationale": "簡短依據（可引用上面的市場機率或訊號）"}
       ]
     },
     { "range": "6–12 個月", "headline": "...", "events": [ ... ] },
@@ -1618,7 +1647,7 @@ ${wikiBlock(sig)}
   "wildcard": "一個低機率但高衝擊的黑天鵝情境"
 }
 
-每個 horizon 請給 2–3 個 events。likelihood 只能是 probable、plausible、possible 三者之一，越近期的、越有市場/訊號支撐的越偏 probable。`;
+每個 horizon 請給 2–3 個 events。likelihood 只能是 probable、plausible、possible 三者之一，越近期的、越有市場/訊號支撐的越偏 probable。fringe 為 0–100 的整數，代表這個事件的「邊緣程度」：主流、眾所矚目、確定度高的事件給低分（靠近未來錐中心軸）；冷門、邊緣、低機率高想像空間的事件給高分（落在未來錐外圍）。請延續上面偵察員訊號的 fringe 精神。`;
   }
 
   async function askOracle(keyword, sig, scoutResults, expert) {
@@ -1873,7 +1902,12 @@ ${wikiBlock(sig)}
         const lk = ['probable', 'plausible', 'possible'].includes(ev.likelihood) ? ev.likelihood : 'possible';
         const dir = ei % 2 === 0 ? -1 : 1;
         const tier = Math.floor(ei / 2);
-        const frac = Math.min(LIK_FRAC[lk] + tier * 0.16, 0.95);
+        // distance from the centre axis blends likelihood with the event's
+        // fringe: mainstream/high-certainty -> centre; niche/fringe -> outer edge.
+        const hasFringe = typeof ev.fringe === 'number' && isFinite(ev.fringe);
+        const fringeFrac = hasFringe ? Math.max(0, Math.min(100, ev.fringe)) / 100 : null;
+        const base = fringeFrac != null ? (LIK_FRAC[lk] * 0.45 + fringeFrac * 0.55) : LIK_FRAC[lk];
+        const frac = Math.min(base + tier * 0.12, 0.96);
         const x = baseX + dir * 8;
         const y = CONE.apexY + dir * frac * halfHeightAt(x);
 
