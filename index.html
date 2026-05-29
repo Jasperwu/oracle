@@ -229,6 +229,16 @@ html, body {
 .fringe-track { flex: 1; height: 5px; background: var(--paper-2); border-radius: 999px; overflow: hidden; }
 .fringe-fill { height: 100%; background: linear-gradient(90deg, var(--clay-soft), var(--clay-deep)); border-radius: 999px; }
 .fringe-num { font-size: 11px; color: var(--ink-faint); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.scout-sources { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 13px; padding-top: 11px; border-top: 1px dashed var(--line); }
+.scout-sources-label { font-size: 11px; color: var(--ink-faint); margin-right: 2px; }
+.src-chip {
+  font-size: 11px; color: var(--clay-deep); text-decoration: none;
+  background: var(--paper-2); border: 1px solid var(--line); border-radius: 999px;
+  padding: 3px 9px; transition: all .14s ease; max-width: 160px; overflow: hidden;
+  text-overflow: ellipsis; white-space: nowrap;
+}
+.src-chip:hover { border-color: var(--clay-soft); color: var(--clay); }
+.scout-degraded { font-size: 10.5px; font-weight: 500; color: var(--ink-faint); background: var(--paper-2); border-radius: 999px; padding: 2px 8px; margin-left: auto; }
 @media (max-width: 820px) { .scout-grid { grid-template-columns: 1fr; } }
 .particles { position: absolute; inset: 0; pointer-events: none; }
 .particle {
@@ -1718,13 +1728,29 @@ ${wikiBlock(sig)}
     el.scoutBoard.innerHTML = '';
   }
 
+  function hostOf(url) {
+    try { return new URL(url).hostname.replace(/^www\./, ''); } catch { return ''; }
+  }
+  function scoutSourcesHTML(sources) {
+    if (!sources || !sources.length) return '';
+    const seen = new Set(), chips = [];
+    for (const s of sources) {
+      const host = hostOf(s.url);
+      if (!host || seen.has(host)) continue;
+      seen.add(host);
+      chips.push(`<a class="src-chip" href="${escapeAttr(s.url)}" target="_blank" rel="noopener" title="${escapeAttr(s.title || s.url)}">${escapeHtml(host)}</a>`);
+      if (chips.length >= 6) break;
+    }
+    if (!chips.length) return '';
+    return `<div class="scout-sources"><span class="scout-sources-label">探索來源</span>${chips.join('')}</div>`;
+  }
   function renderScoutFindings(scoutResults) {
     if (!el.scoutFindings) return;
     const withSignals = (scoutResults || []).filter((r) => r.signals && r.signals.length);
     if (!withSignals.length) { el.scoutFindings.hidden = true; return; }
     el.scoutGrid.innerHTML = withSignals.map((r) => `
       <div class="scout-card">
-        <p class="scout-card-head">${r.scout.emoji} ${escapeHtml(r.scout.name)}</p>
+        <p class="scout-card-head">${r.scout.emoji} ${escapeHtml(r.scout.name)}${r.degraded ? '<span class="scout-degraded" title="此探員未使用即時網路搜尋，改以共用資料與領域知識作答">離線判讀</span>' : ''}</p>
         ${r.signals.map((s) => {
           const f = Math.max(0, Math.min(100, Math.round(+s.fringe || 0)));
           return `<div class="scout-signal">
@@ -1736,6 +1762,7 @@ ${wikiBlock(sig)}
             </div>
           </div>`;
         }).join('')}
+        ${scoutSourcesHTML(r.sources)}
       </div>`).join('');
     el.scoutFindings.hidden = false;
   }

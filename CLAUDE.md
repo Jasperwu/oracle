@@ -86,6 +86,8 @@
   `flex-wrap: nowrap` 一列五個,`.pixie-cell` 暖陶土色);`#missionFootCount`
   顯示「偵察員已回報 k/5」。**已無** mission-mode / mission clock / 終端標題列。
 - **結果頁**:`render()` / `plotCone()`(futures cone)/ `initConeScrubber()`(時間軸拖曳)。
+  `renderScoutFindings` 顯示各 scout 訊號 + **「探索來源」chips**(`scoutSourcesHTML`/`hostOf`,
+  取 `r.sources` 去重抽網域,可點開原文);降級的 scout 標「離線判讀」。
 - **快速模式 (fast mode)**:跳過深掃,保留優雅的淺色 orb;深掃才進 mission control。
 
 ## 工作流程規範

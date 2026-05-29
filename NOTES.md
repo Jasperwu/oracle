@@ -5,6 +5,22 @@
 
 ---
 
+## 2026-05-29 · 結果頁顯示每個 scout 的「探索來源」
+
+**背景(實測「travel industry in AI era」)**:動態組隊漂亮(訂房探員/航空偵察/行程嚮導/
+體驗研究/風險觀察),多數 ✓ 有訊號=降級重試生效。使用者問:看得到 scout 去了哪些網站嗎?
+**發現**:`runScout` 早就回傳 `sources`(web search 引用網址),但 `renderScoutFindings`
+**沒顯示**、直接丟掉。資料在,只是沒露出來。
+
+**修法**:scout 卡片底部加「探索來源」chips —— `scoutSourcesHTML` 取 `r.sources`、
+`hostOf` 抽網域、去重、最多 6 個,可點擊開原文。順帶:若該 scout 是**降級**(degraded,
+未用 web search)在卡片標題加「離線判讀」小標,讓使用者知道那張卡沒有即時來源。
+
+**仍待觀察**:速度（使用者覺得有點花時間）——5 scout 各自 web search 仍是主成本，
+#3（減少 web search 量 / 升 tier）尚未做。
+
+---
+
 ## 2026-05-29 · 區分「出錯 vs 無訊號」+ scout 失敗自動降級重試
 
 **問題**:開了 web search 卻「無訊號」不合理——網路搜尋一定有東西。診斷出 `runScout` 的
