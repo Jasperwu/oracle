@@ -1510,7 +1510,7 @@ ${signalDigest(sig)}
 
 只回傳有效 JSON（不要 markdown、不要多餘文字），全部繁體中文：
 {"signals":[{"signal":"訊號描述","fringe":0,"evidence":"依據或出處（引用你查到的或上面的真實資料）","soWhat":"這對主題的未來走向代表什麼"}]}
-請務必給 2–4 個訊號：即使沒有現成的即時資料，也要基於你這個領域的專業知識與常識，針對主題提出有根據的判斷；只有在主題與你的領域真的毫不相干時才回空陣列。fringe 為 0–100 的整數，越高代表越邊緣、越冷門；主流重大訊號給低分也沒關係。`;
+請務必給 3–6 個訊號：即使沒有現成的即時資料，也要基於你這個領域的專業知識與常識，針對主題提出有根據的判斷；只有在主題與你的領域真的毫不相干時才回空陣列。fringe 為 0–100 的整數，越高代表越邊緣、越冷門；主流重大訊號給低分也沒關係。`;
     return { system, user };
   }
 
@@ -1519,7 +1519,7 @@ ${signalDigest(sig)}
     const { system, user } = scoutPrompts(keyword, scout, sig, ws);
     const { text, sources } = await callClaude(system, user, { webSearch: ws, maxTokens: 1800, maxUses: ws ? 3 : 0 });
     const parsed = extractJSON(text);
-    const signals = Array.isArray(parsed.signals) ? parsed.signals.slice(0, 4) : [];
+    const signals = Array.isArray(parsed.signals) ? parsed.signals.slice(0, 6) : [];
     return { signals, sources };
   }
 
