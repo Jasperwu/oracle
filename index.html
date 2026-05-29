@@ -1262,13 +1262,14 @@ a.market-item:hover .market-go { opacity: 1; }
   /* understand the topic up front: expand search entities + assemble a
      topic-specific scout team. One cheap Claude call; falls back gracefully. */
   async function understandTopic(keyword) {
-    const system = '你是一位敏銳的研究主編。使用者給你一個主題關鍵詞，你要做兩件事：(1) 判斷這個主題的真正所指與領域，展開出實際可用於檢索的「實體與同義詞」；(2) 為這個主題量身編一支 5 人偵察小隊，每位專精一個與「這個主題」最相關的角度。重點：偵察角度必須貼合主題本身。例如「NBA power rank」的角度應是賽季戰績走勢、冠軍賠率、球員傷病與交易、選秀、球迷敘事——而不是「排名演算法」或「做一個排名 App」。你只回傳 JSON。';
+    const system = '你是一位敏銳的研究主編。使用者給你一個主題關鍵詞，你要做三件事：(1) 判斷這個主題的真正所指與領域，展開出實際可用於檢索的「實體與同義詞」；(2) 為這個主題量身編一支 5 人偵察小隊，每位專精一個與「這個主題」最相關的角度；(3) 指派一位最適合綜合分析這個主題的「領域專家」身分。重點：角度與專家身分都必須貼合主題本身。例如「NBA power rank」的偵察角度應是賽季戰績走勢、冠軍賠率、球員傷病與交易、選秀、球迷敘事，專家身分應是「資深 NBA 籃球分析師」——而不是「排名演算法專家」或「產品經理」。你只回傳 JSON。';
     const user = `主題關鍵詞：「${keyword}」
 
 只回傳有效 JSON（不要 markdown、不要多餘文字），全部以繁體中文（實體可保留原文/英文）：
 {
   "interpretation": "一句話說明這個主題實際在問什麼、屬於哪個領域",
   "entities": ["用於檢索的核心實體或專有名詞，3–8 個，含可能的英文原名與關鍵同義詞"],
+  "expert": "最適合綜合分析此主題的領域專家身分（例：資深 NBA 籃球分析師 / 半導體產業分析師），緊扣主題",
   "scouts": [
     {"name":"偵察員名稱（4 字內）","emoji":"一個貼切的 emoji","domain":"這位專精的領域（緊扣主題）","task":"他要找什麼樣的訊號","angle":"特別關注的切入點"}
   ]
@@ -1292,10 +1293,11 @@ scouts 請剛好 5 位，角度彼此互補、且全部緊扣「${keyword}」這
       }
       const entities = Array.isArray(parsed.entities)
         ? parsed.entities.map((e) => String(e).trim()).filter(Boolean).slice(0, 8) : [];
-      return { interpretation: String(parsed.interpretation || ''), entities };
+      const expert = String(parsed.expert || '').trim().slice(0, 40);
+      return { interpretation: String(parsed.interpretation || ''), entities, expert };
     } catch {
       activeScouts = DEFAULT_SCOUTS;
-      return { interpretation: '', entities: [] };
+      return { interpretation: '', entities: [], expert: '' };
     }
   }
 
@@ -1391,8 +1393,11 @@ ${wikiBlock(sig)}
 每個 horizon 請給 2–3 個 events。likelihood 只能是 probable、plausible、possible 三者之一，越近期的、越有市場/訊號支撐的越偏 probable。`;
   }
 
-  async function askOracle(keyword, sig, scoutResults) {
-    const system = '你是一位頂尖的未來學家（futurist），擅長把偵察員蒐集的邊緣訊號、預測市場數據與趨勢轉化為具體、可信、富洞察力的未來情境。語氣冷靜、精準、帶一點神諭的詩意。你的最終回覆必須「只」包含使用者要求的 JSON 物件，不要任何前後說明文字。';
+  async function askOracle(keyword, sig, scoutResults, expert) {
+    const role = expert
+      ? `你同時是一位「${expert}」，也是一位頂尖的未來學家（futurist）。你以該領域專家的深度知識為底，`
+      : '你是一位頂尖的未來學家（futurist），';
+    const system = `${role}擅長把偵察員蒐集的邊緣訊號、預測市場數據與趨勢轉化為具體、可信、富洞察力的未來情境。請拿出該領域真正的專業判斷（懂門道、用對術語、抓對關鍵變數），語氣冷靜、精準、帶一點神諭的詩意。你的最終回覆必須「只」包含使用者要求的 JSON 物件，不要任何前後說明文字。`;
     const { text, sources } = await callClaude(system, buildSynthPrompt(keyword, sig, scoutResults), {
       webSearch: getWebSearch(), maxTokens: 3000, maxUses: 4,
     });
@@ -1785,11 +1790,11 @@ ${wikiBlock(sig)}
     try {
       // first, understand the topic: expand search entities + assemble a
       // topic-specific scout team (sets activeScouts). Falls back gracefully.
-      let entities = [];
+      let entities = [], expert = '';
       if (deep) {
         el.status.textContent = '解讀主題、編組偵察隊…';
         el.sub.textContent = '理解你真正想問的方向';
-        ({ entities } = await understandTopic(keyword));
+        ({ entities, expert } = await understandTopic(keyword));
         // now the right team is known — summon it to stand by while data loads
         el.status.textContent = '召喚偵察員小隊…';
         el.sub.textContent = `${activeScouts.length} 個 agent 待命中`;
@@ -1814,7 +1819,7 @@ ${wikiBlock(sig)}
         el.sub.textContent = '對齊 3–18 個月的時間錐';
       }
 
-      const { result, sources } = await askOracle(keyword, sig, scoutResults);
+      const { result, sources } = await askOracle(keyword, sig, scoutResults, expert);
 
       // keep the oracle on screen for at least the full ritual
       const elapsed = Date.now() - startedAt;

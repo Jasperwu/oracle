@@ -5,6 +5,18 @@
 
 ---
 
+## 2026-05-29 · 綜合 agent 升級為「領域專家 + 未來學家」雙重身分
+
+**確認(使用者問)**:分析短/中/長期的是**一個** agent(`askOracle`,一次 Claude 呼叫產出三段),
+原本只設了 futurist 角色、**缺領域專家身分** —— 收集端已動態化(scout),但分析端仍是通用 futurist。
+
+**修法**:`understandTopic` 多回一個 `expert`(主題專屬專家身分,例「資深 NBA 籃球分析師」);
+`askOracle(keyword, sig, scoutResults, expert)` 的 system prompt 動態拼成
+「你同時是一位『${expert}』,也是一位未來學家…請拿出該領域真正的專業判斷」。
+`expert` 為空(understandTopic 失敗 / fast mode)時退回純 futurist。改動小、無新增 API 呼叫。
+
+---
+
 ## 2026-05-29 · 修核心:主題理解 + 動態偵察隊(資料方向 & 分析品質)
 
 **回饋(實測「nba power rank」)**:分析方向全錯 —— 不是聯盟各隊趨勢/選秀/正在進行的

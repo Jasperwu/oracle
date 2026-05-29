@@ -45,8 +45,12 @@
 
 **解法(現行)**:
 - `understandTopic(keyword)`:深掃**第一步**,一次 Claude 呼叫讀懂主題,回傳
-  ①`entities`(展開的檢索實體/同義詞)②一支 5 人**動態偵察隊**(`activeScouts`)。
+  ①`entities`(展開的檢索實體/同義詞)②一支 5 人**動態偵察隊**(`activeScouts`)
+  ③`expert`(主題專屬的領域專家身分,例:資深 NBA 籃球分析師)。
   失敗則 fallback 到 `DEFAULT_SCOUTS`(通用 5 隊,非科技專屬)。
+- **綜合 agent 雙重身分**:短/中/長期是**同一個** agent(`askOracle`)一次產出;其 system
+  prompt 動態拼接成「領域專家(`expert`)+ 未來學家(futurist)」——既懂門道又會推演;
+  `expert` 為空時退回純 futurist。
 - **抓取吃 entities**:`fetchMarkets/fetchKalshi` 用 `maxRelevance`(對 keyword + 所有
   entities 取最高分)過濾;`fetchGdelt/fetchHN/fetchWikiTrend` 在原關鍵詞無果時用
   `entities[0]` fallback。門檻統一 5、各取 8 筆。
