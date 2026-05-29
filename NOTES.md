@@ -48,3 +48,24 @@ Power Ranger 那種團隊感,但對 talk 更專業、盲做也更穩。
 關鍵分辨,已記入 `CLAUDE.md` 決策 #1:
 design actions「只在相關主題才浮現」。「AI agents 的未來」需要它;「NBA 2026 總冠軍」不需要,
 現有體驗本身就夠有趣。這是之後做 design actions 功能 ① 的硬性前提。
+
+---
+
+## 演進時間線(回填,依 git commit 還原)
+
+依 `git log` 的實際 commit 順序整理,作為更早脈絡的存底(由舊到新):
+
+1. **`93028b9` Add files via upload** — 網站初版上傳。
+2. **`607698f` Fix modal not closing after saving API key** — 修 BYOK 金鑰輸入框存檔後沒關閉的 bug。
+3. **`180b5dd` Add cupped hands to oracle orb and link Polymarket sources**
+   — 水晶球加上捧著的雙手造型;結果開始連結 Polymarket 預測市場來源。
+   *(註:這對手後來被推翻 —— 見第 6 點。)*
+4. **`bd9c35b` Make the futures cone interactive and add Kalshi markets**
+   — futures cone 變成可互動;訊號來源再加 Kalshi 市場。
+5. **`543cf12` Redesign orb scene and futures cone in hand-drawn line-art style**
+   — 確立**手繪線稿 + 暖陶土色**的美術方向,水晶球場景與 futures cone 一起重畫。
+6. **`5cebfb7` Replace orb hands with sparkles; add time-scrubber to futures cone**
+   — **推翻第 3 點的「手」**,改成環繞水晶球的 sparkles (✦);futures cone 加上可拖曳的時間軸 scrubber。
+   呼應 `CLAUDE.md` 決策 #4:徒手畫複雜造型(手)容易翻車,改用可精準掌控的視覺。
+7. **`556b0f2` Add multi-agent fringe-signal scanning** — 加入 5 個 scouts 的多 agent 邊緣訊號掃描。
+8. **`4127449` Add pixel-art agent mission-control transition (deep scan)** — pixel agent mission-control 深掃轉場(見上面的詳細記錄)。
