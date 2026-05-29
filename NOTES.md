@@ -5,6 +5,28 @@
 
 ---
 
+## 2026-05-29 · 推翻黑色 mission control → 探員改在同一頁 pop out
+
+**使用者回饋(看實機截圖)**:深掃時 UI「分兩層」、會跳成黑色頁面,很奇怪;
+而且探員排成「4 個 + 下面再 1 個」也很怪。明確要求:**在原本的頁面上 pop out 探員就好,
+不要轉跳、不要換黑色頁面**。
+
+**根因**:
+- 「分兩層」= `runPrediction` 在深掃時對 overlay 加 `.mission-mode`,整頁從淺色切成黑色終端,
+  外加頂部標題列 + 底部終端狀態列 —— 視覺上像跳到另一個畫面。
+- 「4+1」= 5 個探員 cell 各 116px,但容器 `min(560px)` 放不下 5 個 → 第 5 個 wrap 到下一行。
+
+**修正(定案)**:
+- **拿掉** `.mission-mode` 深色主題、頂部 `mission-top` 標題列、底部 `mission-foot` 終端狀態列、
+  以及 mission clock (`startMissionClock`/`stopMissionClock`/`#missionClock`)。
+- 探員直接浮在**原本優雅的淺色水晶球頁**上,`.pixie-cell` 改成暖陶土色系。
+- 版面 `flex-wrap: nowrap` + `flex:1` 讓 5 個探員**整齊排成一列**(窄螢幕才 wrap)。
+- pop-out 動畫 `scoutPopIn`(帶 overshoot 的縮放浮現),狀態列改回繁中
+  (待命 → 掃描中▍ → ✓ N 個訊號);底部低調顯示「偵察員已回報 k/5」。
+- 這**推翻** `CLAUDE.md` 原決策 #2 的「深色終端 mission control」方向;決策 #2 已改寫。
+
+---
+
 ## 2026-05-29 · 撞到 API 429 速率限制 → 決定花錢升 tier
 
 **現象**:demo 輸入「AI overview」時,網站跳 `Claude API 錯誤 429`:

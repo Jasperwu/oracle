@@ -21,8 +21,11 @@
 1. **「行動設計 (design actions)」要 context-aware** —— 只在相關主題才浮現。
    主題是「AI agents 的未來」時 design actions 很有意義;主題是「NBA 2026 總冠軍」時就不該硬塞。
    這是之後要做 ① design actions 功能時的硬性前提。**目前尚未實作**。
-2. **深掃轉場 = pixel agent「mission control」監控台**(已完成,見下)。
-   照參考圖做成「監控台 / 格子 + 狀態列」,**不是**滿場亂跑的角色 —— 對 talk 更專業也更穩。
+2. **深掃時探員在「同一頁」pop out,不換頁、不跳黑底**(2026-05-29 修正定案)。
+   pixel 探員直接浮現在原本優雅的淺色水晶球頁上、排成整齊一列(`flex-wrap: nowrap`),
+   各配狀態列(待命 → 掃描中▍ → ✓ N 個訊號)。
+   ⚠️ **已推翻**先前的「深色終端 mission control / 整頁切黑」方向 —— 那會造成突兀的
+   「分兩層」跳轉,使用者明確不要。也不要頂部終端標題列或底部終端狀態列。
 3. **結果頁維持原樣,不要動** —— futures cone + horizons 的優雅結果頁是定案的,
    除非明確要求,不要改它。深掃轉場的「反差」正是建立在結果頁的優雅上。
 4. **盲做要選可精準掌控的視覺** —— pixel 角色是 grid-of-rects,盲做也不會壞;
@@ -41,10 +44,10 @@
 - **訊號擷取**:`fetchMarkets`(Polymarket)、`fetchKalshi`、`fetchGdelt`(新聞)、
   `fetchHN`(Hacker News)、`fetchWikiTrend`(Wikipedia pageviews)。
 - **Claude 呼叫**:`callClaude()` (L1200) → `runScout()` / `askOracle()`(綜合)。
-- **深掃轉場 (mission control)**:`initScoutBoard` / `updateScout` / `creatureSVG`
-  (pixel 角色,grid-of-rects SVG) / `startMissionClock` / `stopMissionClock`。
-  overlay 加上 `.mission-mode` class 切成深色監控台;`#missionClock` 時鐘、
-  `#missionFootCount` 顯示「scouts returned k/5」。
+- **深掃探員 pop out**:`initScoutBoard` / `updateScout` / `creatureSVG`
+  (pixel 角色,grid-of-rects SVG)。探員浮在原本的淺色 overlay 上(`.scout-board`,
+  `flex-wrap: nowrap` 一列五個,`.pixie-cell` 暖陶土色);`#missionFootCount`
+  顯示「偵察員已回報 k/5」。**已無** mission-mode / mission clock / 終端標題列。
 - **結果頁**:`render()` / `plotCone()`(futures cone)/ `initConeScrubber()`(時間軸拖曳)。
 - **快速模式 (fast mode)**:跳過深掃,保留優雅的淺色 orb;深掃才進 mission control。
 

@@ -169,67 +169,48 @@ html, body {
 .spark { filter: drop-shadow(0 0 3px rgba(204,120,92,.55)); animation: twinkle 3.2s ease-in-out infinite; }
 @keyframes twinkle { 0%, 100% { opacity: .25; } 50% { opacity: 1; } }
 
-/* ===== mission control (deep-scan transition, retro terminal) ===== */
-.oracle-overlay.mission-mode {
-  background: radial-gradient(circle at 50% 38%, #14130f 0%, #0b0a08 70%, #060504 100%);
-}
-.mission-bar { display: none; }
-.oracle-overlay.mission-mode .mission-bar {
-  position: fixed; left: 0; right: 0; z-index: 2;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 12px 20px;
-  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
-  font-size: 13px; color: #7ee08a;
-  background: rgba(8,10,7,.6); border-color: rgba(126,224,138,.22);
-}
-.mission-top { top: 0; border-bottom: 1px solid rgba(126,224,138,.22); }
-.mission-foot { bottom: 0; border-top: 1px solid rgba(126,224,138,.22); }
-.mc-title { font-weight: 600; letter-spacing: .06em; }
-.mc-diamond { color: var(--clay-soft); }
-.mc-clock { color: #5aa766; font-variant-numeric: tabular-nums; }
-#missionFootCount { color: #5aa766; }
-
-/* on dark, lift the orb outline + add a glow */
-.oracle-overlay.mission-mode .orb-ring { stroke: #E3B7A6; }
-.oracle-overlay.mission-mode .orb-scene { filter: drop-shadow(0 0 30px rgba(204,120,92,.4)); }
-.oracle-overlay.mission-mode .oracle-status { color: #F0EEE6; }
-.oracle-overlay.mission-mode .oracle-sub { color: var(--clay-soft); }
-
-/* scout board: text rows (fast fallback) + pixel grid (mission) */
+/* ===== scout agents: pop out on the same elegant page (no page swap) ===== */
 .scout-board {
-  margin-top: 22px; width: min(560px, 92vw);
-  display: flex; flex-direction: column; gap: 7px;
+  margin-top: 26px; width: min(640px, 94vw);
+  display: flex; flex-wrap: nowrap; justify-content: center; gap: 12px;
 }
-.scout-board.mission-grid {
-  flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 14px;
+.scout-count {
+  margin-top: 16px; font-size: 12.5px; color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
 }
-@keyframes scoutRowIn { to { opacity: 1; transform: translateY(0); } }
+@keyframes scoutPopIn { from { opacity: 0; transform: translateY(10px) scale(.85); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
-/* pixel-art scout agent cell */
+/* pixel-art scout agent cell — clay tones on the light page */
 .pixie-cell {
-  width: 116px; display: flex; flex-direction: column; align-items: center; gap: 7px;
-  padding: 12px 8px 9px; border-radius: 10px;
-  background: rgba(20,24,18,.55); border: 1px solid rgba(126,224,138,.16);
-  opacity: 0; transform: translateY(8px); animation: scoutRowIn .45s ease forwards;
+  flex: 1 1 0; min-width: 0; max-width: 120px;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 12px 6px 10px; border-radius: 12px;
+  background: rgba(250,249,245,.72); border: 1px solid var(--line);
+  opacity: 0; animation: scoutPopIn .5s cubic-bezier(.34,1.56,.64,1) forwards;
 }
-.pixie-wrap { filter: drop-shadow(0 0 6px rgba(204,120,92,.35)); }
+.pixie-wrap { filter: drop-shadow(0 1px 2px rgba(156,69,39,.2)); }
 .pixie { image-rendering: pixelated; display: block; }
-.pixie-name { font-size: 12px; color: #cfcabd; font-weight: 500; }
+.pixie-name { font-size: 12px; color: var(--ink); font-weight: 500; white-space: nowrap; }
 .pixie-status {
-  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
-  font-size: 10.5px; color: #6f7a66; text-align: center; line-height: 1.3;
+  font-size: 11px; color: var(--ink-faint); text-align: center; line-height: 1.3;
+  white-space: nowrap;
 }
 .pixie-cell .pixie-wrap { animation: pixieIdle 3s ease-in-out infinite; }
 @keyframes pixieIdle { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
-.pixie-cell.scanning { border-color: rgba(126,224,138,.5); box-shadow: 0 0 0 1px rgba(126,224,138,.25); }
+.pixie-cell.scanning { border-color: var(--clay-soft); box-shadow: 0 2px 10px rgba(204,120,92,.16); }
 .pixie-cell.scanning .pixie-wrap { animation: pixieScan .55s ease-in-out infinite; }
 @keyframes pixieScan { 0%,100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-6px) rotate(2deg); } }
-.pixie-cell.scanning .pixie-status { color: #7ee08a; }
-.pixie-cell.done { border-color: rgba(126,224,138,.4); }
-.pixie-cell.done .pixie-status { color: #7ee08a; }
-.pixie-cell.done .pixie-wrap { filter: drop-shadow(0 0 9px rgba(126,224,138,.6)); animation: none; }
+.pixie-cell.scanning .pixie-status { color: var(--clay); }
+.pixie-cell.done { border-color: rgba(90,138,90,.45); }
+.pixie-cell.done .pixie-status { color: #5a8a5a; }
+.pixie-cell.done .pixie-wrap { animation: none; }
 .blink { animation: blink 1s step-end infinite; }
 @keyframes blink { 50% { opacity: 0; } }
+
+@media (max-width: 560px) {
+  .scout-board { flex-wrap: wrap; }
+  .pixie-cell { flex: 0 0 auto; width: 96px; }
+}
 
 /* scout findings (results) */
 .scout-findings { max-width: 1040px; margin: 30px auto 0; width: 100%; }
@@ -567,10 +548,6 @@ a.market-item:hover .market-go { opacity: 1; }
 
   <!-- ACT 2 — Oracle transition -->
   <div class="oracle-overlay" id="oracleOverlay" aria-hidden="true">
-    <div class="mission-bar mission-top" id="missionHeader">
-      <span class="mc-title"><span class="mc-diamond">◇</span> FORESIGHT · AGENT TEAM</span>
-      <span class="mc-clock" id="missionClock">--:--:--</span>
-    </div>
     <div class="orb-scene">
       <svg class="oracle-scene" viewBox="0 0 320 380" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
         <defs>
@@ -621,10 +598,7 @@ a.market-item:hover .market-go { opacity: 1; }
     <p class="oracle-status" id="oracleStatus">正在召喚神諭…</p>
     <p class="oracle-sub" id="oracleSub"></p>
     <div class="scout-board" id="scoutBoard" hidden></div>
-    <div class="mission-bar mission-foot" id="missionFooter">
-      <span id="missionFootText">[tm] 0:agent-team*  1:logs</span>
-      <span id="missionFootCount"></span>
-    </div>
+    <p class="scout-count" id="missionFootCount"></p>
   </div>
 
   <!-- ACT 3 — Futures cone -->
@@ -1376,16 +1350,15 @@ ${wikiBlock(sig)}
   let scoutsDone = 0;
   function updateFootCount() {
     const f = $('missionFootCount');
-    if (f) f.textContent = `scouts returned: ${scoutsDone}/${SCOUTS.length}`;
+    if (f) f.textContent = `偵察員已回報 ${scoutsDone}/${SCOUTS.length}`;
   }
   function initScoutBoard() {
     scoutsDone = 0;
-    el.scoutBoard.classList.add('mission-grid');
     el.scoutBoard.innerHTML = SCOUTS.map((s, i) =>
-      `<div class="pixie-cell" id="scout-${s.id}" style="animation-delay:${(i * 0.08).toFixed(2)}s">
+      `<div class="pixie-cell" id="scout-${s.id}" style="animation-delay:${(i * 0.09).toFixed(2)}s">
          <div class="pixie-wrap">${creatureSVG('#CC785C')}</div>
          <div class="pixie-name">${s.emoji} ${escapeHtml(s.name)}</div>
-         <div class="pixie-status" id="scoutStatus-${s.id}">STATUS: idle</div>
+         <div class="pixie-status" id="scoutStatus-${s.id}">待命</div>
        </div>`).join('');
     el.scoutBoard.hidden = false;
     updateFootCount();
@@ -1395,10 +1368,10 @@ ${wikiBlock(sig)}
     if (!cell || !st) return;
     if (state === 'scanning') {
       cell.classList.add('scanning');
-      st.innerHTML = 'STATUS: scanning<span class="blink">▍</span>';
+      st.innerHTML = '掃描中<span class="blink">▍</span>';
     } else if (state === 'done') {
       cell.classList.remove('scanning'); cell.classList.add('done');
-      st.textContent = count > 0 ? `✓ ${count} SIGNALS` : '— NO SIGNAL';
+      st.textContent = count > 0 ? `✓ ${count} 個訊號` : '— 無訊號';
       scoutsDone++; updateFootCount();
     }
   }
@@ -1406,17 +1379,7 @@ ${wikiBlock(sig)}
     if (!el.scoutBoard) return;
     el.scoutBoard.hidden = true;
     el.scoutBoard.innerHTML = '';
-    el.scoutBoard.classList.remove('mission-grid');
   }
-
-  /* mission-control clock */
-  let missionClockTimer = null;
-  function startMissionClock() {
-    const tick = () => { const c = $('missionClock'); if (c) c.textContent = new Date().toLocaleTimeString('en-GB'); };
-    tick();
-    missionClockTimer = setInterval(tick, 1000);
-  }
-  function stopMissionClock() { clearInterval(missionClockTimer); missionClockTimer = null; }
 
   function renderScoutFindings(scoutResults) {
     if (!el.scoutFindings) return;
@@ -1722,10 +1685,9 @@ ${wikiBlock(sig)}
   }
   function hideOverlay() {
     stopStatusCycle();
-    stopMissionClock();
     el.overlay.classList.add('fade-out');
     setTimeout(() => {
-      el.overlay.classList.remove('show', 'fade-out', 'mission-mode');
+      el.overlay.classList.remove('show', 'fade-out');
       el.overlay.setAttribute('aria-hidden', 'true');
       hideScoutBoard();
     }, 600);
@@ -1756,8 +1718,6 @@ ${wikiBlock(sig)}
       const sig = { markets, news, buzz, wiki };
 
       if (deep) {
-        el.overlay.classList.add('mission-mode');
-        startMissionClock();
         el.status.textContent = '派出 AI 偵察員掃描邊緣訊號…';
         el.sub.textContent = `${SCOUTS.length} 個並行 agent · 自律協調`;
         initScoutBoard();
