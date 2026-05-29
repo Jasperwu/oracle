@@ -5,6 +5,27 @@
 
 ---
 
+## 2026-05-29 · 強化 extractJSON:scout 全空 + 綜合 JSON 解析爆掉
+
+**現象(實測「Space X」)**:動態組隊**成功**(火箭哥/星鏈姐/任務官/競局者/馬斯克觀=SpaceX 專屬),
+但 5 個 scout **全部回空**,最後綜合報錯
+`Expected ',' or ']' after array element in JSON at position 3583`。
+
+**根因**:`extractJSON` 太脆——只會 `JSON.parse` 整段。但 web search 開著時 Claude 回的 JSON 常有:
+尾隨逗號、被 search prose 包住、smart quotes、或 **maxTokens 用完被截斷**(position 3583=截在陣列中間)。
+scout 解析失敗 → `catch` 回 `signals:[]`(全空);綜合解析失敗 → 直接拋錯(紅字)。
+5 scout 各自 web search 回大段 JSON,失敗率飆高。
+
+**修法**:
+- `extractJSON` 四段式 fallback:① 直接 parse ② `repairJSON`(去 fence/尾逗號/smart quote)
+  ③ `sliceBalanced`(從 prose 中切出最外層 {...}) ④ `closeTruncated`(截斷搶救:丟掉殘缺片段、
+  補回未閉合的 "/]/} → 救回已完成的欄位)。
+- 調高 token 上限降低截斷機率:scout 1200→1800、綜合 3000→4500。
+- Node 實測 5 種失敗模式(尾逗號/fence/prose/截斷/smart quote)全部救回;
+  截斷案例能救回 topic/summary/drivers + 第一段完整 horizon。
+
+---
+
 ## 2026-05-29 · 加三個免費 CORS 友善來源(GitHub / Stack Overflow / Bluesky)
 
 **背景**:使用者想要 Google Trends / X / TikTok 趨勢。釐清**純前端的真正關卡是 CORS + 付費/門禁**:

@@ -1327,11 +1327,85 @@ a.market-item:hover .market-go { opacity: 1; }
       : '（無維基百科關注度資料）';
   }
 
+  function repairJSON(s) {
+    return s
+      .replace(/```(?:json)?/gi, '')          // stray code fences
+      .replace(/,\s*([}\]])/g, '$1')          // trailing commas: [1,2,] -> [1,2]
+      .replace(/}\s*{/g, '},{')               // missing comma between objects
+      .replace(/]\s*\[/g, '],[')              // missing comma between arrays
+      .replace(/[“”]/g, '"')        // smart double quotes -> "
+      .replace(/[‘’]/g, "'");       // smart single quotes -> '
+  }
+  // pull the outermost balanced {...} out of text that may be wrapped in
+  // web-search prose or prefixed/suffixed with stray characters.
+  function sliceBalanced(text) {
+    const start = text.indexOf('{');
+    if (start < 0) return null;
+    let depth = 0, inStr = false, esc = false;
+    for (let i = start; i < text.length; i++) {
+      const c = text[i];
+      if (inStr) {
+        if (esc) esc = false;
+        else if (c === '\\') esc = true;
+        else if (c === '"') inStr = false;
+      } else if (c === '"') inStr = true;
+      else if (c === '{') depth++;
+      else if (c === '}') { depth--; if (depth === 0) return text.slice(start, i + 1); }
+    }
+    return text.slice(start); // unbalanced (truncated) — return best effort
+  }
+  // last resort: a JSON object truncated mid-way (maxTokens ran out) — drop any
+  // dangling partial token, then close open strings/arrays/objects so we can
+  // still recover the complete fields produced so far.
+  function closeTruncated(s) {
+    let t = s.replace(/```(?:json)?/gi, '').trim();
+    const start = t.indexOf('{');
+    if (start < 0) return null;
+    t = t.slice(start);
+    let depth = 0, inStr = false, esc = false, lastSafe = -1;
+    const stack = [];
+    for (let i = 0; i < t.length; i++) {
+      const c = t[i];
+      if (inStr) {
+        if (esc) esc = false; else if (c === '\\') esc = true; else if (c === '"') inStr = false;
+      } else if (c === '"') inStr = true;
+      else if (c === '{' || c === '[') stack.push(c === '{' ? '}' : ']');
+      else if (c === '}' || c === ']') stack.pop();
+      if (!inStr && (c === '}' || c === ']' || c === '"')) lastSafe = i; // a value just closed
+    }
+    if (lastSafe < 0) return null;
+    let out = t.slice(0, lastSafe + 1).replace(/,\s*$/, ''); // cut dangling partial + trailing comma
+    // rebuild the close stack for what's still open after lastSafe
+    depth = 0; inStr = false; esc = false; const open = [];
+    for (let i = 0; i < out.length; i++) {
+      const c = out[i];
+      if (inStr) { if (esc) esc = false; else if (c === '\\') esc = true; else if (c === '"') inStr = false; }
+      else if (c === '"') inStr = true;
+      else if (c === '{') open.push('}');
+      else if (c === '[') open.push(']');
+      else if (c === '}' || c === ']') open.pop();
+    }
+    while (open.length) out += open.pop();
+    return out;
+  }
   function extractJSON(text) {
-    let t = text.trim().replace(/^```(?:json)?/i, '').replace(/```$/, '').trim();
-    try { return JSON.parse(t); } catch {}
-    const s = t.indexOf('{'), e = t.lastIndexOf('}');
-    if (s >= 0 && e > s) return JSON.parse(t.slice(s, e + 1));
+    const raw = text.trim();
+    // 1) straight parse
+    try { return JSON.parse(raw); } catch {}
+    // 2) strip fences / smart quotes / trailing commas, then parse
+    try { return JSON.parse(repairJSON(raw)); } catch {}
+    // 3) slice the outermost {...} (handles web-search prose around it)
+    const sliced = sliceBalanced(raw);
+    if (sliced) {
+      try { return JSON.parse(sliced); } catch {}
+      try { return JSON.parse(repairJSON(sliced)); } catch {}
+    }
+    // 4) salvage a truncated object (maxTokens cutoff)
+    const closed = closeTruncated(raw);
+    if (closed) {
+      try { return JSON.parse(closed); } catch {}
+      try { return JSON.parse(repairJSON(closed)); } catch {}
+    }
     throw new Error('無法解析回傳的格式');
   }
 
@@ -1460,7 +1534,7 @@ ${signalDigest(sig)}
 {"signals":[{"signal":"訊號描述","fringe":0,"evidence":"依據或出處（引用你查到的或上面的真實資料）","soWhat":"這對主題的未來走向代表什麼"}]}
 請務必給 2–4 個訊號：即使沒有現成的即時資料，也要基於你這個領域的專業知識與常識，針對主題提出有根據的判斷；只有在主題與你的領域真的毫不相干時才回空陣列。fringe 為 0–100 的整數，越高代表越邊緣、越冷門；主流重大訊號給低分也沒關係。`;
     try {
-      const { text, sources } = await callClaude(system, user, { webSearch: ws, maxTokens: 1200, maxUses: 3 });
+      const { text, sources } = await callClaude(system, user, { webSearch: ws, maxTokens: 1800, maxUses: 3 });
       const parsed = extractJSON(text);
       const signals = Array.isArray(parsed.signals) ? parsed.signals.slice(0, 4) : [];
       return { scout, signals, sources };
@@ -1550,7 +1624,7 @@ ${wikiBlock(sig)}
       : '你是一位頂尖的未來學家（futurist），';
     const system = `${role}擅長把偵察員蒐集的邊緣訊號、預測市場數據與趨勢轉化為具體、可信、富洞察力的未來情境。請拿出該領域真正的專業判斷（懂門道、用對術語、抓對關鍵變數），語氣冷靜、精準、帶一點神諭的詩意。你的最終回覆必須「只」包含使用者要求的 JSON 物件，不要任何前後說明文字。`;
     const { text, sources } = await callClaude(system, buildSynthPrompt(keyword, sig, scoutResults), {
-      webSearch: getWebSearch(), maxTokens: 3000, maxUses: 4,
+      webSearch: getWebSearch(), maxTokens: 4500, maxUses: 4,
     });
     return { result: extractJSON(text), sources };
   }
