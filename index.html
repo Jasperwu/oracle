@@ -937,27 +937,40 @@ a.market-item:hover .market-go { opacity: 1; }
   function hasWord(text, tok) {
     return new RegExp('(^|[^\\p{L}\\p{N}])' + escapeRegex(tok) + '($|[^\\p{L}\\p{N}])', 'iu').test(text);
   }
+  // generic words that must not, on their own, make a market "relevant"
+  // (e.g. entity "World Series" should NOT match "FIFA World Cup" via "world")
+  const STOPWORDS = new Set(['the','a','an','of','and','or','to','in','on','for','2024','2025','2026','2027',
+    'world','league','cup','open','final','finals','season','game','games','team','teams','pro','power','ranking','rankings','rank']);
   function relevanceScore(keyword, primary, secondary) {
     const kw = keyword.toLowerCase().trim();
     const tokens = kw.split(/\s+/).filter((t) => t.length >= 3);
+    const strong = tokens.filter((t) => !STOPWORDS.has(t)); // distinctive tokens
     const p = (primary || '').toLowerCase();
     const s = (secondary || '').toLowerCase();
     const all = p + ' ' + s;
     let score = 0;
-    if (p.includes(kw)) score += 25;
-    else if (all.includes(kw)) score += 8;
-    tokens.forEach((tok) => {
-      if (hasWord(p, tok)) score += 5;
-      else if (p.includes(tok)) score += 2;
-      else if (hasWord(all, tok)) score += 2;
+    // whole phrase present → unambiguous match
+    if (p.includes(kw)) return 30;
+    if (all.includes(kw) && kw.length >= 5) score += 12;
+    // count distinctive-token hits; a single generic token can't carry it
+    let strongHits = 0;
+    strong.forEach((tok) => {
+      if (hasWord(all, tok)) { strongHits++; score += (hasWord(p, tok) ? 6 : 4); }
     });
+    // require either a distinctive token, or ≥2 tokens together — not one generic word
+    if (strongHits === 0) {
+      const anyHits = tokens.filter((t) => hasWord(all, t)).length;
+      if (anyHits < 2) return 0; // lone generic word like "world" → not relevant
+      score += anyHits; // weak, but multiple words co-occur
+    }
     return score;
   }
   // score against the keyword AND every expanded entity, taking the best —
-  // so "nba power rank" still matches a "2026 NBA Finals" market via entities.
+  // so "mlb power ranking" matches a "World Series" market via the "MLB" entity,
+  // but a lone generic word never drags in an unrelated high-volume market.
   function maxRelevance(primary, secondary, queries) {
     let best = 0;
-    for (const q of queries) { const s = relevanceScore(q, primary, secondary); if (s > best) best = s; }
+    for (const q of queries) { const sc = relevanceScore(q, primary, secondary); if (sc > best) best = sc; }
     return best;
   }
 
@@ -1106,11 +1119,16 @@ a.market-item:hover .market-go { opacity: 1; }
     } catch { return []; }
   }
   async function fetchHN(keyword, entities = []) {
+    const queries = [keyword, ...entities];
     let hits = await hnSearch(keyword);
-    if (!hits.length && entities[0] && entities[0].toLowerCase() !== keyword.toLowerCase()) {
-      hits = await hnSearch(entities[0]);
+    if (entities[0] && entities[0].toLowerCase() !== keyword.toLowerCase()) {
+      const more = await hnSearch(entities[0]);
+      const seen = new Set(hits.map((h) => h.title));
+      more.forEach((h) => { if (!seen.has(h.title)) hits.push(h); });
     }
-    return hits;
+    // HN is a tech forum with loose OR-matching; drop hits that aren't
+    // actually about the topic so unrelated tech noise doesn't leak in.
+    return hits.filter((h) => maxRelevance(h.title, '', queries) >= 5).slice(0, 6);
   }
 
   /* ---------- Wikipedia: 30-day attention trend ---------- */

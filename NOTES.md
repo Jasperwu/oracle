@@ -5,6 +5,29 @@
 
 ---
 
+## 2026-05-29 · 修相關性評分 bug:無關高熱度市場混入 + HN 雜訊
+
+**回饋(實測「mlb power ranking」)**:預測市場竟全是 FIFA World Cup（且機率多為 0%），
+明明 Polymarket/Kalshi 有很多 MLB 盤口；HN 也出現與 MLB 無關的科技內容。
+
+**根因(同一個 bug）**:`relevanceScore` 對「單一 token 弱命中」給分太鬆。
+entity「World Series」的 `world` 在「FIFA World Cup」裡 `hasWord` 命中 +5 → 達門檻 5，
+FIFA 市場混入；又因成交量極高（4000 萬）排序排前，把真正的 MLB 市場擠掉。
+HN 同理：Algolia 寬鬆 OR 比對 + HN 是科技論壇，回一堆只中 ranking/power 的科技文章。
+
+**修法**:
+- 重寫 `relevanceScore`：加 `STOPWORDS`（world/league/cup/power/ranking/年份…通用詞）；
+  **單一通用詞單獨命中不再算數**（return 0），必須「整片語命中」或「有特殊詞命中」
+  或「≥2 token 同時出現」。整片語命中直接 30 分。
+- `fetchHN` 對結果**套相關性過濾**（`maxRelevance ≥ 5`），濾掉科技雜訊；entity fallback
+  改成「合併去重後一起過濾」。
+- Node 實測驗證：FIFA→0（濾掉）、World Series→30、MLB Power Rankings→30、Yankees→20；
+  HN 科技噪音 DROP、真 MLB 內容 KEEP。
+
+**待辦**:速度（understandTopic 多一次呼叫）—使用者覺得「慢了點」，先求準，speed 之後再優化。
+
+---
+
 ## 2026-05-29 · 綜合 agent 升級為「領域專家 + 未來學家」雙重身分
 
 **確認(使用者問)**:分析短/中/長期的是**一個** agent(`askOracle`,一次 Claude 呼叫產出三段),
