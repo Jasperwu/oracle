@@ -33,9 +33,27 @@
 
 ## 目前狀態
 
-- **已完成**:多 agent 邊緣訊號掃描 (5 個 scouts) + pixel agent mission-control 深掃轉場。
-- **最新 commit**:`Add pixel-art agent mission-control transition (deep scan)`。
+- **已完成**:① 多 agent 邊緣訊號掃描 ② 探員在同一頁 pop out(淺色,非黑底)
+  ③ scout 限流 + 429/529 退避重試 ④ **主題理解 + 動態組隊**(見下)。
 - **待辦 / 下一步候選**:context-aware 的 design actions(決策 #1,尚未開工)。
+
+## 主題理解 + 動態偵察隊(2026-05-29 定案,核心架構)
+
+**問題**:scout 曾被寫死成「科技/產品團」(arXiv/GitHub/Product Hunt)且強制填
+「對產品/設計意涵」→ 打「nba power rank」會去找排名 ML 模型、做 App,文不對題;
+市場抓取是字面比對,真正相關的冠軍市場分數過低被濾掉,只剩 1 個。
+
+**解法(現行)**:
+- `understandTopic(keyword)`:深掃**第一步**,一次 Claude 呼叫讀懂主題,回傳
+  ①`entities`(展開的檢索實體/同義詞)②一支 5 人**動態偵察隊**(`activeScouts`)。
+  失敗則 fallback 到 `DEFAULT_SCOUTS`(通用 5 隊,非科技專屬)。
+- **抓取吃 entities**:`fetchMarkets/fetchKalshi` 用 `maxRelevance`(對 keyword + 所有
+  entities 取最高分)過濾;`fetchGdelt/fetchHN/fetchWikiTrend` 在原關鍵詞無果時用
+  `entities[0]` fallback。門檻統一 5、各取 8 筆。
+- `runScout` 吃動態 `domain/task/angle`,並把 `signalDigest`(市場/新聞/HN/Wiki 摘要)
+  餵給每位探員;移除寫死的「產品/設計意涵」,改問「對主題未來走向代表什麼」。
+- 綜合 prompt (`buildSynthPrompt`) 加上「緊扣主題、別硬拗成做產品」的硬性指示。
+- **硬性原則**:分析必須**緊扣使用者輸入的主題本身**,不得硬拗成不相干領域(尤其別預設「做產品」)。
 
 ## 程式結構速查 (index.html, 單檔 ~1800 行)
 

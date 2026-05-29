@@ -5,6 +5,36 @@
 
 ---
 
+## 2026-05-29 · 修核心:主題理解 + 動態偵察隊(資料方向 & 分析品質)
+
+**回饋(實測「nba power rank」)**:分析方向全錯 —— 不是聯盟各隊趨勢/選秀/正在進行的
+總冠軍,而是去探討「power rank 的 ML 模型」「做個排名工具」,毫無用處;預測市場明明
+有很多今年冠軍的盤口,卻只跑出 1 個。使用者點出:應該有**動態 agent** 去收集**正確、
+最相關**的資訊並做深入分析,而不是套科技/產品框架。
+
+**根因(已逐行查證)**:
+- A. `SCOUTS` 寫死成科技/產品團(research=arXiv/GitHub、culture=Product Hunt),
+  且每訊號強制填「對產品/設計意涵」→ 忠實地答錯問題。
+- B. 市場抓取字面比對:「nba power rank」對「Will the Spurs win the 2026 NBA Finals?」
+  只命中 `nba`(+5),真正相關的冠軍市場分數低被濾掉 → 只剩 1 個。
+
+**使用者決策**:選 **A — 完全動態,讓 Claude 當場組隊**;馬上做。
+
+**實作(7 步,已上線)**:
+1. `SCOUTS` → `DEFAULT_SCOUTS`(通用 fallback)+ `let activeScouts`(動態隊伍)。
+2. 全部引用改 `activeScouts`(runScouts / 板子 / 文案 / 計數)。
+3. 新增 `understandTopic(keyword)`:一次 Claude 呼叫 → `interpretation` + `entities` + `scouts`。
+4. `runScout` 改吃動態 `domain/task/angle` + `signalDigest`,移除「產品/設計意涵」。
+5. `maxRelevance(primary, secondary, queries)`:對 keyword + 所有 entities 取最高分。
+6. 抓取吃 entities:市場用 maxRelevance(門檻 5、取 8);GDELT/HN/Wiki 原詞無果用 `entities[0]` fallback。
+7. `runPrediction`:深掃第一步先 `understandTopic`(設好隊伍 + 拿 entities),再抓資料。
+   綜合 prompt 加「緊扣主題、別硬拗成做產品」。
+
+**成本**:深掃多一次輕量 Claude 呼叫(understandTopic, maxTokens 900);quality 換速度,值得。
+**未動**:結果頁、fast mode(快速模式不經 understandTopic,維持原樣)。
+
+---
+
 ## 2026-05-29 · 探員「先召喚待命」改善等待體驗
 
 **回饋**:深掃時卡在「正在召喚神諭」很久,探員才 pop out;中間沒有回饋像當機。
