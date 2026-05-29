@@ -5,6 +5,24 @@
 
 ---
 
+## 2026-05-29 · 撞到 API 429 速率限制 → 決定花錢升 tier
+
+**現象**:demo 輸入「AI overview」時,網站跳 `Claude API 錯誤 429`:
+org 速率限制為**每分鐘 30,000 input tokens**(model `claude-sonnet-4-6`,即 Tier 1 入門額度)。
+
+**根因(已查證,與程式邏輯無關)**:`runScouts` 用 `Promise.all` **一次並行 5 個 scout**
+(index.html:1264);若 web search 開著,每個 scout 把搜尋結果塞回 input,5 並行 → 同一分鐘
+input tokens 暴衝,加上之後的綜合 (askOracle) 大請求,撞破 30k/min。
+
+**決策**:**走 C — 花錢升 tier**(到 console 買 credits 抬高 30k/min 天花板)。
+**不改程式**,維持 5 並行 + web search 的現狀。
+
+**備註(將來若再撞)**:升 tier 只抬天花板,「瞬間爆量」本質仍在。若日後 demo 再撞 429,
+備援方案是 A(scout 限流:一次最多 2 個 + 讀 `retry-after` 自動退避重試)、
+D(scout 預設關 web search,只綜合那步開)。目前**未採用**,留作後手。
+
+---
+
 ## 2026-05-29 · 持久化記錄機制 + mission-control 完成
 
 **背景**:使用者發現新視窗讀不到舊對話,且擔心對話遺失。釐清根因:
