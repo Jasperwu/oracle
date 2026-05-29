@@ -5,6 +5,29 @@
 
 ---
 
+## 2026-05-29 · 加三個免費 CORS 友善來源(GitHub / Stack Overflow / Bluesky)
+
+**背景**:使用者想要 Google Trends / X / TikTok 趨勢。釐清**純前端的真正關卡是 CORS + 付費/門禁**:
+- Google Trends：無官方 API、非官方爬蟲會被 CORS 擋 → 需後端,且脆。
+- X：API $100/月起 + OAuth + 不支援瀏覽器 CORS。TikTok：僅需審核的 Research API。
+→ 這三個**純前端拿不到**;後端代理能解 CORS 但解不了 X/TikTok 的錢與門禁。
+
+**決策(使用者選 A）**:先接**免費、免金鑰、CORS 友善**的來源,不動純前端架構、零部署風險。
+後端代理(Vercel serverless 補 Google Trends)列為之後的第二階段,未做。
+
+**已接(都走現有 `fetchXXX` + `maxRelevance` 過濾模式)**:
+- `fetchGitHub`：repos search,`sort=stars`,當「開發動能」。
+- `fetchStackEx`：Stack Overflow search/advanced,`sort=activity`,當「技術問答熱度」。
+- `fetchBluesky`：`public.api.bsky.app` searchPosts,`sort=top`，當「社群即時聲量」(X 的替代)。
+- 三者都進 `signalDigest`(餵 scout)與 `buildSynthPrompt`(餵綜合);`sig` 多了 `github/stack/bluesky`。
+
+**已知限制 / 風險**:
+- ⚠️ 沙箱擋外網,**無法當場驗證這三個端點的回傳格式與 CORS**,務必實機測。
+- GitHub 免金鑰限 10 req/分;Bluesky/StackEx 失敗都 graceful 回 []。
+- **結果頁尚未為這三個來源做顯示卡片**(render 只顯示 markets/news/HN/wiki);它們目前只影響分析,
+  不在結果頁露出。要不要顯示待使用者決定。
+- GitHub/StackOverflow 偏技術主題;非技術主題(如 NBA)它們通常回空,屬正常。
+
 ## 2026-05-29 · 釐清 scout 架構 + 輕量版「各自 web search」
 
 **使用者的心智模型 vs 實際**:使用者以為 5 個 scout 各自去爬不同來源(news/forums/學術/總經)。
