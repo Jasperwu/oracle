@@ -51,12 +51,14 @@
 - **綜合 agent 雙重身分**:短/中/長期是**同一個** agent(`askOracle`)一次產出;其 system
   prompt 動態拼接成「領域專家(`expert`)+ 未來學家(futurist)」——既懂門道又會推演;
   `expert` 為空時退回純 futurist。
-- **抓取吃 entities**:`fetchMarkets` **search 優先**(`GAMMA_SEARCH` /public-search,
-  用 keyword+entities 全文搜尋)→ 空了或失敗才 fallback 到分頁(offset 0/500/1000/1500)+
-  `maxRelevance` 過濾;共用 `rankPolymarket`/`normalizePolymarket`。`fetchKalshi` 用 cursor
-  分頁(無全文搜尋)+ `maxRelevance`。`fetchGdelt/fetchHN/fetchWikiTrend` 在原關鍵詞無果時用
-  `entities[0]` fallback;HN 結果再套相關性過濾濾掉科技雜訊。
+- **抓取吃 entities**:`fetchMarkets` 走**分頁** /markets(offset 0/500/1000/1500)+
+  `rankPolymarket`(`requireScore:true` 相關性過濾,沒相關回 [])。
+  ⚠️ 曾試 Gamma `/public-search` 優先,但其回傳缺正確 event slug → 市場卡片不可點,
+  且會混入無關市場 → **已移除,只用分頁**(slug/URL 可靠)。`fetchKalshi` 用 cursor 分頁 +
+  `maxRelevance`。`fetchGdelt/fetchHN/fetchWikiTrend` 在原關鍵詞無果時用 `entities[0]` fallback;
+  HN 結果再套相關性過濾濾掉科技雜訊。
   `relevanceScore` 有 `STOPWORDS`:通用詞(world/league/power/ranking…)單獨命中不算數。
+  市場卡片:`m.url` 有才渲染成可點 `<a>`,沒有則 `<div>` —— 所以 slug 必須正確。
 - `runScout` 吃動態 `domain/task/angle`,並把 `signalDigest`(市場/新聞/HN/Wiki 摘要)
   餵給每位探員;移除寫死的「產品/設計意涵」,改問「對主題未來走向代表什麼」。
   **失敗處理**:`runScoutOnce` 為單次嘗試;`runScout` attempt 1 帶 web search,失敗→attempt 2

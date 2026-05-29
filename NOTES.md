@@ -5,6 +5,23 @@
 
 ---
 
+## 2026-05-29 · 回退 Polymarket search(造成兩個 regression)
+
+**現象(travel × AI)**:① 市場出現無關 MLB ② 市場卡片**不能點**(之前可以)。
+**根因(同源)**:先前加的「search 優先」`fetchMarkets` 用 `requireScore:false`(搜尋回什麼全收),
+且 Gamma `/public-search` 回傳的市場**結構缺正確 event slug** → `m.url=null` → 結果頁渲染成
+不可點的 `<div>`(`m.url ? 'a' : 'div'`)。沙箱擋外網**無法驗證 search 真實格式**,踩雷。
+
+**修法**:**移除 search 路徑**(`searchPolymarket` / `GAMMA_SEARCH` 全刪),`fetchMarkets`
+只走**分頁 /markets**(slug/URL 可靠)+ `requireScore:true` 相關性過濾;沒相關就回 []、
+結果頁卡片隱藏(`marketSource.hidden`)。Node 實測:MLB 對 travel×AI 評 0 分被擋,
+相關市場(AI/Booking)正常顯示且可點。
+
+**已知小取捨**:`AI` 是短又常見詞,純 AI、與旅遊無關的市場可能仍顯示(總比 MLB 好);
+若實測太雜再收。Kalshi 維持 cursor 分頁不變。
+
+---
+
 ## 2026-05-29 · 結果頁顯示每個 scout 的「探索來源」
 
 **背景(實測「travel industry in AI era」)**:動態組隊漂亮(訂房探員/航空偵察/行程嚮導/

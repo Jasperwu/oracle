@@ -793,7 +793,6 @@ a.market-item:hover .market-go { opacity: 1; }
   const LS_WEBSEARCH = 'oracle_websearch';
   const LS_DEEPSCAN = 'oracle_deepscan';
   const GAMMA = 'https://gamma-api.polymarket.com/markets';
-  const GAMMA_SEARCH = 'https://gamma-api.polymarket.com/public-search';
   const KALSHI = 'https://api.elections.kalshi.com/trade-api/v2/markets';
   const GDELT = 'https://api.gdeltproject.org/api/v2/doc/doc';
   const HN = 'https://hn.algolia.com/api/v1/search_by_date';
@@ -1021,46 +1020,13 @@ a.market-item:hover .market-go { opacity: 1; }
     return scored.map(({ m }) => normalizePolymarket(m));
   }
 
-  // ask Polymarket's full-text search directly for the topic + entities, so
-  // we get markets relevant to the keyword (incl. ones whose own question text
-  // doesn't contain it, but whose event does) without scanning thousands.
-  async function searchPolymarket(queries) {
-    const seen = new Set(), markets = [];
-    const reqs = queries.slice(0, 4).map((q) =>
-      fetch(`${GAMMA_SEARCH}?q=${encodeURIComponent(q)}&limit_per_type=20&events_status=active`,
-            { headers: { Accept: 'application/json' } })
-        .then((r) => (r.ok ? r.json() : null))
-        .catch(() => null));
-    const results = await Promise.all(reqs);
-    for (const data of results) {
-      if (!data) continue;
-      // public-search returns events; markets live under each event
-      const events = Array.isArray(data.events) ? data.events : [];
-      const flat = Array.isArray(data.markets) ? data.markets : [];
-      const pool = flat.concat(events.flatMap((e) =>
-        (Array.isArray(e.markets) ? e.markets : []).map((mk) => ({ ...mk, events: [e] }))));
-      for (const m of pool) {
-        if (!m || !m.question || m.closed || m.active === false) continue;
-        if (seen.has(m.question)) continue;
-        seen.add(m.question);
-        markets.push(m);
-      }
-    }
-    return markets;
-  }
-
   async function fetchMarkets(keyword, entities = []) {
     const queries = [keyword, ...entities];
 
-    // 1) search-first: full-text search is more precise, faster, and cheaper
-    try {
-      const hits = await searchPolymarket(queries);
-      const ranked = rankPolymarket(hits, queries, { requireScore: false });
-      if (ranked.length) return ranked;
-    } catch {}
-
-    // 2) fallback: page through markets-by-volume and relevance-filter, in
-    // case the search endpoint changes or returns nothing.
+    // Page through markets-by-volume and relevance-filter. (We tried Gamma's
+    // public-search first, but its result shape lacked usable event slugs —
+    // links broke — and it returned off-topic markets, so we rely on the
+    // paginated /markets data whose slugs/URLs are reliable.)
     const pageReq = (offset) =>
       fetch(`${GAMMA}?closed=false&active=true&limit=500&offset=${offset}&order=volumeNum&ascending=false`,
             { headers: { Accept: 'application/json' } })
