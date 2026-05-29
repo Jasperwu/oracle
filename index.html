@@ -975,14 +975,21 @@ a.market-item:hover .market-go { opacity: 1; }
   }
 
   async function fetchMarkets(keyword, entities = []) {
-    const url = `${GAMMA}?closed=false&active=true&limit=500&order=volumeNum&ascending=false`;
-    let raw;
+    // Polymarket has thousands of active markets; the top-500-by-volume slice
+    // is dominated by mega-volume markets (e.g. World Cup) and misses
+    // mid-volume ones (many NBA series). Page through to widen the candidate
+    // pool so relevant-but-smaller markets are actually considered.
+    const pageReq = (offset) =>
+      fetch(`${GAMMA}?closed=false&active=true&limit=500&offset=${offset}&order=volumeNum&ascending=false`,
+            { headers: { Accept: 'application/json' } })
+        .then((r) => (r.ok ? r.json() : []))
+        .catch(() => []);
+    let raw = [];
     try {
-      const res = await fetch(url, { headers: { Accept: 'application/json' } });
-      if (!res.ok) return [];
-      raw = await res.json();
+      const pages = await Promise.all([0, 500, 1000, 1500].map(pageReq));
+      raw = pages.flat().filter((m) => m && m.question);
     } catch { return []; }
-    if (!Array.isArray(raw)) return [];
+    if (!raw.length) return [];
 
     const queries = [keyword, ...entities];
     const threshold = 5;
@@ -993,7 +1000,7 @@ a.market-item:hover .market-go { opacity: 1; }
       return { m, score: maxRelevance(m.question, secondary, queries) };
     })
     .filter((x) => x.score >= threshold)
-    .sort((a, b) => b.score - a.score)
+    .sort((a, b) => (b.score - a.score) || (Number(b.m.volumeNum || b.m.volume || 0) - Number(a.m.volumeNum || a.m.volume || 0)))
     .slice(0, 8);
 
     return scored.map(({ m }) => {
@@ -1020,10 +1027,18 @@ a.market-item:hover .market-go { opacity: 1; }
     // NOTE: pure-frontend access depends on Kalshi sending CORS headers.
     // If blocked, this resolves to [] and the rest of the oracle is unaffected.
     try {
-      const res = await fetch(`${KALSHI}?status=open&limit=1000`, { headers: { Accept: 'application/json' } });
-      if (!res.ok) return [];
-      const data = await res.json();
-      const list = Array.isArray(data.markets) ? data.markets : [];
+      // page through with the cursor so we don't miss relevant markets that
+      // fall outside the first 1000 open markets.
+      let list = [], cursor = '', pages = 0;
+      do {
+        const res = await fetch(`${KALSHI}?status=open&limit=1000${cursor ? '&cursor=' + cursor : ''}`,
+                                { headers: { Accept: 'application/json' } });
+        if (!res.ok) break;
+        const data = await res.json();
+        if (Array.isArray(data.markets)) list = list.concat(data.markets);
+        cursor = data.cursor || '';
+      } while (cursor && ++pages < 4);
+      if (!list.length) return [];
 
       const queries = [keyword, ...entities];
       const threshold = 5;
@@ -1033,7 +1048,7 @@ a.market-item:hover .market-go { opacity: 1; }
         return { m, score: maxRelevance(m.title, secondary, queries) };
       })
       .filter((x) => x.score >= threshold)
-      .sort((a, b) => b.score - a.score)
+      .sort((a, b) => (b.score - a.score) || (Number(b.m.volume || 0) - Number(a.m.volume || 0)))
       .slice(0, 8);
 
       return scored.map(({ m }) => {
