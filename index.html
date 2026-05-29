@@ -204,6 +204,9 @@ html, body {
 .pixie-cell.done { border-color: rgba(90,138,90,.45); }
 .pixie-cell.done .pixie-status { color: #5a8a5a; }
 .pixie-cell.done .pixie-wrap { animation: none; }
+.pixie-cell.errored { border-color: rgba(176,81,47,.5); }
+.pixie-cell.errored .pixie-status { color: #b0512f; }
+.pixie-cell.errored .pixie-wrap { animation: none; opacity: .55; filter: grayscale(.4); }
 .blink { animation: blink 1s step-end infinite; }
 @keyframes blink { 50% { opacity: 0; } }
 
@@ -1520,9 +1523,8 @@ scouts 請剛好 5 位，角度彼此互補、且全部緊扣「${keyword}」這
     return `【預測市場即時賠率】\n${marketBlock(sig)}\n\n【近期新聞 · GDELT】\n${newsBlock(sig)}\n\n【社群討論 · Hacker News】\n${buzzBlock(sig)}\n\n【開發動能 · GitHub】\n${githubBlock(sig)}\n\n【技術問答熱度 · Stack Overflow】\n${stackBlock(sig)}\n\n【社群即時聲量 · Bluesky】\n${blueskyBlock(sig)}\n\n【關注度趨勢 · Wikipedia】\n${wikiBlock(sig)}`;
   }
 
-  async function runScout(keyword, scout, sig) {
+  function scoutPrompts(keyword, scout, sig, ws) {
     const system = `你是一位專責「${scout.name}」的訊號偵察員（scout agent），鎖定的領域是「${scout.domain}」。任務是針對指定主題，從你的領域角度找出最新、最相關、且能預示未來走向的訊號——可以是主流的重大進展，也可以是被低估的早期跡象。務必緊扣主題本身（不要把主題硬拗成別的領域）。你的回覆必須「只」是使用者要求的 JSON。`;
-    const ws = getWebSearch();
     const user = `主題：「${keyword}」
 
 你這位偵察員的任務：${scout.task}
@@ -1533,12 +1535,37 @@ ${signalDigest(sig)}
 只回傳有效 JSON（不要 markdown、不要多餘文字），全部繁體中文：
 {"signals":[{"signal":"訊號描述","fringe":0,"evidence":"依據或出處（引用你查到的或上面的真實資料）","soWhat":"這對主題的未來走向代表什麼"}]}
 請務必給 2–4 個訊號：即使沒有現成的即時資料，也要基於你這個領域的專業知識與常識，針對主題提出有根據的判斷；只有在主題與你的領域真的毫不相干時才回空陣列。fringe 為 0–100 的整數，越高代表越邊緣、越冷門；主流重大訊號給低分也沒關係。`;
+    return { system, user };
+  }
+
+  // One attempt at a scout. Returns {signals} on success, or throws.
+  async function runScoutOnce(keyword, scout, sig, ws) {
+    const { system, user } = scoutPrompts(keyword, scout, sig, ws);
+    const { text, sources } = await callClaude(system, user, { webSearch: ws, maxTokens: 1800, maxUses: ws ? 3 : 0 });
+    const parsed = extractJSON(text);
+    const signals = Array.isArray(parsed.signals) ? parsed.signals.slice(0, 4) : [];
+    return { signals, sources };
+  }
+
+  async function runScout(keyword, scout, sig) {
+    const wantWeb = getWebSearch();
+    // attempt 1: with web search if enabled
     try {
-      const { text, sources } = await callClaude(system, user, { webSearch: ws, maxTokens: 1800, maxUses: 3 });
-      const parsed = extractJSON(text);
-      const signals = Array.isArray(parsed.signals) ? parsed.signals.slice(0, 4) : [];
-      return { scout, signals, sources };
-    } catch { return { scout, signals: [], sources: [] }; }
+      const r = await runScoutOnce(keyword, scout, sig, wantWeb);
+      return { scout, signals: r.signals, sources: r.sources, error: false };
+    } catch (e1) {
+      // attempt 2 (graceful degrade): drop web search and lean on the shared
+      // data + domain knowledge, so a search/timeout/429 doesn't blank it out.
+      if (wantWeb) {
+        try {
+          const r = await runScoutOnce(keyword, scout, sig, false);
+          return { scout, signals: r.signals, sources: r.sources, error: false, degraded: true };
+        } catch (e2) {
+          return { scout, signals: [], sources: [], error: true };
+        }
+      }
+      return { scout, signals: [], sources: [], error: true };
+    }
   }
 
   // limit concurrency to avoid bursting past the per-minute token rate limit;
@@ -1554,7 +1581,7 @@ ${signalDigest(sig)}
         if (i >= CONCURRENCY) await sleep(STAGGER_MS);
         onProgress && onProgress(scout.id, 'scanning');
         const r = await runScout(keyword, scout, sig);
-        onProgress && onProgress(scout.id, 'done', r.signals.length);
+        onProgress && onProgress(scout.id, r.error ? 'error' : 'done', r.signals.length);
         results[i] = r;
       }
     }
@@ -1675,6 +1702,10 @@ ${wikiBlock(sig)}
     if (state === 'scanning') {
       cell.classList.add('scanning');
       st.innerHTML = '掃描中<span class="blink">▍</span>';
+    } else if (state === 'error') {
+      cell.classList.remove('scanning'); cell.classList.add('errored');
+      st.textContent = '⚠ 連線失敗';
+      scoutsDone++; updateFootCount();
     } else if (state === 'done') {
       cell.classList.remove('scanning'); cell.classList.add('done');
       st.textContent = count > 0 ? `✓ ${count} 個訊號` : '— 無訊號';

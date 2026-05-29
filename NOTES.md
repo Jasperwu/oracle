@@ -5,6 +5,24 @@
 
 ---
 
+## 2026-05-29 · 區分「出錯 vs 無訊號」+ scout 失敗自動降級重試
+
+**問題**:開了 web search 卻「無訊號」不合理——網路搜尋一定有東西。診斷出 `runScout` 的
+`catch` 把**所有失敗**(web search 超時 / 429 / JSON 解析失敗)都靜默變成 `signals:[]`，
+UI 顯示「無訊號」與「真的沒資料」**長得一模一樣**,使用者無從分辨。429 因 5 scout 各自
+web search 被放大,是最可能元兇。
+
+**修法(使用者選 1+2)**:
+1. **區分狀態**:`runScout` 回傳帶 `error` 旗標;`runScouts` 傳 `'error'` 給 `updateScout`；
+   UI 新增 `.errored` 樣式,顯示「⚠ 連線失敗」(灰階+陶土紅),不再偽裝成「— 無訊號」。
+2. **降級重試**:抽出 `runScoutOnce`;attempt 1 帶 web search,失敗 → attempt 2 **去掉 web search**
+   (靠共用資料 + 領域知識作答),兩次都掛才標 error。`degraded` 旗標記錄是否降級。
+
+**效果**:真‧無資料才顯示「無訊號」;壞掉顯示「連線失敗」;大多數情況降級重試後仍有產出。
+**未做**:#3 降低 429（減少 scout web search 量）—先觀察 1+2 是否就夠。
+
+---
+
 ## 2026-05-29 · 強化 extractJSON:scout 全空 + 綜合 JSON 解析爆掉
 
 **現象(實測「Space X」)**:動態組隊**成功**(火箭哥/星鏈姐/任務官/競局者/馬斯克觀=SpaceX 專屬),

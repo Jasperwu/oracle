@@ -59,6 +59,9 @@
   `relevanceScore` 有 `STOPWORDS`:通用詞(world/league/power/ranking…)單獨命中不算數。
 - `runScout` 吃動態 `domain/task/angle`,並把 `signalDigest`(市場/新聞/HN/Wiki 摘要)
   餵給每位探員;移除寫死的「產品/設計意涵」,改問「對主題未來走向代表什麼」。
+  **失敗處理**:`runScoutOnce` 為單次嘗試;`runScout` attempt 1 帶 web search,失敗→attempt 2
+  **去掉 web search** 降級重試,兩次都掛才回 `error:true`。UI 區分「⚠ 連線失敗」(`.errored`)
+  與「— 無訊號」(真沒資料),不再把出錯偽裝成無訊號。
 - **架構真相**:資料是 `runPrediction` **中央抓一次**(固定 5 來源),**同一包**發給全部 scout;
   scout 的領域只是**解讀 persona**,不是專屬資料管線。**輕量版**(2026-05-29):web search 開啟時
   每個 scout **各自以領域視角下不同查詢**(maxUses 3);prompt **放寬**成「沒現成資料也要靠領域知識給判斷,
