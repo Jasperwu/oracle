@@ -5,6 +5,23 @@
 
 ---
 
+## 2026-05-29 · 綜合步驟卡很久 → 加逾時 + 退避回饋
+
+**現象(fandom K-pop)**：scout 已 5/5 回報,卡在「綜合所有訊號，推演未來…」很久,像當機。
+**根因**：`askOracle` 是**單一大呼叫**(maxTokens 4500 + web search ≤4)本就慢;若撞 429,
+`callClaude` **靜默退避**最多 30s×5≈2 分鐘,且 **fetch 沒 timeout、退避時無任何畫面回饋**。
+
+**修法**：
+1. `callClaude` 加 **AbortController**，單次 fetch 逾時(timeoutMs 預設 90s)就 abort→重試，
+   重試上限後拋「連線逾時」，不再無限等。
+2. 退避時呼叫 **`onClaudeWait(secs)`** hook；`runPrediction` 在綜合階段接上它，
+   畫面 sub 文字顯示「遇到流量限制，N 秒後重試…」，讓等待可見而非看似凍結。
+
+**仍未解的根**：速度本身——5 scout 各自 web search + 4500-token 綜合，量大。要更快仍需
+減少 web search 量或升 tier（持續記為待辦）。
+
+---
+
 ## 2026-05-29 · 選擇標準:動態混編 stance + fringe 接進未來錐
 
 **使用者洞察**:選擇標準該 balance —— 強訊號=最可能發生→靠近錐**中心**；越 niche→錐**外圍**。

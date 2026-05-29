@@ -1390,8 +1390,10 @@ a.market-item:hover .market-go { opacity: 1; }
 
   /* ---------- low-level Claude call ---------- */
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+  // optional hook so the UI can show backoff waits instead of looking frozen
+  let onClaudeWait = null;
 
-  async function callClaude(system, userContent, { webSearch = false, maxTokens = 1600, maxUses = 3 } = {}) {
+  async function callClaude(system, userContent, { webSearch = false, maxTokens = 1600, maxUses = 3, timeoutMs = 90000 } = {}) {
     const body = {
       model: getModel(),
       max_tokens: maxTokens,
@@ -1404,19 +1406,33 @@ a.market-item:hover .market-go { opacity: 1; }
     const maxRetries = 5;
     let res;
     for (let attempt = 0; ; attempt++) {
-      res = await fetch(ANTHROPIC, {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json',
-          'x-api-key': getKey(),
-          'anthropic-version': '2023-06-01',
-          'anthropic-dangerous-direct-browser-access': 'true',
-        },
-        body: JSON.stringify(body),
-      });
+      const ctrl = new AbortController();
+      const timer = setTimeout(() => ctrl.abort(), timeoutMs);
+      try {
+        res = await fetch(ANTHROPIC, {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+            'x-api-key': getKey(),
+            'anthropic-version': '2023-06-01',
+            'anthropic-dangerous-direct-browser-access': 'true',
+          },
+          body: JSON.stringify(body),
+          signal: ctrl.signal,
+        });
+      } catch (e) {
+        clearTimeout(timer);
+        if (e.name === 'AbortError') {
+          if (attempt < maxRetries) { continue; } // timed out — try again
+          throw new Error('連線逾時，請再試一次（可能是網路或流量問題）。');
+        }
+        throw e;
+      }
+      clearTimeout(timer);
       if ((res.status === 429 || res.status === 529) && attempt < maxRetries) {
         const ra = parseFloat(res.headers.get('retry-after'));
         const waitMs = Number.isFinite(ra) ? ra * 1000 : Math.min(2000 * 2 ** attempt, 30000);
+        if (onClaudeWait) onClaudeWait(Math.round(waitMs / 1000));
         await sleep(waitMs);
         continue;
       }
@@ -2105,7 +2121,14 @@ ${wikiBlock(sig)}
         el.sub.textContent = '對齊 3–18 個月的時間錐';
       }
 
-      const { result, sources } = await askOracle(keyword, sig, scoutResults, expert);
+      // surface backoff waits so the long synthesis step doesn't look frozen
+      onClaudeWait = (secs) => { if (el.sub) el.sub.textContent = `遇到流量限制，${secs} 秒後重試…`; };
+      let result, sources;
+      try {
+        ({ result, sources } = await askOracle(keyword, sig, scoutResults, expert));
+      } finally {
+        onClaudeWait = null;
+      }
 
       // keep the oracle on screen for at least the full ritual
       const elapsed = Date.now() - startedAt;
