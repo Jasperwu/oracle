@@ -799,6 +799,7 @@ a.market-item:hover .market-go { opacity: 1; }
   const GITHUB_SEARCH = 'https://api.github.com/search/repositories';
   const STACKEX_SEARCH = 'https://api.stackexchange.com/2.3/search/advanced';
   const BLUESKY_SEARCH = 'https://public.api.bsky.app/xrpc/app.bsky.feed.searchPosts';
+  const REDDIT_SEARCH = 'https://www.reddit.com/search.json';
   const WIKI_SEARCH = 'https://en.wikipedia.org/w/api.php';
   const WIKI_VIEWS = 'https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents';
   const ANTHROPIC = 'https://api.anthropic.com/v1/messages';
@@ -1221,6 +1222,34 @@ a.market-item:hover .market-go { opacity: 1; }
     } catch { return []; }
   }
 
+  /* ---------- Reddit: emerging discussion across subreddits ----------
+     Attempt A: pure-frontend hit on the public search.json. Reddit often
+     blocks browser-direct requests (CORS); if so this resolves to [] and the
+     rest of the oracle is unaffected. Sorted by "relevance" of recent posts. */
+  async function fetchReddit(keyword, entities = []) {
+    const queries = [keyword, ...entities];
+    const q = keyword;
+    try {
+      const res = await fetch(`${REDDIT_SEARCH}?q=${encodeURIComponent(q)}&sort=relevance&t=month&limit=20`,
+                              { headers: { Accept: 'application/json' } });
+      if (!res.ok) return [];
+      const data = await res.json();
+      const children = (data && data.data && Array.isArray(data.data.children)) ? data.data.children : [];
+      const posts = children.map((c) => c.data).filter(Boolean).map((d) => ({
+        title: String(d.title || '').replace(/\s+/g, ' ').trim().slice(0, 180),
+        url: d.permalink ? `https://www.reddit.com${d.permalink}` : (d.url || null),
+        sub: d.subreddit_name_prefixed || (d.subreddit ? 'r/' + d.subreddit : ''),
+        score: d.score || 0,
+        comments: d.num_comments || 0,
+        date: d.created_utc ? d.created_utc * 1000 : 0,
+      })).filter((p) => p.title);
+      // keep on-topic posts, surface the most-discussed first
+      return posts.filter((p) => maxRelevance(p.title, p.sub, queries) >= 5)
+                  .sort((a, b) => (b.comments - a.comments) || (b.score - a.score))
+                  .slice(0, 6);
+    } catch { return []; }
+  }
+
   /* ---------- Wikipedia: 30-day attention trend ---------- */
   function ymd(d) { return d.toISOString().slice(0, 10).replace(/-/g, ''); }
   async function wikiTitle(query) {
@@ -1299,6 +1328,10 @@ a.market-item:hover .market-go { opacity: 1; }
   function blueskyBlock(sig) {
     return sig.bluesky && sig.bluesky.length
       ? sig.bluesky.map((b) => `- ${b.title}（♥${b.likes} 🔁${b.reposts}）`).join('\n') : '（Bluesky 無相關社群貼文）';
+  }
+  function redditBlock(sig) {
+    return sig.reddit && sig.reddit.length
+      ? sig.reddit.map((r) => `- ${r.title}（${r.sub} · 💬${r.comments} ▲${r.score}）`).join('\n') : '（Reddit 無相關討論或無法存取）';
   }
   function wikiBlock(sig) {
     return sig.wiki
@@ -1523,7 +1556,7 @@ scouts 請剛好 5 位，角度彼此互補、且全部緊扣「${keyword}」這
   }
 
   function signalDigest(sig) {
-    return `【預測市場即時賠率】\n${marketBlock(sig)}\n\n【近期新聞 · GDELT】\n${newsBlock(sig)}\n\n【社群討論 · Hacker News】\n${buzzBlock(sig)}\n\n【開發動能 · GitHub】\n${githubBlock(sig)}\n\n【技術問答熱度 · Stack Overflow】\n${stackBlock(sig)}\n\n【社群即時聲量 · Bluesky】\n${blueskyBlock(sig)}\n\n【關注度趨勢 · Wikipedia】\n${wikiBlock(sig)}`;
+    return `【預測市場即時賠率】\n${marketBlock(sig)}\n\n【近期新聞 · GDELT】\n${newsBlock(sig)}\n\n【社群討論 · Hacker News】\n${buzzBlock(sig)}\n\n【開發動能 · GitHub】\n${githubBlock(sig)}\n\n【技術問答熱度 · Stack Overflow】\n${stackBlock(sig)}\n\n【社群即時聲量 · Bluesky】\n${blueskyBlock(sig)}\n\n【社群討論 · Reddit】\n${redditBlock(sig)}\n\n【關注度趨勢 · Wikipedia】\n${wikiBlock(sig)}`;
   }
 
   const STANCE_BRIEF = {
@@ -1652,6 +1685,9 @@ ${stackBlock(sig)}
 
 【Bluesky 社群即時聲量】
 ${blueskyBlock(sig)}
+
+【Reddit 社群討論】
+${redditBlock(sig)}
 
 【Wikipedia 關注度趨勢】
 ${wikiBlock(sig)}
@@ -2116,7 +2152,7 @@ ${wikiBlock(sig)}
         initScoutBoard();
       }
 
-      const [pmMarkets, kalshiMarkets, news, buzz, github, stack, bluesky, wiki] = await Promise.all([
+      const [pmMarkets, kalshiMarkets, news, buzz, github, stack, bluesky, reddit, wiki] = await Promise.all([
         fetchMarkets(keyword, entities),
         fetchKalshi(keyword, entities),
         fetchGdelt(keyword, entities),
@@ -2124,10 +2160,11 @@ ${wikiBlock(sig)}
         fetchGitHub(keyword, entities),
         fetchStackEx(keyword, entities),
         fetchBluesky(keyword, entities),
+        fetchReddit(keyword, entities),
         fetchWikiTrend(keyword, entities),
       ]);
       const markets = mergeMarkets(pmMarkets, kalshiMarkets);
-      const sig = { markets, news, buzz, github, stack, bluesky, wiki };
+      const sig = { markets, news, buzz, github, stack, bluesky, reddit, wiki };
 
       if (deep) {
         el.status.textContent = '派出 AI 偵察員掃描邊緣訊號…';

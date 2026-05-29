@@ -5,6 +5,18 @@
 
 ---
 
+## 2026-05-29 · 試接 Reddit(方案 A:純前端直連)
+
+**背景**:使用者過去專案會抓 Reddit/subreddit 的 emerging signals,問我們有沒有做。
+**釐清**:之前**沒有** Reddit 管道——社群類只有 Hacker News(科技)+ Bluesky;web search 偶爾
+可能瞄到 Reddit 連結摘要,但非針對性。Reddit 是 niche/早期訊號金礦,niche scout 缺的拼圖。
+**決策(使用者選 A)**:先試**純前端直連** `www.reddit.com/search.json`(零成本)。
+**實作**:`fetchReddit`(sort=relevance、t=month、limit 20 → `maxRelevance≥5` 過濾 →
+依留言數/分數排序取 6),`redditBlock` 進 `signalDigest` + 綜合 prompt;`sig` 多 `reddit`。
+**風險(關鍵)**:⚠️ Reddit 常擋瀏覽器直連(CORS/限流),沙箱無法驗證——**很可能回空**。
+失敗 graceful 回 []、不影響其他來源。若實機證實被擋,選項 B 是等後端代理階段再接。
+**結果頁**:同 GitHub/Stack/Bluesky,Reddit 也**尚無顯示卡片**,只進分析。
+
 ## 2026-05-29 · 優化搜尋品質與分析角度(1+2+3+4)
 
 在「廣度淺掃」框架內提升品質,使用者選做四項:

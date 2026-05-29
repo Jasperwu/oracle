@@ -85,8 +85,10 @@
   id: `research` 🔬 / `markets` 📊 / `culture` 💬 / `policy` ⚖️ / `contrarian` 🎲。
 - **訊號擷取**:`fetchMarkets`(Polymarket)、`fetchKalshi`、`fetchGdelt`(新聞)、
   `fetchHN`(Hacker News)、`fetchGitHub`(開發動能)、`fetchStackEx`(Stack Overflow)、
-  `fetchBluesky`(社群即時聲量,X 替代)、`fetchWikiTrend`(Wikipedia pageviews)。
-  後三者(2026-05-29 加)是免費、免金鑰、CORS 友善的來源,只進分析、**結果頁尚無顯示卡片**。
+  `fetchBluesky`(社群即時聲量,X 替代)、`fetchReddit`(subreddit 討論)、`fetchWikiTrend`(Wikipedia)。
+  GitHub/Stack/Bluesky/Reddit(2026-05-29 加)是免費、免金鑰、CORS 友善的來源,只進分析、**結果頁尚無顯示卡片**。
+  ⚠️ `fetchReddit` 走純前端 `search.json`,Reddit **常擋瀏覽器直連**(CORS/限流),很可能回空——
+  失敗 graceful、不影響其他;若被擋,真正解法是後端代理。
   ⚠️ Google Trends/X/TikTok 純前端拿不到(CORS+付費/門禁);後端代理列為未做的第二階段。
 - **Claude 呼叫**:`callClaude()` (L1200) → `runScout()` / `askOracle()`(綜合)。
 - **深掃探員 pop out**:`initScoutBoard` / `updateScout` / `creatureSVG`
