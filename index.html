@@ -1478,19 +1478,19 @@ a.market-item:hover .market-go { opacity: 1; }
   /* understand the topic up front: expand search entities + assemble a
      topic-specific scout team. One cheap Claude call; falls back gracefully. */
   async function understandTopic(keyword) {
-    const system = '你是一位敏銳的研究主編。使用者給你一個主題關鍵詞，你要做三件事：(1) 判斷這個主題的真正所指與領域，展開出實際可用於檢索的「實體與同義詞」；(2) 為這個主題量身編一支 5 人偵察小隊，每位專精一個與「這個主題」最相關的角度，並為每位指派一個 stance（hot＝追主流/當紅/高確定度的重大進展；niche＝挖冷門/早期/被忽視的弱訊號；mixed＝兩者兼顧）；(3) 指派一位最適合綜合分析這個主題的「領域專家」身分。重要：整支小隊的 stance 要刻意平衡——大致 2 個 hot、2 個 niche、1 個 mixed，讓主流與邊緣訊號都有人負責。角度與專家身分都必須貼合主題本身。例如「NBA power rank」的偵察角度應是賽季戰績走勢、冠軍賠率、球員傷病與交易、選秀、球迷敘事，專家身分應是「資深 NBA 籃球分析師」——而不是「排名演算法專家」或「產品經理」。你只回傳 JSON。';
+    const system = '你是一位敏銳的研究主編。使用者給你一個主題關鍵詞，你要做三件事：(1) 判斷這個主題的真正所指與領域，展開出實際可用於檢索的「實體與同義詞」；(2) 為這個主題量身編一支 5 人偵察小隊，每位專精一個與「這個主題」最相關的角度，指派一個 stance（hot＝追主流/當紅/高確定度的重大進展；niche＝挖冷門/早期/被忽視的弱訊號；mixed＝兩者兼顧），並為每位預先擬 2–3 條「具體、彼此不重複」的網路搜尋查詢（query）——查詢要鎖定該偵察員的角度、用上相關實體、且偏好「最新發展、近 6 個月、即將到來」的時效性，避免 5 位查到同一批結果；(3) 指派一位最適合綜合分析這個主題的「領域專家」身分。重要：整支小隊的 stance 要刻意平衡——大致 2 個 hot、2 個 niche、1 個 mixed，讓主流與邊緣訊號都有人負責。角度與專家身分都必須貼合主題本身。例如「NBA power rank」的偵察角度應是賽季戰績走勢、冠軍賠率、球員傷病與交易、選秀、球迷敘事，專家身分應是「資深 NBA 籃球分析師」——而不是「排名演算法專家」或「產品經理」。你只回傳 JSON。';
     const user = `主題關鍵詞：「${keyword}」
 
-只回傳有效 JSON（不要 markdown、不要多餘文字），全部以繁體中文（實體可保留原文/英文）：
+只回傳有效 JSON（不要 markdown、不要多餘文字），全部以繁體中文（實體與查詢可保留原文/英文）：
 {
   "interpretation": "一句話說明這個主題實際在問什麼、屬於哪個領域",
   "entities": ["用於檢索的核心實體或專有名詞，3–8 個，含可能的英文原名與關鍵同義詞"],
   "expert": "最適合綜合分析此主題的領域專家身分（例：資深 NBA 籃球分析師 / 半導體產業分析師），緊扣主題",
   "scouts": [
-    {"name":"偵察員名稱（4 字內）","emoji":"一個貼切的 emoji","domain":"這位專精的領域（緊扣主題）","task":"他要找什麼樣的訊號","angle":"特別關注的切入點","stance":"hot 或 niche 或 mixed"}
+    {"name":"偵察員名稱（4 字內）","emoji":"一個貼切的 emoji","domain":"這位專精的領域（緊扣主題）","task":"他要找什麼樣的訊號","angle":"特別關注的切入點","stance":"hot 或 niche 或 mixed","queries":["具體搜尋查詢1（含時效，如 2026 / latest / upcoming）","具體搜尋查詢2"]}
   ]
 }
-scouts 請剛好 5 位，角度彼此互補、且全部緊扣「${keyword}」這個主題；stance 要平衡（約 2 hot、2 niche、1 mixed）。`;
+scouts 請剛好 5 位，角度彼此互補、且全部緊扣「${keyword}」這個主題；stance 要平衡（約 2 hot、2 niche、1 mixed）；每位的 queries 要彼此不同、鎖定各自角度。`;
     try {
       const { text } = await callClaude(system, user, { maxTokens: 900 });
       const parsed = extractJSON(text);
@@ -1506,6 +1506,7 @@ scouts 請剛好 5 位，角度彼此互補、且全部緊扣「${keyword}」這
             task: String(s.task || '').slice(0, 120) || DEFAULT_SCOUTS[i % 5].task,
             angle: String(s.angle || '').slice(0, 120),
             stance: STANCE_OK.has(st) ? st : STANCE_SLOTS[i % STANCE_SLOTS.length],
+            queries: Array.isArray(s.queries) ? s.queries.map((q) => String(q).trim()).filter(Boolean).slice(0, 3) : [],
           };
         });
       } else {
@@ -1542,44 +1543,54 @@ scouts 請剛好 5 位，角度彼此互補、且全部緊扣「${keyword}」這
       fringe: '你的訊號 fringe 視實際冷門程度落在 0–95 皆可。',
     },
   };
-  function scoutPrompts(keyword, scout, sig, ws) {
+  function scoutPrompts(keyword, scout, sig, ws, entities = []) {
     const brief = STANCE_BRIEF[scout.stance] || STANCE_BRIEF.mixed;
     const system = `你是一位專責「${scout.name}」的訊號偵察員（scout agent），鎖定的領域是「${scout.domain}」。${brief.sys}任務是針對指定主題，從你的領域角度找出相關、且能預示未來走向的訊號。務必緊扣主題本身（不要把主題硬拗成別的領域）。你的回覆必須「只」是使用者要求的 JSON。`;
-    const user = `主題：「${keyword}」
+    // per-scout pre-planned queries (distinct angles, timeliness baked in);
+    // fall back to entities/keyword if the planner gave none.
+    const qs = (scout.queries && scout.queries.length) ? scout.queries
+      : [keyword, ...entities].slice(0, 3);
+    const searchBlock = ws
+      ? `\n請主動用 web search 蒐集最新資訊。優先執行以下為你這個角度量身擬定的查詢（可自行微調、補上時效字詞如 2026 / latest / upcoming）：\n${qs.map((q) => `- ${q}`).join('\n')}\n聚焦最近 6 個月與即將到來的發展，避免過時資訊。\n`
+      : '';
+    const user = `主題：「${keyword}」${entities.length ? `\n相關實體：${entities.slice(0, 6).join('、')}` : ''}
 
 你這位偵察員的任務：${scout.task}
 你的偵察取向：${brief.task}
-${scout.angle ? `特別關注：${scout.angle}\n` : ''}${ws ? `\n請主動用 web search，以你的領域視角（${scout.domain}）查詢與「${keyword}」相關的資訊——下不同於其他領域的查詢字詞，挖出你這個取向獨有的發現。\n` : ''}
+${scout.angle ? `特別關注：${scout.angle}\n` : ''}${searchBlock}
 以下是已蒐集到的共用即時資料，可作為佐證或起點（與你領域相關才引用，不相關就略過）：
 ${signalDigest(sig)}
 
 只回傳有效 JSON（不要 markdown、不要多餘文字），全部繁體中文：
-{"signals":[{"signal":"訊號描述","fringe":0,"evidence":"依據或出處（引用你查到的或上面的真實資料）","soWhat":"這對主題的未來走向代表什麼"}]}
-請務必給 3–6 個訊號：即使沒有現成的即時資料，也要基於你這個領域的專業知識與常識，針對主題提出有根據的判斷；只有在主題與你的領域真的毫不相干時才回空陣列。fringe 為 0–100 的整數，越高代表越邊緣、越冷門。${brief.fringe}`;
+{"signals":[{"signal":"訊號描述","fringe":0,"timing":"now|emerging|distant","momentum":"accelerating|steady|fading","evidence":"依據或出處（引用你查到的或上面的真實資料）","soWhat":"這對主題的未來走向代表什麼"}]}
+請務必給 3–6 個訊號：即使沒有現成的即時資料，也要基於你這個領域的專業知識與常識，針對主題提出有根據的判斷；只有在主題與你的領域真的毫不相干時才回空陣列。
+- fringe：0–100 整數，越高代表越邊緣、越冷門。${brief.fringe}
+- timing：這個訊號代表的是「now＝正在發生」「emerging＝正在萌芽」還是「distant＝還很遠」。
+- momentum：這股力道正在「accelerating＝加速」「steady＝持平」還是「fading＝減弱」。`;
     return { system, user };
   }
 
   // One attempt at a scout. Returns {signals} on success, or throws.
-  async function runScoutOnce(keyword, scout, sig, ws) {
-    const { system, user } = scoutPrompts(keyword, scout, sig, ws);
+  async function runScoutOnce(keyword, scout, sig, ws, entities) {
+    const { system, user } = scoutPrompts(keyword, scout, sig, ws, entities);
     const { text, sources } = await callClaude(system, user, { webSearch: ws, maxTokens: 1800, maxUses: ws ? 3 : 0 });
     const parsed = extractJSON(text);
     const signals = Array.isArray(parsed.signals) ? parsed.signals.slice(0, 6) : [];
     return { signals, sources };
   }
 
-  async function runScout(keyword, scout, sig) {
+  async function runScout(keyword, scout, sig, entities = []) {
     const wantWeb = getWebSearch();
     // attempt 1: with web search if enabled
     try {
-      const r = await runScoutOnce(keyword, scout, sig, wantWeb);
+      const r = await runScoutOnce(keyword, scout, sig, wantWeb, entities);
       return { scout, signals: r.signals, sources: r.sources, error: false };
     } catch (e1) {
       // attempt 2 (graceful degrade): drop web search and lean on the shared
       // data + domain knowledge, so a search/timeout/429 doesn't blank it out.
       if (wantWeb) {
         try {
-          const r = await runScoutOnce(keyword, scout, sig, false);
+          const r = await runScoutOnce(keyword, scout, sig, false, entities);
           return { scout, signals: r.signals, sources: r.sources, error: false, degraded: true };
         } catch (e2) {
           return { scout, signals: [], sources: [], error: true };
@@ -1591,7 +1602,7 @@ ${signalDigest(sig)}
 
   // limit concurrency to avoid bursting past the per-minute token rate limit;
     // all scouts still run, just at most CONCURRENCY in flight at once.
-  function runScouts(keyword, sig, onProgress) {
+  function runScouts(keyword, sig, onProgress, entities = []) {
     const CONCURRENCY = 2, STAGGER_MS = 350;
     const results = new Array(activeScouts.length);
     let next = 0;
@@ -1601,7 +1612,7 @@ ${signalDigest(sig)}
         const scout = activeScouts[i];
         if (i >= CONCURRENCY) await sleep(STAGGER_MS);
         onProgress && onProgress(scout.id, 'scanning');
-        const r = await runScout(keyword, scout, sig);
+        const r = await runScout(keyword, scout, sig, entities);
         onProgress && onProgress(scout.id, r.error ? 'error' : 'done', r.signals.length);
         results[i] = r;
       }
@@ -1611,9 +1622,14 @@ ${signalDigest(sig)}
 
   /* ---------- synthesizer: scouts + data -> futures cone ---------- */
   function buildSynthPrompt(keyword, sig, scoutResults) {
+    const TIMING_TXT = { now: '正在發生', emerging: '萌芽中', distant: '尚遠' };
+    const MOM_TXT = { accelerating: '加速', steady: '持平', fading: '減弱' };
     const scoutBlock = (scoutResults && scoutResults.length)
       ? scoutResults.map((r) => r.signals.length
-          ? `【${r.scout.name}】\n` + r.signals.map((s) => `- (邊緣度 ${s.fringe}/100) ${s.signal}｜依據：${s.evidence}｜意涵：${s.soWhat}`).join('\n')
+          ? `【${r.scout.name}】\n` + r.signals.map((s) => {
+              const tags = [TIMING_TXT[s.timing], MOM_TXT[s.momentum]].filter(Boolean).join('·');
+              return `- (邊緣度 ${s.fringe}/100${tags ? '｜' + tags : ''}) ${s.signal}｜依據：${s.evidence}｜意涵：${s.soWhat}`;
+            }).join('\n')
           : `【${r.scout.name}】（無顯著訊號）`).join('\n\n')
       : '';
 
@@ -2116,7 +2132,7 @@ ${wikiBlock(sig)}
       if (deep) {
         el.status.textContent = '派出 AI 偵察員掃描邊緣訊號…';
         el.sub.textContent = `${activeScouts.length} 個並行 agent · 自律協調`;
-        scoutResults = await runScouts(keyword, sig, updateScout);
+        scoutResults = await runScouts(keyword, sig, updateScout, entities);
         el.status.textContent = '綜合所有訊號，推演未來…';
         el.sub.textContent = '對齊 3–18 個月的時間錐';
       }

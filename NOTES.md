@@ -5,6 +5,22 @@
 
 ---
 
+## 2026-05-29 · 優化搜尋品質與分析角度(1+2+3+4)
+
+在「廣度淺掃」框架內提升品質,使用者選做四項:
+1. **時效 query**:scout 的 web search 強制偏向「最近 6 個月 / 2026 / latest / upcoming」。
+2. **預擬 query 分散**:`understandTopic` 為每個 scout 預先擬 2–3 條「彼此不重複、鎖定各自角度」
+   的具體查詢(`scout.queries`),從源頭避免 5 位查到同一批結果。scoutPrompts 把這些 query
+   列進 web search 指示;沒有就 fallback 到 keyword+entities。
+3. **entities 餵進 scout**:`entities` 一路 thread 到 `scoutPrompts`(runScouts→runScout→
+   runScoutOnce→scoutPrompts),scout 的搜尋與判讀都用得上展開後的實體。
+4. **signal 加時間維度**:每條 signal 新增 `timing`(now/emerging/distant)與
+   `momentum`(accelerating/steady/fading);`buildSynthPrompt` 把這兩個標籤帶進綜合,
+   讓事件更準地對到 horizon。
+**未動**:呼叫次數/速度不變(只改 prompt 與既有資料的傳遞)。fringe→錐圖、stance 平衡照舊。
+
+---
+
 ## 2026-05-29 · 架構認知:我們是「廣度淺掃」,非 Claude Research 式深研
 
 **使用者問**:我們的 web search 跟 claude.ai 的 Research 一樣嗎?也是讀上百網站選 signals 嗎?
