@@ -5,6 +5,22 @@
 
 ---
 
+## 2026-05-29 · 探員「先召喚待命」改善等待體驗
+
+**回饋**:深掃時卡在「正在召喚神諭」很久,探員才 pop out;中間沒有回饋像當機。
+**根因**:`runPrediction` 先 `await Promise.all([5 個 fetch])`(Polymarket/Kalshi/GDELT/HN/Wiki)
+才 `initScoutBoard()`。`Promise.all` 等最慢的源(Kalshi limit=1000、Wiki 連打兩次 API)回來,
+且 fetch 沒 timeout,任何一個慢就把探員出場時間整個拖住。
+
+**決策(使用者拍板,最小改動)**:**只把 initScoutBoard() 提前到抓資料之前**,
+探員立刻 pop out 站成一列「待命」,背景同時抓資料 —— 把等待變成「刻意的登場」。
+**背後抓資料邏輯完全不動**(不加 timeout、不改順序)。
+文案:待命階段「召喚偵察員小隊… / N 個 agent 待命中」,開掃才切「掃描邊緣訊號」。
+
+**未採用(留作後手)**:給每個 fetch 加 8s timeout —— 這次刻意不做,先看「先召喚」是否就夠。
+
+---
+
 ## 2026-05-29 · 推翻黑色 mission control → 探員改在同一頁 pop out
 
 **使用者回饋(看實機截圖)**:深掃時 UI「分兩層」、會跳成黑色頁面,很奇怪;

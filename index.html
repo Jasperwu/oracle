@@ -1707,6 +1707,15 @@ ${wikiBlock(sig)}
     const startedAt = Date.now();
     let scoutResults = [];
     try {
+      // summon the scouts up front so the team pops out and stands by
+      // immediately, while signal sources are still being fetched in the
+      // background — the wait reads as a deliberate entrance, not a hang.
+      if (deep) {
+        el.status.textContent = '召喚偵察員小隊…';
+        el.sub.textContent = `${SCOUTS.length} 個 agent 待命中`;
+        initScoutBoard();
+      }
+
       const [pmMarkets, kalshiMarkets, news, buzz, wiki] = await Promise.all([
         fetchMarkets(keyword),
         fetchKalshi(keyword),
@@ -1720,7 +1729,6 @@ ${wikiBlock(sig)}
       if (deep) {
         el.status.textContent = '派出 AI 偵察員掃描邊緣訊號…';
         el.sub.textContent = `${SCOUTS.length} 個並行 agent · 自律協調`;
-        initScoutBoard();
         scoutResults = await runScouts(keyword, sig, updateScout);
         el.status.textContent = '綜合所有訊號，推演未來…';
         el.sub.textContent = '對齊 3–18 個月的時間錐';
