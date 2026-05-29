@@ -59,6 +59,12 @@
   `relevanceScore` 有 `STOPWORDS`:通用詞(world/league/power/ranking…)單獨命中不算數。
 - `runScout` 吃動態 `domain/task/angle`,並把 `signalDigest`(市場/新聞/HN/Wiki 摘要)
   餵給每位探員;移除寫死的「產品/設計意涵」,改問「對主題未來走向代表什麼」。
+- **架構真相**:資料是 `runPrediction` **中央抓一次**(固定 5 來源),**同一包**發給全部 scout;
+  scout 的領域只是**解讀 persona**,不是專屬資料管線。**輕量版**(2026-05-29):web search 開啟時
+  每個 scout **各自以領域視角下不同查詢**(maxUses 3);prompt **放寬**成「沒現成資料也要靠領域知識給判斷,
+  別輕易交白卷」。⚠️ 5 scout 各自 web search → API 量大、易撞 429,靠 CONCURRENCY=2 + 退避重試擋。
+- **綜合本就 cross-pollinate**:`buildSynthPrompt` 把「全部 scout 訊號 + 原始資料」整包餵單一 `askOracle`;
+  已明確要求「跨領域交叉連結」(政策×市場、研究×社群…),非分開條列。
 - 綜合 prompt (`buildSynthPrompt`) 加上「緊扣主題、別硬拗成做產品」的硬性指示。
 - **硬性原則**:分析必須**緊扣使用者輸入的主題本身**,不得硬拗成不相干領域(尤其別預設「做產品」)。
 

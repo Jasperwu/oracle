@@ -5,6 +5,30 @@
 
 ---
 
+## 2026-05-29 · 釐清 scout 架構 + 輕量版「各自 web search」
+
+**使用者的心智模型 vs 實際**:使用者以為 5 個 scout 各自去爬不同來源(news/forums/學術/總經)。
+**實際**(已澄清):資料是 `runPrediction` **中央抓一次**固定 5 來源(PM/Kalshi/GDELT/HN/Wiki),
+把**同一包** `signalDigest` 發給全部 scout;scout 的「領域」只是**解讀視角(persona)**,
+不是專屬資料管線。唯一能各自抓新資料的途徑是 **web search**。
+→ 這就是「Google Cloud」時有 scout 交白卷的原因:它對應的硬資料(如預測市場)是空的,
+prompt 又允許「沒相關就略過」,於是回空;且該次 `understandTopic` 疑似失敗退回 `DEFAULT_SCOUTS`
+(截圖隊名=通用隊),連帶 entities 也沒展開。
+
+**Synthesis 確認**:`buildSynthPrompt` 本來就把「5 scout 訊號 + 原始 PM/news/HN/Wiki」**整包**
+餵給**單一** `askOracle`,一次推演 3–6/6–12/12–18 → **本來就是 cross-pollinate**。
+
+**決策(使用者拍板)**:做**輕量版**,保留 prompt persona:
+1. `runScout`:web search 開啟時，**每個 scout 主動以自己的領域視角下不同查詢**(maxUses 2→3),
+   讓「不同 agent 搜不同東西」成真。
+2. **放寬交白卷**:即使沒現成即時資料，也要基於該領域專業給 2–4 個有根據的判斷；
+   只有主題與領域真的無關才回空。
+3. **synthesis 明確要求跨領域交叉連結**(政策×市場、研究×社群…),不要分開條列。
+
+**取捨/風險**:5 個 scout 各自 web search → API 量大增,**更容易撞 429**。現有護欄:
+CONCURRENCY=2 限流 + 429 退避重試。若現場仍常撞,後手是調回 maxUses 或關 web search。
+**未做完整版**(接 Reddit/arXiv/總經等真多元來源,工程大且前端 CORS 受限)。
+
 ## 2026-05-29 · Polymarket 改「search 優先 + 分頁 fallback」
 
 **動機**:與其拉 2000 筆回來猜，不如直接用平台的全文搜尋只要相關的。
