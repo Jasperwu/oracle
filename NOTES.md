@@ -5,6 +5,40 @@
 
 ---
 
+## 2026-05-30 · Gemini 整合 Phase 1:scout 用 Gemini、綜合用 Claude
+
+**目的**:解掉「離線判讀」根因——5 scout 並行 web search 撞 Anthropic 30k/min 429。
+**架構**:scout 收集走 Gemini(自家 google_search grounding、免費 tier 寬鬆),
+askOracle 綜合維持 Claude(深度推理)。**兩把獨立 key,獨立計費,互不撞牆。**
+
+**備份**:`backup/pre-gemini-integration` @ `0ff5279` 已推 origin。Tag `v1-pre-gemini`
+本地有,遠端 push 因網路一直失敗,但分支即足夠安全網。
+
+**做了**(Phase 1):
+- UI:modal 加第二個輸入框(Anthropic / Gemini 兩把,各自存 localStorage、各自能清),
+  `refreshByokNote` 改顯示「兩把都就緒 / 只有一把 / 都沒設」三態。
+- 端點常數:`GEMINI_MODEL = 'gemini-2.5-flash'`、`GEMINI_URL(key)`。
+- 新函式 `callGemini(system, user, {webSearch, maxTokens, timeoutMs})`:
+  - 請求格式 `{systemInstruction, contents, tools:[{google_search:{}}]}`、
+    `generationConfig.responseMimeType:'application/json'` 強制 JSON 輸出。
+  - 回應:抽 `candidates[0].content.parts[].text`;sources 從
+    `candidates[0].groundingMetadata.groundingChunks[].web.{uri,title}` 取。
+  - 同 callClaude:AbortController timeout、429/503 退避重試(讀 retry-after)、
+    走 `onClaudeWait` hook 把等待秒數秀到 UI。
+- `runScoutOnce` 多一個 `provider` 參數;`runScout` 三段式 fallback:
+  primary(有 Gemini key → gemini,否則 claude) → primary 去掉 web search →
+  若 primary 是 gemini 還掛,**最後 fallback 到 claude 無 web search**。
+  回傳多帶 `provider` 旗標方便日後追蹤/UI 顯示。
+- askOracle 不動(維持 Claude)。
+
+**還沒做**(Phase 2):
+- 結果頁卡片顯示「此 scout 由 Gemini/Claude 提供」(目前只在 result 物件裡有 `provider`)。
+- Gemini JSON 輸出若不夠聽話的話,微調 prompt。
+- 實機驗證:沙箱擋外網,無法測 Gemini 端點真實行為(JSON 格式、grounding chunks 結構),
+  使用者實機跑時若解析失敗會走 fallback 鏈,最差也只回到舊行為。
+
+---
+
 ## 2026-05-29 · 試接 Reddit(方案 A:純前端直連)
 
 **背景**:使用者過去專案會抓 Reddit/subreddit 的 emerging signals,問我們有沒有做。

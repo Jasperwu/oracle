@@ -468,6 +468,10 @@ a.market-item:hover .market-go { opacity: 1; }
   outline: none; transition: border-color .18s;
 }
 .modal-input:focus { border-color: var(--clay); }
+.key-row-label { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; color: var(--ink-soft); margin: 14px 0 6px; }
+.key-role { font-size: 11px; color: var(--clay-deep); background: var(--paper-2); border-radius: 999px; padding: 2px 9px; font-weight: 500; }
+.modal-mini { font-size: 11.5px; color: var(--ink-faint); margin: 4px 0 0; }
+.modal-mini .mono { color: var(--clay-deep); }
 .model-row { display: block; font-size: 14px; color: var(--ink-soft); margin: 16px 0 4px; }
 .model-select {
   width: 100%; margin-top: 7px; font-family: var(--sans); font-size: 14.5px;
@@ -748,14 +752,21 @@ a.market-item:hover .market-go { opacity: 1; }
   <!-- Settings modal -->
   <div class="modal-backdrop" id="modalBackdrop" hidden>
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <h3 id="modalTitle">設定 Anthropic API 金鑰</h3>
+      <h3 id="modalTitle">設定 API 金鑰</h3>
       <p class="modal-note">
         金鑰只會存在<strong>你這台瀏覽器</strong>的 localStorage，不會上傳、不會進入程式碼。
-        到 <span class="mono">console.anthropic.com → API Keys</span> 取得 <span class="mono">sk-ant-…</span>。
+        分工：<strong>偵察員蒐集資料用 Gemini</strong>（額度寬鬆、有 Google Search），<strong>綜合推演用 Claude</strong>（深度推理）。
       </p>
+      <label class="key-row-label">Anthropic API 金鑰 <span class="key-role">綜合推演</span></label>
       <input class="modal-input mono" id="apiKeyInput" type="password" placeholder="sk-ant-api03-…" />
+      <p class="modal-mini">到 <span class="mono">console.anthropic.com → API Keys</span> 取得 <span class="mono">sk-ant-…</span></p>
+
+      <label class="key-row-label">Gemini API 金鑰 <span class="key-role">偵察員蒐集</span></label>
+      <input class="modal-input mono" id="geminiKeyInput" type="password" placeholder="AIzaSy…" />
+      <p class="modal-mini">到 <span class="mono">aistudio.google.com → Get API key</span> 取得 <span class="mono">AIzaSy…</span></p>
+
       <label class="model-row">
-        模型
+        模型（綜合推演）
         <select id="modelSelect" class="model-select">
           <option value="claude-sonnet-4-6" selected>Claude Sonnet 4.6（推薦 · 快又準）</option>
           <option value="claude-opus-4-7">Claude Opus 4.7（最強 · 較貴）</option>
@@ -764,7 +775,7 @@ a.market-item:hover .market-go { opacity: 1; }
       </label>
       <label class="toggle-row">
         <input type="checkbox" id="webSearchToggle" checked />
-        <span>讓 Claude 自主上網搜尋查證（web search，每次預測約多花幾美分）</span>
+        <span>讓偵察員自主上網搜尋查證（web search，每次預測約多花幾美分）</span>
       </label>
       <label class="toggle-row">
         <input type="checkbox" id="deepScanToggle" checked />
@@ -788,7 +799,8 @@ a.market-item:hover .market-go { opacity: 1; }
 (() => {
   'use strict';
 
-  const LS_KEY = 'oracle_api_key';
+  const LS_KEY = 'oracle_api_key';            // Anthropic — used by askOracle (synthesis)
+  const LS_GEMINI_KEY = 'oracle_gemini_key';  // Google AI Studio — used by scouts (gathering)
   const LS_MODEL = 'oracle_model';
   const LS_WEBSEARCH = 'oracle_websearch';
   const LS_DEEPSCAN = 'oracle_deepscan';
@@ -803,6 +815,9 @@ a.market-item:hover .market-go { opacity: 1; }
   const WIKI_SEARCH = 'https://en.wikipedia.org/w/api.php';
   const WIKI_VIEWS = 'https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents';
   const ANTHROPIC = 'https://api.anthropic.com/v1/messages';
+  // Gemini 2.5 Flash — fast, generous free tier, supports google_search grounding
+  const GEMINI_MODEL = 'gemini-2.5-flash';
+  const GEMINI_URL = (key) => `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${encodeURIComponent(key)}`;
 
   const $ = (id) => document.getElementById(id);
 
@@ -842,6 +857,7 @@ a.market-item:hover .market-go { opacity: 1; }
     openSettings: $('openSettings'),
     modalBackdrop: $('modalBackdrop'),
     apiKeyInput: $('apiKeyInput'),
+    geminiKeyInput: $('geminiKeyInput'),
     modelSelect: $('modelSelect'),
     webSearchToggle: $('webSearchToggle'),
     deepScanToggle: $('deepScanToggle'),
@@ -851,16 +867,24 @@ a.market-item:hover .market-go { opacity: 1; }
 
   /* ---------- key storage ---------- */
   const getKey = () => localStorage.getItem(LS_KEY) || '';
+  const getGeminiKey = () => localStorage.getItem(LS_GEMINI_KEY) || '';
   const getModel = () => localStorage.getItem(LS_MODEL) || 'claude-sonnet-4-6';
   const getWebSearch = () => localStorage.getItem(LS_WEBSEARCH) !== '0';
   const getDeepScan = () => localStorage.getItem(LS_DEEPSCAN) !== '0';
 
   function refreshByokNote() {
-    if (getKey()) {
-      el.byokNote.textContent = '✓ 金鑰已就緒，存在本機瀏覽器。可以開始預言。';
+    const a = !!getKey(), g = !!getGeminiKey();
+    if (a && g) {
+      el.byokNote.textContent = '✓ Anthropic + Gemini 金鑰都已就緒（偵察員用 Gemini，綜合用 Claude）。可以開始預言。';
       el.byokNote.classList.add('ok');
+    } else if (a) {
+      el.byokNote.textContent = '⚠ 只有 Anthropic 金鑰 — 偵察員會 fallback 到 Claude（容易撞速率限制）。建議補上 Gemini 金鑰以分擔。';
+      el.byokNote.classList.remove('ok');
+    } else if (g) {
+      el.byokNote.textContent = '⚠ 只有 Gemini 金鑰 — 缺 Anthropic 金鑰無法做最終綜合推演。';
+      el.byokNote.classList.remove('ok');
     } else {
-      el.byokNote.textContent = '尚未設定金鑰 — 點右上角「設定金鑰」貼上你的 Anthropic API key（只存在本機瀏覽器）。';
+      el.byokNote.textContent = '尚未設定金鑰 — 點右上角「設定金鑰」貼上 Anthropic（綜合）與 Gemini（偵察員）API key（只存在本機瀏覽器）。';
       el.byokNote.classList.remove('ok');
     }
   }
@@ -868,6 +892,7 @@ a.market-item:hover .market-go { opacity: 1; }
   /* ---------- modal ---------- */
   function openModal() {
     el.apiKeyInput.value = getKey();
+    el.geminiKeyInput.value = getGeminiKey();
     el.modelSelect.value = getModel();
     el.webSearchToggle.checked = getWebSearch();
     el.deepScanToggle.checked = getDeepScan();
@@ -882,6 +907,8 @@ a.market-item:hover .market-go { opacity: 1; }
   el.saveKey.addEventListener('click', () => {
     const k = el.apiKeyInput.value.trim();
     if (k) localStorage.setItem(LS_KEY, k); else localStorage.removeItem(LS_KEY);
+    const gk = el.geminiKeyInput.value.trim();
+    if (gk) localStorage.setItem(LS_GEMINI_KEY, gk); else localStorage.removeItem(LS_GEMINI_KEY);
     localStorage.setItem(LS_MODEL, el.modelSelect.value);
     localStorage.setItem(LS_WEBSEARCH, el.webSearchToggle.checked ? '1' : '0');
     localStorage.setItem(LS_DEEPSCAN, el.deepScanToggle.checked ? '1' : '0');
@@ -890,7 +917,9 @@ a.market-item:hover .market-go { opacity: 1; }
   });
   el.clearKey.addEventListener('click', () => {
     localStorage.removeItem(LS_KEY);
+    localStorage.removeItem(LS_GEMINI_KEY);
     el.apiKeyInput.value = '';
+    el.geminiKeyInput.value = '';
     refreshByokNote();
   });
 
@@ -1490,6 +1519,73 @@ a.market-item:hover .market-go { opacity: 1; }
     return { text, sources };
   }
 
+  /* ---------- low-level Gemini call ----------
+     Used by scouts to gather signals (offloads Anthropic rate limits and
+     uses Google Search grounding). Same {text, sources} shape as callClaude. */
+  async function callGemini(system, userContent, { webSearch = false, maxTokens = 1800, timeoutMs = 90000 } = {}) {
+    const key = getGeminiKey();
+    if (!key) throw new Error('GEMINI_NO_KEY');
+    const body = {
+      systemInstruction: { parts: [{ text: system }] },
+      contents: [{ role: 'user', parts: [{ text: userContent }] }],
+      generationConfig: { temperature: 0.7, maxOutputTokens: maxTokens, responseMimeType: 'application/json' },
+    };
+    if (webSearch) body.tools = [{ google_search: {} }];
+
+    const maxRetries = 4;
+    let res;
+    for (let attempt = 0; ; attempt++) {
+      const ctrl = new AbortController();
+      const timer = setTimeout(() => ctrl.abort(), timeoutMs);
+      try {
+        res = await fetch(GEMINI_URL(key), {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(body),
+          signal: ctrl.signal,
+        });
+      } catch (e) {
+        clearTimeout(timer);
+        if (e.name === 'AbortError') {
+          if (attempt < maxRetries) { continue; }
+          throw new Error('Gemini 連線逾時。');
+        }
+        throw e;
+      }
+      clearTimeout(timer);
+      if ((res.status === 429 || res.status === 503) && attempt < maxRetries) {
+        const ra = parseFloat(res.headers.get('retry-after'));
+        const waitMs = Number.isFinite(ra) ? ra * 1000 : Math.min(2000 * 2 ** attempt, 30000);
+        if (onClaudeWait) onClaudeWait(Math.round(waitMs / 1000));
+        await sleep(waitMs);
+        continue;
+      }
+      break;
+    }
+    if (!res.ok) {
+      let detail = '';
+      try { detail = (await res.json()).error?.message || ''; } catch {}
+      if (res.status === 400 && /API key/i.test(detail)) throw new Error('Gemini 金鑰無效（400）。請到右上角重新設定。');
+      if (res.status === 401 || res.status === 403) throw new Error('Gemini 金鑰未授權。請到右上角重新設定。');
+      throw new Error(`Gemini API 錯誤 ${res.status}${detail ? '：' + detail : ''}`);
+    }
+    const data = await res.json();
+    const cand = (data.candidates && data.candidates[0]) || {};
+    const parts = (cand.content && cand.content.parts) || [];
+    const text = parts.map((p) => p.text || '').join('');
+    // Google Search grounding citations live in groundingMetadata
+    const sources = [];
+    const gm = cand.groundingMetadata || {};
+    const chunks = gm.groundingChunks || [];
+    chunks.forEach((c) => {
+      const w = c.web || {};
+      if (w.uri && !sources.some((s) => s.url === w.uri)) {
+        sources.push({ url: w.uri, title: w.title || w.uri });
+      }
+    });
+    return { text, sources };
+  }
+
   /* ---------- fringe-signal scout agents ----------
      Scouts are assembled dynamically per topic by understandTopic(); these
      generic ones are only a fallback if that step fails. */
@@ -1604,9 +1700,16 @@ ${signalDigest(sig)}
   }
 
   // One attempt at a scout. Returns {signals} on success, or throws.
-  async function runScoutOnce(keyword, scout, sig, ws, entities) {
+  // a scout call routes to Gemini when a Gemini key exists; falls back to
+  // Claude. Gemini's google_search grounding fills r.sources too.
+  async function runScoutOnce(keyword, scout, sig, ws, entities, provider) {
     const { system, user } = scoutPrompts(keyword, scout, sig, ws, entities);
-    const { text, sources } = await callClaude(system, user, { webSearch: ws, maxTokens: 1800, maxUses: ws ? 3 : 0 });
+    let text, sources;
+    if (provider === 'gemini') {
+      ({ text, sources } = await callGemini(system, user, { webSearch: ws, maxTokens: 1800 }));
+    } else {
+      ({ text, sources } = await callClaude(system, user, { webSearch: ws, maxTokens: 1800, maxUses: ws ? 3 : 0 }));
+    }
     const parsed = extractJSON(text);
     const signals = Array.isArray(parsed.signals) ? parsed.signals.slice(0, 6) : [];
     return { signals, sources };
@@ -1614,18 +1717,28 @@ ${signalDigest(sig)}
 
   async function runScout(keyword, scout, sig, entities = []) {
     const wantWeb = getWebSearch();
-    // attempt 1: with web search if enabled
+    const hasGemini = !!getGeminiKey();
+    const primary = hasGemini ? 'gemini' : 'claude';
+    // attempt 1: primary provider, with web search if enabled
     try {
-      const r = await runScoutOnce(keyword, scout, sig, wantWeb, entities);
-      return { scout, signals: r.signals, sources: r.sources, error: false };
+      const r = await runScoutOnce(keyword, scout, sig, wantWeb, entities, primary);
+      return { scout, signals: r.signals, sources: r.sources, error: false, provider: primary };
     } catch (e1) {
-      // attempt 2 (graceful degrade): drop web search and lean on the shared
-      // data + domain knowledge, so a search/timeout/429 doesn't blank it out.
+      // attempt 2: same provider but drop web search, leaning on shared data
+      // + domain knowledge so a search/timeout/429 doesn't blank it out.
       if (wantWeb) {
         try {
-          const r = await runScoutOnce(keyword, scout, sig, false, entities);
-          return { scout, signals: r.signals, sources: r.sources, error: false, degraded: true };
+          const r = await runScoutOnce(keyword, scout, sig, false, entities, primary);
+          return { scout, signals: r.signals, sources: r.sources, error: false, degraded: true, provider: primary };
         } catch (e2) {
+          // attempt 3: if Gemini was primary and totally failed, fall back to
+          // Claude with no web search — last-chance answer using domain knowledge.
+          if (primary === 'gemini') {
+            try {
+              const r = await runScoutOnce(keyword, scout, sig, false, entities, 'claude');
+              return { scout, signals: r.signals, sources: r.sources, error: false, degraded: true, provider: 'claude' };
+            } catch { /* fall through */ }
+          }
           return { scout, signals: [], sources: [], error: true };
         }
       }
