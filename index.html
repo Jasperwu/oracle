@@ -1237,9 +1237,9 @@ a.market-item:hover .market-go { opacity: 1; }
       const both = maxRelevance(m.question, secondary, queries);
       return { m, score: both, qOnly };
     })
-    // strict bar: hide a market unless it strongly matches (the user prefers an
-    // empty card over a wrong one — e.g. a WNBA market matching "NBA" via a city)
-    .filter((x) => !requireScore || (x.qOnly >= 8 && x.score >= 16))
+    // bar tuned to hide cross-sport noise (a 2-token city match scores ~12)
+    // while keeping clearly-relevant markets (3+ token match scores ~18)
+    .filter((x) => !requireScore || (x.qOnly >= 8 && x.score >= 13))
     .map((x) => ({ ...x, n: normalizePolymarket(x.m) }))
     // drop already-decided / irrelevant near-100% markets (e.g. a settled O/U
     // that matched on a city name) — they're noise, not a prediction.
@@ -1311,7 +1311,7 @@ a.market-item:hover .market-go { opacity: 1; }
       })
       // same dual-threshold idea as Polymarket: the title itself must carry
       // signal so a category like "Politics" can't drag in unrelated markets.
-      .filter((x) => x.qOnly >= 8 && x.score >= 16) // strict: hide rather than show wrong
+      .filter((x) => x.qOnly >= 8 && x.score >= 13) // hide cross-sport noise, keep clear matches
       .filter((x) => x.prob < 97) // drop already-decided / irrelevant ~100% markets
       // favourites first (prob desc) so championship long-shots don't crowd out
       .sort((a, b) => (b.score - a.score) || (b.prob - a.prob) || (Number(b.m.volume || 0) - Number(a.m.volume || 0)))
@@ -2312,6 +2312,19 @@ ${digestText}
   }
 
   /* ---------- synthesizer: scouts + data -> futures cone ---------- */
+  // Number every real signal [W#]/[M#]/[N#] so the synthesis can tag each
+  // driver/event with the exact evidence it used → precise, cross-language
+  // traceability (token-matching failed across 中文 analysis vs English sources).
+  function buildEvidenceIndex(sig) {
+    const lines = [], map = {};
+    let wi = 1;
+    (sig.web || []).slice(0, 40).forEach((it) => { const tag = 'W' + wi++; lines.push(`[${tag}] ${it.text}`); if (it.url) map[tag] = { url: it.url, text: it.text }; });
+    let mi = 1;
+    (sig.markets || []).forEach((m) => { const tag = 'M' + mi++; lines.push(`[${tag}] 預測市場「${m.question}」${m.prob != null ? '：' + Math.round(m.prob * 100) + '%' : ''}`); if (m.url) map[tag] = { url: m.url, text: m.question }; });
+    let ni = 1;
+    (sig.news || []).forEach((n) => { const tag = 'N' + ni++; lines.push(`[${tag}] 新聞：${n.title}（${n.domain || ''}）`); if (n.url) map[tag] = { url: n.url, text: n.title }; });
+    return { text: lines.join('\n'), map };
+  }
   function buildSynthPrompt(keyword, sig, scoutResults, deepReport = '') {
     // Each scout = a grounded intel briefing (bullets) with its source domains.
     const scoutBlock = (scoutResults && scoutResults.length)
@@ -2327,20 +2340,12 @@ ${digestText}
     const webBlock = (sig.web && sig.web.length)
       ? '\n【網路研究發現 · Claude 跨多組關鍵詞實際上網搜尋所得（真實、可佐證）】\n' + sig.web.slice(0, 40).map((it) => `- ${it.text}`).join('\n') + '\n'
       : '';
+    const evidence = buildEvidenceIndex(sig);
     return `關鍵詞：「${keyword}」
-${deepReport ? '\n【深度研究報告 · 由 Deep Research Agent 實際上網搜尋與閱讀產生，含真實引用，請以此為「主要」依據】\n' + deepReport + '\n（以上報告是本次分析最重要的依據；下面的即時資料作為佐證與時效補充。）\n' : ''}${webBlock}${scoutBlock ? '\n【AI 偵察員蒐集到的即時情報（含來源）】\n' + scoutBlock + '\n' : ''}
-【預測市場即時賠率 · Polymarket + Kalshi】
-${marketBlock(sig)}
-
-【近期全球新聞 · GDELT】
-${newsBlock(sig)}
-
-【社群即時聲量 · Reddit】
-${redditBlock(sig)}
-
-【社群即時聲量 · Bluesky】
-${blueskyBlock(sig)}
-
+${deepReport ? '\n【深度研究報告 · 由 Deep Research Agent 實際上網搜尋與閱讀產生，含真實引用，請以此為「主要」依據】\n' + deepReport + '\n（以上報告是本次分析最重要的依據；下面的即時資料作為佐證與時效補充。）\n' : ''}
+【編號證據池 — 每條前面的 [W#]/[M#]/[N#] 是它的編號。後面的 drivers 與每個 event 都要用這些編號標出依據(src)。】
+${evidence.text || '（暫無編號證據）'}
+${scoutBlock ? '\n【AI 偵察員的領域解讀（補充脈絡，含來源網域）】\n' + scoutBlock + '\n' : ''}
 【搜尋熱度 · Google Trends】
 ${trendsBlock(sig)}
 
@@ -2363,13 +2368,13 @@ ${wikiBlock(sig)}
   "topic": "精煉後的主題（簡短）",
   "summary": "一句富畫面感的總綱預言",
   "narrative": "現況主敘事：3–5 句連貫的最新現況與關鍵驅動，緊扣真實情報",
-  "drivers": ["驅動訊號1", "驅動訊號2", "驅動訊號3", "驅動訊號4"],
+  "drivers": [{"text": "驅動訊號（可含具體數據，如賠率）", "src": ["W3", "M1"]}],
   "horizons": [
     {
       "range": "3–6 個月",
       "headline": "這個區段的標題",
       "events": [
-        {"title": "可能事件", "likelihood": "probable|plausible|possible", "fringe": 0, "rationale": "簡短依據（可引用上面的市場機率或訊號）"}
+        {"title": "可能事件", "likelihood": "probable|plausible|possible", "fringe": 0, "rationale": "簡短依據（可引用上面的市場機率或訊號）", "src": ["W5", "N2"]}
       ]
     },
     { "range": "6–12 個月", "headline": "...", "events": [ ... ] },
@@ -2377,6 +2382,8 @@ ${wikiBlock(sig)}
   ],
   "wildcard": "一個低機率但高衝擊的黑天鵝情境"
 }
+
+**來源標註（src）是硬性要求**：每個 driver 和每個 event 都要附上 \`src\`——一個字串陣列，內容是你「實際依據」的編號證據池編號（例如 ["W3","M1"]）。只能用上面真的出現過的編號；引用了哪幾條資訊就標哪幾條，不要亂標、不要標不存在的編號。若某條真的找不到對應編號，給空陣列 [] —— 但你應盡量讓每條都至少有一個來源。
 
 每個 horizon 請給 2–3 個 events。
 
@@ -2537,18 +2544,41 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
     (cited || []).forEach((s) => add(s.title, s.url));
     return pool;
   }
-  // Attach the best-matching real sources to each cone event by token overlap
-  // with its title+rationale — so a predicted dot links to the evidence behind it.
-  function attachEventSources(data, pool) {
-    if (!pool || !pool.length) return;
-    const prepared = pool.map((p) => ({ p, toks: new Set(tokenize(p.text)) }));
-    (data.horizons || []).forEach((h) => (h.events || []).forEach((ev) => {
-      const want = new Set(tokenize((ev.title || '') + ' ' + (ev.rationale || '')));
-      const scored = prepared.map(({ p, toks }) => {
+  // Attach real sources to each driver + cone event. Prefer the synthesis's
+  // explicit src tags ([W3],[M1]) mapped to real URLs (precise, cross-language);
+  // fall back to token overlap against the pool when tags are missing.
+  function attachEventSources(data, pool, map) {
+    map = map || {};
+    const prepared = (pool || []).map((p) => ({ p, toks: new Set(tokenize(p.text)) }));
+    const resolveTags = (srcArr) => {
+      const out = [], seen = new Set();
+      (Array.isArray(srcArr) ? srcArr : []).forEach((tag) => {
+        const key = String(tag).toUpperCase().replace(/[^A-Z0-9]/g, '');
+        const m = map[key];
+        if (m && m.url && !seen.has(m.url)) { seen.add(m.url); out.push({ url: m.url, title: m.text.slice(0, 90) }); }
+      });
+      return out;
+    };
+    const tokenMatch = (text) => {
+      const want = new Set(tokenize(text));
+      return prepared.map(({ p, toks }) => {
         let hit = 0; toks.forEach((t) => { if (want.has(t)) hit++; });
         return { p, hit };
-      }).filter((x) => x.hit >= 2).sort((a, b) => b.hit - a.hit).slice(0, 3);
-      ev._sources = scored.map((x) => ({ url: x.p.url, title: x.p.text.slice(0, 90) }));
+      }).filter((x) => x.hit >= 2).sort((a, b) => b.hit - a.hit).slice(0, 3)
+        .map((x) => ({ url: x.p.url, title: x.p.text.slice(0, 90) }));
+    };
+    const sourcesFor = (srcArr, text) => {
+      const tagged = resolveTags(srcArr);
+      return tagged.length ? tagged : tokenMatch(text);
+    };
+    // normalise drivers (string | {text,src}) → {text,_sources}
+    data.drivers = (data.drivers || []).map((d) => {
+      const text = (d && typeof d === 'object') ? (d.text || '') : String(d || '');
+      const src = (d && typeof d === 'object') ? d.src : null;
+      return { text, _sources: sourcesFor(src, text) };
+    });
+    (data.horizons || []).forEach((h) => (h.events || []).forEach((ev) => {
+      ev._sources = sourcesFor(ev.src, (ev.title || '') + ' ' + (ev.rationale || ''));
     }));
   }
   function eventSourcesHTML(sources) {
@@ -2602,12 +2632,12 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
   // The "forecast" half of the result page (topic, summary, drivers, horizons,
   // cone, wildcard, cited sources). Extracted so Deep Research can re-draw the
   // cone from its findings without touching the evidence cards or its own panel.
-  function renderForecast(data, sources, pool) {
+  function renderForecast(data, sources, pool, map) {
     // strip any <cite index="…"> markers from EVERY field (both the shallow
     // askOracle output and the Deep Research path can emit them) so they never
     // render as raw text in the cone.
     data = sanitizeCites(data);
-    attachEventSources(data, pool); // link each predicted event to its real evidence
+    attachEventSources(data, pool, map); // link each driver/event to its real evidence
     el.resultTopic.textContent = (data.topic || '').toUpperCase() || 'FORESIGHT';
     el.resultSummary.textContent = data.summary || '';
     if (el.resultNarrative) {
@@ -2616,12 +2646,14 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
       el.resultNarrative.hidden = !nar;
     }
 
-    // signals
+    // signals (drivers) — each normalised to { text, _sources } by attachEventSources
     el.signals.innerHTML = '';
     (data.drivers || []).forEach((d) => {
+      const text = (d && typeof d === 'object') ? (d.text || '') : String(d || '');
+      const srcHTML = eventSourcesHTML((d && d._sources) || []);
       const s = document.createElement('div');
       s.className = 'signal-pill';
-      s.innerHTML = `<b>訊號</b> · ${escapeHtml(d)}`;
+      s.innerHTML = `<b>訊號</b> · ${escapeHtml(text)}${srcHTML}`;
       el.signals.appendChild(s);
     });
 
@@ -2670,7 +2702,7 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
     const { markets, news, wiki, reddit, bluesky, trends } = sig;
     renderScoutFindings(scoutResults);
     resetDeepResearchPanel();
-    renderForecast(data, sources, buildSourcePool(sig, scoutResults, sources));
+    renderForecast(data, sources, buildSourcePool(sig, scoutResults, sources), buildEvidenceIndex(sig).map);
 
     // GDELT news (last 3 days)
     if (news.length) {
@@ -3203,7 +3235,7 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
       if (clean && (clean.horizons || clean.summary)) {
         // pool = deep-research citations + the central signals we still have
         const pool = buildSourcePool(lastCtx.sig || {}, [], reportSources);
-        renderForecast(clean, reportSources, pool);
+        renderForecast(clean, reportSources, pool, buildEvidenceIndex(lastCtx.sig || {}).map);
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     } catch (e) { console.warn('[deep-research] feed into cone failed:', e.message || e); }
