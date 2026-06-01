@@ -5,6 +5,36 @@
 
 ---
 
+## 🪧 交接便條（給下一個 session 的你 — 2026-06-01）
+
+**一句話**：剛完成 **V2 Stage 1 重構**（Gemini 搜集 + Claude 分析），已 push（`origin/main` = `0347b03`），
+**等使用者實機驗證**。使用者開新視窗是因為 context 快滿，工作本身沒中斷。
+
+**北極星（使用者定的目的）**：找最新/最相關/emerging+strong 且**有可點來源**的信號 → 同一個分析引擎推演未來 18 個月。
+兩模式只差「搜集」：**即時淺掃**=快廣淺（近 7 天）、**深度研究**=慢廣深（大趨勢）；分析完全相同。
+
+**V2 核心轉向**：`responseSchema` 會靜默禁用 Gemini grounding（所以 sources 一直空）→ 拆成
+**Gemini 當搜集器（不上 schema、回 bullets+sources）+ Claude 當分析器（JSON 綜合）**。
+
+**⏳ 第一件事：請使用者實機驗證 Stage 1**（hard refresh + 深掃 + Gemini key）：
+1. scout 卡片底部**有沒有「探索來源」chips 且可點**（這是這次最關鍵的修復）
+2. Console 有沒有 `✓ gemini+search → N findings, M sources`，且 **M > 0**
+3. 不再出現「無法解析的格式」
+→ 若 sources 出來了 = 核心架構成立,可進 Stage 2。若 M 還是 0 = Gemini 無 schema 仍不回 grounding,要再想辦法。
+
+**📋 Stage 2 待辦（還沒做）**：
+- Google Trends 代理（量化搜尋熱度曲線,Tier-1 硬數據;走 Vercel proxy,標實驗性）
+- 把「深度研究」報告也餵進**同一個 askOracle 分析引擎**（目前深研只渲染報告,還沒接進未來錐）
+- 清死碼：`signalDigest`、`SCOUT_SCHEMA`、退役的 `*Block` 與 `fetchHN/GitHub/StackEx/Bluesky/Reddit`
+
+**🔧 環境提醒**：
+- 網站 URL：`https://jasperwu.github.io/oracle/`；Vercel 代理：`oracle-bice.vercel.app`（已設在前端設定）
+- 沙箱**連不了外網** → 所有 API 行為都要靠使用者實機截圖驗證
+- 安全網：`backup/pre-v2-refactor` @ `615e4d4`（V2 重構前）、`backup/pre-gemini-integration` @ `0ff5279`
+- Gemini 預設 model `gemini-3.5-flash`（使用者指定）;深掃/快速由「多代理人 fringe 深掃」開關控制（無獨立「快速模式」鈕）
+
+---
+
 ## 2026-06-01 · V2 重構 Stage 1：Gemini 搜集 + Claude 分析（核心架構轉向）
 
 **北極星（使用者定）**：找最新/最相關/emerging+strong 且**有來源**的信號 → 同一個分析引擎推演未來。
