@@ -848,9 +848,9 @@ a.market-item:hover .market-go { opacity: 1; }
       <p class="fs-title">🔮 未來工作坊</p>
       <p class="fs-sub">選一種未來的走法，生成情境故事，帶團隊一起發想。</p>
       <div class="fs-tones" id="fsTones">
-        <button class="fs-tone" type="button" data-tone="optimistic">🌅 樂觀 · 一切順利</button>
+        <button class="fs-tone" type="button" data-tone="optimistic">🌅 最樂觀</button>
         <button class="fs-tone" type="button" data-tone="neutral">⚖️ 中性 · 最可能</button>
-        <button class="fs-tone" type="button" data-tone="wild">🦢 黑天鵝 · 劇烈轉折</button>
+        <button class="fs-tone" type="button" data-tone="pessimistic">🌧 悲觀</button>
       </div>
       <div class="fs-body" id="fsBody"></div>
     </section>
@@ -3482,9 +3482,9 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
   // ---- Futures Studio (ideation) --------------------------------------------
   const todayStr = () => new Date().toISOString().slice(0, 10);
   const FS_TONE = {
-    optimistic: { label: '樂觀', brief: '一切順利、最好的情況展開：採用順暢、阻力化解、正向飛輪啟動。' },
-    neutral: { label: '中性', brief: '最可能、平衡的情況：有進展也有摩擦，照當前訊號最可能的軌跡走。' },
-    wild: { label: '黑天鵝', brief: '低機率但高衝擊的劇烈轉折：一個意外事件改寫整個局面。' },
+    optimistic: { label: '最樂觀', brief: '這個主題朝「最好的結果」收場：順風、突破兌現、各方都如願——但仍要可信、有現實依據，不是空想。' },
+    neutral: { label: '中性 · 最可能', brief: '照當前訊號「最可能」的方式收場：有得有失、有進展也有摩擦的平衡結果。' },
+    pessimistic: { label: '悲觀', brief: '這個主題朝「最壞/受挫的方向」收場：阻力兌現、失敗、下行風險成真——但要合理、有跡可循，不是危言聳聽。' },
   };
   function resetFuturesStudio() {
     if (!el.futuresStudio) return;
@@ -3517,9 +3517,9 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
 這是針對它做的未來預測摘要：
 ${fsContext()}
 
-**今天是 ${todayStr()}。** 請把情境**錨定在這條真實時間線上**——從今天往前推。若主題涉及一個有明確時間的事件（如賽事、發表會、選舉），務必分清「事件前（醞釀、籌備、卡位）」「事件進行中」「結果揭曉後（餘波）」是完全不同的未來；挑一個最有張力的時點切入，並在故事裡講清楚那是何時、距離關鍵時刻多久。
+**今天是 ${todayStr()}。** 這三種情境，是關於「${keyword}」這件事本身**最後會如何收場/成形**的三種版本。請描述在「${t.label}」這個走向下，「${keyword}」走到它**自然的關鍵時點**（問題真正見分曉的時候——例如賽事就是「賽果」、IPO 就是「上市與其後表現」、某年度的排名/格局就是「那一年實際長怎樣」、技術趨勢就是「它成熟或受挫後的樣貌」）時，會是什麼樣子。要具體、有畫面、緊扣上面的真實預測，並在故事裡講清楚那是什麼時候。**不要硬挑一個無關的時間切片、也不要把焦點放在過程細節而忘了回答「結果如何」。**
 
-請以「${t.label}」這種未來走向（${t.brief}）為基調，產出 JSON：
+請以這個「${t.label}」走向為基調，產出 JSON：
 {
   "story": "一段身歷其境、像在說故事的未來情境敘事——把讀者帶進那個未來的某個場景（2–4 段，具體有畫面，扣住上面的預測與這個基調）",
   "hmw": ["How Might We…（我們可以如何…）的提問，3–5 條，貼合主題、可直接拿去團隊 brainstorming"],
