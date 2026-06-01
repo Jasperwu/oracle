@@ -1224,6 +1224,9 @@ a.market-item:hover .market-go { opacity: 1; }
     })
     .filter((x) => !requireScore || (x.qOnly >= 5 && x.score >= 10))
     .map((x) => ({ ...x, n: normalizePolymarket(x.m) }))
+    // drop already-decided / irrelevant near-100% markets (e.g. a settled O/U
+    // that matched on a city name) — they're noise, not a prediction.
+    .filter((x) => x.n.prob == null || x.n.prob < 0.97)
     // For a championship event every "Will X win?" outcome ties on relevance, so
     // tie-break by probability (desc) → the favourites surface instead of a wall
     // of 0% long-shots; volume only as a final tie-break.
@@ -1292,6 +1295,7 @@ a.market-item:hover .market-go { opacity: 1; }
       // same dual-threshold idea as Polymarket: the title itself must carry
       // signal so a category like "Politics" can't drag in unrelated markets.
       .filter((x) => x.qOnly >= 5 && x.score >= 10)
+      .filter((x) => x.prob < 97) // drop already-decided / irrelevant ~100% markets
       // favourites first (prob desc) so championship long-shots don't crowd out
       .sort((a, b) => (b.score - a.score) || (b.prob - a.prob) || (Number(b.m.volume || 0) - Number(a.m.volume || 0)))
       .slice(0, 8);
@@ -2388,22 +2392,18 @@ ${wikiBlock(sig)}
 
     const sysGeneral = '你是一位嚴謹的研究助理。請用 web search 找出與這個面向最相關、最新（最好近 1–3 個月）、有憑據的事實。只回報你實際查到的真實資訊，絕不臆測或編造。用繁體中文條列，每行以「- 」開頭；不要前言結語、不要 JSON。';
     const sysSocial = '你是一位社群輿情分析師。請用 web search 找出並「實際閱讀」關於主題的社群討論——Reddit 相關 subreddit 的討論串與熱門留言、論壇、X/社群反應。歸納主流觀點、爭論點、情緒傾向與值得注意的小道消息。只回報你實際讀到的真實討論，句末附上來源串連結。用繁體中文條列，每行以「- 」開頭；不要前言結語、不要 JSON。';
-    // ask for the source URL inline on each bullet so finding↔url stays paired
-    const fmtRule = '每條句末用括號附上「該則資訊的來源網址」，例如（https://...）。';
+    // ask for a recent, specific, sourced finding on each line
+    const fmtRule = '【硬性要求】每一條發現都必須：①聚焦「最近 7 天內」的最新進展（或在句末標注日期）；②句末用括號附上「該則資訊的具體文章網址」（必須是可直接閱讀的單篇文章 / leaf page，不要列表頁、首頁、搜尋頁、tracker）。找不到可靠近期單篇來源的，就不要寫這一條。';
     const one = async (q, isSocial) => {
       try {
         const prompt = isSocial
           ? `主題：「${keyword}」\n請搜尋並閱讀社群討論（優先 Reddit 相關 subreddit 的討論串與留言，其次論壇、X），回報 8–15 條「社群在討論什麼、主流情緒、值得注意的觀點」。${fmtRule}`
-          : `研究主題「${keyword}」的這個面向：「${q}」\n請搜尋並回報 12–20 條最相關、最新、有來源的發現。${fmtRule}`;
+          : `研究主題「${keyword}」的這個面向：「${q}」\n請搜尋並回報 10–18 條最相關、最新、有來源的發現。${fmtRule}`;
         const { text, sources } = await callClaude(isSocial ? sysSocial : sysGeneral, prompt,
           { webSearch: true, maxTokens: 3500, maxUses: 5 });
-        // pair each bullet with its url; backfill missing urls by cycling through
-        // this call's citations (same search → these ARE its sources) so no
-        // finding is left source-less.
+        // pair each bullet with ITS OWN url only — never borrow another finding's
+        // link (that round-robin hack made the source chips mismatch the text).
         const paired = parseFindingsWithUrls(text);
-        const cites = (sources || []).map((s) => s.url).filter(Boolean);
-        let ci = 0;
-        if (cites.length) paired.forEach((p) => { if (!p.url) p.url = cites[ci++ % cites.length]; });
         return { items: paired, sources: sources || [] };
       } catch (e) { console.warn('[gatherWebMulti] query failed:', q, e.message || e); return { items: [], sources: [] }; }
     };
