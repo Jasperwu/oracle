@@ -1920,6 +1920,10 @@ ${signalDigest(sig)}
     properties: {
       signals: {
         type: 'ARRAY',
+        // Force at least 3 — without this Gemini hands back the bare minimum
+        // (1 item) to pass schema validation and ignores the prompt's "3-6".
+        minItems: 3,
+        maxItems: 6,
         items: {
           type: 'OBJECT',
           properties: {
@@ -1930,7 +1934,8 @@ ${signalDigest(sig)}
             evidence: { type: 'STRING' },
             soWhat: { type: 'STRING' },
           },
-          required: ['signal', 'fringe', 'evidence'],
+          // require all fields so we never get a stub signal with just title
+          required: ['signal', 'fringe', 'timing', 'momentum', 'evidence', 'soWhat'],
         },
       },
     },
@@ -2577,7 +2582,8 @@ ${wikiBlock(sig)}
         ({ entities, expert } = await understandTopic(keyword));
         // now the right team is known — summon it to stand by while data loads
         el.status.textContent = '召喚偵察員小隊…';
-        el.sub.textContent = `${activeScouts.length} 個 agent 待命中`;
+        const summonCount = getSoloDebug() ? 1 : activeScouts.length;
+        el.sub.textContent = `${summonCount} 個 agent 待命中` + (getSoloDebug() ? '（debug 模式）' : '');
         initScoutBoard();
       }
 
@@ -2597,7 +2603,9 @@ ${wikiBlock(sig)}
 
       if (deep) {
         el.status.textContent = '派出 AI 偵察員掃描邊緣訊號…';
-        el.sub.textContent = `${activeScouts.length} 個並行 agent · 自律協調`;
+        el.sub.textContent = getSoloDebug()
+          ? '1 個 agent · debug 模式'
+          : `${activeScouts.length} 個並行 agent · 自律協調`;
         scoutResults = await runScouts(keyword, sig, updateScout, entities);
         el.status.textContent = '綜合所有訊號，推演未來…';
         el.sub.textContent = '對齊 3–18 個月的時間錐';
