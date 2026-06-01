@@ -23,26 +23,33 @@ export default async function handler(req, res) {
   params.set('format', 'json');
 
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+  const target = `https://api.gdeltproject.org/api/v2/doc/doc?${params}`;
+  // Each fetch gets its own hard timeout so a slow GDELT can never blow past
+  // Vercel's 10s function budget (which used to surface as a 504 with no CORS
+  // header). Whole budget: 2 attempts x 4s + 1s backoff < 10s.
+  const fetchOnce = async (ms) => {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), ms);
+    try { return await fetch(target, { headers: { Accept: 'application/json' }, signal: ctrl.signal }); }
+    finally { clearTimeout(timer); }
+  };
+  res.setHeader('Content-Type', 'application/json');
+  res.setHeader('Cache-Control', 'public, max-age=120'); // 2-minute cache
   try {
-    const target = `https://api.gdeltproject.org/api/v2/doc/doc?${params}`;
-    // GDELT aggressively rate-limits shared (Vercel) IPs with 429. Retry a
-    // couple of times with backoff, staying within the 10s function budget.
-    let upstream, text = '';
-    for (let attempt = 0; attempt < 3; attempt++) {
-      upstream = await fetch(target, { headers: { Accept: 'application/json' } });
-      text = await upstream.text();
-      if (upstream.status !== 429) break;
-      if (attempt < 2) await sleep(1500 * (attempt + 1));
+    let text = '', ok = false;
+    for (let attempt = 0; attempt < 2; attempt++) {
+      let upstream = null;
+      try { upstream = await fetchOnce(4000); } catch { upstream = null; } // timeout/network
+      if (upstream) {
+        text = await upstream.text();
+        if (upstream.status !== 429) { ok = text.trim().startsWith('{'); break; }
+      }
+      if (attempt < 1) await sleep(1000);
     }
-    res.setHeader('Cache-Control', 'public, max-age=120'); // 2-minute cache
-    // GDELT sometimes returns plain text for errors; mirror its content-type
-    if (text.trim().startsWith('{')) {
-      res.setHeader('Content-Type', 'application/json');
-    } else {
-      res.setHeader('Content-Type', 'text/plain');
-    }
-    return res.status(upstream.status).send(text);
+    // Always return 200 + valid JSON + CORS so the frontend degrades to "no
+    // news" gracefully instead of a CORS error or a bare 504.
+    return res.status(200).send(ok ? text : JSON.stringify({ articles: [] }));
   } catch (e) {
-    return res.status(502).json({ error: 'upstream_failed', message: String(e && e.message || e) });
+    return res.status(200).send(JSON.stringify({ articles: [] }));
   }
 }

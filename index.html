@@ -1439,8 +1439,9 @@ a.market-item:hover .market-go { opacity: 1; }
   async function fetchBluesky(keyword, entities = []) {
     const queries = [keyword, ...entities];
     const q = keyword;
+    const base = proxied('/api/bluesky') || BLUESKY_SEARCH;
     try {
-      const res = await fetch(`${BLUESKY_SEARCH}?q=${encodeURIComponent(q)}&sort=top&limit=15`,
+      const res = await fetch(`${base}?q=${encodeURIComponent(q)}&sort=top&limit=15`,
                               { headers: { Accept: 'application/json' } });
       if (!res.ok) return [];
       const data = await res.json();
