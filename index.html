@@ -2440,7 +2440,8 @@ ${wikiBlock(sig)}
     { "range": "6–12 個月", "headline": "...", "events": [ ... ] },
     { "range": "12–18 個月", "headline": "...", "events": [ ... ] }
   ],
-  "wildcard": {"text": "一個低機率但高衝擊、且有跡可循的黑天鵝情境", "src": ["W7"]}
+  "wildcard": "一個低機率但高衝擊、且有跡可循的黑天鵝情境",
+  "wildcardSrc": ["W7"]
 }
 
 **來源標註（src）是硬性要求**：每個 driver 和每個 event 都要附上 \`src\`——一個字串陣列，內容是你「實際依據」的編號證據池編號（例如 ["W3","M1"]）。只能用上面真的出現過的編號；引用了哪幾條資訊就標哪幾條，不要亂標、不要標不存在的編號。若某條真的找不到對應編號，給空陣列 [] —— 但你應盡量讓每條都至少有一個來源。
@@ -2455,7 +2456,7 @@ drivers 請給 4–6 條，每條都要**精簡(≤ 24 字)、像一個訊號標
 
 likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0–100 的整數。請確保 events 的 likelihood/fringe 與 rationale 所引用的證據一致——這是讓未來錐「點位真實反映證據」的關鍵。
 
-**wildcard（黑天鵝）方法論——不可隨意亂編**：它必須是「低機率但高衝擊、且有跡可循」的尾端風險，且要：①從上面資料裡某個**真實的弱訊號或結構性脆弱**外推而來（在 \`src\` 標出依據的編號）；②講得出從現況到它發生的**合理因果機制**；③會實質改寫主題走向；④不與上面的 events 重複。不要寫憑空的隨機災難。`;
+**wildcard（黑天鵝）方法論——不可隨意亂編**：它必須是「低機率但高衝擊、且有跡可循」的尾端風險，且要：①從上面資料裡某個**真實的弱訊號或結構性脆弱**外推而來（把依據的編號放進 \`wildcardSrc\` 陣列）；②講得出從現況到它發生的**合理因果機制**；③會實質改寫主題走向；④不與上面的 events 重複。不要寫憑空的隨機災難。`;
   }
 
   async function askOracle(keyword, sig, scoutResults, expert, deepReport = '') {
@@ -2655,13 +2656,9 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
     (data.horizons || []).forEach((h) => (h.events || []).forEach((ev) => {
       ev._sources = sourcesFor(ev.src, (ev.title || '') + ' ' + (ev.rationale || ''));
     }));
-    // wildcard: accept string | {text,src} → normalise to {text,_sources}
-    if (data.wildcard) {
-      const w = data.wildcard;
-      const text = (w && typeof w === 'object') ? (w.text || '') : String(w || '');
-      const src = (w && typeof w === 'object') ? w.src : null;
-      data.wildcard = { text, _sources: sourcesFor(src, text) };
-    }
+    // wildcard stays a plain string; resolve its separate src array to sources
+    const wtext = (data.wildcard && typeof data.wildcard === 'object') ? data.wildcard.text : data.wildcard;
+    data._wildcardSources = wtext ? sourcesFor(data.wildcardSrc, String(wtext)) : [];
   }
   function eventSourcesHTML(sources) {
     if (!sources || !sources.length) return '';
@@ -2780,7 +2777,7 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
     // wildcard (normalised to {text,_sources} by attachEventSources)
     const wtext = (data.wildcard && typeof data.wildcard === 'object') ? data.wildcard.text : data.wildcard;
     if (wtext) {
-      el.wildcardText.innerHTML = escapeHtml(stripCites(wtext)) + eventSourcesHTML((data.wildcard && data.wildcard._sources) || []);
+      el.wildcardText.innerHTML = escapeHtml(stripCites(String(wtext))) + eventSourcesHTML(data._wildcardSources || []);
       el.wildcardBox.hidden = false;
     } else { el.wildcardBox.hidden = true; }
 
@@ -3512,7 +3509,7 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
       d.narrative ? `現況主敘事：${d.narrative}` : '',
       drivers.length ? `關鍵驅動：${drivers.join('；')}` : '',
       ev.length ? `預測事件（含依據）：\n- ${ev.join('\n- ')}` : '',
-      d.wildcard ? `已知黑天鵝：${(typeof d.wildcard === 'object' ? d.wildcard.text : d.wildcard) || ''}` : '',
+      d.wildcard ? `已知黑天鵝：${(typeof d.wildcard === 'object' ? d.wildcard.text : d.wildcard) || ''}` : '', // tolerate either shape
       web.length ? `部分真實訊號（節錄）：\n- ${web.join('\n- ')}` : '',
     ].filter(Boolean).join('\n');
   }
