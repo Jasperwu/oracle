@@ -1583,6 +1583,14 @@ a.market-item:hover .market-go { opacity: 1; }
         sources.push({ url: w.uri, title: w.title || w.uri });
       }
     });
+    // debug: surface why scouts might be degrading even with a valid key
+    if (!text || !text.trim()) {
+      console.warn('[Gemini] empty text. finishReason=', cand.finishReason, 'safetyRatings=', cand.safetyRatings, 'promptFeedback=', data.promptFeedback, 'raw=', data);
+      throw new Error(`Gemini 回傳空內容（finishReason=${cand.finishReason || '?'}）`);
+    }
+    if (sources.length === 0 && webSearch) {
+      console.info('[Gemini] no grounding sources (search may have returned nothing). chunks=', chunks.length, 'gm keys=', Object.keys(gm));
+    }
     return { text, sources };
   }
 
@@ -1719,29 +1727,39 @@ ${signalDigest(sig)}
     const wantWeb = getWebSearch();
     const hasGemini = !!getGeminiKey();
     const primary = hasGemini ? 'gemini' : 'claude';
+    const tag = `[scout ${scout.name}]`;
     // attempt 1: primary provider, with web search if enabled
     try {
       const r = await runScoutOnce(keyword, scout, sig, wantWeb, entities, primary);
+      console.info(`${tag} ✓ ${primary}${wantWeb ? '+search' : ''} → ${r.signals.length} signals, ${r.sources.length} sources`);
       return { scout, signals: r.signals, sources: r.sources, error: false, provider: primary };
     } catch (e1) {
+      console.warn(`${tag} ✗ attempt 1 (${primary}+search) failed:`, e1.message || e1);
       // attempt 2: same provider but drop web search, leaning on shared data
       // + domain knowledge so a search/timeout/429 doesn't blank it out.
       if (wantWeb) {
         try {
           const r = await runScoutOnce(keyword, scout, sig, false, entities, primary);
+          console.info(`${tag} ⚠ attempt 2 (${primary} no-search) salvaged → ${r.signals.length} signals`);
           return { scout, signals: r.signals, sources: r.sources, error: false, degraded: true, provider: primary };
         } catch (e2) {
+          console.warn(`${tag} ✗ attempt 2 (${primary} no-search) failed:`, e2.message || e2);
           // attempt 3: if Gemini was primary and totally failed, fall back to
           // Claude with no web search — last-chance answer using domain knowledge.
           if (primary === 'gemini') {
             try {
               const r = await runScoutOnce(keyword, scout, sig, false, entities, 'claude');
+              console.info(`${tag} ⚠ attempt 3 (claude no-search rescue) → ${r.signals.length} signals`);
               return { scout, signals: r.signals, sources: r.sources, error: false, degraded: true, provider: 'claude' };
-            } catch { /* fall through */ }
+            } catch (e3) {
+              console.error(`${tag} ✗ attempt 3 (claude no-search) failed:`, e3.message || e3);
+            }
           }
+          console.error(`${tag} ✗ ALL attempts failed → showing 連線失敗`);
           return { scout, signals: [], sources: [], error: true };
         }
       }
+      console.error(`${tag} ✗ no-search attempt failed → showing 連線失敗`);
       return { scout, signals: [], sources: [], error: true };
     }
   }
