@@ -1660,15 +1660,12 @@ a.market-item:hover .market-go { opacity: 1; }
   /* ---------- low-level Gemini call ----------
      Used by scouts to gather signals (offloads Anthropic rate limits and
      uses Google Search grounding). Same {text, sources} shape as callClaude. */
-  async function callGemini(system, userContent, { webSearch = false, maxTokens = 1800, timeoutMs = 90000, modelOverride = null } = {}) {
+  async function callGemini(system, userContent, { webSearch = false, maxTokens = 1800, timeoutMs = 90000, modelOverride = null, responseSchema = null } = {}) {
     const key = getGeminiKey();
     if (!key) throw new Error('GEMINI_NO_KEY');
-    // responseMimeType conflicts with the google_search tool — when search is
-    // on, lean on a stronger prompt instruction to keep the output pure JSON.
-    // Gemini 3.5-flash with grounding sometimes leaks chain-of-thought
-    // ("Wait, I need to make sure I don't output markdown...") into output.
-    // Give it an explicit reasoning channel and bind output to pure JSON.
-    const jsonGuard = webSearch
+    // Prompt-level guard against chain-of-thought leakage. Only needed when
+    // structured output (responseSchema) is NOT enforced.
+    const jsonGuard = (webSearch && !responseSchema)
       ? '\n\n【輸出協議 — 嚴格遵守】\n• 你可能會有內部思考過程；**所有思考、推理、自我提醒、引用標記都必須完全省略**，不可寫進回覆。\n• 不要寫「Wait, I need to」「Let me think」「好的，讓我」「首先」這類自言自語。\n• 不要 markdown 程式碼框（```）、不要 <think> 標籤、不要前後解說。\n• 你的回覆從第一個字元開始就必須是 `{`，最後一個字元是 `}`。中間只能是有效 JSON。\n• 把推理放在心裡，直接寫結果。'
       : '';
     const body = {
@@ -1676,7 +1673,15 @@ a.market-item:hover .market-go { opacity: 1; }
       contents: [{ role: 'user', parts: [{ text: userContent }] }],
       generationConfig: { temperature: 0.7, maxOutputTokens: maxTokens },
     };
-    if (!webSearch) body.generationConfig.responseMimeType = 'application/json';
+    // responseSchema = API-level structured output enforcement. Per Google
+    // docs schema and google_search were historically mutually exclusive; if
+    // it 400s with both on, caller retries without webSearch.
+    if (responseSchema) {
+      body.generationConfig.responseMimeType = 'application/json';
+      body.generationConfig.responseSchema = responseSchema;
+    } else if (!webSearch) {
+      body.generationConfig.responseMimeType = 'application/json';
+    }
     if (webSearch) body.tools = [{ google_search: {} }];
 
     const model = modelOverride || getGeminiModel();
@@ -1876,11 +1881,53 @@ ${signalDigest(sig)}
   // preview line (rolling alias) so we can swap if needed.
   const GEMINI_MODEL_FALLBACK = 'gemini-3-flash-preview';
 
+  // Gemini structured-output schema — forces "must be JSON of this shape" at
+  // the API layer (no more markdown, no more chain-of-thought leakage).
+  // Note: per Google docs, schema + google_search may be mutually exclusive;
+  // we try with grounding first and fall back to schema-only if rejected.
+  const SCOUT_SCHEMA = {
+    type: 'OBJECT',
+    properties: {
+      signals: {
+        type: 'ARRAY',
+        items: {
+          type: 'OBJECT',
+          properties: {
+            signal: { type: 'STRING' },
+            fringe: { type: 'INTEGER' },
+            timing: { type: 'STRING', enum: ['now', 'emerging', 'distant'] },
+            momentum: { type: 'STRING', enum: ['accelerating', 'steady', 'fading'] },
+            evidence: { type: 'STRING' },
+            soWhat: { type: 'STRING' },
+          },
+          required: ['signal', 'fringe', 'evidence'],
+        },
+      },
+    },
+    required: ['signals'],
+  };
+
   async function runScoutOnce(keyword, scout, sig, ws, entities, provider, modelOverride) {
     const { system, user } = scoutPrompts(keyword, scout, sig, ws, entities);
     let text, sources;
     if (provider === 'gemini') {
-      ({ text, sources } = await callGemini(system, user, { webSearch: ws, maxTokens: 1800, modelOverride }));
+      // Try grounding + schema together first. If the API rejects, retry
+      // with schema only — better to keep structured output than search.
+      try {
+        ({ text, sources } = await callGemini(system, user, {
+          webSearch: ws, maxTokens: 1800, modelOverride, responseSchema: SCOUT_SCHEMA,
+        }));
+      } catch (e) {
+        const msg = String(e && e.message || '');
+        if (ws && /400|schema|tool/i.test(msg)) {
+          console.info('[gemini] schema+grounding rejected, retrying schema-only');
+          ({ text, sources } = await callGemini(system, user, {
+            webSearch: false, maxTokens: 1800, modelOverride, responseSchema: SCOUT_SCHEMA,
+          }));
+        } else {
+          throw e;
+        }
+      }
     } else {
       ({ text, sources } = await callClaude(system, user, { webSearch: ws, maxTokens: 1800, maxUses: ws ? 3 : 0 }));
     }
