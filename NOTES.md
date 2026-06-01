@@ -5,6 +5,31 @@
 
 ---
 
+## 🪧 交接便條（給下一個 session 的你 — 2026-06-01 · 第五輪 / Stage 2:Deep Research 餵進未來錐）
+
+**一句話**:做完 Stage 2 —— **Deep Research(Interactions API,會真搜、有真引用)跑完後,把報告 + 引用
+餵進同一個 `askOracle` 重繪未來錐**,引用變可點來源。已合進 main。
+
+**為什麼**:使用者貼了官方文件,關鍵句「**You cannot access [Deep Research] through `generate_content`**」——
+證實 scout 的 `generateContent`+`google_search` 跟 Deep Research 是兩套機制,前者模型自由裁量(會幻覺)、
+後者 agent 一定搜。使用者要把「會真搜」的 Deep Research 接成資料源。這正是北極星「兩模式只差搜集、分析相同」。
+
+**第五輪改了什麼(index.html)**:
+- `render()` 拆出 **`renderForecast(data, sources)`**(topic/summary/drivers/horizons/cone/wildcard/引用),
+  讓 Deep Research 能只重繪錐、不動證據卡與 DR 面板。claudeSources 渲染移進 renderForecast。
+- `runPrediction` 存 **`lastCtx = {keyword, sig, expert}`**,供 Deep Research 重用同一分析上下文。
+- `buildSynthPrompt` / `askOracle` 新增 **`deepReport`** 參數:有報告時當「主要依據」塞進 prompt 最前。
+- 新增 **`extractReportSources(md)`**(抽 markdown 連結 + 裸 URL 去重)、**`feedDeepResearchIntoCone(md)`**。
+- `runDeepResearch` 完成時:`renderDeepResearchReport(md)` 後呼叫 `feedDeepResearchIntoCone(md)` → 用
+  `askOracle(keyword, lastCtx.sig, [], expert, md)` 重繪未來錐 + 顯示報告引用為來源。失敗則靜默(錐維持原狀)。
+- DR CTA 文案加註「並用真實來源重繪未來錐」。
+
+**驗證重點(需實機,Deep Research 每次 $1–3、數分鐘)**:先跑即時深掃 → 結果頁點「🔬 深度研究」→
+等它跑完 → ① 上方未來錐應**重繪**(換成基於報告的事件)② 「🔎 查證來源」應出現**真實可點 URL**(來自報告引用)
+③ 報告本身仍顯示在下方。若 `lastCtx` 為空(沒先跑預言)則只出報告、不重繪。
+
+---
+
 ## 🪧 交接便條（給下一個 session 的你 — 2026-06-01 · 第四輪 / 重大轉向）
 
 **一句話**:**徹底放棄 Gemini grounding**(實證它「成功回應卻從不真的搜尋、只幻覺」),把 scout

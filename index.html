@@ -779,7 +779,7 @@ a.market-item:hover .market-go { opacity: 1; }
       <div class="dr-cta" id="drCta">
         <div class="dr-cta-text">
           <p class="dr-cta-title">🔬 深度研究報告</p>
-          <p class="dr-cta-sub">派出 Gemini 深度研究探員，自主規劃、上網搜尋並閱讀數十個來源，產出<strong>有完整引用</strong>的前瞻報告。約 3–10 分鐘、每次約需 $1–3 美元（用你的 Gemini 金鑰）。</p>
+          <p class="dr-cta-sub">派出 Gemini 深度研究探員，自主規劃、上網搜尋並閱讀數十個來源，產出<strong>有完整引用</strong>的前瞻報告，並<strong>用真實來源重繪上方的未來錐</strong>。約 3–10 分鐘、每次約需 $1–3 美元（用你的 Gemini 金鑰）。</p>
         </div>
         <button class="btn-solid dr-start" id="drStartBtn">啟動深度研究 →</button>
       </div>
@@ -1784,6 +1784,9 @@ a.market-item:hover .market-go { opacity: 1; }
   let drCurrentTopic = '';
   let drCancelled = false;
   let drRunning = false;
+  // last prediction context, so Deep Research can re-run the SAME analysis
+  // engine over its findings and re-draw the futures cone.
+  let lastCtx = null;
 
   async function callClaude(system, userContent, { webSearch = false, maxTokens = 1600, maxUses = 3, timeoutMs = 90000 } = {}) {
     const body = {
@@ -2241,7 +2244,7 @@ ${digestText}
   }
 
   /* ---------- synthesizer: scouts + data -> futures cone ---------- */
-  function buildSynthPrompt(keyword, sig, scoutResults) {
+  function buildSynthPrompt(keyword, sig, scoutResults, deepReport = '') {
     // Each scout = a grounded intel briefing (bullets) with its source domains.
     const scoutBlock = (scoutResults && scoutResults.length)
       ? scoutResults.map((r) => {
@@ -2254,7 +2257,7 @@ ${digestText}
       : '';
 
     return `關鍵詞：「${keyword}」
-${scoutBlock ? '\n【AI 偵察員蒐集到的即時情報（含來源）】\n' + scoutBlock + '\n' : ''}
+${deepReport ? '\n【深度研究報告 · 由 Deep Research Agent 實際上網搜尋與閱讀產生，含真實引用，請以此為「主要」依據】\n' + deepReport + '\n（以上報告是本次分析最重要的依據；下面的即時資料作為佐證與時效補充。）\n' : ''}${scoutBlock ? '\n【AI 偵察員蒐集到的即時情報（含來源）】\n' + scoutBlock + '\n' : ''}
 【預測市場即時賠率 · Polymarket + Kalshi】
 ${marketBlock(sig)}
 
@@ -2304,12 +2307,12 @@ ${wikiBlock(sig)}
 每個 horizon 請給 2–3 個 events。likelihood 只能是 probable、plausible、possible 三者之一，越近期的、越有市場/訊號支撐的越偏 probable。fringe 為 0–100 的整數，代表這個事件的「邊緣程度」：主流、眾所矚目、確定度高的事件給低分（靠近未來錐中心軸）；冷門、邊緣、低機率高想像空間的事件給高分（落在未來錐外圍）。請延續上面偵察員訊號的 fringe 精神。`;
   }
 
-  async function askOracle(keyword, sig, scoutResults, expert) {
+  async function askOracle(keyword, sig, scoutResults, expert, deepReport = '') {
     const role = expert
       ? `你同時是一位「${expert}」，也是一位頂尖的未來學家（futurist）。你以該領域專家的深度知識為底，`
       : '你是一位頂尖的未來學家（futurist），';
     const system = `${role}擅長把偵察員蒐集的邊緣訊號、預測市場數據與趨勢轉化為具體、可信、富洞察力的未來情境。請拿出該領域真正的專業判斷（懂門道、用對術語、抓對關鍵變數），語氣冷靜、精準、帶一點神諭的詩意。你的最終回覆必須「只」包含使用者要求的 JSON 物件，不要任何前後說明文字。`;
-    const { text, sources } = await callClaude(system, buildSynthPrompt(keyword, sig, scoutResults), {
+    const { text, sources } = await callClaude(system, buildSynthPrompt(keyword, sig, scoutResults, deepReport), {
       webSearch: getWebSearch(), maxTokens: 4500, maxUses: 4,
     });
     return { result: extractJSON(text), sources };
@@ -2414,10 +2417,10 @@ ${wikiBlock(sig)}
   /* ---------- rendering ---------- */
   const LIKE_LABEL = { probable: '最可能', plausible: '合理', possible: '有可能' };
 
-  function render(data, sig, sources, scoutResults) {
-    const { markets, news, wiki, reddit, bluesky, trends } = sig;
-    renderScoutFindings(scoutResults);
-    resetDeepResearchPanel();
+  // The "forecast" half of the result page (topic, summary, drivers, horizons,
+  // cone, wildcard, cited sources). Extracted so Deep Research can re-draw the
+  // cone from its findings without touching the evidence cards or its own panel.
+  function renderForecast(data, sources) {
     el.resultTopic.textContent = (data.topic || '').toUpperCase() || 'FORESIGHT';
     el.resultSummary.textContent = data.summary || '';
 
@@ -2461,6 +2464,20 @@ ${wikiBlock(sig)}
       el.wildcardText.textContent = data.wildcard;
       el.wildcardBox.hidden = false;
     } else { el.wildcardBox.hidden = true; }
+
+    // cited sources (Claude web search, or Deep Research citations)
+    if (sources && sources.length) {
+      el.claudeSources.innerHTML = '🔎 查證來源： ' + sources.slice(0, 10).map((s) =>
+        `<a href="${escapeAttr(s.url)}" target="_blank" rel="noopener">${escapeHtml(s.title || hostOf(s.url) || s.url)}</a>`).join(' · ');
+      el.claudeSources.hidden = false;
+    } else { el.claudeSources.hidden = true; }
+  }
+
+  function render(data, sig, sources, scoutResults) {
+    const { markets, news, wiki, reddit, bluesky, trends } = sig;
+    renderScoutFindings(scoutResults);
+    resetDeepResearchPanel();
+    renderForecast(data, sources);
 
     // GDELT news (last 3 days)
     if (news.length) {
@@ -2539,13 +2556,7 @@ ${wikiBlock(sig)}
       });
       el.marketSource.hidden = false;
     } else { el.marketSource.hidden = true; }
-
-    // Claude web-search sources
-    if (sources && sources.length) {
-      el.claudeSources.innerHTML = '🔎 Claude 查證來源： ' + sources.slice(0, 8).map((s) =>
-        `<a href="${escapeAttr(s.url)}" target="_blank" rel="noopener">${escapeHtml(s.title)}</a>`).join(' · ');
-      el.claudeSources.hidden = false;
-    } else { el.claudeSources.hidden = true; }
+    // cited sources are rendered by renderForecast()
   }
 
   function sparkline(series) {
@@ -2812,6 +2823,7 @@ ${wikiBlock(sig)}
       if (elapsed < 3200) await new Promise((r) => setTimeout(r, 3200 - elapsed));
 
       drCurrentTopic = keyword;
+      lastCtx = { keyword, sig, expert };
       render(result, sig, sources, scoutResults);
       hideOverlay();
       el.stageInput.hidden = true;
@@ -2915,6 +2927,38 @@ ${wikiBlock(sig)}
     return out;
   }
 
+  // Pull real, clickable source URLs out of the Deep Research markdown report
+  // (markdown links first, then any bare URLs), deduped.
+  function extractReportSources(md) {
+    const out = [], seen = new Set();
+    const push = (url, title) => {
+      url = String(url || '').trim().replace(/[)>.,;]+$/, '');
+      if (!/^https?:\/\//i.test(url) || seen.has(url)) return;
+      seen.add(url);
+      out.push({ url, title: String(title || hostOf(url) || url).slice(0, 80) });
+    };
+    let m; const linkRe = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g;
+    while ((m = linkRe.exec(md))) push(m[2], m[1]);
+    const bareRe = /https?:\/\/[^\s)\]]+/g;
+    while ((m = bareRe.exec(md))) push(m[0], null);
+    return out.slice(0, 30);
+  }
+
+  // Re-run the SAME analysis engine over the Deep Research report (its real
+  // cited findings) and re-draw the futures cone. Additive: the report stays
+  // shown below; on any failure the existing cone is left untouched.
+  async function feedDeepResearchIntoCone(md) {
+    if (!md || !lastCtx) return;
+    try {
+      const reportSources = extractReportSources(md);
+      const { result } = await askOracle(lastCtx.keyword, lastCtx.sig, [], lastCtx.expert, md);
+      if (result && (result.horizons || result.summary)) {
+        renderForecast(result, reportSources);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    } catch (e) { console.warn('[deep-research] feed into cone failed:', e.message || e); }
+  }
+
   async function runDeepResearch() {
     if (drRunning) return;
     const topic = drCurrentTopic;
@@ -2964,6 +3008,9 @@ ${wikiBlock(sig)}
         if (status === 'completed') {
           const md = interactionOutputText(obj);
           renderDeepResearchReport(md, Date.now() - started);
+          // feed the cited report back into the same analysis engine so the
+          // futures cone above is re-drawn from real, researched sources.
+          await feedDeepResearchIntoCone(md);
           break;
         } else if (status === 'failed') {
           throw new Error('深度研究失敗：' + (obj.error?.message || obj.error || '未知錯誤'));
