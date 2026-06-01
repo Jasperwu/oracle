@@ -2534,7 +2534,7 @@ ${wikiBlock(sig)}
     el.scoutGrid.innerHTML = withFindings.map((r) => `
       <div class="scout-card">
         <p class="scout-card-head">${r.scout.emoji} ${escapeHtml(r.scout.name)}${r.degraded ? '<span class="scout-degraded" title="此探員未使用即時網路搜尋，改以領域知識作答">離線判讀</span>' : ''}</p>
-        ${r.findings.map((f) => stripRefs(f)).filter((f) => f.length > 6).map((f) => `<div class="scout-signal"><div class="scout-signal-txt">${escapeHtml(f)}</div></div>`).join('')}
+        ${r.findings.map((f) => stripRefs(stripCites(f))).filter((f) => f.length > 6).map((f) => `<div class="scout-signal"><div class="scout-signal-txt">${escapeHtml(f)}</div></div>`).join('')}
         ${scoutSourcesHTML(r.sources)}
       </div>`).join('');
     el.scoutFindings.hidden = false;
@@ -2547,6 +2547,10 @@ ${wikiBlock(sig)}
   // cone, wildcard, cited sources). Extracted so Deep Research can re-draw the
   // cone from its findings without touching the evidence cards or its own panel.
   function renderForecast(data, sources) {
+    // strip any <cite index="…"> markers from EVERY field (both the shallow
+    // askOracle output and the Deep Research path can emit them) so they never
+    // render as raw text in the cone.
+    data = sanitizeCites(data);
     el.resultTopic.textContent = (data.topic || '').toUpperCase() || 'FORESIGHT';
     el.resultSummary.textContent = data.summary || '';
     if (el.resultNarrative) {
