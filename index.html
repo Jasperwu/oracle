@@ -2523,7 +2523,7 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
       : '你是一位頂尖的未來學家（futurist），';
     const system = `${role}擅長把偵察員蒐集的邊緣訊號、預測市場數據與趨勢轉化為具體、可信、富洞察力的未來情境。請拿出該領域真正的專業判斷（懂門道、用對術語、抓對關鍵變數），語氣冷靜、精準、帶一點神諭的詩意。你的最終回覆必須「只」包含使用者要求的 JSON 物件，不要任何前後說明文字。`;
     const { text, sources } = await callClaude(system, buildSynthPrompt(keyword, sig, scoutResults, deepReport), {
-      webSearch: getWebSearch(), maxTokens: 5500, maxUses: 4,
+      webSearch: getWebSearch(), maxTokens: 8000, maxUses: 4,
     });
     return { result: extractJSON(text), sources };
   }
