@@ -341,15 +341,20 @@ html, body {
 .now-label { text-anchor: middle; fill: var(--ink); font-weight: 600; }
 .band-label { fill: var(--clay-deep); font-weight: 600; opacity: .8; }
 
-/* signals */
-.signals {
-  max-width: 1040px; margin: 8px auto 30px; width: 100%;
-  display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+/* signals (key drivers) */
+.signals-section { max-width: 1040px; margin: 4px auto 30px; width: 100%; }
+.signals-section-title {
+  font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--clay-deep); text-align: center; margin: 0 0 14px;
 }
+.signals {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;
+}
+@media (max-width: 720px) { .signals { grid-template-columns: 1fr; } }
 .signal-pill {
-  font-size: 13px; color: var(--ink-soft);
+  font-size: 13.5px; line-height: 1.55; color: var(--ink);
   background: var(--paper); border: 1px solid var(--line);
-  border-radius: 999px; padding: 7px 15px;
+  border-radius: 12px; padding: 11px 14px;
 }
 .signal-pill b { color: var(--clay-deep); font-weight: 600; }
 
@@ -793,8 +798,11 @@ a.market-item:hover .market-go { opacity: 1; }
       <p class="cone-hint">拖動時間軸上的把手，視野往未來延伸、不確定性隨之擴大。每個光點是一個預測事件 — 越靠中軸越「最可能」，越外側越「有可能」；滑過或點擊光點可對應到下方卡片。</p>
     </div>
 
-    <!-- signals strip -->
-    <div class="signals" id="signalsStrip"></div>
+    <!-- signals strip (key drivers) -->
+    <section class="signals-section" id="signalsSection" hidden>
+      <p class="signals-section-title">關鍵驅動訊號</p>
+      <div class="signals" id="signalsStrip"></div>
+    </section>
 
     <!-- horizon cards -->
     <div class="horizons" id="horizons"></div>
@@ -979,6 +987,7 @@ a.market-item:hover .market-go { opacity: 1; }
     resultTopic: $('resultTopic'),
     resultSummary: $('resultSummary'),
     resultNarrative: $('resultNarrative'),
+    signalsSection: $('signalsSection'),
     resetBtn: $('resetBtn'),
     signals: $('signalsStrip'),
     horizons: $('horizons'),
@@ -2021,7 +2030,7 @@ a.market-item:hover .market-go { opacity: 1; }
   /* understand the topic up front: expand search entities + assemble a
      topic-specific scout team. One cheap Claude call; falls back gracefully. */
   async function understandTopic(keyword) {
-    const system = '你是一位敏銳的研究主編。使用者給你一個主題關鍵詞，你要做三件事：(1) 判斷這個主題的真正所指與領域，展開出實際可用於檢索的「實體與同義詞」；(2) 為這個主題量身編一支 5 人偵察小隊，每位專精一個與「這個主題」最相關的角度，指派一個 stance（hot＝追主流/當紅/高確定度的重大進展；niche＝挖冷門/早期/被忽視的弱訊號；mixed＝兩者兼顧），並為每位預先擬 2–3 條「具體、彼此不重複」的網路搜尋查詢（query）——查詢要鎖定該偵察員的角度、用上相關實體、且偏好「最新發展、近 6 個月、即將到來」的時效性，避免 5 位查到同一批結果；(3) 指派一位最適合綜合分析這個主題的「領域專家」身分。\n\n**核心原則：主題核心優先**\n如果主題是會「分出勝負/結果」的競技、選舉、比賽、排名類事件（如 World Cup、NBA Finals、總統大選、Oscars、選秀），**絕大多數偵察員（至少 4/5）必須聚焦在「誰會贏、為什麼、關鍵變數」這個本體**——球隊戰力/球員狀態/賠率/教練/陣容/最近表現/傷病、選舉的民調/搖擺州/政策辯論等等。**只可有最多 1 位**處理外緣（地緣政治、經濟脈絡、文化敘事），且這位的 stance 應是 niche 而非主流。\n例如「World Cup 2026」的偵察員應該是：奪冠賠率分析師、強隊戰力/陣容追蹤、東道主表現觀察、黑馬與賽制紅利、賽事熱度與敘事——而**不是**「地緣政治觀察」「中東資本」「移民安全」等與「誰會奪冠」幾乎無關的議題。\n例如「NBA power rank」的偵察角度應是賽季戰績走勢、冠軍賠率、球員傷病與交易、選秀、球迷敘事，專家身分應是「資深 NBA 籃球分析師」——而不是「排名演算法專家」或「產品經理」。\n\n整支小隊的 stance 要刻意平衡——大致 2 個 hot、2 個 niche、1 個 mixed，讓主流與邊緣訊號都有人負責，但**所有人的角度都必須緊扣主題核心**。你只回傳 JSON。';
+    const system = '你是一位敏銳的研究主編。使用者給你一個主題關鍵詞，你要做三件事：(1) 判斷這個主題的真正所指與領域，展開出實際可用於檢索的「實體與同義詞」；(2) 為這個主題量身編一支 5 人偵察小隊，每位專精一個與「這個主題」最相關的角度，指派一個 stance（hot＝追主流/當紅/高確定度的重大進展；niche＝挖冷門/早期/被忽視的弱訊號；mixed＝兩者兼顧），並為每位預先擬 2–3 條「具體、彼此不重複」的網路搜尋查詢（query）——查詢要鎖定該偵察員的角度、用上相關實體、且偏好「最新發展、近 6 個月、即將到來」的時效性，避免 5 位查到同一批結果；(3) 指派一位最適合綜合分析這個主題的「領域專家」身分。\n\n**核心原則：主題核心優先**\n如果主題是會「分出勝負/結果」的競技、選舉、比賽、排名類事件（如 World Cup、NBA Finals、總統大選、Oscars、選秀），**絕大多數偵察員（至少 4/5）必須聚焦在「誰會贏、為什麼、關鍵變數」這個本體**——球隊戰力/球員狀態/賠率/教練/陣容/最近表現/傷病、選舉的民調/搖擺州/政策辯論等等。**只可有最多 1 位**處理外緣（地緣政治、經濟脈絡、文化敘事），且這位的 stance 應是 niche 而非主流。\n例如「World Cup 2026」的偵察員應該是：奪冠賠率分析師、強隊戰力/陣容追蹤、東道主表現觀察、黑馬與賽制紅利、賽事熱度與敘事——而**不是**「地緣政治觀察」「中東資本」「移民安全」等與「誰會奪冠」幾乎無關的議題。\n例如「NBA power rank」的偵察角度應是賽季戰績走勢、冠軍賠率、球員傷病與交易、選秀、球迷敘事，專家身分應是「資深 NBA 籃球分析師」——而不是「排名演算法專家」或「產品經理」。\n\n**若主題屬於科技／產品／新興技術類**（如 AI、穿戴裝置、機器人、消費電子、開發者工具、平台），小隊要對「產品團隊」有用，務必涵蓋這些互補角度：(a)**技術突破與成熟度**；(b)**產品落地與商業模式**（誰出了什麼、定價、採用）；(c)**年輕世代／早期採用者視角**（Gen Z、學生、創作者、開發者怎麼用、在玩什麼、抱怨什麼——這位 stance 設 niche，查詢用 Reddit / Hacker News / TikTok / Discord 等社群）；(d)**新興趨勢與弱訊號**（剛冒出來、主流還沒注意到的——stance niche）；(e)**競爭格局、監管或隱私**。專家身分用「資深科技產品分析師／趨勢研究員」這類。\n\n整支小隊的 stance 要刻意平衡——大致 2 個 hot、2 個 niche、1 個 mixed，讓主流與邊緣訊號都有人負責，但**所有人的角度都必須緊扣主題核心**。你只回傳 JSON。';
     const user = `主題關鍵詞：「${keyword}」
 
 只回傳有效 JSON（不要 markdown、不要多餘文字），全部以繁體中文（實體與查詢可保留原文/英文）：
@@ -2087,6 +2096,7 @@ scouts 陣列必須**剛好 5 個元素**（不可多、不可少），角度彼
       url: m.url || null,
     }));
     (sig.news || []).forEach((n) => items.push({ label: `新聞·${n.domain || ''}`, text: n.title, url: n.url || null }));
+    (sig.hn || []).forEach((h) => items.push({ label: 'Hacker News', text: `${h.title}（HN ▲${h.points} 💬${h.comments}）`, url: h.url || null }));
     (sig.reddit || []).forEach((r) => items.push({ label: `Reddit·${r.sub || ''}`, text: `${r.title}（💬${r.comments} ▲${r.score}）`, url: r.url || null }));
     (sig.bluesky || []).forEach((b) => items.push({ label: 'Bluesky', text: `${b.title}（♥${b.likes} 🔁${b.reposts}）`, url: b.url || null }));
     if (sig.trends) items.push({
@@ -2323,6 +2333,8 @@ ${digestText}
     (sig.markets || []).forEach((m) => { const tag = 'M' + mi++; lines.push(`[${tag}] 預測市場「${m.question}」${m.prob != null ? '：' + Math.round(m.prob * 100) + '%' : ''}`); if (m.url) map[tag] = { url: m.url, text: m.question }; });
     let ni = 1;
     (sig.news || []).forEach((n) => { const tag = 'N' + ni++; lines.push(`[${tag}] 新聞：${n.title}（${n.domain || ''}）`); if (n.url) map[tag] = { url: n.url, text: n.title }; });
+    let hi = 1;
+    (sig.hn || []).forEach((h) => { const tag = 'H' + hi++; lines.push(`[${tag}] Hacker News：${h.title}（▲${h.points} 💬${h.comments}）`); if (h.url) map[tag] = { url: h.url, text: h.title }; });
     return { text: lines.join('\n'), map };
   }
   function buildSynthPrompt(keyword, sig, scoutResults, deepReport = '') {
@@ -2368,7 +2380,7 @@ ${wikiBlock(sig)}
   "topic": "精煉後的主題（簡短）",
   "summary": "一句富畫面感的總綱預言",
   "narrative": "現況主敘事：3–5 句連貫的最新現況與關鍵驅動，緊扣真實情報",
-  "drivers": [{"text": "驅動訊號（可含具體數據，如賠率）", "src": ["W3", "M1"]}],
+  "drivers": [{"text": "精簡的驅動訊號標題（≤ 24 字，點出一股關鍵力量，可含一個關鍵數據；不要寫成整段長句）", "src": ["W3", "M1"]}],
   "horizons": [
     {
       "range": "3–6 個月",
@@ -2385,7 +2397,7 @@ ${wikiBlock(sig)}
 
 **來源標註（src）是硬性要求**：每個 driver 和每個 event 都要附上 \`src\`——一個字串陣列，內容是你「實際依據」的編號證據池編號（例如 ["W3","M1"]）。只能用上面真的出現過的編號；引用了哪幾條資訊就標哪幾條，不要亂標、不要標不存在的編號。若某條真的找不到對應編號，給空陣列 [] —— 但你應盡量讓每條都至少有一個來源。
 
-每個 horizon 請給 2–3 個 events。
+drivers 請給 4–6 條，每條都要**精簡(≤ 24 字)、像一個訊號標題**，點出一股關鍵驅動力(可帶一個關鍵數據)，不要寫成完整長句或一段敘述——細節留給 narrative 與 events。每個 horizon 請給 2–3 個 events。
 
 **預測框架（每個 event 都要遵守，不可憑感覺亂給）：**
 - \`rationale\` 必須寫出「這個事件根據哪些『上面的真實證據』」——優先引用具體的預測市場機率（如「Polymarket 44%」）、具體數據、或多個來源的交叉佐證；不要空泛。沒有證據支撐的事件不要放。
@@ -2424,16 +2436,17 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
     // web-search the discussion directly — it finds & reads the threads and
     // cites the real reddit/forum/X URLs.
     const ent = entities[0] && entities[0].toLowerCase() !== keyword.toLowerCase() ? entities[0] : keyword;
-    const social = [`${keyword} reddit`, `${ent} fan reaction X / forum discussion`];
+    // one community-pulse query (Reddit + Hacker News) + one youth/emerging query
+    const social = [`${keyword} reddit OR "hacker news" discussion`, `${ent} emerging trend gen z young early adopters`];
 
     const sysGeneral = '你是一位嚴謹的研究助理。請用 web search 找出與這個面向最相關、最新（最好近 1–3 個月）、有憑據的事實。只回報你實際查到的真實資訊，絕不臆測或編造。用繁體中文條列，每行以「- 」開頭；不要前言結語、不要 JSON。';
-    const sysSocial = '你是一位社群輿情分析師。請用 web search 找出並「實際閱讀」關於主題的社群討論——Reddit 相關 subreddit 的討論串與熱門留言、論壇、X/社群反應。歸納主流觀點、爭論點、情緒傾向與值得注意的小道消息。只回報你實際讀到的真實討論，句末附上來源串連結。用繁體中文條列，每行以「- 」開頭；不要前言結語、不要 JSON。';
+    const sysSocial = '你是一位社群與「新興趨勢」分析師。請用 web search 找出並「實際閱讀」關於主題的：①社群討論（Reddit subreddit 討論串與熱門留言、Hacker News、論壇、X 反應）②年輕世代／早期採用者（Gen Z、學生、創作者、開發者）正在怎麼用、在玩什麼、抱怨什麼 ③剛冒出來、主流還沒注意到的弱訊號與早期趨勢。歸納主流觀點、情緒與值得注意的早期跡象。只回報你實際讀到的真實內容，句末附上來源連結。用繁體中文條列，每行以「- 」開頭；不要前言結語、不要 JSON。';
     // ask for a recent, specific, sourced finding on each line
     const fmtRule = '【硬性要求】每一條發現都必須：①聚焦「最近 7 天內」的最新進展（或在句末標注日期）；②句末用括號附上「該則資訊的具體文章網址」（必須是可直接閱讀的單篇文章 / leaf page，不要列表頁、首頁、搜尋頁、tracker）。找不到可靠近期單篇來源的，就不要寫這一條。';
     const one = async (q, isSocial) => {
       try {
         const prompt = isSocial
-          ? `主題：「${keyword}」\n請搜尋並閱讀社群討論（優先 Reddit 相關 subreddit 的討論串與留言，其次論壇、X），回報 8–15 條「社群在討論什麼、主流情緒、值得注意的觀點」。${fmtRule}`
+          ? `主題：「${keyword}」的這個面向：「${q}」\n請搜尋並回報 8–15 條「社群／年輕世代／早期採用者在討論與在做什麼、有什麼剛冒出來的新興訊號」。${fmtRule}`
           : `研究主題「${keyword}」的這個面向：「${q}」\n請搜尋並回報 10–18 條最相關、最新、有來源的發現。${fmtRule}`;
         const { text, sources } = await callClaude(isSocial ? sysSocial : sysGeneral, prompt,
           { webSearch: true, maxTokens: 3500, maxUses: 5 });
@@ -2648,14 +2661,16 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
 
     // signals (drivers) — each normalised to { text, _sources } by attachEventSources
     el.signals.innerHTML = '';
-    (data.drivers || []).forEach((d) => {
+    const drivers = data.drivers || [];
+    drivers.forEach((d) => {
       const text = (d && typeof d === 'object') ? (d.text || '') : String(d || '');
       const srcHTML = eventSourcesHTML((d && d._sources) || []);
       const s = document.createElement('div');
       s.className = 'signal-pill';
-      s.innerHTML = `<b>訊號</b> · ${escapeHtml(text)}${srcHTML}`;
+      s.innerHTML = `<span class="signal-txt">${escapeHtml(text)}</span>${srcHTML}`;
       el.signals.appendChild(s);
     });
+    if (el.signalsSection) el.signalsSection.hidden = !drivers.length;
 
     // horizons
     el.horizons.innerHTML = '';
@@ -3014,6 +3029,7 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
         Promise.resolve([]),
         fetchBluesky(keyword, entities),
         fetchTrends(keyword, entities),
+        fetchHN(keyword, entities), // tech/dev community signal (CORS-ok); sparse for non-tech
       ]);
       const val = (i, fallback) => (settled[i].status === 'fulfilled' ? settled[i].value : fallback);
       const markets = mergeMarkets(val(0, []), val(1, []));
@@ -3024,11 +3040,12 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
         reddit: val(4, []),
         bluesky: val(5, []),
         trends: val(6, null),
+        hn: val(7, []),
       };
       // surface what each central source returned (helps tell a transient API
       // failure apart from a relevance-filter that dropped everything)
-      console.info('[central] markets=%d (poly+kalshi) news=%d wiki=%s bluesky=%d trends=%s',
-        sig.markets.length, sig.news.length, sig.wiki ? '✓' : '✗', sig.bluesky.length, sig.trends ? '✓' : '✗',
+      console.info('[central] markets=%d (poly+kalshi) news=%d wiki=%s bluesky=%d trends=%s hn=%d',
+        sig.markets.length, sig.news.length, sig.wiki ? '✓' : '✗', sig.bluesky.length, sig.trends ? '✓' : '✗', sig.hn.length,
         settled.map((s, i) => `${i}:${s.status}`).join(' '));
 
       let webSources = [];
