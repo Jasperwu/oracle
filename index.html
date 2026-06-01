@@ -1991,30 +1991,22 @@ scouts 陣列必須**剛好 5 個元素**（不可多、不可少），角度彼
       fringe: '你的訊號 fringe 視實際冷門程度落在 0–95 皆可。',
     },
   };
+  // Gemini gathers intel for one angle: grounded web search (NO schema, so
+  // grounding stays ON and real source URLs come back), returns a short
+  // bulleted briefing. Claude does the structured analysis later.
   function scoutPrompts(keyword, scout, sig, ws, entities = []) {
     const brief = STANCE_BRIEF[scout.stance] || STANCE_BRIEF.mixed;
-    const system = `你是一位專責「${scout.name}」的訊號偵察員（scout agent），鎖定的領域是「${scout.domain}」。${brief.sys}任務是針對指定主題，從你的領域角度找出相關、且能預示未來走向的訊號。務必緊扣主題本身（不要把主題硬拗成別的領域）。你的回覆必須「只」是使用者要求的 JSON。`;
-    // per-scout pre-planned queries (distinct angles, timeliness baked in);
-    // fall back to entities/keyword if the planner gave none.
+    const system = `你是一位專責「${scout.name}」的研究探員，鎖定領域是「${scout.domain}」。${brief.sys}你的任務是「蒐集情報」：上網找出與主題最相關、最新、有憑據的發現，並附上來源。務必緊扣主題本身，不要硬拗成別的領域。用繁體中文，條列、精簡、具體。`;
     const qs = (scout.queries && scout.queries.length) ? scout.queries
       : [keyword, ...entities].slice(0, 3);
     const searchBlock = ws
-      ? `\n請主動用 web search 蒐集最新資訊。優先執行以下為你這個角度量身擬定的查詢（可自行微調、補上時效字詞如 2026 / latest / upcoming）：\n${qs.map((q) => `- ${q}`).join('\n')}\n聚焦最近 6 個月與即將到來的發展，避免過時資訊。\n`
-      : '';
+      ? `\n請主動用 Google Search 蒐集資料，優先執行以下查詢（可自行微調、補時效字詞）：\n${qs.map((q) => `- ${q}`).join('\n')}\n**聚焦最近 7 天內的最新發展**，越新越好；找不到才放寬。\n`
+      : '\n（目前未開啟即時搜尋，請以你的領域知識作答，並標明屬推測。）\n';
     const user = `主題：「${keyword}」${entities.length ? `\n相關實體：${entities.slice(0, 6).join('、')}` : ''}
 
-你這位偵察員的任務：${scout.task}
-你的偵察取向：${brief.task}
+你這位探員的取向：${brief.task}
 ${scout.angle ? `特別關注：${scout.angle}\n` : ''}${searchBlock}
-以下是已蒐集到的共用即時資料，可作為佐證或起點（與你領域相關才引用，不相關就略過）：
-${signalDigest(sig)}
-
-只回傳有效 JSON（不要 markdown、不要多餘文字），全部繁體中文：
-{"signals":[{"signal":"訊號描述","fringe":0,"timing":"now|emerging|distant","momentum":"accelerating|steady|fading","evidence":"依據或出處（引用你查到的或上面的真實資料）","soWhat":"這對主題的未來走向代表什麼"}]}
-請務必給 3–6 個訊號：即使沒有現成的即時資料，也要基於你這個領域的專業知識與常識，針對主題提出有根據的判斷；只有在主題與你的領域真的毫不相干時才回空陣列。
-- fringe：0–100 整數，越高代表越邊緣、越冷門。${brief.fringe}
-- timing：這個訊號代表的是「now＝正在發生」「emerging＝正在萌芽」還是「distant＝還很遠」。
-- momentum：這股力道正在「accelerating＝加速」「steady＝持平」還是「fading＝減弱」。`;
+請回報 3–5 條這個角度下「最相關、最新、有憑據」的發現。格式：每條一行、以「- 」開頭，先寫發現本身，必要時在句末用括號標注關鍵數據或來源媒體。不要寫前言或結語、不要 markdown 標題、不要編號，只要條列。`;
     return { system, user };
   }
 
@@ -2057,33 +2049,33 @@ ${signalDigest(sig)}
     required: ['signals'],
   };
 
+  // Pull bullet findings out of free-form text (no JSON — robust). Accepts
+  // lines starting with -, •, *, or numbered; falls back to non-empty lines.
+  function parseFindings(text) {
+    const lines = String(text || '').replace(/\r/g, '').split('\n').map((l) => l.trim());
+    let bullets = lines
+      .filter((l) => /^[-•*]\s+/.test(l) || /^\d+[.)]\s+/.test(l))
+      .map((l) => l.replace(/^[-•*]\s+/, '').replace(/^\d+[.)]\s+/, '').trim())
+      .filter(Boolean);
+    if (!bullets.length) {
+      // no bullet markers — take substantive non-empty lines
+      bullets = lines.filter((l) => l.length > 8 && !/^[#>`]/.test(l)).slice(0, 5);
+    }
+    return bullets.slice(0, 6);
+  }
+
   async function runScoutOnce(keyword, scout, sig, ws, entities, provider, modelOverride) {
     const { system, user } = scoutPrompts(keyword, scout, sig, ws, entities);
     let text, sources;
     if (provider === 'gemini') {
-      // Try grounding + schema together first. If the API rejects, retry
-      // with schema only — better to keep structured output than search.
-      try {
-        ({ text, sources } = await callGemini(system, user, {
-          webSearch: ws, maxTokens: 1800, modelOverride, responseSchema: SCOUT_SCHEMA,
-        }));
-      } catch (e) {
-        const msg = String(e && e.message || '');
-        if (ws && /400|schema|tool/i.test(msg)) {
-          console.info('[gemini] schema+grounding rejected, retrying schema-only');
-          ({ text, sources } = await callGemini(system, user, {
-            webSearch: false, maxTokens: 1800, modelOverride, responseSchema: SCOUT_SCHEMA,
-          }));
-        } else {
-          throw e;
-        }
-      }
+      // NO responseSchema → grounding stays on → real source URLs come back.
+      ({ text, sources } = await callGemini(system, user, { webSearch: ws, maxTokens: 1500, modelOverride }));
     } else {
-      ({ text, sources } = await callClaude(system, user, { webSearch: ws, maxTokens: 1800, maxUses: ws ? 3 : 0 }));
+      ({ text, sources } = await callClaude(system, user, { webSearch: ws, maxTokens: 1500, maxUses: ws ? 3 : 0 }));
     }
-    const parsed = extractJSON(text);
-    const signals = Array.isArray(parsed.signals) ? parsed.signals.slice(0, 6) : [];
-    return { signals, sources };
+    const findings = parseFindings(text);
+    if (!findings.length) throw new Error('沒有解析到任何發現');
+    return { findings, sources: sources || [] };
   }
 
   // Treat as "Gemini is overloaded / model not happy" — try the fallback
@@ -2097,60 +2089,48 @@ ${signalDigest(sig)}
     const hasGemini = !!getGeminiKey();
     const primary = hasGemini ? 'gemini' : 'claude';
     const tag = `[scout ${scout.name}]`;
-    // 1: Gemini primary model, with search
+    const ok = (r, extra) => ({ scout, findings: r.findings, sources: r.sources, error: false, ...extra });
+    // 1: Gemini primary model, with grounded search
     if (primary === 'gemini' && wantWeb) {
       try {
         const r = await runScoutOnce(keyword, scout, sig, true, entities, 'gemini');
-        console.info(`${tag} ✓ gemini+search → ${r.signals.length} signals, ${r.sources.length} sources`);
-        return { scout, signals: r.signals, sources: r.sources, error: false, provider: 'gemini' };
+        console.info(`${tag} ✓ gemini+search → ${r.findings.length} findings, ${r.sources.length} sources`);
+        return ok(r, { provider: 'gemini' });
       } catch (e1) {
-        console.warn(`${tag} ✗ gemini primary+search:`, e1.message || e1);
-        // 2: if 503/overload/timeout — retry on Gemini FALLBACK model, *keep* search
+        console.warn(`${tag} ✗ gemini+search:`, e1.message || e1);
+        // 2: 503/overload/timeout → fallback Gemini model, keep search
         if (isGeminiOverload(e1)) {
           try {
             const r = await runScoutOnce(keyword, scout, sig, true, entities, 'gemini', GEMINI_MODEL_FALLBACK);
-            console.info(`${tag} ↳ gemini[${GEMINI_MODEL_FALLBACK}]+search → ${r.signals.length} signals, ${r.sources.length} sources`);
-            return { scout, signals: r.signals, sources: r.sources, error: false, provider: 'gemini-fb' };
-          } catch (e2) {
-            console.warn(`${tag} ✗ gemini fallback model+search:`, e2.message || e2);
-          }
+            console.info(`${tag} ↳ gemini[fb]+search → ${r.findings.length} findings, ${r.sources.length} sources`);
+            return ok(r, { provider: 'gemini-fb' });
+          } catch (e2) { console.warn(`${tag} ✗ gemini fb:`, e2.message || e2); }
         }
-        // 3: Gemini primary, no search (handles JSON-parse failures from search mode)
-        try {
-          const r = await runScoutOnce(keyword, scout, sig, false, entities, 'gemini');
-          console.info(`${tag} ⚠ gemini no-search salvaged → ${r.signals.length} signals`);
-          return { scout, signals: r.signals, sources: r.sources, error: false, degraded: true, provider: 'gemini' };
-        } catch (e3) {
-          console.warn(`${tag} ✗ gemini no-search:`, e3.message || e3);
-        }
-        // 4: last resort — Claude, no search (domain knowledge only)
+        // 3: Claude no-search rescue (domain knowledge, no live sources)
         try {
           const r = await runScoutOnce(keyword, scout, sig, false, entities, 'claude');
-          console.info(`${tag} ⚠ claude no-search rescue → ${r.signals.length} signals`);
-          return { scout, signals: r.signals, sources: r.sources, error: false, degraded: true, provider: 'claude' };
+          console.info(`${tag} ⚠ claude no-search rescue → ${r.findings.length} findings`);
+          return ok(r, { degraded: true, provider: 'claude' });
         } catch (e4) {
           console.error(`${tag} ✗ all attempts failed → 連線失敗`);
-          return { scout, signals: [], sources: [], error: true };
+          return { scout, findings: [], sources: [], error: true };
         }
       }
     }
-    // Non-Gemini-primary path (or web search off): original simple flow
+    // Non-Gemini-primary path (or web search off)
     try {
       const r = await runScoutOnce(keyword, scout, sig, wantWeb, entities, primary);
-      console.info(`${tag} ✓ ${primary}${wantWeb ? '+search' : ''} → ${r.signals.length} signals, ${r.sources.length} sources`);
-      return { scout, signals: r.signals, sources: r.sources, error: false, provider: primary };
+      console.info(`${tag} ✓ ${primary}${wantWeb ? '+search' : ''} → ${r.findings.length} findings, ${r.sources.length} sources`);
+      return ok(r, { provider: primary, degraded: !wantWeb });
     } catch (e1) {
-      console.warn(`${tag} ✗ ${primary} attempt:`, e1.message || e1);
+      console.warn(`${tag} ✗ ${primary}:`, e1.message || e1);
       if (wantWeb) {
         try {
           const r = await runScoutOnce(keyword, scout, sig, false, entities, primary);
-          console.info(`${tag} ⚠ ${primary} no-search salvaged → ${r.signals.length} signals`);
-          return { scout, signals: r.signals, sources: r.sources, error: false, degraded: true, provider: primary };
-        } catch (e2) {
-          console.error(`${tag} ✗ all attempts failed → 連線失敗`);
-        }
+          return ok(r, { degraded: true, provider: primary });
+        } catch (e2) { console.error(`${tag} ✗ all failed`); }
       }
-      return { scout, signals: [], sources: [], error: true };
+      return { scout, findings: [], sources: [], error: true };
     }
   }
 
@@ -2170,7 +2150,7 @@ ${signalDigest(sig)}
       console.info('[solo-debug] running ONE scout only:', debugScout.name);
       onProgress && onProgress(debugScout.id, 'scanning');
       return runScout(keyword, debugScout, sig, entities).then((r) => {
-        onProgress && onProgress(debugScout.id, r.error ? 'error' : 'done', r.signals.length);
+        onProgress && onProgress(debugScout.id, r.error ? 'error' : 'done', r.findings.length);
         return [r];
       });
     }
@@ -2185,7 +2165,7 @@ ${signalDigest(sig)}
         if (i >= CONCURRENCY) await sleep(STAGGER_MS);
         onProgress && onProgress(scout.id, 'scanning');
         const r = await runScout(keyword, scout, sig, entities);
-        onProgress && onProgress(scout.id, r.error ? 'error' : 'done', r.signals.length);
+        onProgress && onProgress(scout.id, r.error ? 'error' : 'done', r.findings.length);
         results[i] = r;
       }
     }
@@ -2194,39 +2174,24 @@ ${signalDigest(sig)}
 
   /* ---------- synthesizer: scouts + data -> futures cone ---------- */
   function buildSynthPrompt(keyword, sig, scoutResults) {
-    const TIMING_TXT = { now: '正在發生', emerging: '萌芽中', distant: '尚遠' };
-    const MOM_TXT = { accelerating: '加速', steady: '持平', fading: '減弱' };
+    // Each scout = a grounded intel briefing (bullets) with its source domains.
     const scoutBlock = (scoutResults && scoutResults.length)
-      ? scoutResults.map((r) => r.signals.length
-          ? `【${r.scout.name}】\n` + r.signals.map((s) => {
-              const tags = [TIMING_TXT[s.timing], MOM_TXT[s.momentum]].filter(Boolean).join('·');
-              return `- (邊緣度 ${s.fringe}/100${tags ? '｜' + tags : ''}) ${s.signal}｜依據：${s.evidence}｜意涵：${s.soWhat}`;
-            }).join('\n')
-          : `【${r.scout.name}】（無顯著訊號）`).join('\n\n')
+      ? scoutResults.map((r) => {
+          if (!r.findings || !r.findings.length) return `【${r.scout.name}】（無發現）`;
+          const srcDomains = (r.sources || []).map((s) => hostOf(s.url)).filter(Boolean);
+          const srcNote = srcDomains.length ? `\n  來源：${[...new Set(srcDomains)].slice(0, 5).join('、')}` : (r.degraded ? '\n  （離線判讀，無即時來源）' : '');
+          return `【${r.scout.name}${r.degraded ? ' · 離線判讀' : ''}】\n` +
+                 r.findings.map((f) => `- ${f}`).join('\n') + srcNote;
+        }).join('\n\n')
       : '';
 
     return `關鍵詞：「${keyword}」
-${scoutBlock ? '\n【AI 偵察員蒐集到的邊緣訊號】\n' + scoutBlock + '\n' : ''}
+${scoutBlock ? '\n【AI 偵察員蒐集到的即時情報（含來源）】\n' + scoutBlock + '\n' : ''}
 【預測市場即時賠率 · Polymarket + Kalshi】
 ${marketBlock(sig)}
 
-【過去 3 天全球新聞 · GDELT】
+【近期全球新聞 · GDELT】
 ${newsBlock(sig)}
-
-【Hacker News 社群討論】
-${buzzBlock(sig)}
-
-【GitHub 開發動能】
-${githubBlock(sig)}
-
-【Stack Overflow 技術問答熱度】
-${stackBlock(sig)}
-
-【Bluesky 社群即時聲量】
-${blueskyBlock(sig)}
-
-【Reddit 社群討論】
-${redditBlock(sig)}
 
 【Wikipedia 關注度趨勢】
 ${wikiBlock(sig)}
@@ -2358,22 +2323,12 @@ ${wikiBlock(sig)}
   }
   function renderScoutFindings(scoutResults) {
     if (!el.scoutFindings) return;
-    const withSignals = (scoutResults || []).filter((r) => r.signals && r.signals.length);
-    if (!withSignals.length) { el.scoutFindings.hidden = true; return; }
-    el.scoutGrid.innerHTML = withSignals.map((r) => `
+    const withFindings = (scoutResults || []).filter((r) => r.findings && r.findings.length);
+    if (!withFindings.length) { el.scoutFindings.hidden = true; return; }
+    el.scoutGrid.innerHTML = withFindings.map((r) => `
       <div class="scout-card">
-        <p class="scout-card-head">${r.scout.emoji} ${escapeHtml(r.scout.name)}${r.degraded ? '<span class="scout-degraded" title="此探員未使用即時網路搜尋，改以共用資料與領域知識作答">離線判讀</span>' : ''}</p>
-        ${r.signals.map((s) => {
-          const f = Math.max(0, Math.min(100, Math.round(+s.fringe || 0)));
-          return `<div class="scout-signal">
-            <div class="scout-signal-txt">${escapeHtml(s.signal || '')}</div>
-            ${s.soWhat ? `<p class="scout-sowhat"><b>意涵</b> · ${escapeHtml(s.soWhat)}</p>` : ''}
-            <div class="fringe-meter">
-              <div class="fringe-track"><div class="fringe-fill" style="width:${f}%"></div></div>
-              <span class="fringe-num">邊緣度 ${f}</span>
-            </div>
-          </div>`;
-        }).join('')}
+        <p class="scout-card-head">${r.scout.emoji} ${escapeHtml(r.scout.name)}${r.degraded ? '<span class="scout-degraded" title="此探員未使用即時網路搜尋，改以領域知識作答">離線判讀</span>' : ''}</p>
+        ${r.findings.map((f) => `<div class="scout-signal"><div class="scout-signal-txt">${escapeHtml(f)}</div></div>`).join('')}
         ${scoutSourcesHTML(r.sources)}
       </div>`).join('');
     el.scoutFindings.hidden = false;
@@ -2383,7 +2338,7 @@ ${wikiBlock(sig)}
   const LIKE_LABEL = { probable: '最可能', plausible: '合理', possible: '有可能' };
 
   function render(data, sig, sources, scoutResults) {
-    const { markets, news, buzz, wiki } = sig;
+    const { markets, news, wiki } = sig;
     renderScoutFindings(scoutResults);
     resetDeepResearchPanel();
     el.resultTopic.textContent = (data.topic || '').toUpperCase() || 'FORESIGHT';
@@ -2440,15 +2395,9 @@ ${wikiBlock(sig)}
       el.newsCard.hidden = false;
     } else { el.newsCard.hidden = true; }
 
-    // Hacker News discussion
-    if (buzz.length) {
-      el.buzzList.innerHTML = buzz.map((b) => `
-        <a class="ev-item" href="${escapeAttr(b.url)}" target="_blank" rel="noopener">
-          <span class="ev-item-title">${escapeHtml(b.title)}</span>
-          <span class="ev-meta"><b>👍 ${b.points}</b> · 💬 ${b.comments} · ${relTime(b.date)}</span>
-        </a>`).join('');
-      el.buzzCard.hidden = false;
-    } else { el.buzzCard.hidden = true; }
+    // (Hacker News card retired — social/emerging signals now come from the
+    //  Gemini grounded scouts, shown in the scout findings section.)
+    if (el.buzzCard) el.buzzCard.hidden = true;
 
     // Wikipedia attention trend
     if (wiki) {
@@ -2703,19 +2652,18 @@ ${wikiBlock(sig)}
         initScoutBoard();
       }
 
-      const [pmMarkets, kalshiMarkets, news, buzz, github, stack, bluesky, reddit, wiki] = await Promise.all([
+      // Tier-1 hard quantified data only (real URLs, can't be replaced by
+      // search). Soft/social/emerging signals now come from the Gemini
+      // grounded scouts. Retired flaky direct sources: HN/GitHub/Stack/
+      // Bluesky/Reddit (Gemini grounded search covers these with citations).
+      const [pmMarkets, kalshiMarkets, news, wiki] = await Promise.all([
         fetchMarkets(keyword, entities),
         fetchKalshi(keyword, entities),
         fetchGdelt(keyword, entities),
-        fetchHN(keyword, entities),
-        fetchGitHub(keyword, entities),
-        fetchStackEx(keyword, entities),
-        fetchBluesky(keyword, entities),
-        fetchReddit(keyword, entities),
         fetchWikiTrend(keyword, entities),
       ]);
       const markets = mergeMarkets(pmMarkets, kalshiMarkets);
-      const sig = { markets, news, buzz, github, stack, bluesky, reddit, wiki };
+      const sig = { markets, news, wiki };
 
       if (deep) {
         el.status.textContent = '派出 AI 偵察員掃描邊緣訊號…';

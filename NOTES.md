@@ -5,6 +5,32 @@
 
 ---
 
+## 2026-06-01 · V2 重構 Stage 1：Gemini 搜集 + Claude 分析（核心架構轉向）
+
+**北極星（使用者定）**：找最新/最相關/emerging+strong 且**有來源**的信號 → 同一個分析引擎推演未來。
+**兩模式只差在「搜集」，分析完全相同。** 即時淺掃=快廣淺（近 7 天）；深度研究=慢廣深（大趨勢）。
+
+**根本轉向**：`responseSchema` 會**靜默禁用 Gemini grounding**（sources 永遠空）。所以拆乾淨：
+- **Gemini = 搜集器**（grounded search、**不上 schema** → 一定有 source URLs），回**條列 bullets + sources**（不要 JSON）。
+- **Claude = 分析器**（understandTopic + askOracle 綜合 → 未來錐 JSON）。低頻 → 不撞 429。
+
+**Stage 1 已改（這次）**：
+- `scoutPrompts`：改成「情報蒐集」prompt，要 3–5 條 bullet、**聚焦最近 7 天**、句末標來源；不再要 JSON/schema。
+- `runScoutOnce`：Gemini 無 schema grounded → `parseFindings()` 抽 bullets → 回 `{findings, sources}`。
+- `runScout`：回傳 `{scout, findings, sources, error, degraded, provider}`；fallback 鏈簡化
+  （gemini+search → gemini-fb model → claude no-search rescue）。
+- `buildSynthPrompt`：scoutBlock 改餵 findings + 各 scout 的來源網域；**退役** buzz/github/stack/bluesky/reddit 區塊。
+- `renderScoutFindings`：scout 卡片改顯示 bullets + 「探索來源」chips（不再有邊緣度 bar）。
+- `runPrediction`：Tier-1 只抓 Polymarket+Kalshi+GDELT+Wikipedia；**移除** HN/GitHub/Stack/Bluesky/Reddit 直連。
+- render：移除 HN(buzz) 卡片。
+- 死碼（無害、暫留）：`signalDigest`、`SCOUT_SCHEMA`、各退役 `*Block`、`fetchHN/GitHub/StackEx/Bluesky/Reddit`。
+
+**安全網**：`backup/pre-v2-refactor` @ `615e4d4`（遠端）。
+**Stage 2（未做）**：Google Trends 代理（量化搜尋熱度）+ 把 Deep Research 報告也餵進同一分析引擎。
+**未驗證**：沙箱無法測；需實機確認 Gemini 無 schema 是否真的回 grounding sources（理論上會）。
+
+---
+
 ## 2026-06-01 · 加「深度研究」按鈕（Gemini Deep Research Agent · 選項 B）
 
 **背景**：Gemini `generateContent` + `responseSchema` 會**靜默禁用 grounding**（gm keys=Array(0)），
