@@ -2629,6 +2629,8 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
     const total = getSoloDebug() ? 1 : activeScouts.length;
     f.textContent = `偵察員已回報 ${scoutsDone}/${total}` + (getSoloDebug() ? '（debug 模式）' : '');
   }
+  // varied "on the way" phrases so the 5 agents don't look identically parked
+  const SCOUT_DEPART = ['定位中', '前往訊號源', '整裝出發', '鎖定座標', '啟程中'];
   function initScoutBoard() {
     scoutsDone = 0;
     // In solo-debug mode, show only the one fixed-persona scout (DEFAULT_SCOUTS[0])
@@ -2638,7 +2640,7 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
       `<div class="pixie-cell" id="scout-${s.id}" style="animation-delay:${(i * 0.09).toFixed(2)}s">
          <div class="pixie-wrap">${creatureSVG('#CC785C')}</div>
          <div class="pixie-name">${s.emoji} ${escapeHtml(s.name)}</div>
-         <div class="pixie-status" id="scoutStatus-${s.id}">定位中<span class="loc-dots">···</span></div>
+         <div class="pixie-status" id="scoutStatus-${s.id}">${SCOUT_DEPART[i % SCOUT_DEPART.length]}<span class="loc-dots">···</span></div>
        </div>`).join('');
     el.scoutBoard.hidden = false;
     updateFootCount();
