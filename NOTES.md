@@ -5,10 +5,33 @@
 
 ---
 
-## 🪧 交接便條（給下一個 session 的你 — 2026-06-01 · 第二輪）
+## 🪧 交接便條（給下一個 session 的你 — 2026-06-01 · 第三輪）
 
-**一句話**:使用者實機驗證 Stage 1 → **失敗但找到真因**,已修四個 bug、push 到
-`claude/notes-handoff-review-UXYuR`,**再次等使用者實機驗證**(尤其 sources 有沒有真的回來)。
+**一句話**:修完 scout 四個 bug 後,又**把退役的 Reddit/Bluesky 重新接成 Tier-1 直連硬訊號、
+新增 Google Trends proxy**,三者都進 `sig` + `buildSynthPrompt`(分析師現在會吃到)+ 結果頁卡片。
+全部 push 到 `claude/notes-handoff-review-UXYuR`(PR #1),**等使用者實機驗證**。
+
+**這輪(訊號源)改了什麼**:
+- 使用者問「social signals(X/Threads/Reddit)、Google/TikTok trends 能加嗎?分析師有吃進全部嗎?」
+  → 查證:`buildSynthPrompt` 結構上**確實**把 scout findings + 4 個 Tier-1 源全餵給 askOracle(分析師沒漏),
+  但**輸入太薄**:grounding 壞 + Reddit/Bluesky/HN…全被 V2 退役沒接。X/Threads/TikTok 純前端拿不到(付費/門禁)。
+- 使用者選:**重接 Reddit + Bluesky + 加 Google Trends,直接動手**。
+- 做法:`runPrediction` 的抓取改 `Promise.allSettled`,加 `fetchReddit/fetchBluesky/fetchTrends`,
+  進 `sig.reddit/bluesky/trends`;`buildSynthPrompt` 加「社群即時聲量 Reddit/Bluesky」+「搜尋熱度 Google Trends」區塊;
+  結果頁加 `socialCard`(Reddit+Bluesky 合併、可點)+ `trendsCard`(sparkline)。`buzzCard`(HN)正式退場。
+- **Google Trends**:無官方 API + CORS,所以走**新的 `api/trends.js` proxy**(explore→multiline 二段 token flow,
+  伺服端做)。**只在有設代理時生效**(使用者已設 oracle-bice.vercel.app);push 後 Vercel 自動部署這支新 function。
+  ⚠️ 非官方端點、Google 會限流 → 失敗一律回 series:[] 優雅降級。Bluesky 免代理就 CORS-OK;Reddit 走既有 /api/reddit。
+- **X/Threads/TikTok**:純前端搆不到,沒做(X 用 Bluesky 替身)。
+
+**第二輪(scout bug)摘要**(仍待驗證):`jsonGuard`→`bulletGuard` 解除 JSON 強制(grounding 元兇)、
+findings 3–5→10–15、cap 6→20、maxTokens 1500→4096、GDELT 加 `sourcelang:eng`+關聯度過濾。
+
+**⏳ 下一個 session 第一件事:實機驗證(hard refresh + 深掃 + Gemini key + 確認代理已設)**:
+1. scout 卡片亂碼消失? Console `M sources > 0`? findings 變多?(第二輪的核心待驗點)
+2. 結果頁有沒有冒出 **社群卡(Reddit+Bluesky)**、**Google Trends sparkline**?GDELT 是英文相關?
+3. Console 有沒有 `/api/trends` 的成功回應(proxy 部署 + 非官方端點是否還通)?
+→ 若 Trends 一直空 = Google 擋了非官方端點 or proxy 沒部署成功,要看 Vercel function log。
 
 **實機看到的症狀(使用者截圖)**:① scout 卡片冒出亂碼 `"findings": [` ② sources 是德語肥皂劇番組表
 (rtl.de GZSZ/AWZ)根本讀不了 ③「主流前沿」只有 2 條,太少、沒 research rigor ④ Console:

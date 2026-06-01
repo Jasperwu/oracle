@@ -810,9 +810,13 @@ a.market-item:hover .market-go { opacity: 1; }
         <p class="ev-title">📰 過去 3 天新聞 · GDELT</p>
         <div class="ev-list" id="newsList"></div>
       </div>
-      <div class="ev-card" id="buzzCard" hidden>
-        <p class="ev-title">💬 社群討論 · Hacker News</p>
-        <div class="ev-list" id="buzzList"></div>
+      <div class="ev-card" id="socialCard" hidden>
+        <p class="ev-title">💬 社群即時聲量 · Reddit + Bluesky</p>
+        <div class="ev-list" id="socialList"></div>
+      </div>
+      <div class="ev-card" id="trendsCard" hidden>
+        <p class="ev-title">🔥 搜尋熱度 · Google Trends</p>
+        <div class="wiki-body" id="trendsBody"></div>
       </div>
       <div class="ev-card" id="wikiCard" hidden>
         <p class="ev-title">📈 關注度趨勢 · Wikipedia</p>
@@ -956,8 +960,10 @@ a.market-item:hover .market-go { opacity: 1; }
     scoutGrid: $('scoutGrid'),
     newsCard: $('newsCard'),
     newsList: $('newsList'),
-    buzzCard: $('buzzCard'),
-    buzzList: $('buzzList'),
+    socialCard: $('socialCard'),
+    socialList: $('socialList'),
+    trendsCard: $('trendsCard'),
+    trendsBody: $('trendsBody'),
     wikiCard: $('wikiCard'),
     wikiBody: $('wikiBody'),
     claudeSources: $('claudeSources'),
@@ -1473,6 +1479,33 @@ a.market-item:hover .market-go { opacity: 1; }
     } catch { return []; }
   }
 
+  /* ---------- Google Trends: search-interest curve (proxy-only) ----------
+     No official API + CORS-blocked, so this only works through the self-hosted
+     /api/trends proxy. Without a proxy it returns null and the oracle degrades
+     gracefully (Trends is a bonus quantified signal, not load-bearing). */
+  async function fetchTrends(keyword, entities = []) {
+    const base = proxied('/api/trends');
+    if (!base) return null; // browser-direct is impossible; needs the proxy
+    const tryOne = async (term) => {
+      try {
+        const res = await fetch(`${base}?q=${encodeURIComponent(term)}&time=${encodeURIComponent('today 3-m')}`);
+        if (!res.ok) return null;
+        const data = await res.json();
+        if (!data || !Array.isArray(data.series) || data.series.length < 6) return null;
+        const series = data.series;
+        const half = Math.floor(series.length / 2);
+        const recent = series.slice(half).reduce((a, b) => a + b, 0);
+        const prior = series.slice(0, half).reduce((a, b) => a + b, 0) || 1;
+        const change = Math.round(((recent - prior) / prior) * 100);
+        return { term, series, change, peak: Math.max(...series), latest: series[series.length - 1] };
+      } catch { return null; }
+    };
+    // try the raw keyword first; fall back to the most salient expanded entity
+    let t = await tryOne(keyword);
+    if (!t && entities[0] && entities[0].toLowerCase() !== keyword.toLowerCase()) t = await tryOne(entities[0]);
+    return t;
+  }
+
   /* ---------- Wikipedia: 30-day attention trend ---------- */
   function ymd(d) { return d.toISOString().slice(0, 10).replace(/-/g, ''); }
   async function wikiTitle(query) {
@@ -1555,6 +1588,12 @@ a.market-item:hover .market-go { opacity: 1; }
   function redditBlock(sig) {
     return sig.reddit && sig.reddit.length
       ? sig.reddit.map((r) => `- ${r.title}（${r.sub} · 💬${r.comments} ▲${r.score}）`).join('\n') : '（Reddit 無相關討論或無法存取）';
+  }
+  function trendsBlock(sig) {
+    if (!sig.trends) return '（無 Google Trends 搜尋熱度資料）';
+    const t = sig.trends;
+    const dir = t.change >= 10 ? '升溫' : t.change <= -10 ? '降溫' : '持平';
+    return `「${t.term}」過去 3 個月 Google 搜尋熱度（0–100 相對指數）近期相對前期${t.change >= 0 ? '上升' : '下降'} ${Math.abs(t.change)}%（${dir}），最新值 ${t.latest}、區間峰值 ${t.peak}。`;
   }
   function wikiBlock(sig) {
     return sig.wiki
@@ -2210,10 +2249,19 @@ ${marketBlock(sig)}
 【近期全球新聞 · GDELT】
 ${newsBlock(sig)}
 
+【社群即時聲量 · Reddit】
+${redditBlock(sig)}
+
+【社群即時聲量 · Bluesky】
+${blueskyBlock(sig)}
+
+【搜尋熱度 · Google Trends】
+${trendsBlock(sig)}
+
 【Wikipedia 關注度趨勢】
 ${wikiBlock(sig)}
 
-請以一位敏銳的 futurist 角色，整合上述各領域偵察員的訊號、預測市場機率、新聞事件、社群熱度與關注度趨勢${getWebSearch() ? '，並善用 web search 查證或補充最新發展' : ''}，推演這個主題在未來 18 個月如何展開。
+請以一位敏銳的 futurist 角色，整合上述各領域偵察員的訊號、預測市場機率、新聞事件、社群即時聲量（Reddit/Bluesky）、搜尋熱度與關注度趨勢${getWebSearch() ? '，並善用 web search 查證或補充最新發展' : ''}，推演這個主題在未來 18 個月如何展開。
 
 **第一原則：回答使用者真正想知道的事。**
 - 如果「${keyword}」是會「分出勝負/結果」的競技、選舉、比賽、排名（例如 World Cup、NBA Finals、Oscars、總統大選），那麼**情境主軸必須是「誰會贏、賽程怎麼演進、結果如何揭曉」**——把賠率/民調/陣容/戰績當成 drivers，把分組賽→淘汰賽→決賽/開票/頒獎當成 horizons。**不要把主軸偏移到地緣政治、經濟、文化、商業這些外緣議題**（這些只能在 wildcard 或 12-18 個月 horizon 提一筆，不能搶戲）。
@@ -2355,7 +2403,7 @@ ${wikiBlock(sig)}
   const LIKE_LABEL = { probable: '最可能', plausible: '合理', possible: '有可能' };
 
   function render(data, sig, sources, scoutResults) {
-    const { markets, news, wiki } = sig;
+    const { markets, news, wiki, reddit, bluesky, trends } = sig;
     renderScoutFindings(scoutResults);
     resetDeepResearchPanel();
     el.resultTopic.textContent = (data.topic || '').toUpperCase() || 'FORESIGHT';
@@ -2412,9 +2460,42 @@ ${wikiBlock(sig)}
       el.newsCard.hidden = false;
     } else { el.newsCard.hidden = true; }
 
-    // (Hacker News card retired — social/emerging signals now come from the
-    //  Gemini grounded scouts, shown in the scout findings section.)
-    if (el.buzzCard) el.buzzCard.hidden = true;
+    // Social signals: Reddit + Bluesky, most-engaged first, clickable.
+    const social = [
+      ...(reddit || []).map((r) => ({
+        title: r.title, url: r.url,
+        meta: `${r.sub ? r.sub + ' · ' : ''}💬${r.comments} ▲${r.score}`,
+        date: r.date, eng: r.comments + r.score,
+      })),
+      ...(bluesky || []).map((b) => ({
+        title: b.title, url: b.url,
+        meta: `Bluesky · ♥${b.likes} 🔁${b.reposts}`,
+        date: b.date, eng: b.likes + b.reposts,
+      })),
+    ].filter((s) => s.title).sort((a, b) => b.eng - a.eng).slice(0, 8);
+    if (social.length && el.socialCard) {
+      el.socialList.innerHTML = social.map((s) => {
+        const tag = s.url ? 'a' : 'div';
+        const attrs = s.url ? ` href="${escapeAttr(s.url)}" target="_blank" rel="noopener"` : '';
+        return `<${tag} class="ev-item"${attrs}>
+          <span class="ev-item-title">${escapeHtml(s.title)}</span>
+          <span class="ev-meta">${escapeHtml(s.meta)}${s.date ? ' · ' + relTime(s.date) : ''}</span>
+        </${tag}>`;
+      }).join('');
+      el.socialCard.hidden = false;
+    } else if (el.socialCard) { el.socialCard.hidden = true; }
+
+    // Google Trends search-interest curve (sparkline + recent change)
+    if (trends && el.trendsCard) {
+      const cls = trends.change >= 10 ? 'wiki-trend-up' : trends.change <= -10 ? 'wiki-trend-down' : 'wiki-trend-flat';
+      const sign = trends.change >= 0 ? '▲ +' : '▼ ';
+      el.trendsBody.innerHTML = `
+        <div class="wiki-headline"><b>${trends.latest}</b> / 100 最新搜尋熱度（近 3 個月）</div>
+        <div class="${cls}">${sign}${Math.abs(trends.change)}% 近期搜尋熱度</div>
+        ${sparkline(trends.series)}
+        <a class="ev-meta" href="https://trends.google.com/trends/explore?q=${encodeURIComponent(trends.term)}&date=today%203-m" target="_blank" rel="noopener">${escapeHtml(trends.term)} on Google Trends →</a>`;
+      el.trendsCard.hidden = false;
+    } else if (el.trendsCard) { el.trendsCard.hidden = true; }
 
     // Wikipedia attention trend
     if (wiki) {
@@ -2669,18 +2750,31 @@ ${wikiBlock(sig)}
         initScoutBoard();
       }
 
-      // Tier-1 hard quantified data only (real URLs, can't be replaced by
-      // search). Soft/social/emerging signals now come from the Gemini
-      // grounded scouts. Retired flaky direct sources: HN/GitHub/Stack/
-      // Bluesky/Reddit (Gemini grounded search covers these with citations).
-      const [pmMarkets, kalshiMarkets, news, wiki] = await Promise.all([
+      // Tier-1 hard quantified data + direct social/trend signals (real,
+      // clickable URLs that don't depend on Gemini grounding). Reddit/Bluesky
+      // give live community voice; Google Trends gives a quantified search-
+      // interest curve. All feed the same synthesis engine. (Gemini grounded
+      // scouts still add their own cited findings on top.) allSettled so one
+      // flaky source can't sink the whole batch.
+      const settled = await Promise.allSettled([
         fetchMarkets(keyword, entities),
         fetchKalshi(keyword, entities),
         fetchGdelt(keyword, entities),
         fetchWikiTrend(keyword, entities),
+        fetchReddit(keyword, entities),
+        fetchBluesky(keyword, entities),
+        fetchTrends(keyword, entities),
       ]);
-      const markets = mergeMarkets(pmMarkets, kalshiMarkets);
-      const sig = { markets, news, wiki };
+      const val = (i, fallback) => (settled[i].status === 'fulfilled' ? settled[i].value : fallback);
+      const markets = mergeMarkets(val(0, []), val(1, []));
+      const sig = {
+        markets,
+        news: val(2, []),
+        wiki: val(3, null),
+        reddit: val(4, []),
+        bluesky: val(5, []),
+        trends: val(6, null),
+      };
 
       if (deep) {
         el.status.textContent = '派出 AI 偵察員掃描邊緣訊號…';
