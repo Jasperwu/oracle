@@ -1183,8 +1183,28 @@ a.market-item:hover .market-go { opacity: 1; }
   }
 
   /* ---------- GDELT: last 3 days of global news ---------- */
+  // Tiny localStorage cache helper — used to ride out upstream rate limits
+  // (GDELT 429) without losing the user-visible "where did this come from"
+  // citation cards. 15-min TTL is fine for 3-day news windows.
+  function cacheGet(key, ttlMs) {
+    try {
+      const raw = localStorage.getItem(key);
+      if (!raw) return null;
+      const { t, v } = JSON.parse(raw);
+      if (Date.now() - t > ttlMs) return null;
+      return v;
+    } catch { return null; }
+  }
+  function cacheSet(key, value) {
+    try { localStorage.setItem(key, JSON.stringify({ t: Date.now(), v: value })); } catch {}
+  }
+
   async function gdeltOnce(query) {
     const q = /\s/.test(query.trim()) ? `"${query.trim()}"` : query.trim();
+    const cacheKey = 'oracle_gdelt_' + q.toLowerCase();
+    const cached = cacheGet(cacheKey, 15 * 60 * 1000); // 15 min
+    if (cached) { console.info('[gdelt] using cached results for', q); return cached; }
+
     const qs = `query=${encodeURIComponent(q)}&mode=ArtList&timespan=3d` +
                `&sort=DateDesc&maxrecords=20&format=json`;
     // prefer self-hosted proxy (CORS-safe); fall back to direct (may fail)
@@ -1196,13 +1216,15 @@ a.market-item:hover .market-go { opacity: 1; }
       if (!text.trim().startsWith('{')) return []; // GDELT returns plain-text errors
       const data = JSON.parse(text);
       const seen = new Set();
-      return (data.articles || []).filter((a) => {
+      const out = (data.articles || []).filter((a) => {
         if (seen.has(a.title)) return false;
         seen.add(a.title);
         return true;
       }).slice(0, 8).map((a) => ({
         title: a.title, url: a.url, domain: a.domain, date: a.seendate,
       }));
+      if (out.length) cacheSet(cacheKey, out); // only cache successful results
+      return out;
     } catch { return []; }
   }
   async function fetchGdelt(keyword, entities = []) {
