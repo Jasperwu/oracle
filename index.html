@@ -1223,9 +1223,13 @@ a.market-item:hover .market-go { opacity: 1; }
       return { m, score: both, qOnly };
     })
     .filter((x) => !requireScore || (x.qOnly >= 5 && x.score >= 10))
-    .sort((a, b) => (b.score - a.score) || (Number(b.m.volumeNum || b.m.volume || 0) - Number(a.m.volumeNum || a.m.volume || 0)))
+    .map((x) => ({ ...x, n: normalizePolymarket(x.m) }))
+    // For a championship event every "Will X win?" outcome ties on relevance, so
+    // tie-break by probability (desc) → the favourites surface instead of a wall
+    // of 0% long-shots; volume only as a final tie-break.
+    .sort((a, b) => (b.score - a.score) || ((b.n.prob || 0) - (a.n.prob || 0)) || (Number(b.m.volumeNum || b.m.volume || 0) - Number(a.m.volumeNum || a.m.volume || 0)))
     .slice(0, 8);
-    return scored.map(({ m }) => normalizePolymarket(m));
+    return scored.map(({ n }) => n);
   }
 
   async function fetchMarkets(keyword, entities = []) {
@@ -1276,22 +1280,24 @@ a.market-item:hover .market-go { opacity: 1; }
         const s = String(t || '');
         return s.length > 110 || (s.match(/,/g) || []).length >= 3 || /\byes .+,\s*yes /i.test(s);
       };
+      const centsOf = (m) => (typeof m.last_price === 'number' && m.last_price > 0) ? m.last_price
+        : (typeof m.yes_bid === 'number' && typeof m.yes_ask === 'number') ? (m.yes_bid + m.yes_ask) / 2
+        : (typeof m.yes_bid === 'number') ? m.yes_bid : null;
       const scored = list.filter((m) => m.title && !isCombo(m.title)).map((m) => {
         const secondary = `${m.yes_sub_title || ''} ${m.subtitle || ''} ${m.category || ''}`;
         const qOnly = maxRelevance(m.title, '', queries);
         const both = maxRelevance(m.title, secondary, queries);
-        return { m, score: both, qOnly };
+        return { m, score: both, qOnly, prob: centsOf(m) || 0 };
       })
       // same dual-threshold idea as Polymarket: the title itself must carry
       // signal so a category like "Politics" can't drag in unrelated markets.
       .filter((x) => x.qOnly >= 5 && x.score >= 10)
-      .sort((a, b) => (b.score - a.score) || (Number(b.m.volume || 0) - Number(a.m.volume || 0)))
+      // favourites first (prob desc) so championship long-shots don't crowd out
+      .sort((a, b) => (b.score - a.score) || (b.prob - a.prob) || (Number(b.m.volume || 0) - Number(a.m.volume || 0)))
       .slice(0, 8);
 
       return scored.map(({ m }) => {
-        const cents = (typeof m.last_price === 'number' && m.last_price > 0) ? m.last_price
-          : (typeof m.yes_bid === 'number' && typeof m.yes_ask === 'number') ? (m.yes_bid + m.yes_ask) / 2
-          : (typeof m.yes_bid === 'number') ? m.yes_bid : null;
+        const cents = centsOf(m);
         return {
           question: m.title + (m.yes_sub_title ? ' — ' + m.yes_sub_title : ''),
           prob: cents != null ? cents / 100 : null,
@@ -2174,6 +2180,9 @@ ${digestText}
     // strip any stray JSON scaffolding that slipped through (e.g. a literal
     // `"findings": [` line) so it never renders as a fake finding
     bullets = bullets.filter((b) => !/^["']?\s*(findings|signals)\s*"?\s*:/i.test(b) && b !== '[' && b !== ']' && b !== '{' && b !== '}');
+    // drop a likely-truncated trailing fragment (output hit the token limit
+    // mid-bullet, e.g. "金州勇士隊在")
+    if (bullets.length > 1 && bullets[bullets.length - 1].length < 12) bullets.pop();
     return bullets.slice(0, 20);
   }
 
@@ -2387,12 +2396,14 @@ ${wikiBlock(sig)}
           ? `主題：「${keyword}」\n請搜尋並閱讀社群討論（優先 Reddit 相關 subreddit 的討論串與留言，其次論壇、X），回報 8–15 條「社群在討論什麼、主流情緒、值得注意的觀點」。${fmtRule}`
           : `研究主題「${keyword}」的這個面向：「${q}」\n請搜尋並回報 12–20 條最相關、最新、有來源的發現。${fmtRule}`;
         const { text, sources } = await callClaude(isSocial ? sysSocial : sysGeneral, prompt,
-          { webSearch: true, maxTokens: 2600, maxUses: 5 });
-        // pair each bullet with its url; backfill missing urls from the call's citations
+          { webSearch: true, maxTokens: 3500, maxUses: 5 });
+        // pair each bullet with its url; backfill missing urls by cycling through
+        // this call's citations (same search → these ARE its sources) so no
+        // finding is left source-less.
         const paired = parseFindingsWithUrls(text);
         const cites = (sources || []).map((s) => s.url).filter(Boolean);
         let ci = 0;
-        paired.forEach((p) => { if (!p.url && ci < cites.length) p.url = cites[ci++]; });
+        if (cites.length) paired.forEach((p) => { if (!p.url) p.url = cites[ci++ % cites.length]; });
         return { items: paired, sources: sources || [] };
       } catch (e) { console.warn('[gatherWebMulti] query failed:', q, e.message || e); return { items: [], sources: [] }; }
     };
@@ -2496,6 +2507,13 @@ ${wikiBlock(sig)}
     if (!chips.length) return '';
     return `<div class="scout-sources"><span class="scout-sources-label">探索來源</span>${chips.join('')}</div>`;
   }
+  // Drop the internal "(#3、#10)" reference markers from the visible text — they
+  // map to digest items the reader can't see; the real links are the source
+  // chips below. Mapping #N -> url already happened in runScoutOnce.
+  const stripRefs = (s) => String(s || '')
+    .replace(/[（(]\s*#?\d+(?:\s*[、,，]\s*#?\d+)*\s*[)）]/g, '')
+    .replace(/\s*#\d+/g, '')
+    .replace(/\s{2,}/g, ' ').trim();
   function renderScoutFindings(scoutResults) {
     if (!el.scoutFindings) return;
     const withFindings = (scoutResults || []).filter((r) => r.findings && r.findings.length);
@@ -2503,7 +2521,7 @@ ${wikiBlock(sig)}
     el.scoutGrid.innerHTML = withFindings.map((r) => `
       <div class="scout-card">
         <p class="scout-card-head">${r.scout.emoji} ${escapeHtml(r.scout.name)}${r.degraded ? '<span class="scout-degraded" title="此探員未使用即時網路搜尋，改以領域知識作答">離線判讀</span>' : ''}</p>
-        ${r.findings.map((f) => `<div class="scout-signal"><div class="scout-signal-txt">${escapeHtml(f)}</div></div>`).join('')}
+        ${r.findings.map((f) => stripRefs(f)).filter((f) => f.length > 6).map((f) => `<div class="scout-signal"><div class="scout-signal-txt">${escapeHtml(f)}</div></div>`).join('')}
         ${scoutSourcesHTML(r.sources)}
       </div>`).join('');
     el.scoutFindings.hidden = false;

@@ -5,6 +5,24 @@
 
 ---
 
+## 🪧 交接便條（給下一個 session 的你 — 2026-06-01 · 第十輪 / World Cup 實測修五點）
+
+實測 "2026 FIFA World Cup"(scout 9/8/10 條、逆勢 12 sources,有起來了)。修:
+1. **預測市場顯示一堆 0% 冷門隊**(烏茲別克/紐西蘭…)而非熱門 → `rankPolymarket`/`fetchKalshi` 排序加
+   **prob desc tiebreak**(同 relevance 時熱門優先)。championship outcome 市場不再被冷門洗版。
+2. **`(#27、#28)` 編號噪音**(讀者看不到、對不上)→ 新 `stripRefs()` 在 `renderScoutFindings` 把編號從
+   **顯示文字**拿掉(底部 source chips 仍在;#N→url 映射照舊在 runScoutOnce 做)。
+3. **敘事截斷**(「金州勇士隊在」)→ gather maxTokens 2600→3500、scout 3000;`parseFindings` 丟掉
+   <12 字的尾巴碎片;render 再濾 >6 字。
+4. **agent sources 不一致(有些 0)**→ `gatherWebMulti` backfill 改**循環**該次 citations(`ci++ % len`),
+   每條發現都拿得到真 url → scout #N 多半對得上。
+5. **Google Trends 還是沒出** → 多半是 Google 擋非官方 endpoint(serverless IP)。`[central]` log 會顯示
+   trends ✗。**無官方 API,難可靠修**;目前 best-effort 優雅降級。考慮之後拿掉或標「實驗性」。
+
+⚠️ 部署延遲:使用者常測到舊版。每次改完提醒 hard refresh + 看 console `[central]` / `[gatherWebMulti]` / `[deep-research]` log。
+
+---
+
 ## 🪧 交接便條（給下一個 session 的你 — 2026-06-01 · 第九輪 / 修四個實測 bug）
 
 **實測 "nba 2026 finals" 淺搜**(110 findings/47 sources 進來了),使用者回報 4 問題,逐一修:
