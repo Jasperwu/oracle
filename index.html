@@ -1776,7 +1776,15 @@ a.market-item:hover .market-go { opacity: 1; }
       throw new Error(`Gemini 回傳空內容（finishReason=${cand.finishReason || '?'}）`);
     }
     if (sources.length === 0 && webSearch) {
-      console.info('[Gemini] no grounding sources (search may have returned nothing). chunks=', chunks.length, 'gm keys=', Object.keys(gm));
+      // Dump the FULL grounding metadata + whether the model said it used the
+      // tool — lets us tell "tool silently disabled" vs "tool ran, no results"
+      // vs "different field shape than we expect".
+      console.warn('[Gemini] no grounding sources. webSearch=on');
+      console.warn('  groundingMetadata =', JSON.stringify(gm).slice(0, 800));
+      console.warn('  finishReason =', cand.finishReason);
+      console.warn('  full candidate keys =', Object.keys(cand));
+      console.warn('  did it run google_search tool? (look at content.parts) =',
+                    JSON.stringify(parts).slice(0, 400));
     }
     // dump first chars of every Gemini reply so we can see why JSON parse fails
     console.log('[Gemini raw reply preview]', text.slice(0, 600));
