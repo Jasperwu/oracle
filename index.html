@@ -770,6 +770,10 @@ a.market-item:hover .market-go { opacity: 1; }
       </label>
       <p class="modal-mini">留空＝預設 <span class="mono">gemini-flash-latest</span>（永遠跟最新）。要鎖版本可填 <span class="mono">gemini-3.5-flash</span> 等。</p>
 
+      <label class="key-row-label">自有後端 URL <span class="key-role">繞過 CORS · 可選</span></label>
+      <input id="proxyBaseInput" class="modal-input mono" type="text" placeholder="https://your-app.vercel.app" />
+      <p class="modal-mini">留空＝直接打第三方 API（GDELT/Kalshi/Reddit 可能被 CORS 擋）。填入你部署的 Vercel URL 即可走代理（穩定）。詳見 <span class="mono">DEPLOY.md</span>。</p>
+
       <label class="model-row">
         模型（綜合推演）
         <select id="modelSelect" class="model-select">
@@ -806,6 +810,7 @@ a.market-item:hover .market-go { opacity: 1; }
 
   const LS_KEY = 'oracle_api_key';            // Anthropic — used by askOracle (synthesis)
   const LS_GEMINI_KEY = 'oracle_gemini_key';  // Google AI Studio — used by scouts (gathering)
+  const LS_PROXY_BASE = 'oracle_proxy_base';  // optional own backend (Vercel) for CORS-restricted upstreams
   const LS_MODEL = 'oracle_model';
   const LS_WEBSEARCH = 'oracle_websearch';
   const LS_DEEPSCAN = 'oracle_deepscan';
@@ -867,6 +872,7 @@ a.market-item:hover .market-go { opacity: 1; }
     apiKeyInput: $('apiKeyInput'),
     geminiKeyInput: $('geminiKeyInput'),
     geminiModelInput: $('geminiModelInput'),
+    proxyBaseInput: $('proxyBaseInput'),
     modelSelect: $('modelSelect'),
     webSearchToggle: $('webSearchToggle'),
     deepScanToggle: $('deepScanToggle'),
@@ -877,14 +883,23 @@ a.market-item:hover .market-go { opacity: 1; }
   /* ---------- key storage ---------- */
   const getKey = () => localStorage.getItem(LS_KEY) || '';
   const getGeminiKey = () => localStorage.getItem(LS_GEMINI_KEY) || '';
+  // Optional self-hosted Vercel proxy. When set, GDELT/Kalshi/Reddit go through
+  // it (bypassing CORS); when empty, they hit the upstream directly (and may
+  // fail with CORS on some origins — graceful: empty arrays, oracle still runs).
+  const getProxyBase = () => (localStorage.getItem(LS_PROXY_BASE) || '').replace(/\/+$/, '');
+  const proxied = (path) => {
+    const base = getProxyBase();
+    return base ? `${base}${path}` : null;
+  };
   const getModel = () => localStorage.getItem(LS_MODEL) || 'claude-sonnet-4-6';
   const getWebSearch = () => localStorage.getItem(LS_WEBSEARCH) !== '0';
   const getDeepScan = () => localStorage.getItem(LS_DEEPSCAN) !== '0';
 
   function refreshByokNote() {
-    const a = !!getKey(), g = !!getGeminiKey();
+    const a = !!getKey(), g = !!getGeminiKey(), pb = !!getProxyBase();
+    const suffix = pb ? ' · 後端代理已啟用' : '';
     if (a && g) {
-      el.byokNote.textContent = '✓ Anthropic + Gemini 金鑰都已就緒（偵察員用 Gemini，綜合用 Claude）。可以開始預言。';
+      el.byokNote.textContent = `✓ Anthropic + Gemini 金鑰都已就緒（偵察員用 Gemini，綜合用 Claude）${suffix}。可以開始預言。`;
       el.byokNote.classList.add('ok');
     } else if (a) {
       el.byokNote.textContent = '⚠ 只有 Anthropic 金鑰 — 偵察員會 fallback 到 Claude（容易撞速率限制）。建議補上 Gemini 金鑰以分擔。';
@@ -903,6 +918,7 @@ a.market-item:hover .market-go { opacity: 1; }
     el.apiKeyInput.value = getKey();
     el.geminiKeyInput.value = getGeminiKey();
     el.geminiModelInput.value = localStorage.getItem('oracle_gemini_model') || '';
+    el.proxyBaseInput.value = localStorage.getItem(LS_PROXY_BASE) || '';
     el.modelSelect.value = getModel();
     el.webSearchToggle.checked = getWebSearch();
     el.deepScanToggle.checked = getDeepScan();
@@ -921,6 +937,8 @@ a.market-item:hover .market-go { opacity: 1; }
     if (gk) localStorage.setItem(LS_GEMINI_KEY, gk); else localStorage.removeItem(LS_GEMINI_KEY);
     const gm = el.geminiModelInput.value.trim();
     if (gm) localStorage.setItem('oracle_gemini_model', gm); else localStorage.removeItem('oracle_gemini_model');
+    const pb = el.proxyBaseInput.value.trim().replace(/\/+$/, '');
+    if (pb) localStorage.setItem(LS_PROXY_BASE, pb); else localStorage.removeItem(LS_PROXY_BASE);
     localStorage.setItem(LS_MODEL, el.modelSelect.value);
     localStorage.setItem(LS_WEBSEARCH, el.webSearchToggle.checked ? '1' : '0');
     localStorage.setItem(LS_DEEPSCAN, el.deepScanToggle.checked ? '1' : '0');
@@ -1093,14 +1111,16 @@ a.market-item:hover .market-go { opacity: 1; }
 
   /* ---------- Kalshi: regulated US prediction market ---------- */
   async function fetchKalshi(keyword, entities = []) {
-    // NOTE: pure-frontend access depends on Kalshi sending CORS headers.
-    // If blocked, this resolves to [] and the rest of the oracle is unaffected.
+    // Goes through self-hosted /api/kalshi proxy when configured (Kalshi's
+    // public API blocks browser-direct calls from many origins). Falls back
+    // to direct hit, which is graceful: empty list if blocked.
+    const kalshiBase = proxied('/api/kalshi') || KALSHI;
     try {
       // page through with the cursor so we don't miss relevant markets that
       // fall outside the first 1000 open markets.
       let list = [], cursor = '', pages = 0;
       do {
-        const res = await fetch(`${KALSHI}?status=open&limit=1000${cursor ? '&cursor=' + cursor : ''}`,
+        const res = await fetch(`${kalshiBase}?status=open&limit=1000${cursor ? '&cursor=' + cursor : ''}`,
                                 { headers: { Accept: 'application/json' } });
         if (!res.ok) break;
         const data = await res.json();
@@ -1154,8 +1174,10 @@ a.market-item:hover .market-go { opacity: 1; }
   /* ---------- GDELT: last 3 days of global news ---------- */
   async function gdeltOnce(query) {
     const q = /\s/.test(query.trim()) ? `"${query.trim()}"` : query.trim();
-    const url = `${GDELT}?query=${encodeURIComponent(q)}&mode=ArtList&timespan=3d` +
-                `&sort=DateDesc&maxrecords=20&format=json`;
+    const qs = `query=${encodeURIComponent(q)}&mode=ArtList&timespan=3d` +
+               `&sort=DateDesc&maxrecords=20&format=json`;
+    // prefer self-hosted proxy (CORS-safe); fall back to direct (may fail)
+    const url = proxied('/api/gdelt') ? `${proxied('/api/gdelt')}?${qs}` : `${GDELT}?${qs}`;
     try {
       const res = await fetch(url);
       if (!res.ok) return [];
@@ -1279,14 +1301,15 @@ a.market-item:hover .market-go { opacity: 1; }
   }
 
   /* ---------- Reddit: emerging discussion across subreddits ----------
-     Attempt A: pure-frontend hit on the public search.json. Reddit often
-     blocks browser-direct requests (CORS); if so this resolves to [] and the
-     rest of the oracle is unaffected. Sorted by "relevance" of recent posts. */
+     Uses self-hosted /api/reddit proxy when configured (Reddit blocks most
+     browser-direct requests by UA + CORS). Without a proxy this almost always
+     resolves to [] — graceful for the rest of the oracle. */
   async function fetchReddit(keyword, entities = []) {
     const queries = [keyword, ...entities];
     const q = keyword;
+    const base = proxied('/api/reddit') || REDDIT_SEARCH;
     try {
-      const res = await fetch(`${REDDIT_SEARCH}?q=${encodeURIComponent(q)}&sort=relevance&t=month&limit=20`,
+      const res = await fetch(`${base}?q=${encodeURIComponent(q)}&sort=relevance&t=month&limit=20`,
                               { headers: { Accept: 'application/json' } });
       if (!res.ok) return [];
       const data = await res.json();

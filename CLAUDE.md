@@ -87,9 +87,12 @@
   `fetchHN`(Hacker News)、`fetchGitHub`(開發動能)、`fetchStackEx`(Stack Overflow)、
   `fetchBluesky`(社群即時聲量,X 替代)、`fetchReddit`(subreddit 討論)、`fetchWikiTrend`(Wikipedia)。
   GitHub/Stack/Bluesky/Reddit(2026-05-29 加)是免費、免金鑰、CORS 友善的來源,只進分析、**結果頁尚無顯示卡片**。
-  ⚠️ `fetchReddit` 走純前端 `search.json`,Reddit **常擋瀏覽器直連**(CORS/限流),很可能回空——
-  失敗 graceful、不影響其他;若被擋,真正解法是後端代理。
-  ⚠️ Google Trends/X/TikTok 純前端拿不到(CORS+付費/門禁);後端代理列為未做的第二階段。
+  ⚠️ Google Trends/X/TikTok 純前端拿不到(CORS+付費/門禁)。
+- **後端代理(2026-06-01 加)**:`api/gdelt.js` / `api/kalshi.js` / `api/reddit.js` —— Vercel
+  serverless,解 GDELT/Kalshi/Reddit 的 CORS。前端 modal 加「自有後端 URL」欄位
+  (`LS_PROXY_BASE`、`getProxyBase()`、`proxied(path)` helper);三處 fetcher 有設代理就走代理,
+  沒設就走原本。`vercel.json` / `package.json` 已備好,部署指南見 `DEPLOY.md`。
+  Polymarket 不走代理(它本來就 CORS-OK)。
 - **Claude 呼叫**:`callClaude()` (L1200) → `runScout()` / `askOracle()`(綜合)。
 - **深掃探員 pop out**:`initScoutBoard` / `updateScout` / `creatureSVG`
   (pixel 角色,grid-of-rects SVG)。探員浮在原本的淺色 overlay 上(`.scout-board`,

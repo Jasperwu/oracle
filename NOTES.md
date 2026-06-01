@@ -5,6 +5,31 @@
 
 ---
 
+## 2026-06-01 · 後端代理:Vercel serverless 解 CORS（路線 1）
+
+**背景**:GDELT 過去穩定，最近被 CORS 擋（GDELT 服務端政策改變，跟 git 歷史比對證實
+程式碼從未動過）。Kalshi 同；Reddit 也擋。使用者拍板**路線 1**：自建後端代理。
+
+**架構（首次打破「純前端」原則）**:
+- `api/gdelt.js`、`api/kalshi.js`、`api/reddit.js` 三支 Vercel serverless function。
+  接收前端的 query string，從 server 端打第三方，回 CORS-open 的 JSON（含短快取）。
+- `vercel.json`（functions config，maxDuration 10s）+ `package.json`（type:module）。
+- 前端 modal 加「**自有後端 URL（可選）**」欄位 → `LS_PROXY_BASE` → `getProxyBase()` /
+  `proxied(path)` helper。
+- `gdeltOnce`、`fetchKalshi`、`fetchReddit` 三處改成：**有設代理就走代理，沒設就走原本**。
+  完全 backward-compatible，使用者不設也不會壞，只是 CORS 還會卡。
+- BYOK 狀態列尾加「· 後端代理已啟用」可視化提示。
+
+**部署**:寫了 `DEPLOY.md`（3 步驟：Vercel 用 GitHub 登入 → Import repo → 貼 URL 回設定）。
+
+**已知限制**:
+- Vercel 免費 tier 有 10s function timeout（vercel.json 已寫死保護）。
+- Reddit 我們依然要遵守它的 robots/UA 規範（UA 已設為 `foresight-oracle/1.0`）。
+- Polymarket 不走代理（它本來就 CORS-OK）。
+- 沙箱無法實測 serverless，需使用者部署後實機驗證。
+
+---
+
 ## 2026-05-30 · Gemini 整合 Phase 1:scout 用 Gemini、綜合用 Claude
 
 **目的**:解掉「離線判讀」根因——5 scout 並行 web search 撞 Anthropic 30k/min 429。
