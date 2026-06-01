@@ -407,6 +407,35 @@ html, body {
   white-space: nowrap;
 }
 .wildcard p { margin: 0; font-size: 15.5px; line-height: 1.5; }
+.wildcard .event-sources-label, .wildcard .src-chip { color: var(--clay-soft); border-color: rgba(240,238,230,.25); }
+
+/* beneath the forecast — tabbed insights (wildcard / depth / cross-impact) */
+.insights { max-width: 1040px; margin: 26px auto 0; width: 100%; }
+.insights-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+.insights-label { font-size: 12px; font-weight: 700; letter-spacing: 1.2px; color: var(--clay-deep); }
+.insights-tabs { display: flex; gap: 6px; }
+.ins-tab {
+  font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--ink-soft);
+  background: var(--paper); border: 1px solid var(--line); border-radius: 9px;
+  padding: 7px 13px; cursor: pointer; transition: background .15s, color .15s, border-color .15s;
+}
+.ins-tab:hover { border-color: var(--clay); }
+.ins-tab.active { background: var(--clay); border-color: var(--clay); color: #fff; }
+.ins-tab[hidden] { display: none; }
+.ins-panel .wildcard { margin: 0; }
+.ins-card {
+  max-width: 1040px; margin: 0 auto; width: 100%;
+  background: var(--paper); border: 1px solid var(--line); border-radius: 16px;
+  padding: 20px 24px; box-shadow: var(--shadow);
+}
+.ins-block + .ins-block { margin-top: 18px; padding-top: 16px; border-top: 1px dashed var(--line); }
+.ins-block-title { font-size: 12px; font-weight: 700; letter-spacing: 1px; color: var(--clay-deep); margin: 0 0 9px; }
+.ins-list { margin: 0; padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 11px; }
+.ins-list li { font-size: 14.5px; line-height: 1.6; color: var(--ink); }
+.ins-list li .event-sources { margin-top: 5px; }
+.ins-metaphor { font-family: var(--serif); font-size: 17px; line-height: 1.5; color: var(--ink); font-style: italic; }
+.ins-cross-pair { font-weight: 600; color: var(--clay-deep); }
+.ins-cross-type { font-size: 11px; font-weight: 700; color: #fff; background: var(--clay); border-radius: 5px; padding: 1px 7px; margin-left: 6px; vertical-align: middle; }
 
 /* ---------- Deep Research panel ---------- */
 /* futures studio (ideation) */
@@ -836,11 +865,25 @@ a.market-item:hover .market-go { opacity: 1; }
     <!-- horizon cards -->
     <div class="horizons" id="horizons"></div>
 
-    <!-- wildcard -->
-    <div class="wildcard" id="wildcardBox" hidden>
-      <span class="wildcard-tag">⚡ Wildcard</span>
-      <p id="wildcardText"></p>
-    </div>
+    <!-- Beneath the forecast: wildcard + deeper structure + cross-impacts (tabbed) -->
+    <section class="insights" id="insightsSection" hidden>
+      <div class="insights-head">
+        <span class="insights-label">🔎 深層洞察 · 這個預測底下的力量</span>
+        <div class="insights-tabs" id="insightsTabs">
+          <button class="ins-tab active" type="button" data-tab="wildcard">⚡ 黑天鵝</button>
+          <button class="ins-tab" type="button" data-tab="depth">🧊 深層結構</button>
+          <button class="ins-tab" type="button" data-tab="cross">🔗 交叉影響</button>
+        </div>
+      </div>
+      <div class="ins-panel" id="insWildcard">
+        <div class="wildcard" id="wildcardBox" hidden>
+          <span class="wildcard-tag">⚡ Wildcard</span>
+          <p id="wildcardText"></p>
+        </div>
+      </div>
+      <div class="ins-panel" id="insDepth" hidden></div>
+      <div class="ins-panel" id="insCross" hidden></div>
+    </section>
 
     <!-- Deep Research: optional, on-demand cited report (Gemini Deep Research Agent) -->
     <!-- Futures studio: pick a scenario tone → story + (topic-aware) ideation -->
@@ -1034,6 +1077,11 @@ a.market-item:hover .market-go { opacity: 1; }
     horizons: $('horizons'),
     wildcardBox: $('wildcardBox'),
     wildcardText: $('wildcardText'),
+    insightsSection: $('insightsSection'),
+    insightsTabs: $('insightsTabs'),
+    insWildcard: $('insWildcard'),
+    insDepth: $('insDepth'),
+    insCross: $('insCross'),
     marketSource: $('marketSource'),
     marketList: $('marketList'),
     cone: $('coneSvg'),
@@ -2441,7 +2489,13 @@ ${wikiBlock(sig)}
     { "range": "12–18 個月", "headline": "...", "events": [ ... ] }
   ],
   "wildcard": "一個低機率但高衝擊、且有跡可循的黑天鵝情境",
-  "wildcardSrc": ["W7"]
+  "wildcardSrc": ["W7"],
+  "depth": {
+    "systemicCauses": [{"text": "撐起表面訊號的結構性力量（經濟/技術/制度），2–4 條", "src": ["W2"]}],
+    "worldviews": ["檯面下在競爭的假設/典範/誰的利益，2–3 條"],
+    "metaphor": "一句點破底層的意象或隱喻"
+  },
+  "crossImpacts": [{"pair": "驅動A × 驅動B", "type": "加乘|張力|觸發", "note": "這兩股力量如何互相牽動", "src": ["W2","M1"]}]
 }
 
 **來源標註（src）是硬性要求**：每個 driver 和每個 event 都要附上 \`src\`——一個字串陣列，內容是你「實際依據」的編號證據池編號（例如 ["W3","M1"]）。只能用上面真的出現過的編號；引用了哪幾條資訊就標哪幾條，不要亂標、不要標不存在的編號。若某條真的找不到對應編號，給空陣列 [] —— 但你應盡量讓每條都至少有一個來源。
@@ -2456,7 +2510,11 @@ drivers 請給 4–6 條，每條都要**精簡(≤ 24 字)、像一個訊號標
 
 likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0–100 的整數。請確保 events 的 likelihood/fringe 與 rationale 所引用的證據一致——這是讓未來錐「點位真實反映證據」的關鍵。
 
-**wildcard（黑天鵝）方法論——不可隨意亂編**：它必須是「低機率但高衝擊、且有跡可循」的尾端風險，且要：①從上面資料裡某個**真實的弱訊號或結構性脆弱**外推而來（把依據的編號放進 \`wildcardSrc\` 陣列）；②講得出從現況到它發生的**合理因果機制**；③會實質改寫主題走向；④不與上面的 events 重複。不要寫憑空的隨機災難。`;
+**wildcard（黑天鵝）方法論——不可隨意亂編**：它必須是「低機率但高衝擊、且有跡可循」的尾端風險，且要：①從上面資料裡某個**真實的弱訊號或結構性脆弱**外推而來（把依據的編號放進 \`wildcardSrc\` 陣列）；②講得出從現況到它發生的**合理因果機制**；③會實質改寫主題走向；④不與上面的 events 重複。不要寫憑空的隨機災難。
+
+**depth（深層結構）**：超越「發生什麼」，挖「為什麼、誰的視角、底層故事」。\`systemicCauses\`＝撐起這些表面訊號的結構性力量（要附 src 編號、有憑據）；\`worldviews\`＝檯面下在競爭的假設/典範/利益（詮釋層，不必 src）；\`metaphor\`＝一句點破底層的意象（詮釋層）。緊扣本主題，不要套通用空話。
+
+**crossImpacts（交叉影響）**：挑 2–4 組「最重要」的驅動/事件之間的交互——\`type\` 是「加乘」(互相強化)、「張力」(互相抵銷/矛盾)、或「觸發」(A 達到臨界點會引爆 B)；\`note\` 說清楚機制；附 src。只挑真正關鍵、有資料支撐的交互，不要硬湊。`;
   }
 
   async function askOracle(keyword, sig, scoutResults, expert, deepReport = '') {
@@ -2465,7 +2523,7 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
       : '你是一位頂尖的未來學家（futurist），';
     const system = `${role}擅長把偵察員蒐集的邊緣訊號、預測市場數據與趨勢轉化為具體、可信、富洞察力的未來情境。請拿出該領域真正的專業判斷（懂門道、用對術語、抓對關鍵變數），語氣冷靜、精準、帶一點神諭的詩意。你的最終回覆必須「只」包含使用者要求的 JSON 物件，不要任何前後說明文字。`;
     const { text, sources } = await callClaude(system, buildSynthPrompt(keyword, sig, scoutResults, deepReport), {
-      webSearch: getWebSearch(), maxTokens: 4500, maxUses: 4,
+      webSearch: getWebSearch(), maxTokens: 5500, maxUses: 4,
     });
     return { result: extractJSON(text), sources };
   }
@@ -2659,6 +2717,19 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
     // wildcard stays a plain string; resolve its separate src array to sources
     const wtext = (data.wildcard && typeof data.wildcard === 'object') ? data.wildcard.text : data.wildcard;
     data._wildcardSources = wtext ? sourcesFor(data.wildcardSrc, String(wtext)) : [];
+    // depth: ground the systemic causes; cross-impacts: ground each interaction
+    if (data.depth && Array.isArray(data.depth.systemicCauses)) {
+      data.depth.systemicCauses = data.depth.systemicCauses.map((c) => {
+        const text = (c && typeof c === 'object') ? (c.text || '') : String(c || '');
+        const src = (c && typeof c === 'object') ? c.src : null;
+        return { text, _sources: sourcesFor(src, text) };
+      });
+    }
+    if (Array.isArray(data.crossImpacts)) {
+      data.crossImpacts.forEach((ci) => {
+        if (ci && typeof ci === 'object') ci._sources = sourcesFor(ci.src, (ci.pair || '') + ' ' + (ci.note || ''));
+      });
+    }
   }
   function eventSourcesHTML(sources) {
     if (!sources || !sources.length) return '';
@@ -2671,6 +2742,49 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
       if (chips.length >= 3) break;
     }
     return chips.length ? `<div class="event-sources"><span class="event-sources-label">依據</span>${chips.join('')}</div>` : '';
+  }
+  // "Beneath the forecast" — wildcard / depth(CLA) / cross-impact, in tabs.
+  function showInsightTab(tab) {
+    if (!el.insightsTabs) return;
+    el.insightsTabs.querySelectorAll('.ins-tab').forEach((b) => b.classList.toggle('active', b.dataset.tab === tab));
+    const panels = { wildcard: el.insWildcard, depth: el.insDepth, cross: el.insCross };
+    Object.entries(panels).forEach(([k, p]) => { if (p) p.hidden = (k !== tab); });
+  }
+  function renderInsights(data) {
+    if (!el.insightsSection) return;
+    const esc = (s) => escapeHtml(stripCites(String(s || '')));
+    // wildcard
+    const wtext = (data.wildcard && typeof data.wildcard === 'object') ? data.wildcard.text : data.wildcard;
+    const hasWild = !!wtext;
+    if (hasWild) {
+      el.wildcardText.innerHTML = esc(wtext) + eventSourcesHTML(data._wildcardSources || []);
+      el.wildcardBox.hidden = false;
+    } else { el.wildcardBox.hidden = true; }
+    // depth (CLA)
+    const dp = data.depth || {};
+    const causes = Array.isArray(dp.systemicCauses) ? dp.systemicCauses : [];
+    const wvs = Array.isArray(dp.worldviews) ? dp.worldviews : [];
+    const hasDepth = !!(causes.length || wvs.length || dp.metaphor);
+    el.insDepth.innerHTML = hasDepth ? `<div class="ins-card">
+      ${causes.length ? `<div class="ins-block"><p class="ins-block-title">系統成因</p><ul class="ins-list">${causes.map((c) => `<li>${esc(c.text)}${eventSourcesHTML(c._sources || [])}</li>`).join('')}</ul></div>` : ''}
+      ${wvs.length ? `<div class="ins-block"><p class="ins-block-title">世界觀 · 檯面下的視角</p><ul class="ins-list">${wvs.map((w) => `<li>${esc(w)}</li>`).join('')}</ul></div>` : ''}
+      ${dp.metaphor ? `<div class="ins-block"><p class="ins-block-title">底層隱喻</p><p class="ins-metaphor">「${esc(dp.metaphor)}」</p></div>` : ''}
+    </div>` : '';
+    // cross-impacts
+    const cis = Array.isArray(data.crossImpacts) ? data.crossImpacts : [];
+    const hasCross = !!cis.length;
+    el.insCross.innerHTML = hasCross ? `<div class="ins-card"><ul class="ins-list">${cis.map((ci) => `<li><span class="ins-cross-pair">${esc(ci.pair)}</span>${ci.type ? `<span class="ins-cross-type">${esc(ci.type)}</span>` : ''}<div>${esc(ci.note)}</div>${eventSourcesHTML(ci._sources || [])}</li>`).join('')}</ul></div>` : '';
+    // tab visibility + default to the first non-empty
+    const avail = { wildcard: hasWild, depth: hasDepth, cross: hasCross };
+    let anyTab = false, firstTab = null;
+    el.insightsTabs.querySelectorAll('.ins-tab').forEach((b) => {
+      const ok = !!avail[b.dataset.tab];
+      b.hidden = !ok;
+      if (ok && !firstTab) firstTab = b.dataset.tab;
+      if (ok) anyTab = true;
+    });
+    el.insightsSection.hidden = !anyTab;
+    if (anyTab) showInsightTab(firstTab);
   }
   function scoutSourcesHTML(sources) {
     if (!sources || !sources.length) return '';
@@ -2774,12 +2888,8 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
     plotCone(data);
     animateConeGrow();
 
-    // wildcard (normalised to {text,_sources} by attachEventSources)
-    const wtext = (data.wildcard && typeof data.wildcard === 'object') ? data.wildcard.text : data.wildcard;
-    if (wtext) {
-      el.wildcardText.innerHTML = escapeHtml(stripCites(String(wtext))) + eventSourcesHTML(data._wildcardSources || []);
-      el.wildcardBox.hidden = false;
-    } else { el.wildcardBox.hidden = true; }
+    // beneath the forecast: wildcard + depth + cross-impacts (tabbed)
+    renderInsights(data);
 
     // cited sources (Claude web search, or Deep Research citations)
     if (sources && sources.length) {
@@ -3503,11 +3613,13 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
     const d = lastResult || {};
     const ev = (d.horizons || []).flatMap((h) => (h.events || []).map((e) => `（${h.range}）${e.title}${e.rationale ? '——' + e.rationale : ''}`)).slice(0, 12);
     const drivers = (d.drivers || []).map((x) => (x && typeof x === 'object' ? x.text : x)).filter(Boolean);
+    const causes = ((d.depth && d.depth.systemicCauses) || []).map((c) => (c && typeof c === 'object' ? c.text : c)).filter(Boolean);
     // a few raw, real findings so the scenario is built on actual evidence, not vibes
     const web = ((lastCtx && lastCtx.sig && lastCtx.sig.web) || []).slice(0, 10).map((it) => it.text).filter(Boolean);
     return [
       d.narrative ? `現況主敘事：${d.narrative}` : '',
       drivers.length ? `關鍵驅動：${drivers.join('；')}` : '',
+      causes.length ? `系統成因：${causes.join('；')}` : '',
       ev.length ? `預測事件（含依據）：\n- ${ev.join('\n- ')}` : '',
       d.wildcard ? `已知黑天鵝：${(typeof d.wildcard === 'object' ? d.wildcard.text : d.wildcard) || ''}` : '', // tolerate either shape
       web.length ? `部分真實訊號（節錄）：\n- ${web.join('\n- ')}` : '',
@@ -3563,6 +3675,10 @@ ${fsContext()}
   if (el.fsTones) el.fsTones.addEventListener('click', (e) => {
     const btn = e.target.closest('.fs-tone');
     if (btn && btn.dataset.tone) generateFuturesStudio(btn.dataset.tone);
+  });
+  if (el.insightsTabs) el.insightsTabs.addEventListener('click', (e) => {
+    const b = e.target.closest('.ins-tab');
+    if (b && !b.hidden) showInsightTab(b.dataset.tab);
   });
 
   if (el.drStartBtn) el.drStartBtn.addEventListener('click', runDeepResearch);
