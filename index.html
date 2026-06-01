@@ -1303,13 +1303,16 @@ a.market-item:hover .market-go { opacity: 1; }
   }
 
   async function gdeltOnce(query) {
-    const q = /\s/.test(query.trim()) ? `"${query.trim()}"` : query.trim();
+    const phrase = /\s/.test(query.trim()) ? `"${query.trim()}"` : query.trim();
+    // constrain to English-language sources — GDELT全文比對會撈進大量無關的
+    // 外語文章（例:德語肥皂劇番組表本文剛好提到關鍵字),用 sourcelang 濾掉。
+    const q = `${phrase} sourcelang:eng`;
     const cacheKey = 'oracle_gdelt_' + q.toLowerCase();
     const cached = cacheGet(cacheKey, 15 * 60 * 1000); // 15 min
     if (cached) { console.info('[gdelt] using cached results for', q); return cached; }
 
     const qs = `query=${encodeURIComponent(q)}&mode=ArtList&timespan=3d` +
-               `&sort=DateDesc&maxrecords=20&format=json`;
+               `&sort=DateDesc&maxrecords=30&format=json`;
     // prefer self-hosted proxy (CORS-safe); fall back to direct (may fail)
     const url = proxied('/api/gdelt') ? `${proxied('/api/gdelt')}?${qs}` : `${GDELT}?${qs}`;
     try {
@@ -1323,7 +1326,7 @@ a.market-item:hover .market-go { opacity: 1; }
         if (seen.has(a.title)) return false;
         seen.add(a.title);
         return true;
-      }).slice(0, 8).map((a) => ({
+      }).slice(0, 25).map((a) => ({
         title: a.title, url: a.url, domain: a.domain, date: a.seendate,
       }));
       if (out.length) cacheSet(cacheKey, out); // only cache successful results
@@ -1336,7 +1339,12 @@ a.market-item:hover .market-go { opacity: 1; }
     if (!arts.length && entities[0] && entities[0].toLowerCase() !== keyword.toLowerCase()) {
       arts = await gdeltOnce(entities[0]);
     }
-    return arts;
+    // light relevance pass on the headline — GDELT phrase-matches the article
+    // body, so a tangential piece can slip in even after the language filter.
+    const queries = [keyword, ...entities];
+    const filtered = arts.filter((a) => maxRelevance(a.title || '', '', queries) >= 2);
+    // never let the filter wipe everything out (fall back to raw if it does)
+    return (filtered.length ? filtered : arts).slice(0, 8);
   }
 
   /* ---------- Hacker News: recent community discussion ---------- */
@@ -1800,13 +1808,17 @@ a.market-item:hover .market-go { opacity: 1; }
   async function callGemini(system, userContent, { webSearch = false, maxTokens = 1800, timeoutMs = 90000, modelOverride = null, responseSchema = null } = {}) {
     const key = getGeminiKey();
     if (!key) throw new Error('GEMINI_NO_KEY');
-    // Prompt-level guard against chain-of-thought leakage. Only needed when
-    // structured output (responseSchema) is NOT enforced.
-    const jsonGuard = (webSearch && !responseSchema)
-      ? '\n\n【輸出協議 — 嚴格遵守】\n• 你可能會有內部思考過程；**所有思考、推理、自我提醒、引用標記都必須完全省略**，不可寫進回覆。\n• 不要寫「Wait, I need to」「Let me think」「好的，讓我」「首先」這類自言自語。\n• 不要 markdown 程式碼框（```）、不要 <think> 標籤、不要前後解說。\n• 你的回覆從第一個字元開始就必須是 `{`，最後一個字元是 `}`。中間只能是有效 JSON。\n• 把推理放在心裡，直接寫結果。'
+    // Prompt-level guard against chain-of-thought leakage. CRITICAL: when we
+    // want grounded search (webSearch on, no schema) we must NOT force JSON —
+    // demanding "{...}" output makes Gemini skip the google_search tool and
+    // answer from memory (groundingMetadata comes back empty, 0 sources). So
+    // this guard suppresses thinking-leak but explicitly asks for BULLETS, not
+    // JSON, leaving the model free to actually search.
+    const bulletGuard = (webSearch && !responseSchema)
+      ? '\n\n【輸出協議 — 嚴格遵守】\n• 把所有內部思考、推理、自我提醒放在心裡，**一個字都不要寫進回覆**。\n• 不要寫「Wait」「Let me think」「好的，讓我」「首先我」這類自言自語、不要 <think> 標籤、不要前後解說。\n• **絕對不要輸出 JSON、不要大括號 {}、不要 markdown 程式碼框（```）、不要標題編號。**\n• 直接輸出條列:每一行以「- 」開頭,一行一條發現。除了這些條列之外不要有任何其他文字。'
       : '';
     const body = {
-      systemInstruction: { parts: [{ text: system + jsonGuard }] },
+      systemInstruction: { parts: [{ text: system + bulletGuard }] },
       contents: [{ role: 'user', parts: [{ text: userContent }] }],
       generationConfig: { temperature: 0.7, maxOutputTokens: maxTokens },
     };
@@ -2000,13 +2012,13 @@ scouts 陣列必須**剛好 5 個元素**（不可多、不可少），角度彼
     const qs = (scout.queries && scout.queries.length) ? scout.queries
       : [keyword, ...entities].slice(0, 3);
     const searchBlock = ws
-      ? `\n請主動用 Google Search 蒐集資料，優先執行以下查詢（可自行微調、補時效字詞）：\n${qs.map((q) => `- ${q}`).join('\n')}\n**聚焦最近 7 天內的最新發展**，越新越好；找不到才放寬。\n`
+      ? `\n請主動、**反覆**用 Google Search 蒐集資料：把下列查詢逐一跑過,並自行延伸出更多角度的查詢（不同子題、不同時間點、正反觀點、相關機構/人物/數據）：\n${qs.map((q) => `- ${q}`).join('\n')}\n**優先最近 7 天內的最新發展**,越新越好;同時也納入近 1–2 個月內仍在發酵的重大進展。**多搜幾輪、覆蓋多個面向**,不要只查一次就交差。\n`
       : '\n（目前未開啟即時搜尋，請以你的領域知識作答，並標明屬推測。）\n';
     const user = `主題：「${keyword}」${entities.length ? `\n相關實體：${entities.slice(0, 6).join('、')}` : ''}
 
 你這位探員的取向：${brief.task}
 ${scout.angle ? `特別關注：${scout.angle}\n` : ''}${searchBlock}
-請回報 3–5 條這個角度下「最相關、最新、有憑據」的發現。格式：每條一行、以「- 」開頭，先寫發現本身，必要時在句末用括號標注關鍵數據或來源媒體。不要寫前言或結語、不要 markdown 標題、不要編號，只要條列。`;
+請盡量**廣而扎實**地回報這個角度下「最相關、最新、有憑據」的發現,**至少 10–15 條**(資料夠多就更多)。要有研究的嚴謹度:每條都應對應到一則真實的搜尋結果,涵蓋不同子題與來源,不要把同一件事拆成多條湊數,也不要只給三五條就草草了事。\n格式：每條一行、以「- 」開頭,先寫發現本身,必要時在句末用括號標注關鍵數據或來源媒體。不要寫前言或結語、不要 markdown 標題、不要編號、不要 JSON,只要條列。`;
     return { system, user };
   }
 
@@ -2059,9 +2071,12 @@ ${scout.angle ? `特別關注：${scout.angle}\n` : ''}${searchBlock}
       .filter(Boolean);
     if (!bullets.length) {
       // no bullet markers — take substantive non-empty lines
-      bullets = lines.filter((l) => l.length > 8 && !/^[#>`]/.test(l)).slice(0, 5);
+      bullets = lines.filter((l) => l.length > 8 && !/^[#>`{}]/.test(l)).slice(0, 20);
     }
-    return bullets.slice(0, 6);
+    // strip any stray JSON scaffolding that slipped through (e.g. a literal
+    // `"findings": [` line) so it never renders as a fake finding
+    bullets = bullets.filter((b) => !/^["']?\s*(findings|signals)\s*"?\s*:/i.test(b) && b !== '[' && b !== ']' && b !== '{' && b !== '}');
+    return bullets.slice(0, 20);
   }
 
   async function runScoutOnce(keyword, scout, sig, ws, entities, provider, modelOverride) {
@@ -2069,9 +2084,11 @@ ${scout.angle ? `特別關注：${scout.angle}\n` : ''}${searchBlock}
     let text, sources;
     if (provider === 'gemini') {
       // NO responseSchema → grounding stays on → real source URLs come back.
-      ({ text, sources } = await callGemini(system, user, { webSearch: ws, maxTokens: 1500, modelOverride }));
+      // Roomy token budget: Gemini 3 thinking eats into the output budget, and
+      // we now ask for 10–15+ grounded bullets, so 1500 starved it down to ~2.
+      ({ text, sources } = await callGemini(system, user, { webSearch: ws, maxTokens: 4096, modelOverride }));
     } else {
-      ({ text, sources } = await callClaude(system, user, { webSearch: ws, maxTokens: 1500, maxUses: ws ? 3 : 0 }));
+      ({ text, sources } = await callClaude(system, user, { webSearch: ws, maxTokens: 4096, maxUses: ws ? 5 : 0 }));
     }
     const findings = parseFindings(text);
     if (!findings.length) throw new Error('沒有解析到任何發現');

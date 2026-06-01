@@ -5,7 +5,42 @@
 
 ---
 
-## 🪧 交接便條（給下一個 session 的你 — 2026-06-01）
+## 🪧 交接便條（給下一個 session 的你 — 2026-06-01 · 第二輪）
+
+**一句話**:使用者實機驗證 Stage 1 → **失敗但找到真因**,已修四個 bug、push 到
+`claude/notes-handoff-review-UXYuR`,**再次等使用者實機驗證**(尤其 sources 有沒有真的回來)。
+
+**實機看到的症狀(使用者截圖)**:① scout 卡片冒出亂碼 `"findings": [` ② sources 是德語肥皂劇番組表
+(rtl.de GZSZ/AWZ)根本讀不了 ③「主流前沿」只有 2 條,太少、沒 research rigor ④ Console:
+`groundingMetadata = {}` / `finishReason = STOP` / `0 sources`,raw reply 還是 `{"findings":[…]}`。
+
+**真因(已用程式碼裏實)**:
+- **0 sources 的元兇 = 我們自己用 prompt 把 grounding 殺了**。`callGemini` 的 `jsonGuard`
+  (原 L1805)在 `webSearch && !responseSchema`(=scout 採集)時硬塞「回覆必須是 `{`…`}` 的純 JSON」。
+  Gemini 被命令吐 JSON → 不呼叫 google_search、改用記憶直答 → groundingMetadata 空。V2 拆掉 schema 了,
+  但這把 **prompt 版的 JSON 強制**還留著,等於白拆。
+- **亂碼 `"findings": [` = 同一根因的副作用**。Gemini 折衷成 `{"findings":["- …"]}`,`parseFindings`
+  認不出被引號包住的 bullet → fallback 撈進 JSON 骨架當「發現」。
+- **德語 sources** = `gdeltOnce` 只做全文比對,**無語言/相關度過濾**(HN 有 maxRelevance,GDELT 沒有)。
+
+**這輪改了(index.html,4 處)**:
+1. `jsonGuard` → **`bulletGuard`**:webSearch 採集時**不再強制 JSON**,改要「只輸出 `- ` 開頭條列、
+   絕不要大括號/JSON」。這是讓 grounding 真正開火的關鍵改動。
+2. `scoutPrompts`:「3–5 條」→「**至少 10–15 條**、多搜幾輪、覆蓋多面向、要有研究嚴謹度」。
+3. `parseFindings` 上限 6→**20**,並濾掉殘留的 `"findings":` / 裸括號;scout `maxTokens` 1500→**4096**
+   (Gemini 3 thinking 會吃掉輸出預算,1500 把 findings 餓到只剩 2)。
+4. `gdeltOnce` 加 **`sourcelang:eng`** + `fetchGdelt` 加 `maxRelevance>=2` 過濾,內部抓量 8→25/30。
+
+**⏳ 下一個 session 第一件事:再請使用者實機驗證(hard refresh + 深掃 + Gemini key)**:
+1. scout 卡片**還有沒有亂碼**(`"findings": [`)→ 應該消失
+2. Console `✓ gemini+search → N findings, M sources` 的 **M 有沒有 > 0**(這是成敗關鍵)
+3. findings 是不是變多(10+)、GDELT 新聞是不是英文且相關
+→ **若 M 仍是 0** = 連不強制 JSON 都不 ground,那 gemini-3.5-flash 瀏覽器直連可能根本不回 grounding,
+  要改走別招(換 model / 改用 Deep Research 那條 / 或前端不靠 Gemini grounding 改靠 Claude web search)。
+
+---
+
+## 🪧 交接便條（給下一個 session 的你 — 2026-06-01 · 第一輪）
 
 **一句話**：剛完成 **V2 Stage 1 重構**（Gemini 搜集 + Claude 分析），已 push（`origin/main` = `0347b03`），
 **等使用者實機驗證**。使用者開新視窗是因為 context 快滿，工作本身沒中斷。
