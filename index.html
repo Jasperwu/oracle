@@ -1040,10 +1040,7 @@ a.market-item:hover .market-go { opacity: 1; }
   const KALSHI = 'https://api.elections.kalshi.com/trade-api/v2/markets';
   const GDELT = 'https://api.gdeltproject.org/api/v2/doc/doc';
   const HN = 'https://hn.algolia.com/api/v1/search_by_date';
-  const GITHUB_SEARCH = 'https://api.github.com/search/repositories';
-  const STACKEX_SEARCH = 'https://api.stackexchange.com/2.3/search/advanced';
   const BLUESKY_SEARCH = 'https://public.api.bsky.app/xrpc/app.bsky.feed.searchPosts';
-  const REDDIT_SEARCH = 'https://www.reddit.com/search.json';
   const WIKI_SEARCH = 'https://en.wikipedia.org/w/api.php';
   const WIKI_VIEWS = 'https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents';
   const ANTHROPIC = 'https://api.anthropic.com/v1/messages';
@@ -1551,41 +1548,6 @@ a.market-item:hover .market-go { opacity: 1; }
     return hits.filter((h) => maxRelevance(h.title, '', queries) >= 5).slice(0, 6);
   }
 
-  /* ---------- GitHub: developer/build momentum (CORS-ok, no key) ---------- */
-  async function fetchGitHub(keyword, entities = []) {
-    const q = entities[0] || keyword;
-    try {
-      const res = await fetch(`${GITHUB_SEARCH}?q=${encodeURIComponent(q)}&sort=stars&order=desc&per_page=6`,
-                              { headers: { Accept: 'application/vnd.github+json' } });
-      if (!res.ok) return [];
-      const data = await res.json();
-      return (data.items || []).filter((r) => r.full_name).slice(0, 6).map((r) => ({
-        title: r.full_name + (r.description ? ` — ${r.description}` : ''),
-        url: r.html_url,
-        stars: r.stargazers_count || 0,
-        date: r.pushed_at ? Date.parse(r.pushed_at) : 0,
-      }));
-    } catch { return []; }
-  }
-
-  /* ---------- Stack Exchange: technical Q&A heat (CORS-ok, no key) ------- */
-  async function fetchStackEx(keyword, entities = []) {
-    const q = keyword;
-    try {
-      const res = await fetch(`${STACKEX_SEARCH}?order=desc&sort=activity&q=${encodeURIComponent(q)}` +
-                              `&site=stackoverflow&pagesize=6&filter=default`);
-      if (!res.ok) return [];
-      const data = await res.json();
-      return (data.items || []).filter((it) => it.title).slice(0, 6).map((it) => ({
-        title: it.title.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>'),
-        url: it.link,
-        score: it.score || 0,
-        answers: it.answer_count || 0,
-        date: (it.last_activity_date || 0) * 1000,
-      }));
-    } catch { return []; }
-  }
-
   /* ---------- Bluesky: live social signal, an open X alternative -------- */
   async function fetchBluesky(keyword, entities = []) {
     const queries = [keyword, ...entities];
@@ -1606,35 +1568,6 @@ a.market-item:hover .market-go { opacity: 1; }
       // keep only posts actually about the topic, best-engaged first
       return posts.filter((p) => maxRelevance(p.title, '', queries) >= 5)
                   .sort((a, b) => (b.likes + b.reposts) - (a.likes + a.reposts))
-                  .slice(0, 6);
-    } catch { return []; }
-  }
-
-  /* ---------- Reddit: emerging discussion across subreddits ----------
-     Uses self-hosted /api/reddit proxy when configured (Reddit blocks most
-     browser-direct requests by UA + CORS). Without a proxy this almost always
-     resolves to [] — graceful for the rest of the oracle. */
-  async function fetchReddit(keyword, entities = []) {
-    const queries = [keyword, ...entities];
-    const q = keyword;
-    const base = proxied('/api/reddit') || REDDIT_SEARCH;
-    try {
-      const res = await fetch(`${base}?q=${encodeURIComponent(q)}&sort=relevance&t=month&limit=20`,
-                              { headers: { Accept: 'application/json' } });
-      if (!res.ok) return [];
-      const data = await res.json();
-      const children = (data && data.data && Array.isArray(data.data.children)) ? data.data.children : [];
-      const posts = children.map((c) => c.data).filter(Boolean).map((d) => ({
-        title: String(d.title || '').replace(/\s+/g, ' ').trim().slice(0, 180),
-        url: d.permalink ? `https://www.reddit.com${d.permalink}` : (d.url || null),
-        sub: d.subreddit_name_prefixed || (d.subreddit ? 'r/' + d.subreddit : ''),
-        score: d.score || 0,
-        comments: d.num_comments || 0,
-        date: d.created_utc ? d.created_utc * 1000 : 0,
-      })).filter((p) => p.title);
-      // keep on-topic posts, surface the most-discussed first
-      return posts.filter((p) => maxRelevance(p.title, p.sub, queries) >= 5)
-                  .sort((a, b) => (b.comments - a.comments) || (b.score - a.score))
                   .slice(0, 6);
     } catch { return []; }
   }
@@ -1719,36 +1652,6 @@ a.market-item:hover .market-go { opacity: 1; }
   }
 
   /* ---------- Claude: signal blocks shared by scouts + synthesizer ---------- */
-  function marketBlock(sig) {
-    return sig.markets.length
-      ? sig.markets.map((m) =>
-          `- [${m.source || '市場'}] "${m.question}" → ${m.outcome} ${m.prob != null ? Math.round(m.prob * 100) + '%' : 'n/a'}` +
-          ` (成交量 ${Math.round(m.volume).toLocaleString()}${m.endDate ? '，到期 ' + m.endDate.slice(0, 10) : ''})`
-        ).join('\n')
-      : '（無直接相關的預測市場）';
-  }
-  function newsBlock(sig) {
-    return sig.news.length ? sig.news.map((n) => `- ${n.title}（${n.domain}）`).join('\n') : '（過去 3 天 GDELT 無相關新聞）';
-  }
-  function buzzBlock(sig) {
-    return sig.buzz.length ? sig.buzz.map((b) => `- ${b.title}（👍${b.points} 💬${b.comments}）`).join('\n') : '（Hacker News 無近期相關討論）';
-  }
-  function githubBlock(sig) {
-    return sig.github && sig.github.length
-      ? sig.github.map((g) => `- ${g.title}（★${g.stars.toLocaleString()}）`).join('\n') : '（GitHub 無顯著相關專案）';
-  }
-  function stackBlock(sig) {
-    return sig.stack && sig.stack.length
-      ? sig.stack.map((s) => `- ${s.title}（評分 ${s.score} · ${s.answers} 回答）`).join('\n') : '（Stack Overflow 無相關技術討論）';
-  }
-  function blueskyBlock(sig) {
-    return sig.bluesky && sig.bluesky.length
-      ? sig.bluesky.map((b) => `- ${b.title}（♥${b.likes} 🔁${b.reposts}）`).join('\n') : '（Bluesky 無相關社群貼文）';
-  }
-  function redditBlock(sig) {
-    return sig.reddit && sig.reddit.length
-      ? sig.reddit.map((r) => `- ${r.title}（${r.sub} · 💬${r.comments} ▲${r.score}）`).join('\n') : '（Reddit 無相關討論或無法存取）';
-  }
   function trendsBlock(sig) {
     if (!sig.trends) return '（無 Google Trends 搜尋熱度資料）';
     const t = sig.trends;
@@ -2257,45 +2160,6 @@ ${digestText}
 格式：每條一行、以「- 」開頭。不要前言或結語、不要 markdown 標題、不要編號清單、不要 JSON。`;
     return { system, user };
   }
-
-  // One attempt at a scout. Returns {signals} on success, or throws.
-  // a scout call routes to Gemini when a Gemini key exists; falls back to
-  // Claude. Gemini's google_search grounding fills r.sources too.
-  // Fallback Gemini model — must also support google_search grounding so we
-  // don't lose the whole point of using Gemini for scouts. Use the dedicated
-  // preview line (rolling alias) so we can swap if needed.
-  const GEMINI_MODEL_FALLBACK = 'gemini-3-flash-preview';
-
-  // Gemini structured-output schema — forces "must be JSON of this shape" at
-  // the API layer (no more markdown, no more chain-of-thought leakage).
-  // Note: per Google docs, schema + google_search may be mutually exclusive;
-  // we try with grounding first and fall back to schema-only if rejected.
-  const SCOUT_SCHEMA = {
-    type: 'OBJECT',
-    properties: {
-      signals: {
-        type: 'ARRAY',
-        // Force at least 3 — without this Gemini hands back the bare minimum
-        // (1 item) to pass schema validation and ignores the prompt's "3-6".
-        minItems: 3,
-        maxItems: 6,
-        items: {
-          type: 'OBJECT',
-          properties: {
-            signal: { type: 'STRING' },
-            fringe: { type: 'INTEGER' },
-            timing: { type: 'STRING', enum: ['now', 'emerging', 'distant'] },
-            momentum: { type: 'STRING', enum: ['accelerating', 'steady', 'fading'] },
-            evidence: { type: 'STRING' },
-            soWhat: { type: 'STRING' },
-          },
-          // require all fields so we never get a stub signal with just title
-          required: ['signal', 'fringe', 'timing', 'momentum', 'evidence', 'soWhat'],
-        },
-      },
-    },
-    required: ['signals'],
-  };
 
   // Pull bullet findings out of free-form text (no JSON — robust). Accepts
   // lines starting with -, •, *, or numbered; falls back to non-empty lines.
