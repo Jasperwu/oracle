@@ -766,9 +766,9 @@ a.market-item:hover .market-go { opacity: 1; }
       <p class="modal-mini">到 <span class="mono">aistudio.google.com → Get API key</span> 取得 <span class="mono">AIzaSy…</span></p>
       <label class="model-row">
         Gemini 模型（偵察員）
-        <input id="geminiModelInput" class="modal-input mono" type="text" placeholder="gemini-flash-latest" />
+        <input id="geminiModelInput" class="modal-input mono" type="text" placeholder="gemini-3.5-flash" />
       </label>
-      <p class="modal-mini">留空＝預設 <span class="mono">gemini-flash-latest</span>（永遠跟最新）。要鎖版本可填 <span class="mono">gemini-3.5-flash</span> 等。</p>
+      <p class="modal-mini">留空＝預設 <span class="mono">gemini-3.5-flash</span>（最新 flash 系列）。要鎖別的版本可填 <span class="mono">gemini-flash-latest</span> / <span class="mono">gemini-3-flash-preview</span> 等。</p>
 
       <label class="key-row-label">自有後端 URL <span class="key-role">繞過 CORS · 可選</span></label>
       <input id="proxyBaseInput" class="modal-input mono" type="text" placeholder="https://your-app.vercel.app" />
@@ -828,7 +828,7 @@ a.market-item:hover .market-go { opacity: 1; }
   // Gemini 2.5 Flash — fast, generous free tier, supports google_search grounding
   // Default to the rolling "latest flash" alias so we don't break when Google
   // releases a new version. User can override via localStorage / Settings UI.
-  const GEMINI_MODEL_DEFAULT = 'gemini-flash-latest';
+  const GEMINI_MODEL_DEFAULT = 'gemini-3.5-flash';
   const getGeminiModel = () => localStorage.getItem('oracle_gemini_model') || GEMINI_MODEL_DEFAULT;
   const GEMINI_URL = (key) => `https://generativelanguage.googleapis.com/v1beta/models/${getGeminiModel()}:generateContent?key=${encodeURIComponent(key)}`;
 
@@ -1779,8 +1779,9 @@ ${signalDigest(sig)}
   // a scout call routes to Gemini when a Gemini key exists; falls back to
   // Claude. Gemini's google_search grounding fills r.sources too.
   // Fallback Gemini model — must also support google_search grounding so we
-  // don't lose the whole point of using Gemini for scouts.
-  const GEMINI_MODEL_FALLBACK = 'gemini-flash-lite-latest';
+  // don't lose the whole point of using Gemini for scouts. Use the dedicated
+  // preview line (rolling alias) so we can swap if needed.
+  const GEMINI_MODEL_FALLBACK = 'gemini-3-flash-preview';
 
   async function runScoutOnce(keyword, scout, sig, ws, entities, provider, modelOverride) {
     const { system, user } = scoutPrompts(keyword, scout, sig, ws, entities);
