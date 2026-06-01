@@ -10,6 +10,14 @@
 > ⏳ **最後一步(使用者定，先別做)**：整個 demo 網站最後會**全站英文化**(UI + prompts 的輸出語言)。
 > 在那之前一律維持繁體中文。**這是收尾才做的事**，不要提前動。
 
+> 🆕 **未來工作坊 (Futures Studio，2026-06-01 加)**：模式改成開頭就選後，結果頁的「啟動深度研究」CTA 退役
+> (深研面板只在深挖模式驅動;`resetDeepResearchPanel` 改成整塊隱藏、`runDeepResearch` 才 unhide)。
+> 原位置換成 `#futuresStudio` 發想工具:**三種情境調性按鈕(樂觀/中性/黑天鵝)** → 點一個 → 一次 Claude 呼叫
+> (`generateFuturesStudio`，用 `lastResult` 的 narrative/drivers/events/wildcard 當底) → 回 JSON
+> `{story, hmw[], provocations[], actions[]}`。**動態取捨**:story 一律有;hmw/provocations/actions 只在
+> 「可被設計/行動」的主題(科技/產品/商業/政策)才給,競技/賽事類只給 story(prompt 內建此判斷)。
+> `lastResult` 在 `renderForecast` 設定。這就是 CLAUDE.md 決策 #1「context-aware 行動設計」的落地。
+
 SpaceX IPO 測試品質明顯起來(主敘事扎實、市場對、cone 乾淨)。使用者問「點是不是隨便點/有沒有框架」。本輪:
 - **預測框架**(`buildSynthPrompt`):每個 event 的 rationale 必須點名真實證據(優先市場機率如「Polymarket 44%」/多來源);
   likelihood 依證據強度且要與對應市場機率一致;fringe 與佐證度成反比;emerging/edge 放遠 horizon 給高 fringe 但要有線索。

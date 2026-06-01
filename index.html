@@ -409,6 +409,35 @@ html, body {
 .wildcard p { margin: 0; font-size: 15.5px; line-height: 1.5; }
 
 /* ---------- Deep Research panel ---------- */
+/* futures studio (ideation) */
+.futures-studio {
+  max-width: 1040px; margin: 30px auto 0; width: 100%;
+  background: var(--paper); border: 1px solid var(--line);
+  border-radius: 16px; padding: 22px 22px 24px; box-shadow: var(--shadow);
+}
+.fs-title { font-family: var(--serif); font-size: 20px; font-weight: 600; margin: 0; }
+.fs-sub { font-size: 13.5px; color: var(--ink-soft); margin: 6px 0 16px; }
+.fs-tones { display: flex; flex-wrap: wrap; gap: 10px; }
+.fs-tone {
+  font-family: var(--sans); font-size: 14px; font-weight: 600; color: var(--ink);
+  background: var(--bg); border: 1px solid var(--line); border-radius: 11px;
+  padding: 10px 16px; cursor: pointer; transition: background .15s, border-color .15s, transform .1s;
+}
+.fs-tone:hover { border-color: var(--clay); background: rgba(204,120,92,.06); }
+.fs-tone:active { transform: scale(.98); }
+.fs-tone.active { background: var(--clay); border-color: var(--clay); color: #fff; }
+.fs-body { margin-top: 6px; }
+.fs-body:empty { margin-top: 0; }
+.fs-loading { display: flex; align-items: center; gap: 10px; color: var(--ink-soft); font-size: 14px; padding: 18px 0; }
+.fs-story { font-size: 15.5px; line-height: 1.85; color: var(--ink); margin: 18px 0 0; }
+.fs-story p { margin: 0 0 12px; }
+.fs-section { margin-top: 22px; padding-top: 18px; border-top: 1px dashed var(--line); }
+.fs-section-title { font-size: 12px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--clay-deep); margin: 0 0 10px; }
+.fs-list { margin: 0; padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.fs-list li { font-size: 14.5px; line-height: 1.55; color: var(--ink); padding-left: 18px; position: relative; }
+.fs-list li::before { content: "›"; position: absolute; left: 2px; color: var(--clay); font-weight: 700; }
+.fs-hmw li { font-weight: 500; }
+.fs-error { color: #b4471f; font-size: 13.5px; margin-top: 14px; }
 .deep-research { max-width: 1040px; margin: 26px auto 0; width: 100%; }
 .dr-cta {
   background: var(--paper); border: 1px solid var(--line); border-radius: 18px;
@@ -814,6 +843,18 @@ a.market-item:hover .market-go { opacity: 1; }
     </div>
 
     <!-- Deep Research: optional, on-demand cited report (Gemini Deep Research Agent) -->
+    <!-- Futures studio: pick a scenario tone → story + (topic-aware) ideation -->
+    <section class="futures-studio" id="futuresStudio" hidden>
+      <p class="fs-title">🔮 未來工作坊</p>
+      <p class="fs-sub">選一種未來的走法，生成情境故事，帶團隊一起發想。</p>
+      <div class="fs-tones" id="fsTones">
+        <button class="fs-tone" type="button" data-tone="optimistic">🌅 樂觀 · 一切順利</button>
+        <button class="fs-tone" type="button" data-tone="neutral">⚖️ 中性 · 最可能</button>
+        <button class="fs-tone" type="button" data-tone="wild">🦢 黑天鵝 · 劇烈轉折</button>
+      </div>
+      <div class="fs-body" id="fsBody"></div>
+    </section>
+
     <div class="deep-research" id="deepResearch">
       <div class="dr-cta" id="drCta">
         <div class="dr-cta-text">
@@ -1011,6 +1052,9 @@ a.market-item:hover .market-go { opacity: 1; }
     claudeSources: $('claudeSources'),
     // deep research
     deepResearch: $('deepResearch'),
+    futuresStudio: $('futuresStudio'),
+    fsTones: $('fsTones'),
+    fsBody: $('fsBody'),
     drCta: $('drCta'),
     drStartBtn: $('drStartBtn'),
     drProgress: $('drProgress'),
@@ -1842,6 +1886,9 @@ a.market-item:hover .market-go { opacity: 1; }
   // last prediction context, so Deep Research can re-run the SAME analysis
   // engine over its findings and re-draw the futures cone.
   let lastCtx = null;
+  // last rendered forecast (for the Futures Studio ideation panel)
+  let lastResult = null;
+  let fsRunning = false;
 
   async function callClaude(system, userContent, { webSearch = false, maxTokens = 1600, maxUses = 3, timeoutMs = 90000 } = {}) {
     const body = {
@@ -2658,6 +2705,8 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
     // render as raw text in the cone.
     data = sanitizeCites(data);
     attachEventSources(data, pool, map); // link each driver/event to its real evidence
+    lastResult = data;        // context for the Futures Studio ideation panel
+    resetFuturesStudio();
     el.resultTopic.textContent = (data.topic || '').toUpperCase() || 'FORESIGHT';
     el.resultSummary.textContent = data.summary || '';
     if (el.resultNarrative) {
@@ -3127,11 +3176,14 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
   function resetDeepResearchPanel() {
     drCancelled = false;
     if (!el.deepResearch) return;
-    el.drCta.hidden = false;
+    // Mode (shallow vs deep) is now chosen up front, so the standalone CTA is
+    // gone — the whole panel stays hidden unless a deep-mode run drives it.
+    el.deepResearch.hidden = true;
+    el.drCta.hidden = true;
     el.drProgress.hidden = true;
     el.drReport.hidden = true;
     el.drError.hidden = true;
-    el.drStartBtn.disabled = false;
+    if (el.drStartBtn) el.drStartBtn.disabled = false;
   }
 
   // Route Interactions API through the user's proxy when set (CORS), else direct.
@@ -3276,6 +3328,7 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
     }
     drRunning = true;
     drCancelled = false;
+    if (el.deepResearch) el.deepResearch.hidden = false; // deep mode drives the panel
     el.drError.hidden = true;
     el.drCta.hidden = true;
     el.drReport.hidden = true;
@@ -3412,6 +3465,77 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
     flushParagraph(para);
     return html;
   }
+
+  // ---- Futures Studio (ideation) --------------------------------------------
+  const FS_TONE = {
+    optimistic: { label: '樂觀', brief: '一切順利、最好的情況展開：採用順暢、阻力化解、正向飛輪啟動。' },
+    neutral: { label: '中性', brief: '最可能、平衡的情況：有進展也有摩擦，照當前訊號最可能的軌跡走。' },
+    wild: { label: '黑天鵝', brief: '低機率但高衝擊的劇烈轉折：一個意外事件改寫整個局面。' },
+  };
+  function resetFuturesStudio() {
+    if (!el.futuresStudio) return;
+    el.futuresStudio.hidden = false;
+    el.fsBody.innerHTML = '';
+    el.fsTones.querySelectorAll('.fs-tone').forEach((b) => b.classList.remove('active'));
+  }
+  function fsContext() {
+    const d = lastResult || {};
+    const ev = (d.horizons || []).flatMap((h) => (h.events || []).map((e) => `（${h.range}）${e.title}`)).slice(0, 12);
+    const drivers = (d.drivers || []).map((x) => (x && typeof x === 'object' ? x.text : x)).filter(Boolean);
+    return [
+      d.narrative ? `現況主敘事：${d.narrative}` : '',
+      drivers.length ? `關鍵驅動：${drivers.join('；')}` : '',
+      ev.length ? `預測事件：\n- ${ev.join('\n- ')}` : '',
+      d.wildcard ? `黑天鵝：${d.wildcard}` : '',
+    ].filter(Boolean).join('\n');
+  }
+  async function generateFuturesStudio(tone) {
+    if (fsRunning || !el.fsBody) return;
+    const t = FS_TONE[tone]; if (!t) return;
+    if (!lastResult || !lastCtx) return;
+    if (!getKey()) { el.fsBody.innerHTML = '<p class="fs-error">需要 Anthropic 金鑰才能生成。</p>'; return; }
+    fsRunning = true;
+    el.fsTones.querySelectorAll('.fs-tone').forEach((b) => b.classList.toggle('active', b.dataset.tone === tone));
+    el.fsBody.innerHTML = '<div class="fs-loading"><span class="dr-spinner"></span>正在編織這個未來…</div>';
+    const keyword = lastCtx.keyword || drCurrentTopic || '';
+    const system = '你是一位「未來情境設計師 + 設計引導師(facilitator)」。你把一份未來預測，轉化成讓團隊有畫面、能一起發想的素材。語氣生動、具體、有想像力，但要站在下面提供的真實預測之上，不要捏造與主題無關的東西。只回傳有效 JSON、繁體中文。';
+    const user = `主題：「${keyword}」
+這是針對它做的未來預測摘要：
+${fsContext()}
+
+請以「${t.label}」這種未來走向（${t.brief}）為基調，產出 JSON：
+{
+  "story": "一段身歷其境、像在說故事的未來情境敘事——把讀者帶進那個未來的某個場景（2–4 段，具體有畫面，扣住上面的預測與這個基調）",
+  "hmw": ["How Might We…（我們可以如何…）的提問，3–5 條，貼合主題、可直接拿去團隊 brainstorming"],
+  "provocations": ["『若是…會如何?』式的發想觸發或下一步提問，2–4 條"],
+  "actions": ["給相關團隊（尤其產品/設計團隊）的具體下一步行動建議，2–4 條"]
+}
+
+**重要 — 依主題動態取捨**：story 一律要有。但 hmw / provocations / actions 只在「對這個主題有意義」時才給：若主題是科技、產品、商業、政策、社會這類「可以被設計、被行動」的領域，就完整給；若主題是競技比賽、選舉、單純賽事結果這類「看結果、讀者難以行動」的領域，hmw / provocations / actions 一律給空陣列 []，只用一個精彩的 story 就好。不要硬塞無意義的 HMW。`;
+    try {
+      const { text } = await callClaude(system, user, { webSearch: false, maxTokens: 1900, maxUses: 0 });
+      renderFuturesStudio(sanitizeCites(extractJSON(text) || {}));
+    } catch (e) {
+      el.fsBody.innerHTML = `<p class="fs-error">生成失敗：${escapeHtml(e.message || String(e))}</p>`;
+    } finally { fsRunning = false; }
+  }
+  function renderFuturesStudio(r) {
+    const esc = (s) => escapeHtml(stripCites(String(s || '')));
+    const storyHTML = String(r.story || '').split(/\n+/).map((p) => p.trim()).filter(Boolean)
+      .map((p) => `<p>${esc(p)}</p>`).join('');
+    const listSection = (title, arr, cls) => (Array.isArray(arr) && arr.length)
+      ? `<div class="fs-section"><p class="fs-section-title">${title}</p><ul class="fs-list ${cls}">${arr.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></div>`
+      : '';
+    el.fsBody.innerHTML =
+      (storyHTML ? `<div class="fs-story">${storyHTML}</div>` : '') +
+      listSection('How Might We', r.hmw, 'fs-hmw') +
+      listSection('發想觸發 · 若是…', r.provocations, '') +
+      listSection('給團隊的下一步行動', r.actions, '');
+  }
+  if (el.fsTones) el.fsTones.addEventListener('click', (e) => {
+    const btn = e.target.closest('.fs-tone');
+    if (btn && btn.dataset.tone) generateFuturesStudio(btn.dataset.tone);
+  });
 
   if (el.drStartBtn) el.drStartBtn.addEventListener('click', runDeepResearch);
   if (el.drCancelBtn) el.drCancelBtn.addEventListener('click', () => { drCancelled = true; });
