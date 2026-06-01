@@ -2351,28 +2351,36 @@ ${wikiBlock(sig)}
   // findings and real citation URLs. This is how we reach ~100 relevant items.
   async function gatherWebMulti(keyword, entities = []) {
     const scoutQs = (activeScouts || []).flatMap((s) => s.queries || []);
-    const seen = new Set(); const queries = [];
+    const seen = new Set(); const general = [];
     for (const q of [keyword, ...entities, ...scoutQs]) {
       const k = String(q || '').trim().toLowerCase();
-      if (k && !seen.has(k)) { seen.add(k); queries.push(String(q).trim()); }
-      if (queries.length >= 7) break; // bound cost/time (each is a Claude web search)
+      if (k && !seen.has(k)) { seen.add(k); general.push(String(q).trim()); }
+      if (general.length >= 5) break; // bound cost/time (each is a Claude web search)
     }
-    if (!queries.length) queries.push(keyword);
+    if (!general.length) general.push(keyword);
+    // Community/social queries: rather than fight Reddit's API (403), let Claude
+    // web-search the discussion directly — it finds & reads the threads and
+    // cites the real reddit/forum/X URLs.
+    const ent = entities[0] && entities[0].toLowerCase() !== keyword.toLowerCase() ? entities[0] : keyword;
+    const social = [`${keyword} reddit`, `${ent} fan reaction X / forum discussion`];
 
-    const system = '你是一位嚴謹的研究助理。請用 web search 找出與這個面向最相關、最新（最好近 1–3 個月）、有憑據的事實。只回報你實際查到的真實資訊，絕不臆測或編造。用繁體中文條列，每行以「- 」開頭；不要前言結語、不要 JSON。';
-    const one = async (q) => {
+    const sysGeneral = '你是一位嚴謹的研究助理。請用 web search 找出與這個面向最相關、最新（最好近 1–3 個月）、有憑據的事實。只回報你實際查到的真實資訊，絕不臆測或編造。用繁體中文條列，每行以「- 」開頭；不要前言結語、不要 JSON。';
+    const sysSocial = '你是一位社群輿情分析師。請用 web search 找出並「實際閱讀」關於主題的社群討論——Reddit 相關 subreddit 的討論串與熱門留言、論壇、X/社群反應。歸納主流觀點、爭論點、情緒傾向與值得注意的小道消息。只回報你實際讀到的真實討論，句末附上來源串連結。用繁體中文條列，每行以「- 」開頭；不要前言結語、不要 JSON。';
+    const one = async (q, isSocial) => {
       try {
-        const { text, sources } = await callClaude(
-          system,
-          `研究主題「${keyword}」的這個面向：「${q}」\n請搜尋並回報 12–20 條最相關、最新、有來源的發現。`,
+        const prompt = isSocial
+          ? `主題：「${keyword}」\n請搜尋並閱讀社群討論（優先 Reddit 相關 subreddit 的討論串與留言，其次論壇、X），回報 8–15 條「社群在討論什麼、主流情緒、值得注意的觀點」，每條附上來源串連結。`
+          : `研究主題「${keyword}」的這個面向：「${q}」\n請搜尋並回報 12–20 條最相關、最新、有來源的發現。`;
+        const { text, sources } = await callClaude(isSocial ? sysSocial : sysGeneral, prompt,
           { webSearch: true, maxTokens: 2600, maxUses: 5 });
         return { findings: parseFindings(text), sources: sources || [] };
       } catch (e) { console.warn('[gatherWebMulti] query failed:', q, e.message || e); return { findings: [], sources: [] }; }
     };
 
+    const tasks = [...general.map((q) => ({ q, social: false })), ...social.map((q) => ({ q, social: true }))];
     // concurrency 2 to cover every facet while staying under the rate limit
     const results = []; let idx = 0;
-    const worker = async () => { while (idx < queries.length) { const i = idx++; results[i] = await one(queries[i]); } };
+    const worker = async () => { while (idx < tasks.length) { const i = idx++; results[i] = await one(tasks[i].q, tasks[i].social); } };
     await Promise.all([worker(), worker()]);
 
     const fSeen = new Set(), findings = [], sSeen = new Set(), sources = [];
@@ -2380,7 +2388,7 @@ ${wikiBlock(sig)}
       (r.findings || []).forEach((f) => { const k = f.slice(0, 40).toLowerCase(); if (k && !fSeen.has(k)) { fSeen.add(k); findings.push(f); } });
       (r.sources || []).forEach((s) => { if (s && s.url && !sSeen.has(s.url)) { sSeen.add(s.url); sources.push(s); } });
     });
-    console.info(`[gatherWebMulti] ${queries.length} queries → ${findings.length} findings, ${sources.length} sources`);
+    console.info(`[gatherWebMulti] ${tasks.length} queries (${social.length} social) → ${findings.length} findings, ${sources.length} sources`);
     return { findings: findings.slice(0, 100), sources: sources.slice(0, 120) };
   }
 
@@ -2850,7 +2858,9 @@ ${wikiBlock(sig)}
         fetchKalshi(keyword, entities),
         fetchGdelt(keyword, entities),
         fetchWikiTrend(keyword, entities),
-        fetchReddit(keyword, entities),
+        // Reddit's API/proxy reliably 403s now — community signal comes instead
+        // from Claude web-searching the discussion (gatherWebMulti social queries).
+        Promise.resolve([]),
         fetchBluesky(keyword, entities),
         fetchTrends(keyword, entities),
       ]);
