@@ -5,6 +5,23 @@
 
 ---
 
+## 🪧 交接便條（給下一個 session 的你 — 2026-06-01 · 第十二輪 / 預測框架 + 完整溯源）
+
+SpaceX IPO 測試品質明顯起來(主敘事扎實、市場對、cone 乾淨)。使用者問「點是不是隨便點/有沒有框架」。本輪:
+- **預測框架**(`buildSynthPrompt`):每個 event 的 rationale 必須點名真實證據(優先市場機率如「Polymarket 44%」/多來源);
+  likelihood 依證據強度且要與對應市場機率一致;fringe 與佐證度成反比;emerging/edge 放遠 horizon 給高 fringe 但要有線索。
+  → cone 點位(Y=LIK_FRAC×0.45+fringe×0.55)現在綁證據而非直覺。
+- **主敘事視覺強化**:`.results-narrative` 加陶土左框 + 標籤「現況主敘事 · 這個預測的依據」。
+- **完整溯源**:新增 `buildSourcePool`(彙整所有真實 {text,url}:web findings/市場/新聞/scout sources/cited)+
+  `attachEventSources`(事件 title+rationale 與來源池做 token 重疊比對,CJK 逐字+latin 逐詞,掛 top3)+
+  `eventSourcesHTML`(事件卡底「依據」chip)。`renderForecast(data, sources, pool)` 兩條路徑都傳 pool。
+  → 點 cone 上的點(會 highlight 對應卡)即可看到形成它的真實連結。
+
+**待辦/可續**:① news=0(GDELT 對某些題目空)、trends ✗(Google 擋)仍是已知弱點。② emerging/edges 仍靠 prompt 帶,未獨立欄位。
+③ 事件→來源是 token 比對(近似),非 LLM 明確標注;若要更精準可讓 askOracle 直接輸出每個 event 的來源 index。
+
+---
+
 ## 🪧 交接便條（給下一個 session 的你 — 2026-06-01 · 第十一輪 / 主敘事 + 功能透鏡重設計）
 
 使用者架構級回饋(cone 不錯但 agent 差、角色空轉、來源對不上、敘事不知所云、缺主敘事)。
