@@ -5,6 +5,24 @@
 
 ---
 
+## 🪧 交接便條（給下一個 session 的你 — 2026-06-01 · 第九輪 / 修四個實測 bug）
+
+**實測 "nba 2026 finals" 淺搜**(110 findings/47 sources 進來了),使用者回報 4 問題,逐一修:
+1. **scout 只有 1–3 條** → scoutPrompts 加「盡量 6–12 條」、scout maxTokens 2048→3000。
+2. **scout 來源接不上(#N→null)** ← 真因:web 發現 item 的 `url` 是 null(findings/sources 分兩串沒配對)。
+   修:`gatherWebMulti` 改用 **`parseFindingsWithUrls`**——prompt 要求每條句末附來源網址→逐條抽 url 配對;
+   抽不到再用該次 call 的 citations 回填。回傳 `items:[{text,url}]`。`collectSignalItems` 用 it.url →
+   scout 引用 #N 對到真連結。`buildSynthPrompt`/sig.web 改吃物件。
+3. **Polymarket 等中央源消失** ← render 無誤(有資料才顯示),是該次中央抓取真的回空。加 `[central]` log
+   (markets/news/wiki/bluesky/trends 件數 + 各 settled 狀態)→ 下次能判斷是 transient 還是 filter。
+4. **深度研究 20 分逾時掛掉** → 上限 20→**40 分**(docs 允許 60);每次 poll **log status**;
+   完成狀態寬容判定(completed/succeeded/done);**連續 8 次 poll 失敗就明確報錯**(避免 poll 壞掉偽裝成慢);
+   log created id/keys。⚠️ 仍需實機看 console 的 `[deep-research] status=...` 才能確認是真慢還是 poll/狀態名問題。
+
+**注意部署**:使用者該次測的是上一版(reddit 403 還在),最新(含社群查詢+本輪修正)要等 GitHub Pages 部署。
+
+---
+
 ## 🪧 交接便條（給下一個 session 的你 — 2026-06-01 · 第八輪 / 淺搜廣度:多查詢 Claude web search）
 
 **一句話**:使用者要淺搜也有「~100 條相關資訊」,且明確要用 **Claude 真的上網搜**(不是 Brave/GDELT)。

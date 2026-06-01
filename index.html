@@ -2051,10 +2051,9 @@ scouts 陣列必須**剛好 5 個元素**（不可多、不可少），角度彼
   function collectSignalItems(sig) {
     const items = [];
     // Claude web-search findings first — the richest real intel for most topics.
-    // Capped so a 100-item pool stays a manageable per-scout prompt.
-    (sig.web || []).slice(0, 60).forEach((f) => items.push({ label: '網路研究', text: f, url: null }));
-    // …and the real source URLs behind them, so scouts can cite (#N) → real link.
-    (sig.webSrc || []).slice(0, 40).forEach((s) => items.push({ label: '網路來源', text: s.title || s.url, url: s.url }));
+    // Each carries its own real URL, so a scout citing #N gets a clickable source.
+    // Capped so a ~100-item pool stays a manageable per-scout prompt.
+    (sig.web || []).slice(0, 80).forEach((it) => items.push({ label: '網路研究', text: it.text, url: it.url || null }));
     (sig.markets || []).forEach((m) => items.push({
       label: `預測市場${m.source ? '·' + m.source : ''}`,
       text: `「${m.question}」→ ${m.outcome} ${m.prob != null ? Math.round(m.prob * 100) + '%' : 'n/a'}（成交量 ${Math.round(m.volume).toLocaleString()}）`,
@@ -2113,10 +2112,10 @@ ${scout.angle ? `特別關注：${scout.angle}\n` : ''}
 ${digestText}
 
 請從你的領域視角，挑出與主題最相關的訊號，並解讀「這對主題未來 18 個月代表什麼」。規則：
-- 只能根據上面的編號資料；每一條發現都必須在句末用括號標出你依據的編號，例如「(#2、#5)」。沒有編號可依據的就不要寫。
+- **盡量多挑幾條（6–12 條最佳）**，只要上面資料支撐得住就多寫；資料很多時不要只給一兩條。
+- 只能根據上面的編號資料；每一條發現都**必須**在句末用括號標出你依據的編號，例如「(#2、#5)」。沒有編號可依據的就不要寫。
 - 嚴禁編造編號以外的任何事實、數據或來源；嚴禁靠記憶補充。
 - 同一件事不要拆成多條湊數。
-- 若上面資料很少，就只給你能確實支撐的幾條，誠實即可，不要硬湊。
 格式：每條一行、以「- 」開頭。不要前言或結語、不要 markdown 標題、不要編號清單、不要 JSON。`;
     return { system, user };
   }
@@ -2178,15 +2177,29 @@ ${digestText}
     return bullets.slice(0, 20);
   }
 
+  // Like parseFindings but also peels the trailing source URL off each bullet,
+  // so a gathered finding stays paired with its real link → scouts citing it
+  // get a real, clickable source (not a null).
+  function parseFindingsWithUrls(text) {
+    return parseFindings(text).map((b) => {
+      const m = b.match(/(https?:\/\/[^\s)）]+)/);
+      const url = m ? m[1].replace(/[)）.,;]+$/, '') : null;
+      // drop the url (and any surrounding 「來源：…」/括號) from the visible text
+      const clean = b.replace(/[（(]\s*(來源|source)?\s*[:：]?\s*https?:\/\/[^\s)）]+\s*[)）]/i, '')
+                     .replace(/https?:\/\/[^\s)）]+/g, '').replace(/\s*[（(]\s*[)）]\s*$/,'').trim();
+      return { text: clean || b, url };
+    });
+  }
+
   async function runScoutOnce(keyword, scout, entities, provider, items, digestText, modelOverride) {
     const { system, user } = scoutPrompts(keyword, scout, entities, digestText);
     let text;
     // No web search on either provider — the scout reasons over the real data
     // we hand it. Gemini 3 thinking eats into the output budget, hence 2048.
     if (provider === 'gemini') {
-      ({ text } = await callGemini(system, user, { webSearch: false, maxTokens: 2048, modelOverride }));
+      ({ text } = await callGemini(system, user, { webSearch: false, maxTokens: 3000, modelOverride }));
     } else {
-      ({ text } = await callClaude(system, user, { webSearch: false, maxTokens: 2048, maxUses: 0 }));
+      ({ text } = await callClaude(system, user, { webSearch: false, maxTokens: 3000, maxUses: 0 }));
     }
     const findings = parseFindings(text);
     if (!findings.length) throw new Error('沒有解析到任何發現');
@@ -2281,7 +2294,7 @@ ${digestText}
       : '';
 
     const webBlock = (sig.web && sig.web.length)
-      ? '\n【網路研究發現 · Claude 跨多組關鍵詞實際上網搜尋所得（真實、可佐證）】\n' + sig.web.slice(0, 40).map((f) => `- ${f}`).join('\n') + '\n'
+      ? '\n【網路研究發現 · Claude 跨多組關鍵詞實際上網搜尋所得（真實、可佐證）】\n' + sig.web.slice(0, 40).map((it) => `- ${it.text}`).join('\n') + '\n'
       : '';
     return `關鍵詞：「${keyword}」
 ${deepReport ? '\n【深度研究報告 · 由 Deep Research Agent 實際上網搜尋與閱讀產生，含真實引用，請以此為「主要」依據】\n' + deepReport + '\n（以上報告是本次分析最重要的依據；下面的即時資料作為佐證與時效補充。）\n' : ''}${webBlock}${scoutBlock ? '\n【AI 偵察員蒐集到的即時情報（含來源）】\n' + scoutBlock + '\n' : ''}
@@ -2366,15 +2379,22 @@ ${wikiBlock(sig)}
 
     const sysGeneral = '你是一位嚴謹的研究助理。請用 web search 找出與這個面向最相關、最新（最好近 1–3 個月）、有憑據的事實。只回報你實際查到的真實資訊，絕不臆測或編造。用繁體中文條列，每行以「- 」開頭；不要前言結語、不要 JSON。';
     const sysSocial = '你是一位社群輿情分析師。請用 web search 找出並「實際閱讀」關於主題的社群討論——Reddit 相關 subreddit 的討論串與熱門留言、論壇、X/社群反應。歸納主流觀點、爭論點、情緒傾向與值得注意的小道消息。只回報你實際讀到的真實討論，句末附上來源串連結。用繁體中文條列，每行以「- 」開頭；不要前言結語、不要 JSON。';
+    // ask for the source URL inline on each bullet so finding↔url stays paired
+    const fmtRule = '每條句末用括號附上「該則資訊的來源網址」，例如（https://...）。';
     const one = async (q, isSocial) => {
       try {
         const prompt = isSocial
-          ? `主題：「${keyword}」\n請搜尋並閱讀社群討論（優先 Reddit 相關 subreddit 的討論串與留言，其次論壇、X），回報 8–15 條「社群在討論什麼、主流情緒、值得注意的觀點」，每條附上來源串連結。`
-          : `研究主題「${keyword}」的這個面向：「${q}」\n請搜尋並回報 12–20 條最相關、最新、有來源的發現。`;
+          ? `主題：「${keyword}」\n請搜尋並閱讀社群討論（優先 Reddit 相關 subreddit 的討論串與留言，其次論壇、X），回報 8–15 條「社群在討論什麼、主流情緒、值得注意的觀點」。${fmtRule}`
+          : `研究主題「${keyword}」的這個面向：「${q}」\n請搜尋並回報 12–20 條最相關、最新、有來源的發現。${fmtRule}`;
         const { text, sources } = await callClaude(isSocial ? sysSocial : sysGeneral, prompt,
           { webSearch: true, maxTokens: 2600, maxUses: 5 });
-        return { findings: parseFindings(text), sources: sources || [] };
-      } catch (e) { console.warn('[gatherWebMulti] query failed:', q, e.message || e); return { findings: [], sources: [] }; }
+        // pair each bullet with its url; backfill missing urls from the call's citations
+        const paired = parseFindingsWithUrls(text);
+        const cites = (sources || []).map((s) => s.url).filter(Boolean);
+        let ci = 0;
+        paired.forEach((p) => { if (!p.url && ci < cites.length) p.url = cites[ci++]; });
+        return { items: paired, sources: sources || [] };
+      } catch (e) { console.warn('[gatherWebMulti] query failed:', q, e.message || e); return { items: [], sources: [] }; }
     };
 
     const tasks = [...general.map((q) => ({ q, social: false })), ...social.map((q) => ({ q, social: true }))];
@@ -2383,13 +2403,14 @@ ${wikiBlock(sig)}
     const worker = async () => { while (idx < tasks.length) { const i = idx++; results[i] = await one(tasks[i].q, tasks[i].social); } };
     await Promise.all([worker(), worker()]);
 
-    const fSeen = new Set(), findings = [], sSeen = new Set(), sources = [];
+    const iSeen = new Set(), items = [], sSeen = new Set(), sources = [];
     results.forEach((r) => {
-      (r.findings || []).forEach((f) => { const k = f.slice(0, 40).toLowerCase(); if (k && !fSeen.has(k)) { fSeen.add(k); findings.push(f); } });
+      (r.items || []).forEach((it) => { const k = it.text.slice(0, 40).toLowerCase(); if (k && !iSeen.has(k)) { iSeen.add(k); items.push(it); } });
       (r.sources || []).forEach((s) => { if (s && s.url && !sSeen.has(s.url)) { sSeen.add(s.url); sources.push(s); } });
     });
-    console.info(`[gatherWebMulti] ${tasks.length} queries (${social.length} social) → ${findings.length} findings, ${sources.length} sources`);
-    return { findings: findings.slice(0, 100), sources: sources.slice(0, 120) };
+    const withUrl = items.filter((it) => it.url).length;
+    console.info(`[gatherWebMulti] ${tasks.length} queries (${social.length} social) → ${items.length} findings (${withUrl} with url), ${sources.length} sources`);
+    return { items: items.slice(0, 100), sources: sources.slice(0, 120) };
   }
 
   /* ---------- scout board (loading) + findings (results) ---------- */
@@ -2874,6 +2895,11 @@ ${wikiBlock(sig)}
         bluesky: val(5, []),
         trends: val(6, null),
       };
+      // surface what each central source returned (helps tell a transient API
+      // failure apart from a relevance-filter that dropped everything)
+      console.info('[central] markets=%d (poly+kalshi) news=%d wiki=%s bluesky=%d trends=%s',
+        sig.markets.length, sig.news.length, sig.wiki ? '✓' : '✗', sig.bluesky.length, sig.trends ? '✓' : '✗',
+        settled.map((s, i) => `${i}:${s.status}`).join(' '));
 
       let webSources = [];
       if (deep) {
@@ -2885,10 +2911,9 @@ ${wikiBlock(sig)}
           el.sub.textContent = 'Claude 正在實際搜尋並查證真實來源';
           onClaudeWait = (secs) => { if (el.sub) el.sub.textContent = `遇到流量限制，${secs} 秒後重試…`; };
           const web = await gatherWebMulti(keyword, entities);
-          sig.web = web.findings;
-          sig.webSrc = web.sources;
+          sig.web = web.items;            // [{ text, url }] — finding paired with its link
           webSources = web.sources;
-          el.sub.textContent = `蒐集到 ${web.findings.length} 條發現 · ${web.sources.length} 個來源`;
+          el.sub.textContent = `蒐集到 ${web.items.length} 條發現 · ${web.sources.length} 個來源`;
           onClaudeWait = null;
         }
         el.status.textContent = '派出 AI 偵察員掃描邊緣訊號…';
@@ -3114,30 +3139,41 @@ ${wikiBlock(sig)}
         agent_config: { type: 'deep-research', thinking_summaries: 'auto' },
       });
       const id = created.id || created.name || (created.interaction && created.interaction.id);
+      console.info('[deep-research] created → id=%s keys=%o', id, Object.keys(created || {}));
       if (!id) throw new Error('深度研究啟動後沒有回傳任務 ID。');
       el.drStatus.textContent = '研究進行中（搜尋與閱讀來源）…';
 
-      // 2) poll until completed/failed (max ~20 min), honouring cancel
-      const maxMs = 20 * 60 * 1000;
+      // 2) poll until done/failed (max ~40 min — docs allow up to 60), honouring
+      //    cancel. Surface each status + bail loudly if polling itself keeps
+      //    failing, so a broken poll doesn't masquerade as a slow research run.
+      const maxMs = 40 * 60 * 1000;
+      const DONE = new Set(['completed', 'succeeded', 'success', 'done']);
+      const FAIL = new Set(['failed', 'error', 'errored', 'cancelled', 'canceled']);
+      let errStreak = 0;
       while (!drCancelled) {
         await sleep(10000);
         if (drCancelled) break;
-        if (Date.now() - started > maxMs) throw new Error('深度研究超過 20 分鐘仍未完成，已停止等待。');
+        if (Date.now() - started > maxMs) throw new Error('深度研究超過 40 分鐘仍未完成，已停止等待。');
         let it;
-        try { it = await drApiFetch('GET', id, null); }
-        catch (e) { console.warn('[deep-research] poll error (will retry):', e.message); continue; }
-        const status = it.status || (it.interaction && it.interaction.status);
+        try { it = await drApiFetch('GET', id, null); errStreak = 0; }
+        catch (e) {
+          console.warn('[deep-research] poll error (will retry):', e.message);
+          if (++errStreak >= 8) throw new Error('深度研究輪詢一直失敗（' + (e.message || '連線問題') + '）。');
+          continue;
+        }
         const obj = it.interaction || it;
+        const status = String(it.status || obj.status || '').toLowerCase();
+        console.info('[deep-research] status=%s (%s)', status || '?', fmtElapsed(Date.now() - started));
         const thought = latestThought(obj);
         if (thought) el.drThought.textContent = thought;
-        if (status === 'completed') {
+        if (DONE.has(status)) {
           const md = interactionOutputText(obj);
           renderDeepResearchReport(md, Date.now() - started);
           // feed the cited report back into the same analysis engine so the
           // futures cone above is re-drawn from real, researched sources.
           await feedDeepResearchIntoCone(md);
           break;
-        } else if (status === 'failed') {
+        } else if (FAIL.has(status)) {
           throw new Error('深度研究失敗：' + (obj.error?.message || obj.error || '未知錯誤'));
         }
       }
