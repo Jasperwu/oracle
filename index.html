@@ -1420,12 +1420,53 @@ a.market-item:hover .market-go { opacity: 1; }
 
   function repairJSON(s) {
     return s
-      .replace(/```(?:json)?/gi, '')          // stray code fences
+      .replace(/```(?:json|JSON)?\s*/g, '')   // strip ```json / ``` fences
+      .replace(/```\s*$/g, '')                // closing fence
+      .replace(/<\/?json>/gi, '')             // <json>...</json> wrappers
       .replace(/,\s*([}\]])/g, '$1')          // trailing commas: [1,2,] -> [1,2]
       .replace(/}\s*{/g, '},{')               // missing comma between objects
       .replace(/]\s*\[/g, '],[')              // missing comma between arrays
       .replace(/[“”]/g, '"')        // smart double quotes -> "
       .replace(/[‘’]/g, "'");       // smart single quotes -> '
+  }
+  // Find every balanced {...} block in the text, in order. Lets us try each
+  // candidate when Gemini outputs the schema example first, then the real
+  // answer, or prepends a prose paragraph before the JSON.
+  function findAllBalancedBlocks(text) {
+    const blocks = [];
+    let i = 0;
+    while (i < text.length) {
+      const start = text.indexOf('{', i);
+      if (start < 0) break;
+      let depth = 0, inStr = false, esc = false, end = -1;
+      for (let j = start; j < text.length; j++) {
+        const c = text[j];
+        if (inStr) {
+          if (esc) esc = false;
+          else if (c === '\\') esc = true;
+          else if (c === '"') inStr = false;
+        } else if (c === '"') inStr = true;
+        else if (c === '{') depth++;
+        else if (c === '}') { depth--; if (depth === 0) { end = j; break; } }
+      }
+      if (end < 0) break;
+      blocks.push(text.slice(start, end + 1));
+      i = end + 1;
+    }
+    return blocks;
+  }
+  // Score a parsed candidate by how well it matches what we asked for. Pick
+  // the candidate with the highest score, so a stray "{example: 'object'}"
+  // doesn't beat the real reply.
+  function scoreCandidate(obj) {
+    if (!obj || typeof obj !== 'object') return 0;
+    let score = 0;
+    if (Array.isArray(obj.signals) && obj.signals.length) score += 100 + obj.signals.length; // scout reply
+    if (Array.isArray(obj.horizons) && obj.horizons.length) score += 200 + obj.horizons.length * 5; // synth reply
+    if (Array.isArray(obj.scouts) && obj.scouts.length) score += 100 + obj.scouts.length; // understandTopic
+    if (Array.isArray(obj.entities)) score += obj.entities.length;
+    if (obj.summary || obj.topic) score += 10;
+    return score;
   }
   // pull the outermost balanced {...} out of text that may be wrapped in
   // web-search prose or prefixed/suffixed with stray characters.
@@ -1481,21 +1522,33 @@ a.market-item:hover .market-go { opacity: 1; }
   }
   function extractJSON(text) {
     const raw = text.trim();
+    const tryParse = (s) => { try { return JSON.parse(s); } catch { return null; } };
     // 1) straight parse
-    try { return JSON.parse(raw); } catch {}
+    let r = tryParse(raw);
+    if (r) return r;
     // 2) strip fences / smart quotes / trailing commas, then parse
-    try { return JSON.parse(repairJSON(raw)); } catch {}
-    // 3) slice the outermost {...} (handles web-search prose around it)
-    const sliced = sliceBalanced(raw);
-    if (sliced) {
-      try { return JSON.parse(sliced); } catch {}
-      try { return JSON.parse(repairJSON(sliced)); } catch {}
+    r = tryParse(repairJSON(raw));
+    if (r) return r;
+    // 3) try every balanced {...} block in the text (both raw and repaired),
+    // pick the candidate whose shape best matches what we asked for. Handles
+    // Gemini outputting the schema example then the real answer, or prose +
+    // JSON, or two JSON blocks, etc.
+    const candidates = [];
+    [raw, repairJSON(raw)].forEach((src) => {
+      findAllBalancedBlocks(src).forEach((block) => {
+        const p = tryParse(block) || tryParse(repairJSON(block));
+        if (p) candidates.push(p);
+      });
+    });
+    if (candidates.length) {
+      candidates.sort((a, b) => scoreCandidate(b) - scoreCandidate(a));
+      return candidates[0];
     }
     // 4) salvage a truncated object (maxTokens cutoff)
     const closed = closeTruncated(raw);
     if (closed) {
-      try { return JSON.parse(closed); } catch {}
-      try { return JSON.parse(repairJSON(closed)); } catch {}
+      r = tryParse(closed) || tryParse(repairJSON(closed));
+      if (r) return r;
     }
     throw new Error('無法解析回傳的格式');
   }
@@ -1652,6 +1705,8 @@ a.market-item:hover .market-go { opacity: 1; }
     if (sources.length === 0 && webSearch) {
       console.info('[Gemini] no grounding sources (search may have returned nothing). chunks=', chunks.length, 'gm keys=', Object.keys(gm));
     }
+    // dump first chars of every Gemini reply so we can see why JSON parse fails
+    console.log('[Gemini raw reply preview]', text.slice(0, 600));
     return { text, sources };
   }
 
