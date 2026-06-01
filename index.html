@@ -379,6 +379,57 @@ html, body {
 }
 .wildcard p { margin: 0; font-size: 15.5px; line-height: 1.5; }
 
+/* ---------- Deep Research panel ---------- */
+.deep-research { max-width: 1040px; margin: 26px auto 0; width: 100%; }
+.dr-cta {
+  background: var(--paper); border: 1px solid var(--line); border-radius: 18px;
+  padding: 20px 24px; display: flex; align-items: center; gap: 20px;
+  box-shadow: var(--shadow);
+}
+.dr-cta-text { flex: 1; }
+.dr-cta-title { margin: 0 0 5px; font-size: 16px; font-weight: 600; color: var(--ink); }
+.dr-cta-sub { margin: 0; font-size: 13.5px; line-height: 1.55; color: var(--ink-soft); }
+.dr-start { white-space: nowrap; }
+.dr-progress {
+  background: var(--paper); border: 1px solid var(--clay-soft); border-radius: 18px;
+  padding: 20px 24px; display: flex; align-items: center; gap: 18px; box-shadow: var(--shadow);
+}
+.dr-spinner {
+  width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+  border: 3px solid var(--paper-2); border-top-color: var(--clay);
+  animation: drSpin 0.9s linear infinite;
+}
+@keyframes drSpin { to { transform: rotate(360deg); } }
+.dr-progress-body { flex: 1; }
+.dr-progress-status { margin: 0 0 3px; font-size: 14.5px; font-weight: 500; color: var(--ink); }
+.dr-progress-meta { margin: 0; font-size: 12.5px; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+.dr-report {
+  background: var(--paper); border: 1px solid var(--line); border-radius: 18px;
+  padding: 26px 30px; box-shadow: var(--shadow);
+}
+.dr-report-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+.dr-report-title { margin: 0; font-size: 17px; font-weight: 600; color: var(--ink); }
+.dr-report-meta { font-size: 12px; color: var(--ink-faint); }
+.dr-report-body { font-size: 15px; line-height: 1.7; color: var(--ink); }
+.dr-report-body h1, .dr-report-body h2, .dr-report-body h3 { font-family: var(--serif); line-height: 1.3; margin: 22px 0 10px; }
+.dr-report-body h1 { font-size: 22px; }
+.dr-report-body h2 { font-size: 19px; }
+.dr-report-body h3 { font-size: 16.5px; }
+.dr-report-body p { margin: 0 0 12px; }
+.dr-report-body ul, .dr-report-body ol { margin: 0 0 12px; padding-left: 22px; }
+.dr-report-body li { margin: 4px 0; }
+.dr-report-body a { color: var(--clay-deep); text-decoration: underline; text-underline-offset: 2px; }
+.dr-report-body a:hover { color: var(--clay); }
+.dr-report-body table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 13.5px; }
+.dr-report-body th, .dr-report-body td { border: 1px solid var(--line); padding: 7px 11px; text-align: left; }
+.dr-report-body th { background: var(--paper-2); font-weight: 600; }
+.dr-report-body strong { font-weight: 600; }
+.dr-report-body img { max-width: 100%; border-radius: 10px; margin: 12px 0; }
+.dr-error { max-width: 1040px; margin: 12px auto 0; font-size: 13.5px; color: #b0512f; }
+@media (max-width: 680px) {
+  .dr-cta { flex-direction: column; align-items: stretch; }
+}
+
 /* evidence grid (real-time crawled signals) */
 .evidence {
   max-width: 1040px; margin: 30px auto 0; width: 100%;
@@ -718,6 +769,36 @@ a.market-item:hover .market-go { opacity: 1; }
       <p id="wildcardText"></p>
     </div>
 
+    <!-- Deep Research: optional, on-demand cited report (Gemini Deep Research Agent) -->
+    <div class="deep-research" id="deepResearch">
+      <div class="dr-cta" id="drCta">
+        <div class="dr-cta-text">
+          <p class="dr-cta-title">🔬 深度研究報告</p>
+          <p class="dr-cta-sub">派出 Gemini 深度研究探員，自主規劃、上網搜尋並閱讀數十個來源，產出<strong>有完整引用</strong>的前瞻報告。約 3–10 分鐘、每次約需 $1–3 美元（用你的 Gemini 金鑰）。</p>
+        </div>
+        <button class="btn-solid dr-start" id="drStartBtn">啟動深度研究 →</button>
+      </div>
+
+      <div class="dr-progress" id="drProgress" hidden>
+        <div class="dr-spinner"></div>
+        <div class="dr-progress-body">
+          <p class="dr-progress-status" id="drStatus">正在啟動研究探員…</p>
+          <p class="dr-progress-meta"><span id="drElapsed">0:00</span> · <span id="drThought">規劃研究方向中</span></p>
+        </div>
+        <button class="btn-ghost dr-cancel" id="drCancelBtn">取消</button>
+      </div>
+
+      <div class="dr-report" id="drReport" hidden>
+        <div class="dr-report-head">
+          <p class="dr-report-title">🔬 深度研究報告</p>
+          <span class="dr-report-meta" id="drReportMeta"></span>
+        </div>
+        <div class="dr-report-body" id="drReportBody"></div>
+      </div>
+
+      <p class="dr-error" id="drError" hidden></p>
+    </div>
+
     <!-- evidence: real-time signals crawled from the last 3 days -->
     <div class="evidence">
       <div class="ev-card" id="newsCard" hidden>
@@ -836,6 +917,10 @@ a.market-item:hover .market-go { opacity: 1; }
   const GEMINI_MODEL_DEFAULT = 'gemini-3.5-flash';
   const getGeminiModel = () => localStorage.getItem('oracle_gemini_model') || GEMINI_MODEL_DEFAULT;
   const GEMINI_URL = (key) => `https://generativelanguage.googleapis.com/v1beta/models/${getGeminiModel()}:generateContent?key=${encodeURIComponent(key)}`;
+  // Gemini Deep Research Agent (Interactions API) — async, cited long-form reports
+  const GEMINI_INTERACTIONS = 'https://generativelanguage.googleapis.com/v1beta/interactions';
+  const DEEP_RESEARCH_AGENT = 'deep-research-preview-04-2026';
+  const GEMINI_API_REVISION = '2026-05-20';
 
   const $ = (id) => document.getElementById(id);
 
@@ -871,6 +956,19 @@ a.market-item:hover .market-go { opacity: 1; }
     wikiCard: $('wikiCard'),
     wikiBody: $('wikiBody'),
     claudeSources: $('claudeSources'),
+    // deep research
+    deepResearch: $('deepResearch'),
+    drCta: $('drCta'),
+    drStartBtn: $('drStartBtn'),
+    drProgress: $('drProgress'),
+    drStatus: $('drStatus'),
+    drElapsed: $('drElapsed'),
+    drThought: $('drThought'),
+    drCancelBtn: $('drCancelBtn'),
+    drReport: $('drReport'),
+    drReportMeta: $('drReportMeta'),
+    drReportBody: $('drReportBody'),
+    drError: $('drError'),
     // modal
     openSettings: $('openSettings'),
     modalBackdrop: $('modalBackdrop'),
@@ -1622,6 +1720,10 @@ a.market-item:hover .market-go { opacity: 1; }
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   // optional hook so the UI can show backoff waits instead of looking frozen
   let onClaudeWait = null;
+  // deep-research state
+  let drCurrentTopic = '';
+  let drCancelled = false;
+  let drRunning = false;
 
   async function callClaude(system, userContent, { webSearch = false, maxTokens = 1600, maxUses = 3, timeoutMs = 90000 } = {}) {
     const body = {
@@ -2278,6 +2380,7 @@ ${wikiBlock(sig)}
   function render(data, sig, sources, scoutResults) {
     const { markets, news, buzz, wiki } = sig;
     renderScoutFindings(scoutResults);
+    resetDeepResearchPanel();
     el.resultTopic.textContent = (data.topic || '').toUpperCase() || 'FORESIGHT';
     el.resultSummary.textContent = data.summary || '';
 
@@ -2632,6 +2735,7 @@ ${wikiBlock(sig)}
       const elapsed = Date.now() - startedAt;
       if (elapsed < 3200) await new Promise((r) => setTimeout(r, 3200 - elapsed));
 
+      drCurrentTopic = keyword;
       render(result, sig, sources, scoutResults);
       hideOverlay();
       el.stageInput.hidden = true;
@@ -2642,6 +2746,234 @@ ${wikiBlock(sig)}
       showError(err.message || '預言時發生未知錯誤。');
     }
   }
+
+  /* ---------- Deep Research (Gemini Deep Research Agent) ---------- */
+  function resetDeepResearchPanel() {
+    drCancelled = false;
+    if (!el.deepResearch) return;
+    el.drCta.hidden = false;
+    el.drProgress.hidden = true;
+    el.drReport.hidden = true;
+    el.drError.hidden = true;
+    el.drStartBtn.disabled = false;
+  }
+
+  // Route Interactions API through the user's proxy when set (CORS), else direct.
+  async function drApiFetch(method, idOrNull, body) {
+    const key = getGeminiKey();
+    if (!key) throw new Error('需要 Gemini 金鑰才能執行深度研究（右上角設定）。');
+    const base = proxied('/api/interactions');
+    let url;
+    if (base) {
+      url = idOrNull ? `${base}?id=${encodeURIComponent(idOrNull)}` : base;
+    } else {
+      url = idOrNull ? `${GEMINI_INTERACTIONS}/${encodeURIComponent(idOrNull)}` : GEMINI_INTERACTIONS;
+    }
+    const res = await fetch(url, {
+      method,
+      headers: {
+        'content-type': 'application/json',
+        'x-goog-api-key': key,
+        'Api-Revision': GEMINI_API_REVISION,
+      },
+      body: body ? JSON.stringify(body) : undefined,
+    });
+    if (!res.ok) {
+      let detail = '';
+      try { detail = (await res.json()).error?.message || ''; } catch {}
+      if (res.status === 404) throw new Error('找不到深度研究 endpoint（可能此預覽功能未對你的金鑰開放）。');
+      throw new Error(`深度研究 API 錯誤 ${res.status}${detail ? '：' + detail : ''}`);
+    }
+    return res.json();
+  }
+
+  function deepResearchPrompt(topic) {
+    return `請針對主題「${topic}」進行深度研究，產出一份「未來 18 個月」的前瞻分析報告，全文以繁體中文撰寫。
+
+報告結構（請用 markdown 標題分節）：
+1. 現況與關鍵驅動力
+2. 近期（3–6 個月）可能發展
+3. 中期（6–12 個月）可能發展
+4. 長期（12–18 個月）可能發展
+5. 黑天鵝／高衝擊低機率情境
+6. 關鍵不確定性與值得追蹤的指標
+
+要求：
+- 每個重要論點都要附上可查證的引用來源（含連結）。
+- 若特定數據無法取得或屬於推測，請明確標示為「推測」或「資料不足」，切勿捏造數字。
+- 緊扣主題本身（若是競技/選舉/比賽類，聚焦誰會贏與為什麼）。
+- 語氣專業、冷靜，像一位資深領域分析師兼未來學家。
+- 若適合，可用比較表格呈現關鍵數據。`;
+  }
+
+  function fmtElapsed(ms) {
+    const s = Math.floor(ms / 1000);
+    return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+  }
+
+  // extract the latest "thought"/status text from an in-progress interaction
+  function latestThought(interaction) {
+    try {
+      const steps = interaction.steps || [];
+      for (let i = steps.length - 1; i >= 0; i--) {
+        const st = steps[i];
+        if (st.type === 'thought' && st.text) return String(st.text).slice(0, 80);
+        const content = st.content || [];
+        for (let j = content.length - 1; j >= 0; j--) {
+          if (content[j].type === 'text' && content[j].text) return String(content[j].text).slice(0, 80);
+        }
+      }
+    } catch {}
+    return '';
+  }
+
+  function interactionOutputText(interaction) {
+    if (interaction.output_text) return interaction.output_text;
+    // assemble from steps as a fallback
+    let out = '';
+    (interaction.steps || []).forEach((st) => {
+      if (st.type === 'model_output') {
+        (st.content || []).forEach((c) => { if (c.type === 'text' && c.text) out += c.text; });
+      }
+    });
+    return out;
+  }
+
+  async function runDeepResearch() {
+    if (drRunning) return;
+    const topic = drCurrentTopic;
+    if (!topic) return;
+    if (!getGeminiKey()) {
+      el.drError.textContent = '需要 Gemini 金鑰才能執行深度研究。請到右上角「設定金鑰」貼上。';
+      el.drError.hidden = false;
+      return;
+    }
+    drRunning = true;
+    drCancelled = false;
+    el.drError.hidden = true;
+    el.drCta.hidden = true;
+    el.drReport.hidden = true;
+    el.drProgress.hidden = false;
+    el.drStatus.textContent = '正在啟動研究探員…';
+    el.drThought.textContent = '規劃研究方向中';
+    const started = Date.now();
+    const tick = setInterval(() => { el.drElapsed.textContent = fmtElapsed(Date.now() - started); }, 1000);
+
+    try {
+      // 1) start the background research task
+      const created = await drApiFetch('POST', null, {
+        input: deepResearchPrompt(topic),
+        agent: DEEP_RESEARCH_AGENT,
+        background: true,
+        store: true,
+        agent_config: { type: 'deep-research', thinking_summaries: 'auto' },
+      });
+      const id = created.id || created.name || (created.interaction && created.interaction.id);
+      if (!id) throw new Error('深度研究啟動後沒有回傳任務 ID。');
+      el.drStatus.textContent = '研究進行中（搜尋與閱讀來源）…';
+
+      // 2) poll until completed/failed (max ~20 min), honouring cancel
+      const maxMs = 20 * 60 * 1000;
+      while (!drCancelled) {
+        await sleep(10000);
+        if (drCancelled) break;
+        if (Date.now() - started > maxMs) throw new Error('深度研究超過 20 分鐘仍未完成，已停止等待。');
+        let it;
+        try { it = await drApiFetch('GET', id, null); }
+        catch (e) { console.warn('[deep-research] poll error (will retry):', e.message); continue; }
+        const status = it.status || (it.interaction && it.interaction.status);
+        const obj = it.interaction || it;
+        const thought = latestThought(obj);
+        if (thought) el.drThought.textContent = thought;
+        if (status === 'completed') {
+          const md = interactionOutputText(obj);
+          renderDeepResearchReport(md, Date.now() - started);
+          break;
+        } else if (status === 'failed') {
+          throw new Error('深度研究失敗：' + (obj.error?.message || obj.error || '未知錯誤'));
+        }
+      }
+      if (drCancelled) { resetDeepResearchPanel(); }
+    } catch (err) {
+      el.drProgress.hidden = true;
+      el.drCta.hidden = false;
+      el.drError.textContent = '⚠ ' + (err.message || '深度研究發生錯誤。');
+      el.drError.hidden = false;
+    } finally {
+      clearInterval(tick);
+      drRunning = false;
+    }
+  }
+
+  function renderDeepResearchReport(markdown, elapsedMs) {
+    el.drProgress.hidden = true;
+    el.drCta.hidden = true;
+    el.drReportBody.innerHTML = markdownToHtml(markdown || '（沒有產生內容）');
+    el.drReportMeta.textContent = `Gemini 深度研究 · 費時 ${fmtElapsed(elapsedMs)}`;
+    el.drReport.hidden = false;
+  }
+
+  // Minimal, safe markdown -> HTML (escape first, then a line-based parser).
+  function markdownToHtml(md) {
+    const esc = (s) => s.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+    const inline = (s) => esc(s)
+      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+      .replace(/(^|[^*])\*([^*\n]+)\*(?!\*)/g, '$1<em>$2</em>')
+      .replace(/`([^`]+)`/g, '<code>$1</code>')
+      .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
+               '<a href="$2" target="_blank" rel="noopener">$1</a>')
+      // bare URLs
+      .replace(/(^|[\s(])(https?:\/\/[^\s)]+)/g, '$1<a href="$2" target="_blank" rel="noopener">$2</a>');
+    const lines = String(md).replace(/\r/g, '').split('\n');
+    let html = '', i = 0;
+    const flushParagraph = (buf) => { if (buf.trim()) html += `<p>${inline(buf.trim())}</p>`; };
+    let para = '';
+    while (i < lines.length) {
+      const line = lines[i];
+      // table block
+      if (/^\s*\|.*\|\s*$/.test(line) && i + 1 < lines.length && /^\s*\|[\s:|-]+\|\s*$/.test(lines[i + 1])) {
+        flushParagraph(para); para = '';
+        const head = line.trim().replace(/^\||\|$/g, '').split('|').map((c) => c.trim());
+        i += 2;
+        let rows = '';
+        while (i < lines.length && /^\s*\|.*\|\s*$/.test(lines[i])) {
+          const cells = lines[i].trim().replace(/^\||\|$/g, '').split('|').map((c) => c.trim());
+          rows += '<tr>' + cells.map((c) => `<td>${inline(c)}</td>`).join('') + '</tr>';
+          i++;
+        }
+        html += '<table><thead><tr>' + head.map((h) => `<th>${inline(h)}</th>`).join('') +
+                '</tr></thead><tbody>' + rows + '</tbody></table>';
+        continue;
+      }
+      const h = line.match(/^(#{1,3})\s+(.*)$/);
+      if (h) { flushParagraph(para); para = ''; const lvl = h[1].length; html += `<h${lvl}>${inline(h[2])}</h${lvl}>`; i++; continue; }
+      const ul = line.match(/^\s*[-*]\s+(.*)$/);
+      if (ul) {
+        flushParagraph(para); para = '';
+        let items = '';
+        while (i < lines.length && /^\s*[-*]\s+/.test(lines[i])) {
+          items += `<li>${inline(lines[i].replace(/^\s*[-*]\s+/, ''))}</li>`; i++;
+        }
+        html += `<ul>${items}</ul>`; continue;
+      }
+      const ol = line.match(/^\s*\d+\.\s+(.*)$/);
+      if (ol) {
+        flushParagraph(para); para = '';
+        let items = '';
+        while (i < lines.length && /^\s*\d+\.\s+/.test(lines[i])) {
+          items += `<li>${inline(lines[i].replace(/^\s*\d+\.\s+/, ''))}</li>`; i++;
+        }
+        html += `<ol>${items}</ol>`; continue;
+      }
+      if (line.trim() === '') { flushParagraph(para); para = ''; i++; continue; }
+      para += (para ? ' ' : '') + line; i++;
+    }
+    flushParagraph(para);
+    return html;
+  }
+
+  if (el.drStartBtn) el.drStartBtn.addEventListener('click', runDeepResearch);
+  if (el.drCancelBtn) el.drCancelBtn.addEventListener('click', () => { drCancelled = true; });
 
   el.askForm.addEventListener('submit', (e) => {
     e.preventDefault();

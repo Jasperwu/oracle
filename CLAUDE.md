@@ -92,7 +92,12 @@
   serverless,解 GDELT/Kalshi/Reddit 的 CORS。前端 modal 加「自有後端 URL」欄位
   (`LS_PROXY_BASE`、`getProxyBase()`、`proxied(path)` helper);三處 fetcher 有設代理就走代理,
   沒設就走原本。`vercel.json` / `package.json` 已備好,部署指南見 `DEPLOY.md`。
-  Polymarket 不走代理(它本來就 CORS-OK)。
+  Polymarket 不走代理(它本來就 CORS-OK)。`api/interactions.js`(2026-06-01)代理 Gemini
+  Interactions API 給「深度研究」用。
+- **深度研究(2026-06-01 加,選用)**:結果頁的「🔬 深度研究」按鈕 → `runDeepResearch()` 用
+  Gemini **Deep Research Agent**(Interactions API,`deep-research-preview-04-2026`)非同步跑、輪詢、
+  回有引用的 markdown 報告(`markdownToHtml` 渲染)。**additive,不動即時 scout 流程**;每次 $1–7、數分鐘。
+  ⚠️ 預覽功能,需實機驗證可用性與金鑰權限。
 - **Claude 呼叫**:`callClaude()` (L1200) → `runScout()` / `askOracle()`(綜合)。
 - **深掃探員 pop out**:`initScoutBoard` / `updateScout` / `creatureSVG`
   (pixel 角色,grid-of-rects SVG)。探員浮在原本的淺色 overlay 上(`.scout-board`,

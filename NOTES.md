@@ -5,6 +5,31 @@
 
 ---
 
+## 2026-06-01 · 加「深度研究」按鈕（Gemini Deep Research Agent · 選項 B）
+
+**背景**：Gemini `generateContent` + `responseSchema` 會**靜默禁用 grounding**（gm keys=Array(0)），
+所以即時 scout 永遠拿不到可點 sources。使用者發現 Google 的 **Deep Research Agent**（Interactions API）。
+讀完官方文件確認：**非同步**（`background=true` + 輪詢）、**無 structured output**（回 markdown 報告）、
+**每次 $1–7 美元、3–20 分鐘**、有完整引用。→ 不適合當即時主路徑，但**很適合當結果頁上的「深度研究」按鈕**。
+
+**決策（使用者選 B）**：即時未來錐維持不變，**結果頁加一個選用的「深度研究」CTA**：
+點下去才啟動一個背景 Deep Research 任務、輪詢、渲染有引用的報告。**完全 additive，不動 scout 流程。**
+
+**實作**：
+- 端點常數 `GEMINI_INTERACTIONS`、`DEEP_RESEARCH_AGENT='deep-research-preview-04-2026'`、`GEMINI_API_REVISION`。
+- `runDeepResearch()`：POST 建立 interaction（`background:true, store:true, agent_config.thinking_summaries:auto`）
+  → 每 10s 輪詢 → `status==='completed'` 取 `output_text` → `markdownToHtml()` 渲染；有取消鈕、計時、最新 thought 顯示。
+- 用 `drCurrentTopic`（render 前由 keyword 設定）當研究主題；`resetDeepResearchPanel()` 每次新預言時重置。
+- `markdownToHtml()`：自寫的安全 markdown 渲染（escape→標題/粗體/連結/清單/**表格**），Node 實測 OK。
+- **CORS**：新增 `api/interactions.js` proxy（POST 建立 + GET 輪詢，轉送 `x-goog-api-key`）。前端 `proxied('/api/interactions')`
+  有設代理走代理、否則直連。使用者已有 Vercel 代理 → git push 會 auto-deploy 這支新 function。
+- UI：`.deep-research` 面板（CTA→進度→報告三態）+ 費用/時間警語。
+
+**待驗證（沙箱無法測）**：① Interactions API 能否瀏覽器直連 or 一定要 proxy ② 該預覽功能是否對 Tier 1 金鑰開放
+③ 回應 `id`/`status`/`output_text`/`steps` 的真實欄位名。失敗會顯示明確錯誤，不影響即時預言。
+
+---
+
 ## 2026-06-01 · 後端代理:Vercel serverless 解 CORS（路線 1）
 
 **背景**:GDELT 過去穩定，最近被 CORS 擋（GDELT 服務端政策改變，跟 git 歷史比對證實
