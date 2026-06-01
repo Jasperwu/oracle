@@ -22,11 +22,18 @@ export default async function handler(req, res) {
   params.set('maxrecords', String(req.query.maxrecords || '20'));
   params.set('format', 'json');
 
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   try {
-    const upstream = await fetch(`https://api.gdeltproject.org/api/v2/doc/doc?${params}`, {
-      headers: { Accept: 'application/json' },
-    });
-    const text = await upstream.text();
+    const target = `https://api.gdeltproject.org/api/v2/doc/doc?${params}`;
+    // GDELT aggressively rate-limits shared (Vercel) IPs with 429. Retry a
+    // couple of times with backoff, staying within the 10s function budget.
+    let upstream, text = '';
+    for (let attempt = 0; attempt < 3; attempt++) {
+      upstream = await fetch(target, { headers: { Accept: 'application/json' } });
+      text = await upstream.text();
+      if (upstream.status !== 429) break;
+      if (attempt < 2) await sleep(1500 * (attempt + 1));
+    }
     res.setHeader('Cache-Control', 'public, max-age=120'); // 2-minute cache
     // GDELT sometimes returns plain text for errors; mirror its content-type
     if (text.trim().startsWith('{')) {

@@ -5,6 +5,40 @@
 
 ---
 
+## 🪧 交接便條（給下一個 session 的你 — 2026-06-01 · 第四輪 / 重大轉向）
+
+**一句話**:**徹底放棄 Gemini grounding**(實證它「成功回應卻從不真的搜尋、只幻覺」),把 scout
+改成**只解讀我們真抓到的資料(markets/news/reddit/bluesky/trends/wiki)、按編號引用、映射回真 URL**。
+push 到 `claude/notes-handoff-review-UXYuR`(PR #1)。**使用者一直在舊正式站(main)測,看不到這些修正。**
+
+**為什麼轉向(鐵證)**:使用者多把 key、多次實測 + 看 Gemini API console:
+- console 顯示**請求成功(100% success、有燒 token)**,但結果只有 1 筆無關幻覺。
+- raw reply 出現「在取得3比1領先後遭費城76人逆轉淘汰(Wikipedia)」這種**跟主題無關的記憶幻覺 + 假引用**,
+  還漏出內心獨白「Let's do this. It satisfies both! …valid JSON」。
+- `groundingMetadata = {}` 每次都空 = `google_search` 工具從沒觸發。
+→ **結論**:Gemini 的 `google_search` 是「模型自己決定要不要搜」的,**無法強制**,這個 model 選擇幻覺。
+  「叫 LLM 請搜尋」這條路死了。**改用真資料 + 真 API 才有真來源。**
+
+**第四輪改了什麼(index.html)**:
+- `callGemini`:`bulletGuard` 改成只要 `!responseSchema` 就套(no-search 也要防 CoT 漏);**移除** `!webSearch→JSON mime`
+  那段(它會逼出 JSON / 內心獨白)。callGemini 現在**只有 scout 在用**(understandTopic/askOracle 走 Claude)。
+- `signalDigest` → `collectSignalItems(sig)` + `buildSignalDigest(items)`:把所有真資料攤成**編號清單 + 真 URL**。
+- `scoutPrompts`:改成「**只准用下面編號資料、每條句末標 (#N)、嚴禁記憶/臆測/編造來源**」。
+- `runScoutOnce`:**不搜尋**(webSearch:false),吃 digest;解析 bullets 後抓 `#N` 映射回 `items[N].url` → 真 sources。
+- `runScout`:**拔掉所有 google_search 分支**,只剩 gemini(解讀)→ claude 降級。`isGeminiOverload`/搜尋重試全刪。
+- `api/gdelt.js`:429 退避重試(GDELT 限流 Vercel IP);`fetchGdelt` 留 15 則(給 scout 更多可引用真新聞)。
+- 前一輪已修:Kalshi combo 垃圾盤過濾(`isCombo`)、Reddit/Bluesky/Trends 接入、`api/trends.js`。
+- 死碼(無害):`SCOUT_SCHEMA`、`GEMINI_MODEL_FALLBACK`、`buzz/github/stackBlock`、`getWebSearch` 現只供最終 askOracle 的 Claude 查證用。
+
+**⚠️ 卡關點:使用者測的是 main(正式站),不是 branch**。行號/行為全是舊 code。要嘛 merge 進 main(需使用者同意,
+任務規定不可擅自動 main),要嘛使用者改開 branch preview。且使用者開著 **solo-debug(只跑 1 個 scout)**,要關掉才看得到 5 隊。
+
+**⏳ 下一個 session / 驗證重點**:深掃後 scout 卡片應該:① 不再幻覺、不漏內心獨白 ② findings 句末有 (#N)
+③ 底部「探索來源」chips 是真 URL(來自 Polymarket/GDELT/Reddit 等)。Polymarket「馬刺奪冠 64%」那條是真的、可點。
+**若仍想要「上百上千來源」的廣度** → 還是得加真搜尋 API(Brave 免費 key,使用者尚未決定)。
+
+---
+
 ## 🪧 交接便條（給下一個 session 的你 — 2026-06-01 · 第三輪）
 
 **一句話**:修完 scout 四個 bug 後,又**把退役的 Reddit/Bluesky 重新接成 Tier-1 直連硬訊號、
