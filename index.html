@@ -1250,7 +1250,15 @@ a.market-item:hover .market-go { opacity: 1; }
       if (!list.length) return [];
 
       const queries = [keyword, ...entities];
-      const scored = list.map((m) => {
+      // Kalshi mixes in mangled multi-leg "combo" markets whose title is a long
+      // comma-joined soup of every leg ("yes Tampa Bay,yes Cincinnati,…"). Those
+      // are noise: drop anything with an absurdly long title or many commas, and
+      // require a clean single-question title.
+      const isCombo = (t) => {
+        const s = String(t || '');
+        return s.length > 110 || (s.match(/,/g) || []).length >= 3 || /\byes .+,\s*yes /i.test(s);
+      };
+      const scored = list.filter((m) => m.title && !isCombo(m.title)).map((m) => {
         const secondary = `${m.yes_sub_title || ''} ${m.subtitle || ''} ${m.category || ''}`;
         const qOnly = maxRelevance(m.title, '', queries);
         const both = maxRelevance(m.title, secondary, queries);
