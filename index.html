@@ -998,7 +998,10 @@ a.market-item:hover .market-go { opacity: 1; }
   // generic words that must not, on their own, make a market "relevant"
   // (e.g. entity "World Series" should NOT match "FIFA World Cup" via "world")
   const STOPWORDS = new Set(['the','a','an','of','and','or','to','in','on','for','2024','2025','2026','2027',
-    'world','league','cup','open','final','finals','season','game','games','team','teams','pro','power','ranking','rankings','rank']);
+    'world','league','cup','open','final','finals','season','game','games','team','teams','pro','power','ranking','rankings','rank',
+    // bare place names — qualify them ("Los Angeles Dodgers") rather than letting
+    // them carry by themselves and drag unrelated regional markets in
+    'los','angeles','new','york','san','francisco','chicago','boston','miami','dallas','houston','seattle']);
   function relevanceScore(keyword, primary, secondary) {
     const kw = keyword.toLowerCase().trim();
     const tokens = kw.split(/\s+/).filter((t) => t.length >= 3);
@@ -1007,9 +1010,11 @@ a.market-item:hover .market-go { opacity: 1; }
     const s = (secondary || '').toLowerCase();
     const all = p + ' ' + s;
     let score = 0;
-    // whole phrase present → unambiguous match
-    if (p.includes(kw)) return 30;
-    if (all.includes(kw) && kw.length >= 5) score += 12;
+    // whole phrase present → high signal, but only if the phrase carries at
+    // least one distinctive (non-stopword) token. Otherwise a bare place name
+    // like "los angeles" matching a mayoral market would falsely pass.
+    if (p.includes(kw) && strong.length) return 30;
+    if (all.includes(kw) && kw.length >= 5 && strong.length) score += 12;
     // count distinctive-token hits; a single generic token can't carry it
     let strongHits = 0;
     strong.forEach((tok) => {
@@ -1054,9 +1059,14 @@ a.market-item:hover .market-go { opacity: 1; }
     const scored = raw.map((m) => {
       const eventTitles = Array.isArray(m.events) ? m.events.map((e) => e.title || '').join(' ') : '';
       const secondary = `${m.description || ''} ${eventTitles} ${m.groupItemTitle || ''}`;
-      return { m, score: maxRelevance(m.question, secondary, queries) };
+      // Require the question itself to have some signal — secondary alone (a
+      // long, generic description that happens to mention "Los Angeles") can't
+      // carry an off-topic market into the results.
+      const qOnly = maxRelevance(m.question, '', queries);
+      const both = maxRelevance(m.question, secondary, queries);
+      return { m, score: both, qOnly };
     })
-    .filter((x) => (requireScore ? x.score >= 5 : true))
+    .filter((x) => !requireScore || (x.qOnly >= 5 && x.score >= 10))
     .sort((a, b) => (b.score - a.score) || (Number(b.m.volumeNum || b.m.volume || 0) - Number(a.m.volumeNum || a.m.volume || 0)))
     .slice(0, 8);
     return scored.map(({ m }) => normalizePolymarket(m));
@@ -1100,13 +1110,15 @@ a.market-item:hover .market-go { opacity: 1; }
       if (!list.length) return [];
 
       const queries = [keyword, ...entities];
-      const threshold = 5;
-
       const scored = list.map((m) => {
         const secondary = `${m.yes_sub_title || ''} ${m.subtitle || ''} ${m.category || ''}`;
-        return { m, score: maxRelevance(m.title, secondary, queries) };
+        const qOnly = maxRelevance(m.title, '', queries);
+        const both = maxRelevance(m.title, secondary, queries);
+        return { m, score: both, qOnly };
       })
-      .filter((x) => x.score >= threshold)
+      // same dual-threshold idea as Polymarket: the title itself must carry
+      // signal so a category like "Politics" can't drag in unrelated markets.
+      .filter((x) => x.qOnly >= 5 && x.score >= 10)
       .sort((a, b) => (b.score - a.score) || (Number(b.m.volume || 0) - Number(a.m.volume || 0)))
       .slice(0, 8);
 
@@ -1171,16 +1183,19 @@ a.market-item:hover .market-go { opacity: 1; }
 
   /* ---------- Hacker News: recent community discussion ---------- */
   async function hnSearch(query) {
-    const since = Math.floor(Date.now() / 1000) - 3 * 86400;
-    const build = (recencyFilter) =>
+    const recent3d = Math.floor(Date.now() / 1000) - 3 * 86400;
+    const recent90d = Math.floor(Date.now() / 1000) - 90 * 86400;
+    const build = (sinceTs) =>
       `${HN}?query=${encodeURIComponent(query)}&tags=story` +
-      (recencyFilter ? `&numericFilters=created_at_i>${since}` : '') +
+      `&numericFilters=created_at_i>${sinceTs}` +
       `&hitsPerPage=8`;
     try {
-      let res = await fetch(build(true));
+      // try last 3 days first; if empty, widen to 90 days — never fall back to
+      // an unfiltered search, which dredges up multi-year-old top stories.
+      let res = await fetch(build(recent3d));
       let data = res.ok ? await res.json() : { hits: [] };
-      if (!data.hits || !data.hits.length) { // widen if last 3d is empty
-        res = await fetch(`https://hn.algolia.com/api/v1/search?query=${encodeURIComponent(query)}&tags=story&hitsPerPage=6`);
+      if (!data.hits || !data.hits.length) {
+        res = await fetch(build(recent90d));
         data = res.ok ? await res.json() : { hits: [] };
       }
       return (data.hits || []).filter((h) => h.title).slice(0, 6).map((h) => ({
@@ -1644,7 +1659,7 @@ a.market-item:hover .market-go { opacity: 1; }
 只回傳有效 JSON（不要 markdown、不要多餘文字），全部以繁體中文（實體與查詢可保留原文/英文）：
 {
   "interpretation": "一句話說明這個主題實際在問什麼、屬於哪個領域",
-  "entities": ["用於檢索的核心實體或專有名詞，3–8 個，含可能的英文原名與關鍵同義詞"],
+  "entities": ["用於檢索的核心實體或專有名詞，3–8 個，含可能的英文原名與關鍵同義詞。重要：不要列「Los Angeles / New York」這類純城市/地名（會把無關市場拉進來）；地名要跟具體事物組合，例如「Los Angeles Dodgers」「LA Lakers」"],
   "expert": "最適合綜合分析此主題的領域專家身分（例：資深 NBA 籃球分析師 / 半導體產業分析師），緊扣主題",
   "scouts": [
     {"name":"偵察員名稱（4 字內）","emoji":"一個貼切的 emoji","domain":"這位專精的領域（緊扣主題）","task":"他要找什麼樣的訊號","angle":"特別關注的切入點","stance":"hot 或 niche 或 mixed","queries":["具體搜尋查詢1（含時效，如 2026 / latest / upcoming）","具體搜尋查詢2"]}
