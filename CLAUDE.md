@@ -4,6 +4,11 @@
 > 容器是即用即拋的 —— 對話本身不會留下,只有 commit/push 進 repo 的東西能存活。
 > **規則:每當我們做出新的設計決策、完成或推翻某個方向,就更新這份檔案,並一起 commit。**
 > 詳細的對話脈絡與決策時間線記在 `NOTES.md`。
+>
+> ⚠️ **2026-06-01 重大更新**：下方「程式結構速查/主題理解」等段落描述的是**舊架構(Gemini scout 那套)**，
+> 已大幅演進。**現行架構的真相以 `METHODOLOGY.md` 為準**，最新進度看 `NOTES.md` 最上面的交接便條。
+> 一句話現況：Gemini grounding 棄用；蒐集主力＝Claude web search(gatherWebMulti)；深挖＝Gemini Deep Research；
+> 結果頁＝主敘事→驅動→未來錐→深層洞察(tabs:黑天鵝/CLA/交叉影響)→未來工作坊(樂觀/中性/黑天鵝情境)。
 
 ## 這是什麼
 

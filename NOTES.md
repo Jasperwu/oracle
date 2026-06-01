@@ -5,6 +5,43 @@
 
 ---
 
+## 🪧 交接便條（給下一個 session 的你 — 2026-06-01 · 第十三輪 / 集大成 · 框架已成熟）
+
+**一句話**：經過一整天密集迭代，整套 end-to-end 未來預測框架**已成熟、使用者滿意**。
+分支 `claude/notes-handoff-review-UXYuR` ＝ `main`（同步，最新 commit 約 `7ee443b` 一帶）。
+**完整方法論看 `METHODOLOGY.md`（這是現行架構的真相，CLAUDE.md 本體已部分過時，以 METHODOLOGY.md 為準）。**
+
+> ⏳ **最後一步(使用者定，先別做)**：整個 demo 網站最後會**全站英文化**(UI + prompts 輸出語言)。
+> 在那之前一律維持繁體中文。**收尾才做，不要提前動。** 使用者說目前用詞(樂觀/中性/黑天鵝等)英文也好翻，沿用。
+
+**這一整天的重大轉向 / 現況（濃縮）**：
+- **Gemini grounding 已死、棄用**：`generateContent`+google_search 不真搜、只幻覺(實證+官方文件)。
+  Gemini 現在只剩兩用途：`understandTopic`(其實是 Claude，見下) **沒有**——勘誤：understandTopic 一直是 **Claude**；
+  Gemini 真正剩的只有 **Deep Research Agent**(Interactions API，唯一會真搜的 Gemini 路徑，深挖模式用)。
+- **蒐集主力＝Claude web search**：`gatherWebMulti` 跨多查詢(主題+entities+scout queries + 1 社群/年輕世代 + 1 預測市場)，
+  並行限流 2，回真實 leaf-page URL。**市場數據改靠這條**(Claude 在脈絡中找賠率)，原始爬蟲卡片降為加分項。
+- **模式開頭就選**：⚡淺搜 / 🔬深挖(`runDeepPrediction`：先快 pass 出即時錐 → 自動接 Deep Research 重繪)。
+- **證據紀律 + 完整溯源**：編號證據池 `[W#]/[M#]/[N#]/[H#]`；drivers/events/wildcard/depth/crossImpacts 都要 `src`；
+  程式把 src/#N 對映回真 URL(`attachEventSources`)；點未來錐的點/各卡 → 顯示真實來源 chip。
+- **結果頁結構**：主敘事(骨幹) → 關鍵驅動(2欄卡) → 未來錐(likelihood×fringe 定位，可拖時間軸) →
+  **🔎 深層洞察(tabbed：⚡黑天鵝預設 / 🧊深層結構CLA / 🔗交叉影響)** → 即時佐證卡 → **🔮 未來工作坊**。
+- **未來工作坊**：三鈕 樂觀/中性/黑天鵝 → 生成「主題如何收場」情境故事(錨定自然時點、從分析長出來)；
+  **依主題動態**：科技/產品/政策另給 HMW+下一步；競技/賽果只給故事。
+- **reasoning-first**：綜合 JSON 順序＝narrative→drivers→depth→crossImpacts→**horizons**→wildcard，
+  讓未來錐「長在」分析之上 + events 要與 crossImpacts 一致。`askOracle` maxTokens=**8000**(防截斷)。
+- **HN/youth**：Hacker News 重新啟用(中央抓取，科技題有料)；社群查詢含 Gen Z/早期採用者。
+
+**還可做（使用者選過、尚未做的強化候選）**：
+- ① backcasting/偏好未來(未來工作坊加「🎯你想要的未來」→ 里程碑+施力點+signposts)。
+- ② 來源偏誤改善(understandTopic 出 regions/langs + 多元視角查詢 + 「來源多元度」標示)——大多隱形後端。
+- ③ 讓「對得上市場的事件」直接用真實機率% 定位光點(更直接吃數據)。
+
+**環境/規範**：沙箱連不了外網→所有 API 行為靠使用者實機驗證；GitHub Pages(jasperwu.github.io/oracle)+
+Vercel(oracle-bice) 都從 main 部署，有 1–2 分鐘 lag，改完提醒 hard refresh + 看 console
+`[central]`/`[gatherWebMulti]`/`[deep-research]` log。流程：commit→push branch→ 再 push 進 main。
+
+---
+
 ## 🪧 交接便條（給下一個 session 的你 — 2026-06-01 · 第十二輪 / 預測框架 + 完整溯源）
 
 > ⏳ **最後一步(使用者定，先別做)**：整個 demo 網站最後會**全站英文化**(UI + prompts 的輸出語言)。
