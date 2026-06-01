@@ -380,6 +380,8 @@ html, body {
 .event-top { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
 .event-title { font-size: 15px; font-weight: 600; color: var(--ink); }
 .event-why { font-size: 13.5px; color: var(--ink-soft); margin: 0; }
+.event-sources { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; margin-top: 8px; }
+.event-sources-label { font-size: 10.5px; color: var(--ink-faint); margin-right: 1px; }
 .like {
   font-size: 11px; font-weight: 600; letter-spacing: .04em;
   padding: 2px 9px; border-radius: 999px; white-space: nowrap; flex-shrink: 0;
@@ -2521,6 +2523,46 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
   function hostOf(url) {
     try { return new URL(url).hostname.replace(/^www\./, ''); } catch { return ''; }
   }
+  // ---- per-event source traceability ----------------------------------------
+  // Tokenise CJK by char + latin by word, so overlap scoring works for both.
+  function tokenize(s) { return String(s || '').toLowerCase().match(/[a-z0-9]{2,}|[一-鿿]/g) || []; }
+  // Build one pool of every REAL {text,url} signal we have, deduped by url.
+  function buildSourcePool(sig, scoutResults, cited) {
+    const pool = [], seen = new Set();
+    const add = (text, url) => { if (url && !seen.has(url)) { seen.add(url); pool.push({ text: String(text || ''), url }); } };
+    (sig.web || []).forEach((it) => add(it.text, it.url));
+    (sig.markets || []).forEach((m) => add(m.question, m.url));
+    (sig.news || []).forEach((n) => add(n.title, n.url));
+    (scoutResults || []).forEach((r) => (r.sources || []).forEach((s) => add(s.title, s.url)));
+    (cited || []).forEach((s) => add(s.title, s.url));
+    return pool;
+  }
+  // Attach the best-matching real sources to each cone event by token overlap
+  // with its title+rationale — so a predicted dot links to the evidence behind it.
+  function attachEventSources(data, pool) {
+    if (!pool || !pool.length) return;
+    const prepared = pool.map((p) => ({ p, toks: new Set(tokenize(p.text)) }));
+    (data.horizons || []).forEach((h) => (h.events || []).forEach((ev) => {
+      const want = new Set(tokenize((ev.title || '') + ' ' + (ev.rationale || '')));
+      const scored = prepared.map(({ p, toks }) => {
+        let hit = 0; toks.forEach((t) => { if (want.has(t)) hit++; });
+        return { p, hit };
+      }).filter((x) => x.hit >= 2).sort((a, b) => b.hit - a.hit).slice(0, 3);
+      ev._sources = scored.map((x) => ({ url: x.p.url, title: x.p.text.slice(0, 90) }));
+    }));
+  }
+  function eventSourcesHTML(sources) {
+    if (!sources || !sources.length) return '';
+    const seen = new Set(), chips = [];
+    for (const s of sources) {
+      const host = hostOf(s.url);
+      if (!host || seen.has(host)) continue;
+      seen.add(host);
+      chips.push(`<a class="src-chip" href="${escapeAttr(s.url)}" target="_blank" rel="noopener" title="${escapeAttr(s.title || s.url)}">${escapeHtml(host)}</a>`);
+      if (chips.length >= 3) break;
+    }
+    return chips.length ? `<div class="event-sources"><span class="event-sources-label">依據</span>${chips.join('')}</div>` : '';
+  }
   function scoutSourcesHTML(sources) {
     if (!sources || !sources.length) return '';
     const seen = new Set(), chips = [];
@@ -2560,11 +2602,12 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
   // The "forecast" half of the result page (topic, summary, drivers, horizons,
   // cone, wildcard, cited sources). Extracted so Deep Research can re-draw the
   // cone from its findings without touching the evidence cards or its own panel.
-  function renderForecast(data, sources) {
+  function renderForecast(data, sources, pool) {
     // strip any <cite index="…"> markers from EVERY field (both the shallow
     // askOracle output and the Deep Research path can emit them) so they never
     // render as raw text in the cone.
     data = sanitizeCites(data);
+    attachEventSources(data, pool); // link each predicted event to its real evidence
     el.resultTopic.textContent = (data.topic || '').toUpperCase() || 'FORESIGHT';
     el.resultSummary.textContent = data.summary || '';
     if (el.resultNarrative) {
@@ -2595,6 +2638,7 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
               <span class="like like-${lk}">${LIKE_LABEL[lk]}</span>
             </div>
             <p class="event-why">${escapeHtml(ev.rationale || '')}</p>
+            ${eventSourcesHTML(ev._sources)}
           </div>`;
       }).join('');
       card.innerHTML = `
@@ -2626,7 +2670,7 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
     const { markets, news, wiki, reddit, bluesky, trends } = sig;
     renderScoutFindings(scoutResults);
     resetDeepResearchPanel();
-    renderForecast(data, sources);
+    renderForecast(data, sources, buildSourcePool(sig, scoutResults, sources));
 
     // GDELT news (last 3 days)
     if (news.length) {
@@ -3157,7 +3201,9 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
       const { result } = await askOracle(lastCtx.keyword, lastCtx.sig, [], lastCtx.expert, stripCites(md));
       const clean = sanitizeCites(result);
       if (clean && (clean.horizons || clean.summary)) {
-        renderForecast(clean, reportSources);
+        // pool = deep-research citations + the central signals we still have
+        const pool = buildSourcePool(lastCtx.sig || {}, [], reportSources);
+        renderForecast(clean, reportSources, pool);
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     } catch (e) { console.warn('[deep-research] feed into cone failed:', e.message || e); }
