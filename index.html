@@ -848,9 +848,9 @@ a.market-item:hover .market-go { opacity: 1; }
       <p class="fs-title">🔮 未來工作坊</p>
       <p class="fs-sub">選一種未來的走法，生成情境故事，帶團隊一起發想。</p>
       <div class="fs-tones" id="fsTones">
-        <button class="fs-tone" type="button" data-tone="optimistic">🌅 最樂觀</button>
-        <button class="fs-tone" type="button" data-tone="neutral">⚖️ 中性 · 最可能</button>
-        <button class="fs-tone" type="button" data-tone="pessimistic">🌧 悲觀</button>
+        <button class="fs-tone" type="button" data-tone="optimistic">🌅 樂觀</button>
+        <button class="fs-tone" type="button" data-tone="neutral">⚖️ 中性</button>
+        <button class="fs-tone" type="button" data-tone="wild">🦢 黑天鵝</button>
       </div>
       <div class="fs-body" id="fsBody"></div>
     </section>
@@ -3482,9 +3482,9 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
   // ---- Futures Studio (ideation) --------------------------------------------
   const todayStr = () => new Date().toISOString().slice(0, 10);
   const FS_TONE = {
-    optimistic: { label: '最樂觀', brief: '這個主題朝「最好的結果」收場：順風、突破兌現、各方都如願——但仍要可信、有現實依據，不是空想。' },
-    neutral: { label: '中性 · 最可能', brief: '照當前訊號「最可能」的方式收場：有得有失、有進展也有摩擦的平衡結果。' },
-    pessimistic: { label: '悲觀', brief: '這個主題朝「最壞/受挫的方向」收場：阻力兌現、失敗、下行風險成真——但要合理、有跡可循，不是危言聳聽。' },
+    optimistic: { label: '樂觀', brief: '這個主題朝「最好的結果」收場：順風、突破兌現、各方都如願——但仍要可信、有現實依據，不是空想。' },
+    neutral: { label: '中性', brief: '照當前訊號「最可能」的方式收場：有得有失、有進展也有摩擦的平衡結果。' },
+    wild: { label: '黑天鵝', brief: '一個低機率但高衝擊的意外，改寫了這個主題的收場方式——但這個意外要有跡可循，不是憑空亂編。' },
   };
   function resetFuturesStudio() {
     if (!el.futuresStudio) return;
@@ -3494,13 +3494,16 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
   }
   function fsContext() {
     const d = lastResult || {};
-    const ev = (d.horizons || []).flatMap((h) => (h.events || []).map((e) => `（${h.range}）${e.title}`)).slice(0, 12);
+    const ev = (d.horizons || []).flatMap((h) => (h.events || []).map((e) => `（${h.range}）${e.title}${e.rationale ? '——' + e.rationale : ''}`)).slice(0, 12);
     const drivers = (d.drivers || []).map((x) => (x && typeof x === 'object' ? x.text : x)).filter(Boolean);
+    // a few raw, real findings so the scenario is built on actual evidence, not vibes
+    const web = ((lastCtx && lastCtx.sig && lastCtx.sig.web) || []).slice(0, 10).map((it) => it.text).filter(Boolean);
     return [
       d.narrative ? `現況主敘事：${d.narrative}` : '',
       drivers.length ? `關鍵驅動：${drivers.join('；')}` : '',
-      ev.length ? `預測事件：\n- ${ev.join('\n- ')}` : '',
-      d.wildcard ? `黑天鵝：${d.wildcard}` : '',
+      ev.length ? `預測事件（含依據）：\n- ${ev.join('\n- ')}` : '',
+      d.wildcard ? `已知黑天鵝：${d.wildcard}` : '',
+      web.length ? `部分真實訊號（節錄）：\n- ${web.join('\n- ')}` : '',
     ].filter(Boolean).join('\n');
   }
   async function generateFuturesStudio(tone) {
@@ -3518,6 +3521,8 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
 ${fsContext()}
 
 **今天是 ${todayStr()}。** 這三種情境，是關於「${keyword}」這件事本身**最後會如何收場/成形**的三種版本。請描述在「${t.label}」這個走向下，「${keyword}」走到它**自然的關鍵時點**（問題真正見分曉的時候——例如賽事就是「賽果」、IPO 就是「上市與其後表現」、某年度的排名/格局就是「那一年實際長怎樣」、技術趨勢就是「它成熟或受挫後的樣貌」）時，會是什麼樣子。要具體、有畫面、緊扣上面的真實預測，並在故事裡講清楚那是什麼時候。**不要硬挑一個無關的時間切片、也不要把焦點放在過程細節而忘了回答「結果如何」。**
+
+**這個情境必須「從上面的分析長出來」，不可瞎編**：把上面的「關鍵驅動」與「預測事件」當素材——樂觀＝這些驅動往好的方向兌現、悲觀/黑天鵝＝往壞的或意外的方向轉折；故事裡要看得出是哪些驅動/事件/真實訊號在起作用，不要另外捏造一套無關情節。
 
 請以這個「${t.label}」走向為基調，產出 JSON：
 {
