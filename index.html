@@ -764,6 +764,11 @@ a.market-item:hover .market-go { opacity: 1; }
       <label class="key-row-label">Gemini API 金鑰 <span class="key-role">偵察員蒐集</span></label>
       <input class="modal-input mono" id="geminiKeyInput" type="password" placeholder="AIzaSy…" />
       <p class="modal-mini">到 <span class="mono">aistudio.google.com → Get API key</span> 取得 <span class="mono">AIzaSy…</span></p>
+      <label class="model-row">
+        Gemini 模型（偵察員）
+        <input id="geminiModelInput" class="modal-input mono" type="text" placeholder="gemini-flash-latest" />
+      </label>
+      <p class="modal-mini">留空＝預設 <span class="mono">gemini-flash-latest</span>（永遠跟最新）。要鎖版本可填 <span class="mono">gemini-3.5-flash</span> 等。</p>
 
       <label class="model-row">
         模型（綜合推演）
@@ -816,8 +821,11 @@ a.market-item:hover .market-go { opacity: 1; }
   const WIKI_VIEWS = 'https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents';
   const ANTHROPIC = 'https://api.anthropic.com/v1/messages';
   // Gemini 2.5 Flash — fast, generous free tier, supports google_search grounding
-  const GEMINI_MODEL = 'gemini-2.5-flash';
-  const GEMINI_URL = (key) => `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${encodeURIComponent(key)}`;
+  // Default to the rolling "latest flash" alias so we don't break when Google
+  // releases a new version. User can override via localStorage / Settings UI.
+  const GEMINI_MODEL_DEFAULT = 'gemini-flash-latest';
+  const getGeminiModel = () => localStorage.getItem('oracle_gemini_model') || GEMINI_MODEL_DEFAULT;
+  const GEMINI_URL = (key) => `https://generativelanguage.googleapis.com/v1beta/models/${getGeminiModel()}:generateContent?key=${encodeURIComponent(key)}`;
 
   const $ = (id) => document.getElementById(id);
 
@@ -858,6 +866,7 @@ a.market-item:hover .market-go { opacity: 1; }
     modalBackdrop: $('modalBackdrop'),
     apiKeyInput: $('apiKeyInput'),
     geminiKeyInput: $('geminiKeyInput'),
+    geminiModelInput: $('geminiModelInput'),
     modelSelect: $('modelSelect'),
     webSearchToggle: $('webSearchToggle'),
     deepScanToggle: $('deepScanToggle'),
@@ -893,6 +902,7 @@ a.market-item:hover .market-go { opacity: 1; }
   function openModal() {
     el.apiKeyInput.value = getKey();
     el.geminiKeyInput.value = getGeminiKey();
+    el.geminiModelInput.value = localStorage.getItem('oracle_gemini_model') || '';
     el.modelSelect.value = getModel();
     el.webSearchToggle.checked = getWebSearch();
     el.deepScanToggle.checked = getDeepScan();
@@ -909,6 +919,8 @@ a.market-item:hover .market-go { opacity: 1; }
     if (k) localStorage.setItem(LS_KEY, k); else localStorage.removeItem(LS_KEY);
     const gk = el.geminiKeyInput.value.trim();
     if (gk) localStorage.setItem(LS_GEMINI_KEY, gk); else localStorage.removeItem(LS_GEMINI_KEY);
+    const gm = el.geminiModelInput.value.trim();
+    if (gm) localStorage.setItem('oracle_gemini_model', gm); else localStorage.removeItem('oracle_gemini_model');
     localStorage.setItem(LS_MODEL, el.modelSelect.value);
     localStorage.setItem(LS_WEBSEARCH, el.webSearchToggle.checked ? '1' : '0');
     localStorage.setItem(LS_DEEPSCAN, el.deepScanToggle.checked ? '1' : '0');
