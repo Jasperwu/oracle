@@ -5,6 +5,30 @@
 
 ---
 
+## 🪧 交接便條（給下一個 session 的你 — 2026-06-01 · 第七輪 / 一開始就選模式）
+
+**一句話**:使用者要「輸入時就選模式」而非結果頁再點深挖。已加 **⚡淺搜 / 🔬深挖** 兩個入口;
+深挖 = 跑一次快速 pass(拿即時錐+中央資料+lastCtx,**略過 Claude gatherWeb**)→ 自動接 `runDeepResearch`
+重繪。複用既有流程,低風險。已上 main。
+
+**順帶澄清的事實**:`understandTopic` **本來就是 Claude**(L1993 callClaude),不是 Gemini —— 我之前架構表寫錯。
+所以「facilitator 用 Claude」已是現況。Gemini 現在只剩:scout 解讀(可有可無)+ Deep Research。
+另:之前那個「Deep Research 成功」是我誤判 —— 使用者沒點,那批扣題內容其實是 **askOracle(Claude)自己 web search** 查到的
+(證明 Claude 搜集可靠),`<cite>` 只是格式殘渣(已 stripCites)。
+
+**第七輪改了什麼(index.html)**:
+- 輸入區:`⚡ 淺搜預言`(form submit / Enter)+ 新 `#deepBtn`「🔬 深挖預言」(其下 .mode-row/.mode-deep-btn CSS)。
+- `runPrediction(keyword, { gather = true })`:gather=false 時略過 gatherWeb。
+- 新 `runDeepPrediction(keyword)`:需 Gemini key;`await runPrediction(kw,{gather:false})` → 若到結果頁則 `runDeepResearch()`。
+- BYOK 狀態文更新成「Claude 蒐集+綜合,Gemini 深挖」。
+- 架構表(正確版):**Claude = facilitator(understandTopic)+ 淺搜蒐集(gatherWeb web search)+ 綜合(askOracle)**;
+  **Gemini = 深挖蒐集(Deep Research agent,唯一真會搜的 Gemini 路徑)**。Gemini 快速 grounding 已證實壞、不用。
+
+**驗證重點**:① 首頁有兩顆鈕;⚡淺搜=快;🔬深挖=先出即時錐再自動跑 Deep Research、跑完重繪錐+真引用、無 cite 亂碼。
+② 深挖按鈕沒 Gemini key 會提示。⚠️ 深挖會先跑一次淺 pass(~15s)再進 Deep Research(數分鐘/$1–3)。
+
+---
+
 ## 🪧 交接便條（給下一個 session 的你 — 2026-06-01 · 第六輪 / 找回真資料 + 清 cite 亂碼）
 
 **一句話**:① Deep Research 餵進錐後 `<cite index=...>` 標籤當亂碼噴出 → 清掉。

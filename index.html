@@ -131,6 +131,17 @@ html, body {
 .ask-btn:active { transform: scale(.98); }
 .arrow { transition: transform .18s ease; display: inline-block; }
 .ask-btn:hover .arrow { transform: translateX(3px); }
+.mode-row { max-width: 600px; margin: 12px auto 0; display: flex; align-items: center; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.mode-or { color: var(--ink-faint); font-size: 13px; }
+.mode-deep-btn {
+  font-family: var(--sans); font-size: 14px; font-weight: 600; color: var(--clay-deep);
+  background: transparent; border: 1px solid var(--clay); border-radius: 11px;
+  padding: 9px 16px; cursor: pointer; transition: background .18s ease, transform .12s ease;
+  display: inline-flex; align-items: baseline; gap: 8px;
+}
+.mode-deep-btn:hover { background: rgba(204,120,92,.08); }
+.mode-deep-btn:active { transform: scale(.98); }
+.mode-deep-note { font-weight: 400; font-size: 11.5px; color: var(--ink-faint); }
 
 .chips { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
 .chip {
@@ -601,9 +612,15 @@ a.market-item:hover .market-go { opacity: 1; }
         <input class="ask-input" id="keyword" type="text" autocomplete="off"
                placeholder="例如：AI agents、台積電、比特幣、太空旅行…" />
         <button class="ask-btn" type="submit">
-          開始預言 <span class="arrow">→</span>
+          ⚡ 淺搜預言 <span class="arrow">→</span>
         </button>
       </form>
+      <div class="mode-row">
+        <span class="mode-or">或</span>
+        <button class="mode-deep-btn" type="button" id="deepBtn">
+          🔬 深挖預言 · Deep Research <span class="mode-deep-note">自主上網研究數十個來源 · 數分鐘 · 約 $1–3</span>
+        </button>
+      </div>
 
       <div class="chips" id="suggestChips">
         <button class="chip" type="button">AI agents</button>
@@ -940,6 +957,7 @@ a.market-item:hover .market-go { opacity: 1; }
     byokNote: $('byokNote'),
     stageInput: $('stage-input'),
     stageResults: $('stage-results'),
+    deepBtn: $('deepBtn'),
     overlay: $('oracleOverlay'),
     status: $('oracleStatus'),
     sub: $('oracleSub'),
@@ -1017,16 +1035,16 @@ a.market-item:hover .market-go { opacity: 1; }
     const a = !!getKey(), g = !!getGeminiKey(), pb = !!getProxyBase();
     const suffix = pb ? ' · 後端代理已啟用' : '';
     if (a && g) {
-      el.byokNote.textContent = `✓ Anthropic + Gemini 金鑰都已就緒（偵察員用 Gemini，綜合用 Claude）${suffix}。可以開始預言。`;
+      el.byokNote.textContent = `✓ Anthropic + Gemini 金鑰都已就緒（Claude 蒐集與綜合，Gemini 負責深挖 Deep Research）${suffix}。可以開始預言。`;
       el.byokNote.classList.add('ok');
     } else if (a) {
-      el.byokNote.textContent = '⚠ 只有 Anthropic 金鑰 — 偵察員會 fallback 到 Claude（容易撞速率限制）。建議補上 Gemini 金鑰以分擔。';
+      el.byokNote.textContent = '✓ Anthropic 金鑰已就緒，⚡ 淺搜可用。補上 Gemini 金鑰即可解鎖 🔬 深挖（Deep Research）。';
       el.byokNote.classList.remove('ok');
     } else if (g) {
-      el.byokNote.textContent = '⚠ 只有 Gemini 金鑰 — 缺 Anthropic 金鑰無法做最終綜合推演。';
+      el.byokNote.textContent = '⚠ 只有 Gemini 金鑰 — 缺 Anthropic 金鑰無法做蒐集與最終綜合推演。';
       el.byokNote.classList.remove('ok');
     } else {
-      el.byokNote.textContent = '尚未設定金鑰 — 點右上角「設定金鑰」貼上 Anthropic（綜合）與 Gemini（偵察員）API key（只存在本機瀏覽器）。';
+      el.byokNote.textContent = '尚未設定金鑰 — 點右上角「設定金鑰」貼上 Anthropic（蒐集+綜合）與 Gemini（深挖 Deep Research）API key（只存在本機瀏覽器）。';
       el.byokNote.classList.remove('ok');
     }
   }
@@ -2768,7 +2786,7 @@ ${wikiBlock(sig)}
   }
 
   /* ---------- main flow ---------- */
-  async function runPrediction(keyword) {
+  async function runPrediction(keyword, { gather = true } = {}) {
     clearError();
     if (!getKey()) {
       showError('請先設定 Anthropic API 金鑰（右上角「設定金鑰」）。');
@@ -2825,7 +2843,8 @@ ${wikiBlock(sig)}
       if (deep) {
         // First gather real, cited web intel with ONE Claude web-search call so
         // even thin-data topics have genuine findings for the scouts to read.
-        if (getWebSearch()) {
+        // Skipped on a deep-mode pass (Deep Research will do the heavy gather).
+        if (gather && getWebSearch()) {
           el.status.textContent = '上網蒐集第一手資料…';
           el.sub.textContent = 'Claude 正在查證真實來源';
           onClaudeWait = (secs) => { if (el.sub) el.sub.textContent = `遇到流量限制，${secs} 秒後重試…`; };
@@ -2871,6 +2890,21 @@ ${wikiBlock(sig)}
       hideOverlay();
       showError(err.message || '預言時發生未知錯誤。');
     }
+  }
+
+  // Deep mode chosen up front: do a fast pass first (instant cone + real-time
+  // central data + topic understanding → lastCtx), land on the results page,
+  // then automatically run Deep Research, which re-draws the cone from its
+  // cited findings. Skips the fast pass's Claude gather (Deep Research gathers).
+  async function runDeepPrediction(keyword) {
+    if (!getGeminiKey()) {
+      showError('深挖（Deep Research）需要 Gemini 金鑰。請到右上角「設定金鑰」貼上，或改用 ⚡ 淺搜預言。');
+      openModal();
+      return;
+    }
+    await runPrediction(keyword, { gather: false });
+    // only chain into Deep Research if the fast pass actually reached results
+    if (!el.stageResults.hidden && !drRunning) runDeepResearch();
   }
 
   /* ---------- Deep Research (Gemini Deep Research Agent) ---------- */
@@ -3157,6 +3191,10 @@ ${wikiBlock(sig)}
     e.preventDefault();
     const kw = el.keyword.value.trim();
     if (kw) runPrediction(kw);
+  });
+  if (el.deepBtn) el.deepBtn.addEventListener('click', () => {
+    const kw = el.keyword.value.trim();
+    if (kw) runDeepPrediction(kw);
   });
 
   el.resetBtn.addEventListener('click', () => {
