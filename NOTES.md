@@ -5,6 +5,30 @@
 
 ---
 
+## 🪧 交接便條（給下一個 session 的你 — 2026-06-01 · 第八輪 / 淺搜廣度:多查詢 Claude web search）
+
+**一句話**:使用者要淺搜也有「~100 條相關資訊」,且明確要用 **Claude 真的上網搜**(不是 Brave/GDELT)。
+把 `gatherWeb`(1 次)擴成 **`gatherWebMulti`** —— 跨多組查詢(keyword+entities+各 scout queries,上限 7)、
+並行限流 2、聚合去重 → 最多 100 findings + 120 sources。已上 main。
+(⚠️ 我一度要去做 Brave/GDELT,使用者澄清「我說的是 Claude 真的上網搜」→ 收回,沒做 Brave/GDELT。)
+
+**第八輪改了什麼(index.html)**:
+- `gatherWebMulti(keyword, entities)`:由 keyword + entities + `activeScouts[].queries` 組查詢(去重、≤7),
+  concurrency 2 各跑一次 `callClaude({webSearch:true, maxUses:5})`(每次要 12–20 條),聚合去重 findings/sources。
+- `runPrediction` 的 gather 改呼叫 `gatherWebMulti`;狀態列顯示「蒐集到 N 條發現 · M 個來源」。
+- `collectSignalItems`:web findings 取前 60、webSrc 取前 40 進 scout digest(控 prompt 大小);scout 仍 #N 引用真 URL。
+- `buildSynthPrompt`:新增「網路研究發現」block(前 40 條)→ 綜合也直接看到 raw web intel。
+- `renderForecast`:🔎 查證來源顯示上限 10→20。
+- 舊 `gatherWeb`(單次)已被 `gatherWebMulti` 取代(呼叫點已換)。
+
+**權衡(已知)**:淺搜現在會跑最多 7 次 Claude web search(concurrency 2)→ **較慢(~1–2 分)、較貴(~$0.1–0.3/次)**,
+這是廣度的代價。低 Anthropic tier 可能 429 等待變慢(callClaude 有 5 次退避,不會失敗只會慢)。要更快可減 queries 上限。
+
+**驗證重點**:淺搜(web search 開)→ 狀態列「蒐集到 N 條…」N 應該數十;scout 卡片有豐富真內容 + 真來源 chips;
+結果頁底「🔎 查證來源」最多 20 個真連結。
+
+---
+
 ## 🪧 交接便條（給下一個 session 的你 — 2026-06-01 · 第七輪 / 一開始就選模式）
 
 **一句話**:使用者要「輸入時就選模式」而非結果頁再點深挖。已加 **⚡淺搜 / 🔬深挖** 兩個入口;

@@ -2051,9 +2051,10 @@ scouts 陣列必須**剛好 5 個元素**（不可多、不可少），角度彼
   function collectSignalItems(sig) {
     const items = [];
     // Claude web-search findings first — the richest real intel for most topics.
-    (sig.web || []).forEach((f) => items.push({ label: '網路研究', text: f, url: null }));
+    // Capped so a 100-item pool stays a manageable per-scout prompt.
+    (sig.web || []).slice(0, 60).forEach((f) => items.push({ label: '網路研究', text: f, url: null }));
     // …and the real source URLs behind them, so scouts can cite (#N) → real link.
-    (sig.webSrc || []).forEach((s) => items.push({ label: '網路來源', text: s.title || s.url, url: s.url }));
+    (sig.webSrc || []).slice(0, 40).forEach((s) => items.push({ label: '網路來源', text: s.title || s.url, url: s.url }));
     (sig.markets || []).forEach((m) => items.push({
       label: `預測市場${m.source ? '·' + m.source : ''}`,
       text: `「${m.question}」→ ${m.outcome} ${m.prob != null ? Math.round(m.prob * 100) + '%' : 'n/a'}（成交量 ${Math.round(m.volume).toLocaleString()}）`,
@@ -2279,8 +2280,11 @@ ${digestText}
         }).join('\n\n')
       : '';
 
+    const webBlock = (sig.web && sig.web.length)
+      ? '\n【網路研究發現 · Claude 跨多組關鍵詞實際上網搜尋所得（真實、可佐證）】\n' + sig.web.slice(0, 40).map((f) => `- ${f}`).join('\n') + '\n'
+      : '';
     return `關鍵詞：「${keyword}」
-${deepReport ? '\n【深度研究報告 · 由 Deep Research Agent 實際上網搜尋與閱讀產生，含真實引用，請以此為「主要」依據】\n' + deepReport + '\n（以上報告是本次分析最重要的依據；下面的即時資料作為佐證與時效補充。）\n' : ''}${scoutBlock ? '\n【AI 偵察員蒐集到的即時情報（含來源）】\n' + scoutBlock + '\n' : ''}
+${deepReport ? '\n【深度研究報告 · 由 Deep Research Agent 實際上網搜尋與閱讀產生，含真實引用，請以此為「主要」依據】\n' + deepReport + '\n（以上報告是本次分析最重要的依據；下面的即時資料作為佐證與時效補充。）\n' : ''}${webBlock}${scoutBlock ? '\n【AI 偵察員蒐集到的即時情報（含來源）】\n' + scoutBlock + '\n' : ''}
 【預測市場即時賠率 · Polymarket + Kalshi】
 ${marketBlock(sig)}
 
@@ -2341,21 +2345,43 @@ ${wikiBlock(sig)}
     return { result: extractJSON(text), sources };
   }
 
-  // One Claude web-search call to gather real, cited intel on the topic. Claude's
-  // web_search ACTUALLY searches (unlike Gemini grounding, which hallucinates)
-  // and returns real citation URLs. A single call — not 5 parallel scouts —
-  // keeps us well under the rate limit while giving every topic real findings.
-  async function gatherWeb(keyword, entities = []) {
-    const ents = entities.length ? `（相關實體：${entities.slice(0, 6).join('、')}）` : '';
-    const system = '你是一位嚴謹的研究助理。請用 web search 找出與主題最相關、最新（最好近 1–3 個月）、有憑據的事實與發展。只回報你實際查到的真實資訊，絕不臆測或編造。用繁體中文，條列，每行以「- 」開頭，先寫事實，必要時句末註明來源媒體；不要前言或結語、不要 JSON。';
-    const user = `主題：「${keyword}」${ents}\n請主動搜尋多個面向（重大進展、關鍵玩家與產品、數據、正反觀點、風險、時程），回報 10–15 條最相關、最新、有來源的發現。`;
-    try {
-      const { text, sources } = await callClaude(system, user, { webSearch: true, maxTokens: 3000, maxUses: 6 });
-      return { findings: parseFindings(text), sources: sources || [] };
-    } catch (e) {
-      console.warn('[gatherWeb] failed:', e.message || e);
-      return { findings: [], sources: [] };
+  // Breadth gatherer: Claude ACTUALLY web-searches (unlike Gemini grounding) —
+  // so we run it across MANY queries (the topic + its entities + each scout's
+  // angle-specific queries), concurrency-limited, and aggregate/dedupe the
+  // findings and real citation URLs. This is how we reach ~100 relevant items.
+  async function gatherWebMulti(keyword, entities = []) {
+    const scoutQs = (activeScouts || []).flatMap((s) => s.queries || []);
+    const seen = new Set(); const queries = [];
+    for (const q of [keyword, ...entities, ...scoutQs]) {
+      const k = String(q || '').trim().toLowerCase();
+      if (k && !seen.has(k)) { seen.add(k); queries.push(String(q).trim()); }
+      if (queries.length >= 7) break; // bound cost/time (each is a Claude web search)
     }
+    if (!queries.length) queries.push(keyword);
+
+    const system = '你是一位嚴謹的研究助理。請用 web search 找出與這個面向最相關、最新（最好近 1–3 個月）、有憑據的事實。只回報你實際查到的真實資訊，絕不臆測或編造。用繁體中文條列，每行以「- 」開頭；不要前言結語、不要 JSON。';
+    const one = async (q) => {
+      try {
+        const { text, sources } = await callClaude(
+          system,
+          `研究主題「${keyword}」的這個面向：「${q}」\n請搜尋並回報 12–20 條最相關、最新、有來源的發現。`,
+          { webSearch: true, maxTokens: 2600, maxUses: 5 });
+        return { findings: parseFindings(text), sources: sources || [] };
+      } catch (e) { console.warn('[gatherWebMulti] query failed:', q, e.message || e); return { findings: [], sources: [] }; }
+    };
+
+    // concurrency 2 to cover every facet while staying under the rate limit
+    const results = []; let idx = 0;
+    const worker = async () => { while (idx < queries.length) { const i = idx++; results[i] = await one(queries[i]); } };
+    await Promise.all([worker(), worker()]);
+
+    const fSeen = new Set(), findings = [], sSeen = new Set(), sources = [];
+    results.forEach((r) => {
+      (r.findings || []).forEach((f) => { const k = f.slice(0, 40).toLowerCase(); if (k && !fSeen.has(k)) { fSeen.add(k); findings.push(f); } });
+      (r.sources || []).forEach((s) => { if (s && s.url && !sSeen.has(s.url)) { sSeen.add(s.url); sources.push(s); } });
+    });
+    console.info(`[gatherWebMulti] ${queries.length} queries → ${findings.length} findings, ${sources.length} sources`);
+    return { findings: findings.slice(0, 100), sources: sources.slice(0, 120) };
   }
 
   /* ---------- scout board (loading) + findings (results) ---------- */
@@ -2507,7 +2533,7 @@ ${wikiBlock(sig)}
 
     // cited sources (Claude web search, or Deep Research citations)
     if (sources && sources.length) {
-      el.claudeSources.innerHTML = '🔎 查證來源： ' + sources.slice(0, 10).map((s) =>
+      el.claudeSources.innerHTML = '🔎 查證來源： ' + sources.slice(0, 20).map((s) =>
         `<a href="${escapeAttr(s.url)}" target="_blank" rel="noopener">${escapeHtml(s.title || hostOf(s.url) || s.url)}</a>`).join(' · ');
       el.claudeSources.hidden = false;
     } else { el.claudeSources.hidden = true; }
@@ -2841,17 +2867,18 @@ ${wikiBlock(sig)}
 
       let webSources = [];
       if (deep) {
-        // First gather real, cited web intel with ONE Claude web-search call so
-        // even thin-data topics have genuine findings for the scouts to read.
-        // Skipped on a deep-mode pass (Deep Research will do the heavy gather).
+        // Gather real, cited web intel by running Claude web search across MANY
+        // queries (topic + entities + each scout's queries) for breadth (~100
+        // items). Skipped on a deep-mode pass (Deep Research does the heavy gather).
         if (gather && getWebSearch()) {
-          el.status.textContent = '上網蒐集第一手資料…';
-          el.sub.textContent = 'Claude 正在查證真實來源';
+          el.status.textContent = '跨多組關鍵詞上網蒐集…';
+          el.sub.textContent = 'Claude 正在實際搜尋並查證真實來源';
           onClaudeWait = (secs) => { if (el.sub) el.sub.textContent = `遇到流量限制，${secs} 秒後重試…`; };
-          const web = await gatherWeb(keyword, entities);
+          const web = await gatherWebMulti(keyword, entities);
           sig.web = web.findings;
           sig.webSrc = web.sources;
           webSources = web.sources;
+          el.sub.textContent = `蒐集到 ${web.findings.length} 條發現 · ${web.sources.length} 個來源`;
           onClaudeWait = null;
         }
         el.status.textContent = '派出 AI 偵察員掃描邊緣訊號…';
