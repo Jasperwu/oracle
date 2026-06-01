@@ -5,6 +5,29 @@
 
 ---
 
+## 🪧 交接便條（給下一個 session 的你 — 2026-06-01 · 第六輪 / 找回真資料 + 清 cite 亂碼）
+
+**一句話**:① Deep Research 餵進錐後 `<cite index=...>` 標籤當亂碼噴出 → 清掉。
+② scout 對薄資料題目全空(因為我把 scout 上網拔了)→ **用「單一 Claude web search 蒐集器」找回真資料**
+(Claude 的 web_search 真的會搜、回真 citations,跟 Gemini 不一樣;只 1 次呼叫,不會 5x 429)。已上 main。
+
+**第六輪改了什麼(index.html / api)**:
+- **cite 亂碼**:`stripCites()`(去 `<cite…>`/`</cite>` 留內文)+ `sanitizeCites()`(遞迴清 result)。
+  套在:`markdownToHtml`(報告面板)、`feedDeepResearchIntoCone`(餵 Claude 前 `stripCites(md)` + 輸出 `sanitizeCites`)。
+- **找回真資料**:新增 `gatherWeb(keyword, entities)` —— 1 次 `callClaude({webSearch:true, maxUses:6})`,
+  回 `{findings, sources}`(真 citations)。`runPrediction` 深掃且 webSearch 開時,先跑 gatherWeb →
+  `sig.web`(發現)+`sig.webSrc`(來源);`collectSignalItems` 把這兩者排在最前(scout 有真料可解讀、可 #N 引用真 URL);
+  gatherWeb 的 sources 併進最終「🔎 查證來源」。
+- **上一輪修的**(也在 main):GDELT 504 regression(改 timeout-safe、總是回 200+JSON+CORS)、`api/bluesky.js` 代理。
+- **架構現況**:Gemini 只用在 understandTopic(無搜尋)+ Deep Research agent(Interactions API,會真搜)。
+  **scout 蒐集回到 Claude web search**(單一 gatherer)。即時掃 = 中央 API + 1 次 Claude 搜;深掃報告 = Deep Research。
+
+**驗證重點**:① 未來錐/報告不再有 `<cite…>` 字樣 ② 即時深掃(webSearch 開)scout 卡片**有真內容 + 真來源 chips**
+③ 結果頁底「🔎 查證來源」有真實可點連結。⚠️ gatherWeb 是 1 次 Claude 搜,會增加數秒延遲與少量費用;
+webSearch 關掉就退回「只解讀中央 API 資料」(薄題目會空,正常)。
+
+---
+
 ## 🪧 交接便條（給下一個 session 的你 — 2026-06-01 · 第五輪 / Stage 2:Deep Research 餵進未來錐）
 
 **一句話**:做完 Stage 2 —— **Deep Research(Interactions API,會真搜、有真引用)跑完後,把報告 + 引用

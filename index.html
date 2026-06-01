@@ -2032,6 +2032,10 @@ scouts 陣列必須**剛好 5 個元素**（不可多、不可少），角度彼
   // finding back to a genuine source — no hallucinated citations possible.
   function collectSignalItems(sig) {
     const items = [];
+    // Claude web-search findings first — the richest real intel for most topics.
+    (sig.web || []).forEach((f) => items.push({ label: '網路研究', text: f, url: null }));
+    // …and the real source URLs behind them, so scouts can cite (#N) → real link.
+    (sig.webSrc || []).forEach((s) => items.push({ label: '網路來源', text: s.title || s.url, url: s.url }));
     (sig.markets || []).forEach((m) => items.push({
       label: `預測市場${m.source ? '·' + m.source : ''}`,
       text: `「${m.question}」→ ${m.outcome} ${m.prob != null ? Math.round(m.prob * 100) + '%' : 'n/a'}（成交量 ${Math.round(m.volume).toLocaleString()}）`,
@@ -2317,6 +2321,23 @@ ${wikiBlock(sig)}
       webSearch: getWebSearch(), maxTokens: 4500, maxUses: 4,
     });
     return { result: extractJSON(text), sources };
+  }
+
+  // One Claude web-search call to gather real, cited intel on the topic. Claude's
+  // web_search ACTUALLY searches (unlike Gemini grounding, which hallucinates)
+  // and returns real citation URLs. A single call — not 5 parallel scouts —
+  // keeps us well under the rate limit while giving every topic real findings.
+  async function gatherWeb(keyword, entities = []) {
+    const ents = entities.length ? `（相關實體：${entities.slice(0, 6).join('、')}）` : '';
+    const system = '你是一位嚴謹的研究助理。請用 web search 找出與主題最相關、最新（最好近 1–3 個月）、有憑據的事實與發展。只回報你實際查到的真實資訊，絕不臆測或編造。用繁體中文，條列，每行以「- 」開頭，先寫事實，必要時句末註明來源媒體；不要前言或結語、不要 JSON。';
+    const user = `主題：「${keyword}」${ents}\n請主動搜尋多個面向（重大進展、關鍵玩家與產品、數據、正反觀點、風險、時程），回報 10–15 條最相關、最新、有來源的發現。`;
+    try {
+      const { text, sources } = await callClaude(system, user, { webSearch: true, maxTokens: 3000, maxUses: 6 });
+      return { findings: parseFindings(text), sources: sources || [] };
+    } catch (e) {
+      console.warn('[gatherWeb] failed:', e.message || e);
+      return { findings: [], sources: [] };
+    }
   }
 
   /* ---------- scout board (loading) + findings (results) ---------- */
@@ -2800,7 +2821,20 @@ ${wikiBlock(sig)}
         trends: val(6, null),
       };
 
+      let webSources = [];
       if (deep) {
+        // First gather real, cited web intel with ONE Claude web-search call so
+        // even thin-data topics have genuine findings for the scouts to read.
+        if (getWebSearch()) {
+          el.status.textContent = '上網蒐集第一手資料…';
+          el.sub.textContent = 'Claude 正在查證真實來源';
+          onClaudeWait = (secs) => { if (el.sub) el.sub.textContent = `遇到流量限制，${secs} 秒後重試…`; };
+          const web = await gatherWeb(keyword, entities);
+          sig.web = web.findings;
+          sig.webSrc = web.sources;
+          webSources = web.sources;
+          onClaudeWait = null;
+        }
         el.status.textContent = '派出 AI 偵察員掃描邊緣訊號…';
         el.sub.textContent = getSoloDebug()
           ? '1 個 agent · debug 模式'
@@ -2818,6 +2852,9 @@ ${wikiBlock(sig)}
       } finally {
         onClaudeWait = null;
       }
+      // merge the gather-step citations with the synthesis citations (deduped)
+      const seenSrc = new Set();
+      sources = [...(sources || []), ...webSources].filter((s) => s && s.url && !seenSrc.has(s.url) && seenSrc.add(s.url));
 
       // keep the oracle on screen for at least the full ritual
       const elapsed = Date.now() - startedAt;
@@ -2928,6 +2965,19 @@ ${wikiBlock(sig)}
     return out;
   }
 
+  // Deep Research embeds inline citation tags like <cite index="9-1,9-2">…</cite>.
+  // Strip the tags but KEEP their inner text, so they never render as raw markup.
+  const stripCites = (s) => String(s == null ? '' : s).replace(/<\/?cite[^>]*>/gi, '');
+  // Recursively strip cite tags from every string in a parsed result object.
+  function sanitizeCites(obj) {
+    if (typeof obj === 'string') return stripCites(obj);
+    if (Array.isArray(obj)) return obj.map(sanitizeCites);
+    if (obj && typeof obj === 'object') {
+      const o = {}; for (const k in obj) o[k] = sanitizeCites(obj[k]); return o;
+    }
+    return obj;
+  }
+
   // Pull real, clickable source URLs out of the Deep Research markdown report
   // (markdown links first, then any bare URLs), deduped.
   function extractReportSources(md) {
@@ -2952,9 +3002,12 @@ ${wikiBlock(sig)}
     if (!md || !lastCtx) return;
     try {
       const reportSources = extractReportSources(md);
-      const { result } = await askOracle(lastCtx.keyword, lastCtx.sig, [], lastCtx.expert, md);
-      if (result && (result.horizons || result.summary)) {
-        renderForecast(result, reportSources);
+      // strip cite tags before feeding to Claude so it can't echo them, and
+      // sanitize the result defensively in case any slip through.
+      const { result } = await askOracle(lastCtx.keyword, lastCtx.sig, [], lastCtx.expert, stripCites(md));
+      const clean = sanitizeCites(result);
+      if (clean && (clean.horizons || clean.summary)) {
+        renderForecast(clean, reportSources);
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     } catch (e) { console.warn('[deep-research] feed into cone failed:', e.message || e); }
@@ -3039,6 +3092,7 @@ ${wikiBlock(sig)}
 
   // Minimal, safe markdown -> HTML (escape first, then a line-based parser).
   function markdownToHtml(md) {
+    md = stripCites(String(md || ''));
     const esc = (s) => s.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
     const inline = (s) => esc(s)
       .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
