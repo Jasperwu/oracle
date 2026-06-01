@@ -7,6 +7,9 @@
 
 ## 🪧 交接便條（給下一個 session 的你 — 2026-06-01 · 第十二輪 / 預測框架 + 完整溯源）
 
+> ⏳ **最後一步(使用者定，先別做)**：整個 demo 網站最後會**全站英文化**(UI + prompts 的輸出語言)。
+> 在那之前一律維持繁體中文。**這是收尾才做的事**，不要提前動。
+
 SpaceX IPO 測試品質明顯起來(主敘事扎實、市場對、cone 乾淨)。使用者問「點是不是隨便點/有沒有框架」。本輪:
 - **預測框架**(`buildSynthPrompt`):每個 event 的 rationale 必須點名真實證據(優先市場機率如「Polymarket 44%」/多來源);
   likelihood 依證據強度且要與對應市場機率一致;fringe 與佐證度成反比;emerging/edge 放遠 horizon 給高 fringe 但要有線索。
