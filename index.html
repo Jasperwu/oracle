@@ -1639,13 +1639,13 @@ a.market-item:hover .market-go { opacity: 1; }
     {"name":"偵察員名稱（4 字內）","emoji":"一個貼切的 emoji","domain":"這位專精的領域（緊扣主題）","task":"他要找什麼樣的訊號","angle":"特別關注的切入點","stance":"hot 或 niche 或 mixed","queries":["具體搜尋查詢1（含時效，如 2026 / latest / upcoming）","具體搜尋查詢2"]}
   ]
 }
-scouts 請剛好 5 位，角度彼此互補、且全部緊扣「${keyword}」這個主題；stance 要平衡（約 2 hot、2 niche、1 mixed）；每位的 queries 要彼此不同、鎖定各自角度。`;
+scouts 陣列必須**剛好 5 個元素**（不可多、不可少），角度彼此互補、且全部緊扣「${keyword}」這個主題；stance 要平衡（約 2 hot、2 niche、1 mixed）；每位的 queries 要彼此不同、鎖定各自角度。`;
     try {
       const { text } = await callClaude(system, user, { maxTokens: 900 });
       const parsed = extractJSON(text);
       const scouts = Array.isArray(parsed.scouts) ? parsed.scouts.slice(0, 5) : [];
       if (scouts.length) {
-        activeScouts = scouts.map((s, i) => {
+        const built = scouts.map((s, i) => {
           const st = String(s.stance || '').toLowerCase().trim();
           return {
             id: 'scout' + i,
@@ -1658,6 +1658,13 @@ scouts 請剛好 5 位，角度彼此互補、且全部緊扣「${keyword}」這
             queries: Array.isArray(s.queries) ? s.queries.map((q) => String(q).trim()).filter(Boolean).slice(0, 3) : [],
           };
         });
+        // Claude doesn't always honour "exactly 5" — backfill from defaults so
+        // the team is always 5, keeping the stance balance intact.
+        while (built.length < 5) {
+          const d = DEFAULT_SCOUTS[built.length];
+          built.push({ ...d, id: 'scout' + built.length, angle: '', queries: [] });
+        }
+        activeScouts = built;
       } else {
         activeScouts = DEFAULT_SCOUTS;
       }
