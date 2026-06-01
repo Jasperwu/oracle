@@ -279,9 +279,15 @@ html, body {
   margin: 6px 0 0; letter-spacing: -.3px;
 }
 .results-narrative {
-  max-width: 760px; margin: 16px auto 0;
-  font-family: var(--sans); font-size: 15.5px; line-height: 1.7;
-  color: var(--ink-soft); text-align: left;
+  max-width: 760px; margin: 18px auto 0;
+  font-family: var(--sans); font-size: 15.5px; line-height: 1.75;
+  color: var(--ink); text-align: left;
+  border-left: 3px solid var(--clay); padding: 4px 0 4px 16px;
+}
+.results-narrative::before {
+  content: "現況主敘事 · 這個預測的依據";
+  display: block; font-size: 11.5px; font-weight: 700; letter-spacing: 1.5px;
+  color: var(--clay-deep); text-transform: uppercase; margin-bottom: 7px;
 }
 .reset-btn {
   position: absolute; right: 0; top: 50%; transform: translateY(-50%);
@@ -2370,7 +2376,15 @@ ${wikiBlock(sig)}
   "wildcard": "一個低機率但高衝擊的黑天鵝情境"
 }
 
-每個 horizon 請給 2–3 個 events。likelihood 只能是 probable、plausible、possible 三者之一，越近期的、越有市場/訊號支撐的越偏 probable。fringe 為 0–100 的整數，代表這個事件的「邊緣程度」：主流、眾所矚目、確定度高的事件給低分（靠近未來錐中心軸）；冷門、邊緣、低機率高想像空間的事件給高分（落在未來錐外圍）。請延續上面偵察員訊號的 fringe 精神。`;
+每個 horizon 請給 2–3 個 events。
+
+**預測框架（每個 event 都要遵守，不可憑感覺亂給）：**
+- \`rationale\` 必須寫出「這個事件根據哪些『上面的真實證據』」——優先引用具體的預測市場機率（如「Polymarket 44%」）、具體數據、或多個來源的交叉佐證；不要空泛。沒有證據支撐的事件不要放。
+- \`likelihood\` 依證據強度判定：**probable**＝有市場機率 ≥ 約 40%、或多個獨立來源強力佐證；**plausible**＝中等支撐／訊號混雜；**possible**＝單一來源、推測性、或想像空間大但證據薄。若對應到某個預測市場，likelihood 要和該市場機率一致（高機率→probable，低機率→possible）。
+- \`fringe\`(0–100)＝這個事件離「主流共識」多遠：被市場/多來源高度佐證的主流結果給低分（靠中軸）；單一來源、邊緣、投機的給高分（靠外圍）。fringe 要和證據的「被佐證程度」成反比。
+- **emerging trends 與 edge cases**：較遠的 horizon（6–18 個月）應納入有萌芽訊號支撐的新興趨勢與低機率高衝擊的邊緣情境（給較高 fringe），但仍要有上面資料的線索，不可純屬虛構。
+
+likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0–100 的整數。請確保 events 的 likelihood/fringe 與 rationale 所引用的證據一致——這是讓未來錐「點位真實反映證據」的關鍵。`;
   }
 
   async function askOracle(keyword, sig, scoutResults, expert, deepReport = '') {
