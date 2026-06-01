@@ -278,6 +278,11 @@ html, body {
   font-size: clamp(26px, 4vw, 40px); line-height: 1.15;
   margin: 6px 0 0; letter-spacing: -.3px;
 }
+.results-narrative {
+  max-width: 760px; margin: 16px auto 0;
+  font-family: var(--sans); font-size: 15.5px; line-height: 1.7;
+  color: var(--ink-soft); text-align: left;
+}
 .reset-btn {
   position: absolute; right: 0; top: 50%; transform: translateY(-50%);
   font-family: var(--sans); font-size: 14px; font-weight: 500; color: var(--ink-soft);
@@ -696,6 +701,7 @@ a.market-item:hover .market-go { opacity: 1; }
     <div class="results-head">
       <p class="eyebrow" id="resultTopic">FORESIGHT</p>
       <h2 class="results-title" id="resultSummary">—</h2>
+      <p class="results-narrative" id="resultNarrative" hidden></p>
       <button class="reset-btn" id="resetBtn">↺ 重新預言</button>
     </div>
 
@@ -964,6 +970,7 @@ a.market-item:hover .market-go { opacity: 1; }
     particles: $('particles'),
     resultTopic: $('resultTopic'),
     resultSummary: $('resultSummary'),
+    resultNarrative: $('resultNarrative'),
     resetBtn: $('resetBtn'),
     signals: $('signalsStrip'),
     horizons: $('horizons'),
@@ -1222,7 +1229,9 @@ a.market-item:hover .market-go { opacity: 1; }
       const both = maxRelevance(m.question, secondary, queries);
       return { m, score: both, qOnly };
     })
-    .filter((x) => !requireScore || (x.qOnly >= 5 && x.score >= 10))
+    // strict bar: hide a market unless it strongly matches (the user prefers an
+    // empty card over a wrong one — e.g. a WNBA market matching "NBA" via a city)
+    .filter((x) => !requireScore || (x.qOnly >= 8 && x.score >= 16))
     .map((x) => ({ ...x, n: normalizePolymarket(x.m) }))
     // drop already-decided / irrelevant near-100% markets (e.g. a settled O/U
     // that matched on a city name) — they're noise, not a prediction.
@@ -1294,7 +1303,7 @@ a.market-item:hover .market-go { opacity: 1; }
       })
       // same dual-threshold idea as Polymarket: the title itself must carry
       // signal so a category like "Politics" can't drag in unrelated markets.
-      .filter((x) => x.qOnly >= 5 && x.score >= 10)
+      .filter((x) => x.qOnly >= 8 && x.score >= 16) // strict: hide rather than show wrong
       .filter((x) => x.prob < 97) // drop already-decided / irrelevant ~100% markets
       // favourites first (prob desc) so championship long-shots don't crowd out
       .sort((a, b) => (b.score - a.score) || (b.prob - a.prob) || (Number(b.m.volume || 0) - Number(a.m.volume || 0)))
@@ -2121,11 +2130,12 @@ ${scout.angle ? `特別關注：${scout.angle}\n` : ''}
 以下是我們剛從預測市場、新聞、社群（Reddit/Bluesky）、Google Trends、Wikipedia 真實抓到的資料，每條前面有編號：
 ${digestText}
 
-請從你的領域視角，挑出與主題最相關的訊號，並解讀「這對主題未來 18 個月代表什麼」。規則：
-- **盡量多挑幾條（6–12 條最佳）**，只要上面資料支撐得住就多寫；資料很多時不要只給一兩條。
-- 只能根據上面的編號資料；每一條發現都**必須**在句末用括號標出你依據的編號，例如「(#2、#5)」。沒有編號可依據的就不要寫。
-- 嚴禁編造編號以外的任何事實、數據或來源；嚴禁靠記憶補充。
-- 同一件事不要拆成多條湊數。
+請從你的領域視角，針對「${keyword}」這件事本身（若是競技/選舉/比賽，就是它的結果與走向），挑出最相關的訊號並解讀。規則：
+- **緊扣主題核心與「最新」進展**：優先採用資料中最近、最貼合這個事件/結果的項目；背景或過時的資訊不要當主角。
+- **每條都要語句完整、自成一個論點**：寫清楚「這個訊號是什麼 → 它對結果／未來 18 個月代表什麼意涵」，不要寫半句、不要只丟一個事實。
+- **挑 5–10 條最有訊號量的**（寧精勿濫，但不要只給一兩條）。
+- 只能根據上面的編號資料；每一條句末**必須**用括號標出依據的編號，例如「(#2、#5)」。沒有編號可依據的就不要寫。
+- 嚴禁編造編號以外的事實、數據、人名或來源；嚴禁靠記憶補充；同一件事不要拆成多條湊數。
 格式：每條一行、以「- 」開頭。不要前言或結語、不要 markdown 標題、不要編號清單、不要 JSON。`;
     return { system, user };
   }
@@ -2338,10 +2348,13 @@ ${wikiBlock(sig)}
 
 請主動做「跨領域交叉連結」——把不同偵察員的訊號串起來，找出單一領域看不到的綜效或張力，據此形成情境；不要只把各領域的訊號分開條列。drivers 與 rationale 請盡量引用上述真實訊號或數據；越邊緣但有支撐的訊號越值得放進較遠的 horizon。
 
+**請先寫「現況主敘事」(narrative)**：用 3–5 句把「最新、最相關」的真實資訊串成一條連貫的主線——現在實際發生了什麼、誰是關鍵、哪些是最重要的驅動力。這是支撐整個未來預測的骨幹，必須緊扣上面的真實情報(尤其網路研究發現與賠率)，不要空泛、不要硬湊。後面的 drivers / horizons 都應與這條主敘事一致。
+
 務必只回傳符合下列結構的有效 JSON（不要 markdown、不要程式碼框、不要多餘文字），全部欄位以繁體中文撰寫：
 {
   "topic": "精煉後的主題（簡短）",
   "summary": "一句富畫面感的總綱預言",
+  "narrative": "現況主敘事：3–5 句連貫的最新現況與關鍵驅動，緊扣真實情報",
   "drivers": ["驅動訊號1", "驅動訊號2", "驅動訊號3", "驅動訊號4"],
   "horizons": [
     {
@@ -2536,6 +2549,11 @@ ${wikiBlock(sig)}
   function renderForecast(data, sources) {
     el.resultTopic.textContent = (data.topic || '').toUpperCase() || 'FORESIGHT';
     el.resultSummary.textContent = data.summary || '';
+    if (el.resultNarrative) {
+      const nar = stripCites(data.narrative || '');
+      el.resultNarrative.textContent = nar;
+      el.resultNarrative.hidden = !nar;
+    }
 
     // signals
     el.signals.innerHTML = '';

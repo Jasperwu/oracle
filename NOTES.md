@@ -5,6 +5,20 @@
 
 ---
 
+## 🪧 交接便條（給下一個 session 的你 — 2026-06-01 · 第十一輪 / 主敘事 + 功能透鏡重設計）
+
+使用者架構級回饋(cone 不錯但 agent 差、角色空轉、來源對不上、敘事不知所云、缺主敘事)。
+拍板「**全部重設計**」+「**市場相關性低就隱藏**」。本輪做了:
+- **新增「現況主敘事」**:`buildSynthPrompt` 加 `narrative` 欄位(3–5 句連貫最新現況+關鍵驅動,緊扣真實情報),
+  askOracle JSON 多回 narrative;結果頁標題下新增 `#resultNarrative`(.results-narrative)顯示,`renderForecast` 填入(經 stripCites)。
+- **scout 改「功能透鏡」**:scoutPrompts 改成「緊扣事件本體+最新、每條語句完整講『訊號→對結果意涵』、5–10 條、#N 引用」。
+- **來源誠實**(上一 commit):移除亂配 citations;gather 要求近 7 天 + leaf page、配不到不掛。
+- **市場隱藏**:rankPolymarket/fetchKalshi 門檻拉到 `qOnly>=8 && score>=16` + prob<0.97 → 跨運動/已決/冷門洗版的卡會直接不顯示(寧空勿錯)。
+
+**待辦/可續**:① 若 score>=16 太嚴導致市場常空,再調。② understandTopic 角色已夠核心向,但若仍空轉可再針對「主題類型」分流角色模板。③ Google Trends 仍 best-effort(Google 擋)。④ emerging/edge cases 目前靠 narrative+wildcard+fringe,未獨立成欄位(可再加 emerging[]/edges[])。
+
+---
+
 ## 🪧 交接便條（給下一個 session 的你 — 2026-06-01 · 第十輪 / World Cup 實測修五點）
 
 實測 "2026 FIFA World Cup"(scout 9/8/10 條、逆勢 12 sources,有起來了)。修:
