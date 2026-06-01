@@ -1430,6 +1430,18 @@ a.market-item:hover .market-go { opacity: 1; }
   }
 
   function repairJSON(s) {
+    // First remove Gemini's chain-of-thought "self-talk" before JSON. It
+    // sometimes outputs things like "Wait, I need to make sure I don't output
+    // markdown..." inside the reply, which derails parsing. Strip every line
+    // up to (and including) the last paragraph that doesn't look like JSON,
+    // when followed by an opening { on its own.
+    s = s
+      .replace(/<think>[\s\S]*?<\/think>/gi, '')           // <think>...</think>
+      .replace(/<reasoning>[\s\S]*?<\/reasoning>/gi, '')   // <reasoning>...</reasoning>
+      // Gemini's stream-of-consciousness lines often start with these markers
+      .replace(/^\s*(Wait[, ]|Hmm[, ]|Actually[, ]|Let me[, ]|I need to|I should|The developer prompt|The user asks|Looking at|First[, ]|OK so|好的|讓我|我需要|首先[，,]).*$/gim, '')
+      // strip any leading text before the first { on its own — keeps only JSON
+      .replace(/^[\s\S]*?(?=^\s*\{)/m, '');
     return s
       .replace(/```(?:json|JSON)?\s*/g, '')   // strip ```json / ``` fences
       .replace(/```\s*$/g, '')                // closing fence
@@ -1472,7 +1484,19 @@ a.market-item:hover .market-go { opacity: 1; }
   function scoreCandidate(obj) {
     if (!obj || typeof obj !== 'object') return 0;
     let score = 0;
-    if (Array.isArray(obj.signals) && obj.signals.length) score += 100 + obj.signals.length; // scout reply
+    if (Array.isArray(obj.signals) && obj.signals.length) {
+      score += 100 + obj.signals.length; // scout reply
+      // each signal field that looks fully populated adds a bit — separates
+      // the real reply from a stub schema example {"signal":"...","fringe":0}
+      obj.signals.forEach((s) => {
+        if (s && typeof s === 'object') {
+          if (s.timing) score += 2;
+          if (s.momentum) score += 2;
+          if (s.evidence && s.evidence.length > 10) score += 3;
+          if (s.signal && s.signal.length > 20) score += 2;
+        }
+      });
+    }
     if (Array.isArray(obj.horizons) && obj.horizons.length) score += 200 + obj.horizons.length * 5; // synth reply
     if (Array.isArray(obj.scouts) && obj.scouts.length) score += 100 + obj.scouts.length; // understandTopic
     if (Array.isArray(obj.entities)) score += obj.entities.length;
@@ -1641,8 +1665,11 @@ a.market-item:hover .market-go { opacity: 1; }
     if (!key) throw new Error('GEMINI_NO_KEY');
     // responseMimeType conflicts with the google_search tool — when search is
     // on, lean on a stronger prompt instruction to keep the output pure JSON.
+    // Gemini 3.5-flash with grounding sometimes leaks chain-of-thought
+    // ("Wait, I need to make sure I don't output markdown...") into output.
+    // Give it an explicit reasoning channel and bind output to pure JSON.
     const jsonGuard = webSearch
-      ? '\n\n極重要：你的最終回覆必須「只」是純粹的 JSON 物件 — 不要 markdown 程式碼框（```）、不要前後解說、不要任何引文標記。直接以 { 開頭，以 } 結尾。'
+      ? '\n\n【輸出協議 — 嚴格遵守】\n• 你可能會有內部思考過程；**所有思考、推理、自我提醒、引用標記都必須完全省略**，不可寫進回覆。\n• 不要寫「Wait, I need to」「Let me think」「好的，讓我」「首先」這類自言自語。\n• 不要 markdown 程式碼框（```）、不要 <think> 標籤、不要前後解說。\n• 你的回覆從第一個字元開始就必須是 `{`，最後一個字元是 `}`。中間只能是有效 JSON。\n• 把推理放在心裡，直接寫結果。'
       : '';
     const body = {
       systemInstruction: { parts: [{ text: system + jsonGuard }] },
