@@ -1290,9 +1290,10 @@ a.market-item:hover .market-go { opacity: 1; }
       const both = maxRelevance(m.question, secondary, queries);
       return { m, score: both, qOnly };
     })
-    // bar tuned to hide cross-sport noise (a 2-token city match scores ~12)
-    // while keeping clearly-relevant markets (3+ token match scores ~18)
-    .filter((x) => !requireScore || (x.qOnly >= 8 && x.score >= 13))
+    // relevance bar kept modest: 'world cup 2026' only scores ~12 ('world' is a
+    // stopword), so a higher bar wrongly hid legit markets. Cross-sport / settled
+    // noise is handled by the prob<0.97 + combo filters instead.
+    .filter((x) => !requireScore || (x.qOnly >= 5 && x.score >= 10))
     .map((x) => ({ ...x, n: normalizePolymarket(x.m) }))
     // drop already-decided / irrelevant near-100% markets (e.g. a settled O/U
     // that matched on a city name) — they're noise, not a prediction.
@@ -1364,7 +1365,7 @@ a.market-item:hover .market-go { opacity: 1; }
       })
       // same dual-threshold idea as Polymarket: the title itself must carry
       // signal so a category like "Politics" can't drag in unrelated markets.
-      .filter((x) => x.qOnly >= 8 && x.score >= 13) // hide cross-sport noise, keep clear matches
+      .filter((x) => x.qOnly >= 5 && x.score >= 10) // keep legit (e.g. 'world cup'=12); noise dropped by prob/combo filters
       .filter((x) => x.prob < 97) // drop already-decided / irrelevant ~100% markets
       // favourites first (prob desc) so championship long-shots don't crowd out
       .sort((a, b) => (b.score - a.score) || (b.prob - a.prob) || (Number(b.m.volume || 0) - Number(a.m.volume || 0)))
@@ -2400,7 +2401,7 @@ ${digestText}
       ? '\n【網路研究發現 · Claude 跨多組關鍵詞實際上網搜尋所得（真實、可佐證）】\n' + sig.web.slice(0, 40).map((it) => `- ${it.text}`).join('\n') + '\n'
       : '';
     const evidence = buildEvidenceIndex(sig);
-    return `關鍵詞：「${keyword}」
+    return `關鍵詞：「${keyword}」（今天是 ${todayStr()}；所有時間推演、horizon 都從今天起算。若主題涉及有明確日期的事件，請分清「事件前 / 進行中 / 結果後」並據此安排 horizons）
 ${deepReport ? '\n【深度研究報告 · 由 Deep Research Agent 實際上網搜尋與閱讀產生，含真實引用，請以此為「主要」依據】\n' + deepReport + '\n（以上報告是本次分析最重要的依據；下面的即時資料作為佐證與時效補充。）\n' : ''}
 【編號證據池 — 每條前面的 [W#]/[M#]/[N#] 是它的編號。後面的 drivers 與每個 event 都要用這些編號標出依據(src)。】
 ${evidence.text || '（暫無編號證據）'}
@@ -3467,6 +3468,7 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
   }
 
   // ---- Futures Studio (ideation) --------------------------------------------
+  const todayStr = () => new Date().toISOString().slice(0, 10);
   const FS_TONE = {
     optimistic: { label: '樂觀', brief: '一切順利、最好的情況展開：採用順暢、阻力化解、正向飛輪啟動。' },
     neutral: { label: '中性', brief: '最可能、平衡的情況：有進展也有摩擦，照當前訊號最可能的軌跡走。' },
@@ -3502,6 +3504,8 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
     const user = `主題：「${keyword}」
 這是針對它做的未來預測摘要：
 ${fsContext()}
+
+**今天是 ${todayStr()}。** 請把情境**錨定在這條真實時間線上**——從今天往前推。若主題涉及一個有明確時間的事件（如賽事、發表會、選舉），務必分清「事件前（醞釀、籌備、卡位）」「事件進行中」「結果揭曉後（餘波）」是完全不同的未來；挑一個最有張力的時點切入，並在故事裡講清楚那是何時、距離關鍵時刻多久。
 
 請以「${t.label}」這種未來走向（${t.brief}）為基調，產出 JSON：
 {
