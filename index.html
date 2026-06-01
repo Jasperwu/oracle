@@ -509,6 +509,11 @@ a.market-item:hover .market-go { opacity: 1; }
 .modal {
   background: var(--paper); border-radius: 20px; padding: 30px;
   width: 100%; max-width: 480px; box-shadow: 0 24px 60px rgba(31,30,29,.25);
+  /* keep the modal inside the viewport and scroll its own content when the
+     form is taller than the screen (two keys + model + proxy + toggles). */
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .modal h3 { font-family: var(--serif); font-size: 22px; font-weight: 600; margin: 0 0 10px; }
 .modal-note { font-size: 14px; color: var(--ink-soft); margin: 0 0 18px; }
