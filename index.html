@@ -1551,21 +1551,29 @@ a.market-item:hover .market-go { opacity: 1; }
     const start = t.indexOf('{');
     if (start < 0) return null;
     t = t.slice(start);
-    let depth = 0, inStr = false, esc = false, lastSafe = -1;
-    const stack = [];
+    // Walk through and track the position of the LAST FULLY-COMPLETED value
+    // (a value is complete when we see , } or ] while not inside a string —
+    // those are the only positions safe to chop at). Track that comma/brace
+    // separately, so if we end inside a string we cut back to it.
+    let inStr = false, esc = false, lastCompleted = -1;
     for (let i = 0; i < t.length; i++) {
       const c = t[i];
       if (inStr) {
-        if (esc) esc = false; else if (c === '\\') esc = true; else if (c === '"') inStr = false;
-      } else if (c === '"') inStr = true;
-      else if (c === '{' || c === '[') stack.push(c === '{' ? '}' : ']');
-      else if (c === '}' || c === ']') stack.pop();
-      if (!inStr && (c === '}' || c === ']' || c === '"')) lastSafe = i; // a value just closed
+        if (esc) esc = false;
+        else if (c === '\\') esc = true;
+        else if (c === '"') inStr = false;
+      } else if (c === '"') {
+        inStr = true;
+      } else if (c === ',' || c === '}' || c === ']') {
+        lastCompleted = i;
+      }
     }
-    if (lastSafe < 0) return null;
-    let out = t.slice(0, lastSafe + 1).replace(/,\s*$/, ''); // cut dangling partial + trailing comma
-    // rebuild the close stack for what's still open after lastSafe
-    depth = 0; inStr = false; esc = false; const open = [];
+    if (lastCompleted < 0) return null;
+    // Cut to (and INCLUDING) the last completed boundary, then drop a trailing
+    // comma if present (we'd otherwise need to add a value after it).
+    let out = t.slice(0, lastCompleted + 1).replace(/,\s*$/, '');
+    // rebuild the close stack for what's still open
+    inStr = false; esc = false; const open = [];
     for (let i = 0; i < out.length; i++) {
       const c = out[i];
       if (inStr) { if (esc) esc = false; else if (c === '\\') esc = true; else if (c === '"') inStr = false; }
