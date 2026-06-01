@@ -220,6 +220,10 @@ html, body {
 .pixie-cell.errored .pixie-wrap { animation: none; opacity: .55; filter: grayscale(.4); }
 .blink { animation: blink 1s step-end infinite; }
 @keyframes blink { 50% { opacity: 0; } }
+/* standby/locating status — looks like the scout is on its way, not stuck */
+.pixie-cell:not(.scanning):not(.done):not(.errored) .pixie-status { color: var(--clay); }
+.loc-dots { display: inline-block; animation: locPulse 1.2s ease-in-out infinite; }
+@keyframes locPulse { 0%, 100% { opacity: .25; } 50% { opacity: 1; } }
 
 @media (max-width: 560px) {
   .scout-board { flex-wrap: wrap; }
@@ -2634,7 +2638,7 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
       `<div class="pixie-cell" id="scout-${s.id}" style="animation-delay:${(i * 0.09).toFixed(2)}s">
          <div class="pixie-wrap">${creatureSVG('#CC785C')}</div>
          <div class="pixie-name">${s.emoji} ${escapeHtml(s.name)}</div>
-         <div class="pixie-status" id="scoutStatus-${s.id}">待命</div>
+         <div class="pixie-status" id="scoutStatus-${s.id}">定位中<span class="loc-dots">···</span></div>
        </div>`).join('');
     el.scoutBoard.hidden = false;
     updateFootCount();
@@ -3195,7 +3199,7 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
         // now the right team is known — summon it to stand by while data loads
         el.status.textContent = '召喚偵察員小隊…';
         const summonCount = getSoloDebug() ? 1 : activeScouts.length;
-        el.sub.textContent = `${summonCount} 個 agent 待命中` + (getSoloDebug() ? '（debug 模式）' : '');
+        el.sub.textContent = `${summonCount} 個 agent 定位中、準備出發` + (getSoloDebug() ? '（debug 模式）' : '');
         initScoutBoard();
       }
 
