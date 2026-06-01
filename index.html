@@ -790,6 +790,10 @@ a.market-item:hover .market-go { opacity: 1; }
         <input type="checkbox" id="deepScanToggle" checked />
         <span>多代理人 fringe 深掃（派出 5 個偵察員並行掃描邊緣訊號 — 更完整，但較慢、費用較高）</span>
       </label>
+      <label class="toggle-row">
+        <input type="checkbox" id="soloDebugToggle" />
+        <span>🧪 Debug：只派 1 個偵察員（驗證 Gemini + serverless 是否相通；其他 4 個 scout 跳過、Claude 照常綜合）</span>
+      </label>
       <div class="modal-actions">
         <button class="btn-ghost" id="clearKey">清除金鑰</button>
         <button class="btn-solid" id="saveKey">儲存</button>
@@ -814,6 +818,7 @@ a.market-item:hover .market-go { opacity: 1; }
   const LS_MODEL = 'oracle_model';
   const LS_WEBSEARCH = 'oracle_websearch';
   const LS_DEEPSCAN = 'oracle_deepscan';
+  const LS_SOLO_DEBUG = 'oracle_solo_debug';
   const GAMMA = 'https://gamma-api.polymarket.com/markets';
   const KALSHI = 'https://api.elections.kalshi.com/trade-api/v2/markets';
   const GDELT = 'https://api.gdeltproject.org/api/v2/doc/doc';
@@ -876,6 +881,7 @@ a.market-item:hover .market-go { opacity: 1; }
     modelSelect: $('modelSelect'),
     webSearchToggle: $('webSearchToggle'),
     deepScanToggle: $('deepScanToggle'),
+    soloDebugToggle: $('soloDebugToggle'),
     saveKey: $('saveKey'),
     clearKey: $('clearKey'),
   };
@@ -894,6 +900,9 @@ a.market-item:hover .market-go { opacity: 1; }
   const getModel = () => localStorage.getItem(LS_MODEL) || 'claude-sonnet-4-6';
   const getWebSearch = () => localStorage.getItem(LS_WEBSEARCH) !== '0';
   const getDeepScan = () => localStorage.getItem(LS_DEEPSCAN) !== '0';
+  // when on, only one scout is dispatched — to verify the Gemini+serverless+
+  // Claude pipeline end-to-end without 5x rate-limit / 503 risk.
+  const getSoloDebug = () => localStorage.getItem(LS_SOLO_DEBUG) === '1';
 
   function refreshByokNote() {
     const a = !!getKey(), g = !!getGeminiKey(), pb = !!getProxyBase();
@@ -922,6 +931,7 @@ a.market-item:hover .market-go { opacity: 1; }
     el.modelSelect.value = getModel();
     el.webSearchToggle.checked = getWebSearch();
     el.deepScanToggle.checked = getDeepScan();
+    el.soloDebugToggle.checked = getSoloDebug();
     el.modalBackdrop.hidden = false;
   }
   function closeModal() { el.modalBackdrop.hidden = true; }
@@ -942,6 +952,7 @@ a.market-item:hover .market-go { opacity: 1; }
     localStorage.setItem(LS_MODEL, el.modelSelect.value);
     localStorage.setItem(LS_WEBSEARCH, el.webSearchToggle.checked ? '1' : '0');
     localStorage.setItem(LS_DEEPSCAN, el.deepScanToggle.checked ? '1' : '0');
+    localStorage.setItem(LS_SOLO_DEBUG, el.soloDebugToggle.checked ? '1' : '0');
     refreshByokNote();
     closeModal();
   });
@@ -1922,6 +1933,24 @@ ${signalDigest(sig)}
   // limit concurrency to avoid bursting past the per-minute token rate limit;
     // all scouts still run, just at most CONCURRENCY in flight at once.
   function runScouts(keyword, sig, onProgress, entities = []) {
+    // Solo debug mode: only dispatch one fixed-persona scout to verify the
+    // Gemini + serverless + Claude pipeline end-to-end. The other scouts are
+    // skipped (not deleted) so we can verify the whole system can work even
+    // when only one agent runs.
+    if (getSoloDebug()) {
+      // Force fixed persona: the first "hot" stance scout from DEFAULT_SCOUTS
+      // (主流前沿). Lets us debug without understandTopic's organic team.
+      // The other 4 scouts aren't rendered in this mode (initScoutBoard sees
+      // soloDebug too), so no progress callbacks for them.
+      const debugScout = { ...DEFAULT_SCOUTS[0], id: 'scout0' };
+      console.info('[solo-debug] running ONE scout only:', debugScout.name);
+      onProgress && onProgress(debugScout.id, 'scanning');
+      return runScout(keyword, debugScout, sig, entities).then((r) => {
+        onProgress && onProgress(debugScout.id, r.error ? 'error' : 'done', r.signals.length);
+        return [r];
+      });
+    }
+
     const CONCURRENCY = 2, STAGGER_MS = 350;
     const results = new Array(activeScouts.length);
     let next = 0;
@@ -2047,11 +2076,16 @@ ${wikiBlock(sig)}
   let scoutsDone = 0;
   function updateFootCount() {
     const f = $('missionFootCount');
-    if (f) f.textContent = `偵察員已回報 ${scoutsDone}/${activeScouts.length}`;
+    if (!f) return;
+    const total = getSoloDebug() ? 1 : activeScouts.length;
+    f.textContent = `偵察員已回報 ${scoutsDone}/${total}` + (getSoloDebug() ? '（debug 模式）' : '');
   }
   function initScoutBoard() {
     scoutsDone = 0;
-    el.scoutBoard.innerHTML = activeScouts.map((s, i) =>
+    // In solo-debug mode, show only the one fixed-persona scout (DEFAULT_SCOUTS[0])
+    // so the board reflects what's actually running.
+    const board = getSoloDebug() ? [DEFAULT_SCOUTS[0]] : activeScouts;
+    el.scoutBoard.innerHTML = board.map((s, i) =>
       `<div class="pixie-cell" id="scout-${s.id}" style="animation-delay:${(i * 0.09).toFixed(2)}s">
          <div class="pixie-wrap">${creatureSVG('#CC785C')}</div>
          <div class="pixie-name">${s.emoji} ${escapeHtml(s.name)}</div>
