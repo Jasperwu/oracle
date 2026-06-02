@@ -669,7 +669,7 @@ a.market-item:hover .market-go { opacity: 1; }
 
   <!-- Top bar -->
   <header class="topbar">
-    <a class="brand" href="https://jasperwu.github.io/">
+    <a class="brand" href="#" id="brandHome">
       <span class="brand-mark">◇</span> Foresight Oracle
     </a>
     <button class="settings-btn" id="openSettings" aria-label="設定 API 金鑰">
@@ -3562,6 +3562,15 @@ ${fsContext()}
     el.stageResults.hidden = true;
     el.stageInput.hidden = false;
     el.keyword.value = '';
+    el.keyword.focus();
+  });
+
+  // Brand logo returns to the start screen (within the app), not an external site.
+  const brandHome = $('brandHome');
+  if (brandHome) brandHome.addEventListener('click', (e) => {
+    e.preventDefault();
+    el.stageResults.hidden = true;
+    el.stageInput.hidden = false;
     el.keyword.focus();
   });
 
