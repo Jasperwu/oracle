@@ -91,6 +91,8 @@
 - **訊號擷取(現行)**:`fetchMarkets`(Polymarket)、`fetchKalshi`、`fetchGdelt`(新聞)、
   `fetchHN`(Hacker News)、`fetchBluesky`、`fetchWikiTrend`(Wikipedia)、`fetchTrends`(Google Trends,需代理)。
   ⚠️ `fetchGitHub`/`fetchStackEx`/`fetchReddit` 已於 2026-06-01 當死碼移除。
+- **市場熱度/深度(2026-06-02 加)**:市場物件除 `prob`/`volume`(總量)外,另抓 `vol24`(近24h成交量)+`liquidity`(流動性/深度)。
+  用途:① 證據文字帶三項金額;② `buildSynthPrompt` 把「成交量大/流動性深」當高信心證據、薄市場當弱訊號、近24h放大當即時動能;③ 結果頁市場卡為近24h最熱者加 `🔥` 標籤。⚠️ 偏誤:volume 加權會放大 Polymarket 美國/加密圈偏斜。
 - **社群訊號的真相(2026-06-02 釐清+定案)**:
   - **Reddit 直抓已停用**:中央抓取 slot 4 寫死 `Promise.resolve([])`(Reddit API/代理穩定 403)。`sig.reddit` 恆空。
   - **Bluesky 直抓仍在跑**(slot 5,`fetchBluesky`)但不穩——常被 `maxRelevance>=5` 門檻濾空;若抓到仍進 `collectSignalItems` 證據池餵綜合引擎。

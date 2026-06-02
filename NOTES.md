@@ -23,6 +23,10 @@
    **社群 sentiment/論壇/討論主力＝`gatherWebMulti` 的 2 條社群查詢**(寫死、必跑、隨主題客製、回真實引用 URL)。
 4. **社群查詢字串擴充（名實相符）**：原本只 `reddit OR "hacker news" discussion`(prompt 卻說涵蓋論壇/X→名不副實)→ 改 `reddit OR "hacker news" OR forum OR X (Twitter) discussion sentiment`。⚠️ X 有登入牆，實際覆蓋仍有限。
 5. **移除「💬 社群即時聲量」結果頁卡片**：Reddit 恆空 + Bluesky 不穩 → 幾乎不顯示。移除 HTML/`el`/render 三處（destructure 也清掉 reddit,bluesky）。**保留 `fetchBluesky`**——它仍進 `collectSignalItems` 證據池餵綜合引擎，移卡不影響蒐集。
+6. **市場熱度／深度（volume24hr + liquidity）入庫並當信心權重**：`normalizePolymarket` 與 Kalshi normalize 新增 `vol24`(近24h成交量)+`liquidity`(流動性/深度)。
+   ① 證據文字帶「總量／近24h／流動性」金額(`collectSignalItems`)；② `buildSynthPrompt` 新增指示「市場熱度/深度＝信心權重」(深市場→高信心/低fringe、薄市場→弱訊號、近24h放大＝即時動能要點名)；
+   ③ 結果頁市場卡為「近24h 成交量最高」者加 `🔥 近24h $X` 標籤(`.market-hot`)+ volume 加 tooltip 顯示三項金額拆解。⚠️ Gamma/Kalshi 的 `volume24hr`/`volume_24h`/`liquidity` 欄位需實機 console 確認有值。
+   ⚠️ 已知偏誤：用 volume 加權會放大 Polymarket 的美國/加密圈偏斜(熱門題訊號更強、冷門/非英語題更弱)——對應待辦 #2「來源偏誤改善」。
 
 **還可做（沿用第十四輪候選，未做）**：① backcasting/偏好未來 ② 來源偏誤改善 ③ 對得上市場的事件直接用真實機率% 定位光點。⏳ 全站英文化仍是「功能凍結後才做」。
 
