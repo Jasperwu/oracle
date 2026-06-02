@@ -937,10 +937,6 @@ a.market-item:hover .market-go { opacity: 1; }
         <p class="ev-title">📰 過去 3 天新聞 · GDELT</p>
         <div class="ev-list" id="newsList"></div>
       </div>
-      <div class="ev-card" id="socialCard" hidden>
-        <p class="ev-title">💬 社群即時聲量 · Reddit + Bluesky</p>
-        <div class="ev-list" id="socialList"></div>
-      </div>
       <div class="ev-card" id="trendsCard" hidden>
         <p class="ev-title">🔥 搜尋熱度 · Google Trends</p>
         <div class="wiki-body" id="trendsBody"></div>
@@ -1092,8 +1088,6 @@ a.market-item:hover .market-go { opacity: 1; }
     scoutGrid: $('scoutGrid'),
     newsCard: $('newsCard'),
     newsList: $('newsList'),
-    socialCard: $('socialCard'),
-    socialList: $('socialList'),
     trendsCard: $('trendsCard'),
     trendsBody: $('trendsBody'),
     wikiCard: $('wikiCard'),
@@ -2764,7 +2758,7 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
   }
 
   function render(data, sig, sources, scoutResults) {
-    const { markets, news, wiki, reddit, bluesky, trends } = sig;
+    const { markets, news, wiki, trends } = sig;
     renderScoutFindings(scoutResults);
     resetDeepResearchPanel();
     renderForecast(data, sources, buildSourcePool(sig, scoutResults, sources), buildEvidenceIndex(sig).map);
@@ -2778,31 +2772,6 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
         </a>`).join('');
       el.newsCard.hidden = false;
     } else { el.newsCard.hidden = true; }
-
-    // Social signals: Reddit + Bluesky, most-engaged first, clickable.
-    const social = [
-      ...(reddit || []).map((r) => ({
-        title: r.title, url: r.url,
-        meta: `${r.sub ? r.sub + ' · ' : ''}💬${r.comments} ▲${r.score}`,
-        date: r.date, eng: r.comments + r.score,
-      })),
-      ...(bluesky || []).map((b) => ({
-        title: b.title, url: b.url,
-        meta: `Bluesky · ♥${b.likes} 🔁${b.reposts}`,
-        date: b.date, eng: b.likes + b.reposts,
-      })),
-    ].filter((s) => s.title).sort((a, b) => b.eng - a.eng).slice(0, 8);
-    if (social.length && el.socialCard) {
-      el.socialList.innerHTML = social.map((s) => {
-        const tag = s.url ? 'a' : 'div';
-        const attrs = s.url ? ` href="${escapeAttr(s.url)}" target="_blank" rel="noopener"` : '';
-        return `<${tag} class="ev-item"${attrs}>
-          <span class="ev-item-title">${escapeHtml(s.title)}</span>
-          <span class="ev-meta">${escapeHtml(s.meta)}${s.date ? ' · ' + relTime(s.date) : ''}</span>
-        </${tag}>`;
-      }).join('');
-      el.socialCard.hidden = false;
-    } else if (el.socialCard) { el.socialCard.hidden = true; }
 
     // Google Trends search-interest curve (sparkline + recent change)
     if (trends && el.trendsCard) {
