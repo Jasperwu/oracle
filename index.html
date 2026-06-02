@@ -2532,7 +2532,12 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
   }
 
   function hostOf(url) {
-    try { return new URL(url).hostname.replace(/^www\./, ''); } catch { return ''; }
+    try {
+      const u = new URL(url);
+      if (u.protocol !== 'http:' && u.protocol !== 'https:') return '';
+      const h = u.hostname.replace(/^www\./, '');
+      return h.includes('.') ? h : ''; // reject hostless/garbage/truncated URLs
+    } catch { return ''; }
   }
   // ---- per-event source traceability ----------------------------------------
   // Tokenise CJK by char + latin by word, so overlap scoring works for both.
@@ -2548,56 +2553,45 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
     (cited || []).forEach((s) => add(s.title, s.url));
     return pool;
   }
-  // Attach real sources to each driver + cone event. Prefer the synthesis's
-  // explicit src tags ([W3],[M1]) mapped to real URLs (precise, cross-language);
-  // fall back to token overlap against the pool when tags are missing.
+  // Attach real sources to each driver + cone event STRICTLY from the synthesis's
+  // explicit src tags ([W3],[M1]) → real URLs. No token-overlap fallback: a weak
+  // word match attached irrelevant/wrong sources, so if the model didn't cite a
+  // valid tag we show NO source (honest) rather than a guess.
   function attachEventSources(data, pool, map) {
     map = map || {};
-    const prepared = (pool || []).map((p) => ({ p, toks: new Set(tokenize(p.text)) }));
     const resolveTags = (srcArr) => {
       const out = [], seen = new Set();
       (Array.isArray(srcArr) ? srcArr : []).forEach((tag) => {
         const key = String(tag).toUpperCase().replace(/[^A-Z0-9]/g, '');
         const m = map[key];
-        if (m && m.url && !seen.has(m.url)) { seen.add(m.url); out.push({ url: m.url, title: m.text.slice(0, 90) }); }
+        if (m && m.url && hostOf(m.url) && !seen.has(m.url)) { seen.add(m.url); out.push({ url: m.url, title: m.text.slice(0, 90) }); }
       });
       return out;
     };
-    const tokenMatch = (text) => {
-      const want = new Set(tokenize(text));
-      return prepared.map(({ p, toks }) => {
-        let hit = 0; toks.forEach((t) => { if (want.has(t)) hit++; });
-        return { p, hit };
-      }).filter((x) => x.hit >= 2).sort((a, b) => b.hit - a.hit).slice(0, 3)
-        .map((x) => ({ url: x.p.url, title: x.p.text.slice(0, 90) }));
-    };
-    const sourcesFor = (srcArr, text) => {
-      const tagged = resolveTags(srcArr);
-      return tagged.length ? tagged : tokenMatch(text);
-    };
+    const sourcesFor = (srcArr) => resolveTags(srcArr);
     // normalise drivers (string | {text,src}) → {text,_sources}
     data.drivers = (data.drivers || []).map((d) => {
       const text = (d && typeof d === 'object') ? (d.text || '') : String(d || '');
       const src = (d && typeof d === 'object') ? d.src : null;
-      return { text, _sources: sourcesFor(src, text) };
+      return { text, _sources: sourcesFor(src) };
     });
     (data.horizons || []).forEach((h) => (h.events || []).forEach((ev) => {
-      ev._sources = sourcesFor(ev.src, (ev.title || '') + ' ' + (ev.rationale || ''));
+      ev._sources = sourcesFor(ev.src);
     }));
     // wildcard stays a plain string; resolve its separate src array to sources
     const wtext = (data.wildcard && typeof data.wildcard === 'object') ? data.wildcard.text : data.wildcard;
-    data._wildcardSources = wtext ? sourcesFor(data.wildcardSrc, String(wtext)) : [];
+    data._wildcardSources = wtext ? sourcesFor(data.wildcardSrc) : [];
     // depth: ground the systemic causes; cross-impacts: ground each interaction
     if (data.depth && Array.isArray(data.depth.systemicCauses)) {
       data.depth.systemicCauses = data.depth.systemicCauses.map((c) => {
         const text = (c && typeof c === 'object') ? (c.text || '') : String(c || '');
         const src = (c && typeof c === 'object') ? c.src : null;
-        return { text, _sources: sourcesFor(src, text) };
+        return { text, _sources: sourcesFor(src) };
       });
     }
     if (Array.isArray(data.crossImpacts)) {
       data.crossImpacts.forEach((ci) => {
-        if (ci && typeof ci === 'object') ci._sources = sourcesFor(ci.src, (ci.pair || '') + ' ' + (ci.note || ''));
+        if (ci && typeof ci === 'object') ci._sources = sourcesFor(ci.src);
       });
     }
   }
