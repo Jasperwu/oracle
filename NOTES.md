@@ -5,6 +5,39 @@
 
 ---
 
+## 🪧 交接便條（給下一個 session 的你 — 2026-06-01 · 第十四輪 / 收尾 + 規格書 + 來源修正）
+
+**一句話**：框架已成熟、使用者很滿意；這一輪做了**穩定性 audit + 清死碼 + 寫對外規格書(中英) + 修「來源亂掛」**。
+最新 commit `9125f5a`（或更新）。分支 `claude/notes-handoff-review-UXYuR` ＝ `main`，**已用 GitHub API 確認過 main 真的是最新**。
+
+> 🔧 **部署/同步鐵則(務必照做)**：流程是 **commit → push 到 branch → 再 `git push origin <branch>:main`**。
+> GitHub Pages(jasperwu.github.io/oracle) + Vercel(oracle-bice) **都從 main 部署**，不推 main 線上就是舊的。
+> ⚠️ 本容器的 `origin` 是 proxy；**本地 `origin/main` 可能顯示過期**。要確認真實狀態，用 **GitHub MCP**
+> (`mcp__github__list_branches` owner=jasperwu repo=oracle) 看真 GitHub——之前有別的 session 因本地過期而誤判「main 是舊的」，其實不是。
+
+> ⏳ **最後一步(先別做)**：全站**英文化**(UI + prompt 輸出語言)。在那之前維持繁中。
+> 規模評估：UI 可見字串約 127 個(prompt 內部指令不必翻，只翻 8 處輸出語言開關)；雙語切換約 1 天、單向英文約半天。
+> 建議**功能凍結後再做**(現在還在改 → 雙語會雙倍維護)。用詞(樂觀/中性/黑天鵝)英文也好翻，沿用。
+
+**這一輪做了什麼**：
+- **scout 狀態**：「待命」→ 5 個各顯示不同的「定位中/前往訊號源/整裝出發/鎖定座標/啟程中…」(脈動點點)，不再像卡住。
+- **穩定性 audit**：el 參照全對得上、處處 try/catch + allSettled、429 退避、JSON 防截斷 → 無致命缺陷。
+- **清死碼 ~130 行**：移除 fetchGitHub/StackEx/Reddit、marketBlock/newsBlock/buzz/github/stack/bluesky/redditBlock、
+  SCOUT_SCHEMA、GEMINI_MODEL_FALLBACK、GITHUB_SEARCH/STACKEX_SEARCH/REDDIT_SEARCH。(`buildSourcePool` 現也幾乎沒用了，可再清。)
+- **🔑 修「來源亂掛」**(重要)：`attachEventSources` 以前對不到 src 編號時會 **token 字詞重疊 fallback**(門檻只要 2 字)
+  → 掛上不相關/錯誤來源。**已整個移除**：來源只來自綜合引擎明確標的 `[W#]/[M#]` 編號 → 對映回真 URL，對不到就**不顯示**(誠實)。
+  `hostOf` 收緊：擋掉無網域/截斷/非 http 的 URL → 不再有空的/壞的 chip。**一個 chip 出現 = 明確引用且 URL 有效。**
+- **對外規格書 ×4(新增)**：`RESULTS_PAGE_SPEC.md`/`.en.md`(結果頁/分析/溯源/未來錐定位)、
+  `GATHERING_SPEC.md`/`.en.md`(搜集方法：多角度查詢+硬門檻+真搜工具)。給其他 AI 看就懂，不必啃 index.html。
+
+**Gemini 現況(使用者還在想去留)**：淺搜「蒐集」已全跟 Gemini 無關(Claude web search + 中央 API)；
+Gemini 只剩 ① scout「解讀」(runScoutOnce provider='gemini'，省 Claude 額度，沒 key 則 fallback Claude) ② Deep Research(深挖)。
+
+**還可做(使用者選過、未做)**：① backcasting/偏好未來(工作坊加「🎯你想要的未來」) ② 來源偏誤改善(多地區/語言查詢+多元度標示)
+③ 對得上市場的事件直接用真實機率% 定位光點。
+
+---
+
 ## 🪧 交接便條（給下一個 session 的你 — 2026-06-01 · 第十三輪 / 集大成 · 框架已成熟）
 
 **一句話**：經過一整天密集迭代，整套 end-to-end 未來預測框架**已成熟、使用者滿意**。
