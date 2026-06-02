@@ -88,10 +88,15 @@
 
 - **5 個 scouts**:定義在 `const SCOUTS`(約 L1238)。
   id: `research` 🔬 / `markets` 📊 / `culture` 💬 / `policy` ⚖️ / `contrarian` 🎲。
-- **訊號擷取**:`fetchMarkets`(Polymarket)、`fetchKalshi`、`fetchGdelt`(新聞)、
-  `fetchHN`(Hacker News)、`fetchGitHub`(開發動能)、`fetchStackEx`(Stack Overflow)、
-  `fetchBluesky`(社群即時聲量,X 替代)、`fetchReddit`(subreddit 討論)、`fetchWikiTrend`(Wikipedia)。
-  GitHub/Stack/Bluesky/Reddit(2026-05-29 加)是免費、免金鑰、CORS 友善的來源,只進分析、**結果頁尚無顯示卡片**。
+- **訊號擷取(現行)**:`fetchMarkets`(Polymarket)、`fetchKalshi`、`fetchGdelt`(新聞)、
+  `fetchHN`(Hacker News)、`fetchBluesky`、`fetchWikiTrend`(Wikipedia)、`fetchTrends`(Google Trends,需代理)。
+  ⚠️ `fetchGitHub`/`fetchStackEx`/`fetchReddit` 已於 2026-06-01 當死碼移除。
+- **社群訊號的真相(2026-06-02 釐清+定案)**:
+  - **Reddit 直抓已停用**:中央抓取 slot 4 寫死 `Promise.resolve([])`(Reddit API/代理穩定 403)。`sig.reddit` 恆空。
+  - **Bluesky 直抓仍在跑**(slot 5,`fetchBluesky`)但不穩——常被 `maxRelevance>=5` 門檻濾空;若抓到仍進 `collectSignalItems` 證據池餵綜合引擎。
+  - **社群 sentiment / 留言 / 論壇討論的主力 = Claude web search**:`gatherWebMulti` 寫死含 2 條社群查詢(必跑、隨主題客製),
+    回真實引用 URL 進 `sig.web`。查詢字串已擴成 `reddit OR "hacker news" OR forum OR X (Twitter) discussion sentiment`(名實相符;X 受登入牆限制覆蓋有限)。
+  - **「社群即時聲量」結果頁卡片已於 2026-06-02 移除**(Reddit 恆空、Bluesky 不穩 → 幾乎不顯示);社群訊號改由 web search 引用來源呈現,卡片移除不影響蒐集。
   ⚠️ Google Trends/X/TikTok 純前端拿不到(CORS+付費/門禁)。
 - **後端代理(2026-06-01 加)**:`api/gdelt.js` / `api/kalshi.js` / `api/reddit.js` —— Vercel
   serverless,解 GDELT/Kalshi/Reddit 的 CORS。前端 modal 加「自有後端 URL」欄位

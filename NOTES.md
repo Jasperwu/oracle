@@ -5,6 +5,29 @@
 
 ---
 
+## 🪧 交接便條（給下一個 session 的你 — 2026-06-02 · 第十五輪 / 文案誠實化 + logo 修正 + 社群訊號釐清）
+
+**一句話**：這一輪做了**對外文案誠實化、header logo 修正、社群訊號架構釐清 + 移除空卡**。
+分支 `claude/github-branch-sync-UhrqL` ＝ `main`，**已用 GitHub MCP 確認過 main 真的是最新**。最新 commit `fbba819`（或更新）。
+
+> 🔧 **部署/同步鐵則（照舊）**：commit → push branch → 再 `git push origin <branch>:main`。Pages + Vercel 都從 main 部署。
+> 本地 `origin/main` 可能過期 → 用 `mcp__github__list_branches`(owner=jasperwu repo=oracle) 看真值。
+> ⚠️ **PR 建不起來是正常的**：因為已 fast-forward 進 main，branch 與 main 同一個 commit，GitHub 回「No commits between」。這個流程本就不靠 PR。
+> 📌 **規範自省**：本份 CLAUDE.md 要求「做完決策就主動更新 CLAUDE.md/NOTES.md 並 commit」——**不要再反問使用者要不要更新，直接做**。
+
+**這一輪做了什麼**：
+1. **landing 文案誠實化**：原本硬保證「即時讀取 **Polymarket** 預測市場與社群訊號」→ 改「**即時上網蒐集**新聞、社群動態、預測市場與關注度趨勢」；
+   eyebrow `PREDICTION MARKETS · SOCIAL SIGNALS · FUTURIST AI` → `LIVE WEB SIGNALS · PREDICTION MARKETS · FUTURIST AI`。理由：蒐集主力是 web search，Polymarket 只是其一、不一定有。
+2. **header logo 修正**：`◇ Foresight Oracle` 原本連到 `https://jasperwu.github.io/`（跳出去變個人網站，錯的）→ 改成站內 `#brandHome` click handler，回 app 起始畫面（不清關鍵詞）。用站內 reset 而非固定 URL，Pages(`/oracle/`)+Vercel(根) 都不會錯。
+3. **社群訊號架構釐清（重要，已寫進 CLAUDE.md）**：Reddit 直抓**已停用**(`Promise.resolve([])`，API 穩定 403，`sig.reddit` 恆空)；Bluesky 直抓仍跑但不穩(常被 `maxRelevance>=5` 濾空)；
+   **社群 sentiment/論壇/討論主力＝`gatherWebMulti` 的 2 條社群查詢**(寫死、必跑、隨主題客製、回真實引用 URL)。
+4. **社群查詢字串擴充（名實相符）**：原本只 `reddit OR "hacker news" discussion`(prompt 卻說涵蓋論壇/X→名不副實)→ 改 `reddit OR "hacker news" OR forum OR X (Twitter) discussion sentiment`。⚠️ X 有登入牆，實際覆蓋仍有限。
+5. **移除「💬 社群即時聲量」結果頁卡片**：Reddit 恆空 + Bluesky 不穩 → 幾乎不顯示。移除 HTML/`el`/render 三處（destructure 也清掉 reddit,bluesky）。**保留 `fetchBluesky`**——它仍進 `collectSignalItems` 證據池餵綜合引擎，移卡不影響蒐集。
+
+**還可做（沿用第十四輪候選，未做）**：① backcasting/偏好未來 ② 來源偏誤改善 ③ 對得上市場的事件直接用真實機率% 定位光點。⏳ 全站英文化仍是「功能凍結後才做」。
+
+---
+
 ## 🪧 交接便條（給下一個 session 的你 — 2026-06-01 · 第十四輪 / 收尾 + 規格書 + 來源修正）
 
 **一句話**：框架已成熟、使用者很滿意；這一輪做了**穩定性 audit + 清死碼 + 寫對外規格書(中英) + 修「來源亂掛」**。
