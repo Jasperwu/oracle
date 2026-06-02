@@ -2413,8 +2413,8 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
     // web-search the discussion directly — it finds & reads the threads and
     // cites the real reddit/forum/X URLs.
     const ent = entities[0] && entities[0].toLowerCase() !== keyword.toLowerCase() ? entities[0] : keyword;
-    // one community-pulse query (Reddit + Hacker News) + one youth/emerging query
-    const social = [`${keyword} reddit OR "hacker news" discussion`, `${ent} emerging trend gen z young early adopters`];
+    // one community-pulse query (Reddit + HN + forums + X) + one youth/emerging query
+    const social = [`${keyword} reddit OR "hacker news" OR forum OR X (Twitter) discussion sentiment`, `${ent} emerging trend gen z young early adopters`];
     // one prediction-market query — rather than scrape-and-threshold raw markets
     // (brittle per topic), let Claude find the relevant odds in context (market
     // pages + the news/articles that cite them), with real URLs.
