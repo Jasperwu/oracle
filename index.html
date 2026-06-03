@@ -2461,19 +2461,34 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
     // (brittle per topic), let Claude find the relevant odds in context (market
     // pages + the news/articles that cite them), with real URLs.
     const market = [`${keyword} Polymarket OR Kalshi odds prediction market`];
+    // de-bias "lens" queries: one international/non-English angle (counters the
+    // US/English skew of the other sources) + one capital-flow angle (funding /
+    // M&A / IPO — a leading indicator of where the topic is actually heading).
+    // Off-topic returns are harmless: per-kind caps + the synthesis discipline
+    // ("緊扣主題 / 量多≠重要") keep them from polluting a topic they don't fit.
+    const lens = [
+      { q: `${keyword} global OR international OR regional perspective 各國觀點 報導`, kind: 'geo' },
+      { q: `${keyword} funding OR investment OR "venture capital" OR M&A OR IPO 資金動向`, kind: 'capital' },
+    ];
 
     const sysGeneral = '你是一位嚴謹的研究助理。請用 web search 找出與這個面向最相關、最新（最好近 1–3 個月）、有憑據的事實。只回報你實際查到的真實資訊，絕不臆測或編造。用繁體中文條列，每行以「- 」開頭；不要前言結語、不要 JSON。';
     const sysSocial = '你是一位社群與「新興趨勢」分析師。請用 web search 找出並「實際閱讀」關於主題的：①社群討論（Reddit subreddit 討論串與熱門留言、Hacker News、論壇、X 反應）②年輕世代／早期採用者（Gen Z、學生、創作者、開發者）在 YouTube／TikTok／Twitch／podcast 等影音平台與社群上正在怎麼用、在玩什麼、抱怨什麼 ③剛冒出來、主流還沒注意到的弱訊號與早期趨勢。歸納主流觀點、情緒與值得注意的早期跡象。只回報你實際讀到的真實內容，句末附上來源連結。用繁體中文條列，每行以「- 」開頭；不要前言結語、不要 JSON。';
     const sysMarket = '你是一位預測市場分析師。請用 web search 找出與主題「直接相關」的預測市場（Polymarket、Kalshi、Metaculus 等）目前的賠率/機率，以及引用這些數據的新聞或分析文章。每一條都要寫清楚：①是哪個市場/問題 ②目前的機率或賠率（數字）③那代表什麼。只回報你實際查到的真實數據，絕不臆測。用繁體中文條列，每行以「- 」開頭；不要前言結語、不要 JSON。';
+    const sysGeo = '你是一位具國際視野的研究員。請用 web search 找出本主題在「不同地區／國家／非英語世界」的觀點、發展與報導——刻意補足英美主流視角以外的聲音（歐洲、亞洲、全球南方等），點出區域差異或他地的不同解讀。只回報你實際查到的真實資訊，句末附上來源連結。用繁體中文條列，每行以「- 」開頭；不要前言結語、不要 JSON。';
+    const sysCapital = '你是一位資本與產業分析師。請用 web search 找出與本主題相關的「資金動向」——募資輪、創投／私募投入、併購（M&A）、IPO、重大投資或撤資。資金流向是「未來走向」的領先指標。每一條寫清楚：①誰 ②金額／規模 ③它代表的方向訊號。只回報你實際查到的真實數據，絕不臆測；若本主題與資金流動無關，回報你能找到的即可、不要硬湊。用繁體中文條列，每行以「- 」開頭；不要前言結語、不要 JSON。';
     // ask for a recent, specific, sourced finding on each line
     const fmtRule = '【硬性要求】每一條發現都必須：①聚焦「最近 7 天內」的最新進展（或在句末標注日期）；②句末用括號附上「該則資訊的具體文章網址」（必須是可直接閱讀的單篇文章 / leaf page，不要列表頁、首頁、搜尋頁、tracker）。找不到可靠近期單篇來源的，就不要寫這一條。';
-    const SYS = { general: sysGeneral, social: sysSocial, market: sysMarket };
+    const SYS = { general: sysGeneral, social: sysSocial, market: sysMarket, geo: sysGeo, capital: sysCapital };
     const one = async (q, kind) => {
       try {
         const prompt = kind === 'social'
           ? `主題：「${keyword}」的這個面向：「${q}」\n請搜尋並回報 8–15 條「社群／年輕世代／早期採用者在討論與在做什麼、有什麼剛冒出來的新興訊號」。${fmtRule}`
           : kind === 'market'
           ? `主題：「${keyword}」\n請搜尋並回報 4–8 條與本主題直接相關的「預測市場目前賠率/機率」（含市場問題、數字、含意），優先 Polymarket / Kalshi 的市場頁本身或引用其數據的報導。${fmtRule}`
+          : kind === 'geo'
+          ? `主題：「${keyword}」\n請搜尋並回報 5–10 條本主題在「不同地區／國家／非英語世界」的觀點與發展，點出區域差異或他地的不同解讀。${fmtRule}`
+          : kind === 'capital'
+          ? `主題：「${keyword}」\n請搜尋並回報 4–8 條與本主題相關的「資金動向」（募資／創投／併購／IPO／重大投資，含金額與方向訊號）。若本主題與資金無關就不要硬湊。${fmtRule}`
           : `研究主題「${keyword}」的這個面向：「${q}」\n請搜尋並回報 10–18 條最相關、最新、有來源的發現。${fmtRule}`;
         const { text, sources } = await callClaude(SYS[kind] || sysGeneral, prompt,
           { webSearch: true, maxTokens: 3500, maxUses: 5 });
@@ -2490,6 +2505,7 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
       ...general.map((q) => ({ q, kind: 'general' })),
       ...market.map((q) => ({ q, kind: 'market' })),
       ...social.map((q) => ({ q, kind: 'social' })),
+      ...lens, // geo + capital de-bias lenses (each already { q, kind })
     ];
     // concurrency 2 to cover every facet while staying under the rate limit
     const results = []; let idx = 0;
