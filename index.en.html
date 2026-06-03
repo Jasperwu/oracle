@@ -1142,13 +1142,7 @@ a.market-item:hover .market-go { opacity: 1; }
   const getProxyBase = () => (localStorage.getItem(LS_PROXY_BASE) || '').replace(/\/+$/, '');
   const proxied = (path) => {
     const base = getProxyBase();
-    if (base) return `${base}${path}`;
-    // English edition default: route CORS-restricted upstreams through the app's
-    // OWN same-origin serverless functions (/api/*). On the Vercel deployment
-    // these exist, so GDELT/Kalshi/Trends/Deep-Research work with zero CORS and
-    // no manual proxy setup. On a static host (GitHub Pages) /api/* 404s and the
-    // fetchers degrade gracefully to empty — same as before.
-    return path;
+    return base ? `${base}${path}` : null;
   };
   const getModel = () => localStorage.getItem(LS_MODEL) || 'claude-sonnet-4-6';
   const getWebSearch = () => localStorage.getItem(LS_WEBSEARCH) !== '0';
