@@ -1480,8 +1480,8 @@ a.market-item:hover .market-go { opacity: 1; }
       if (!getKey()) return strict; // can't gate without a key → previous behaviour
       const list = markets.map((m, i) =>
         `${i + 1}. 「${m.question}」（${m.source}${m.prob != null ? '，' + Math.round(m.prob * 100) + '%' : ''}）`).join('\n');
-      const sys = '你是預測市場策展人。使用者給一個主題與一份預測市場清單（含機率）。請挑出「最能代表這個主題關鍵預測」的市場，依重要性排序。規則：① 只選真正在預測這個主題的（排除不同運動或聯盟——例如主題是 NBA 卻出現 WNBA、MLB、NHL、足球——以及不同主題、與主題無關、多腿混合盤 parlay）；② 優先主要／頭條市場與有意義的賠率（明顯領先者、勢均力敵的對決、關鍵里程碑），**排除機率趨近 0% 的超級冷門**（那是雜訊，不是有用的預測）；③ 最多 8 個。只輸出 JSON 數字陣列、依重要性由高到低排序（例如 [3,1,7]）；若沒有任何適合，輸出 []。不要任何解釋或文字。';
-      const user = `主題：「${keyword}」\n\n市場清單：\n${list}\n\n請依重要性挑出最能代表「${keyword}」關鍵預測的市場編號（最多 8 個，JSON 數字陣列，最重要的在前）。`;
+      const sys = '你是預測市場策展人。使用者給一個主題與一份預測市場清單（含機率）。請挑出「最能代表這個主題關鍵預測」的市場，依重要性排序。規則：① 只選真正在預測這個主題的（排除不同運動或聯盟——例如主題是 NBA 卻出現 WNBA、MLB、NHL、足球——以及不同主題、與主題無關、多腿混合盤 parlay）；② **若主題是對決或競賽（總決賽、選舉、奪冠、排名），務必納入所有主要當事方／競爭者——例如總決賽的兩支球隊都要、選舉的主要候選人都要、奪冠的數個熱門都要——絕對不要只留最被看好的那一個**；③ 優先主要／頭條市場與有意義的賠率（領先者、勢均力敵的對決、關鍵里程碑），排除機率趨近 0% 的超級冷門（那是雜訊）；④ 通常回 3–8 個（除非真的只有 1 個相關）。只輸出 JSON 數字陣列、依重要性由高到低排序（例如 [3,1,7]）；若沒有任何適合，輸出 []。不要任何解釋或文字。';
+      const user = `主題：「${keyword}」\n\n市場清單：\n${list}\n\n請挑出最能代表「${keyword}」關鍵預測的市場編號。記得：對決／競賽要把所有主要當事方都納入（例如總決賽兩隊都要）。回 JSON 數字陣列，最重要的在前。`;
       const { text } = await callClaude(sys, user, { maxTokens: 300 });
       const match = String(text || '').match(/\[[\d,\s]*\]/);
       if (!match) return strict; // unparseable → previous behaviour (never worse)
