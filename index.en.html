@@ -1,4 +1,8 @@
-<!-- GENERATED from index.html by tools/build-en.mjs — do not edit by hand -->
+<!-- English edition · STANDALONE, hand-maintained — edit THIS file directly.
+     index.html (Traditional Chinese) is the frozen stable version, do not touch it.
+     ⚠️ Do NOT run tools/build-en.mjs against this file anymore — it would clobber
+     manual edits. The generator + tools/i18n-en.json are kept only as a record of
+     the initial translation. -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -1138,7 +1142,13 @@ a.market-item:hover .market-go { opacity: 1; }
   const getProxyBase = () => (localStorage.getItem(LS_PROXY_BASE) || '').replace(/\/+$/, '');
   const proxied = (path) => {
     const base = getProxyBase();
-    return base ? `${base}${path}` : null;
+    if (base) return `${base}${path}`;
+    // English edition default: route CORS-restricted upstreams through the app's
+    // OWN same-origin serverless functions (/api/*). On the Vercel deployment
+    // these exist, so GDELT/Kalshi/Trends/Deep-Research work with zero CORS and
+    // no manual proxy setup. On a static host (GitHub Pages) /api/* 404s and the
+    // fetchers degrade gracefully to empty — same as before.
+    return path;
   };
   const getModel = () => localStorage.getItem(LS_MODEL) || 'claude-sonnet-4-6';
   const getWebSearch = () => localStorage.getItem(LS_WEBSEARCH) !== '0';
