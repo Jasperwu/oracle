@@ -124,7 +124,11 @@
 
 - **開發分支**:`claude/future-prediction-site-lsrm0`。commit 後 push 該分支,
   目前流程是再 fast-forward 合進 `main` 並 push。
-- **驗證**:改完用 `node --check` 對 `<script>` 內容做語法檢查(repo 內有現成做法)。
+- **驗證(鐵律)**:改完 `index.html`、**commit/push 前務必跑 `node tools/validate.mjs index.html`(或 `npm run validate`)**,通過才能推。
+  它不只做 `node --check` 語法檢查,還抓**「破掉的參照」**這類 `node --check` 抓不到、卻會讓整頁白屏的 bug:
+  ① `$('id')`/`getElementById('id')` 抓的 id 在 HTML 裡不存在;② `el.X` 打錯字/對不上 `el` 表的 key。exit 1 = 有錯,別推。
+  SessionStart hook(`.claude/settings.json`)會在每個 session 開始時自動跑一次,讓你一眼看出檔案是否健康。
+  ⚠️ **這是「安全網」第一件,刻意只新增 `tools/` 工具檔、不碰 index.html**,所以對網站與預測結果零影響。後續可加:headless 煙霧測試(Playwright 載入+mock API 跑一次預測,驗證零 console error)、Vercel 分支預覽網址(先在預覽測、過了才推 main)。
 - **不要**自作主張開 PR,除非使用者明確要求。
 - **保密**:不要把模型 ID 寫進 commit / 程式碼 / 任何推上 repo 的產物。
 
