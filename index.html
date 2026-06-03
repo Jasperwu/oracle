@@ -2114,6 +2114,28 @@ scouts 陣列必須**剛好 5 個元素**（不可多、不可少），角度彼
   // Flatten every REAL fetched signal into a numbered list of items, each with
   // its real clickable URL. Scouts cite these by number (#3) so we can map a
   // finding back to a genuine source — no hallucinated citations possible.
+  // Probability display that keeps extreme values legible instead of rounding a
+  // real 0.45% market down to a "looks-broken" 0%. <0.1% and >99% get a clear tag;
+  // 0.1–1% and 99–99.9% keep one decimal; everything else rounds to a clean int.
+  function fmtProb(p) {
+    if (p == null || !isFinite(p)) return '—';
+    const pct = p * 100;
+    if (pct <= 0) return '0%';
+    if (pct < 0.1) return '<0.1%';
+    if (pct < 1) return pct.toFixed(1) + '%';
+    if (pct >= 99.9 && pct < 100) return '>99%';
+    if (pct > 99) return pct.toFixed(1) + '%';
+    return Math.round(pct) + '%';
+  }
+  // Compact USD: 1,156,468 → $1.16M ; 72,655 → $72.7K — readable at a glance.
+  function fmtMoney(n) {
+    n = Number(n) || 0;
+    if (n >= 1e9) return '$' + +(n / 1e9).toFixed(2) + 'B';
+    if (n >= 1e6) return '$' + +(n / 1e6).toFixed(2) + 'M';
+    if (n >= 1e3) return '$' + +(n / 1e3).toFixed(1) + 'K';
+    return '$' + Math.round(n).toLocaleString();
+  }
+
   function collectSignalItems(sig) {
     const items = [];
     // Claude web-search findings first — the richest real intel for most topics.
@@ -2123,11 +2145,11 @@ scouts 陣列必須**剛好 5 個元素**（不可多、不可少），角度彼
     (sig.markets || []).forEach((m) => {
       // surface depth/heat so the synthesis can weight confidence by how much
       // real money + recent attention backs each market (not just the % itself)
-      const vol24 = m.vol24 ? ` · 近24h $${Math.round(m.vol24).toLocaleString()}` : '';
-      const liq = m.liquidity ? ` · 流動性 $${Math.round(m.liquidity).toLocaleString()}` : '';
+      const vol24 = m.vol24 ? ` · 近24h ${fmtMoney(m.vol24)}` : '';
+      const liq = m.liquidity ? ` · 流動性 ${fmtMoney(m.liquidity)}` : '';
       items.push({
         label: `預測市場${m.source ? '·' + m.source : ''}`,
-        text: `「${m.question}」→ ${m.outcome} ${m.prob != null ? Math.round(m.prob * 100) + '%' : 'n/a'}（總量 $${Math.round(m.volume).toLocaleString()}${vol24}${liq}）`,
+        text: `「${m.question}」→ ${m.outcome} ${m.prob != null ? fmtProb(m.prob) : 'n/a'}（總量 ${fmtMoney(m.volume)}${vol24}${liq}）`,
         url: m.url || null,
       });
     });
@@ -2327,7 +2349,7 @@ ${digestText}
     let wi = 1;
     balanceWeb(sig.web, 40).forEach((it) => { const tag = 'W' + wi++; lines.push(`[${tag}] ${it.text}`); if (it.url) map[tag] = { url: it.url, text: it.text }; });
     let mi = 1;
-    (sig.markets || []).forEach((m) => { const tag = 'M' + mi++; lines.push(`[${tag}] 預測市場「${m.question}」${m.prob != null ? '：' + Math.round(m.prob * 100) + '%' : ''}`); if (m.url) map[tag] = { url: m.url, text: m.question }; });
+    (sig.markets || []).forEach((m) => { const tag = 'M' + mi++; lines.push(`[${tag}] 預測市場「${m.question}」${m.prob != null ? '：' + fmtProb(m.prob) : ''}`); if (m.url) map[tag] = { url: m.url, text: m.question }; });
     let ni = 1;
     (sig.news || []).forEach((n) => { const tag = 'N' + ni++; lines.push(`[${tag}] 新聞：${n.title}（${n.domain || ''}）`); if (n.url) map[tag] = { url: n.url, text: n.title }; });
     let hi = 1;
@@ -2880,14 +2902,14 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
         if (m.url) { item.href = m.url; item.target = '_blank'; item.rel = 'noopener'; }
         const srcCls = m.source === 'Kalshi' ? 'src-kalshi' : 'src-poly';
         const hot = (m.vol24 && m.vol24 === maxVol24 && maxVol24 > 0)
-          ? `<span class="market-hot" title="近 24 小時成交量最高 — 此刻注意力正湧入">🔥 近24h $${Math.round(m.vol24).toLocaleString()}</span>` : '';
-        const volTitle = `總量 $${Math.round(m.volume).toLocaleString()}` +
-          (m.vol24 ? ` · 近24h $${Math.round(m.vol24).toLocaleString()}` : '') +
-          (m.liquidity ? ` · 流動性 $${Math.round(m.liquidity).toLocaleString()}` : '');
+          ? `<span class="market-hot" title="近 24 小時成交量最高 — 此刻注意力正湧入">🔥 近24h ${fmtMoney(m.vol24)}</span>` : '';
+        const volTitle = `總量 ${fmtMoney(m.volume)}` +
+          (m.vol24 ? ` · 近24h ${fmtMoney(m.vol24)}` : '') +
+          (m.liquidity ? ` · 流動性 ${fmtMoney(m.liquidity)}` : '');
         item.innerHTML = `
           <span class="market-q">${m.source ? `<span class="market-src ${srcCls}">${escapeHtml(m.source)}</span>` : ''}${escapeHtml(m.question)}${hot}${m.url ? ' <span class="market-go">↗</span>' : ''}</span>
-          <span class="market-prob">${m.prob != null ? Math.round(m.prob * 100) + '%' : '—'}</span>
-          <span class="market-vol" title="${escapeAttr(volTitle)}">${Math.round(m.volume).toLocaleString()}</span>`;
+          <span class="market-prob">${fmtProb(m.prob)}</span>
+          <span class="market-vol" title="${escapeAttr(volTitle)}">${fmtMoney(m.volume)}</span>`;
         el.marketList.appendChild(item);
       });
       el.marketSource.hidden = false;
