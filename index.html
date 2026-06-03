@@ -1409,7 +1409,9 @@ a.market-item:hover .market-go { opacity: 1; }
       // require a clean single-question title.
       const isCombo = (t) => {
         const s = String(t || '');
-        return s.length > 110 || (s.match(/,/g) || []).length >= 3 || /\byes .+,\s*yes /i.test(s);
+        // multi-leg parlays read like "no Vegas wins by over 2.5 goals,yes Golden
+        // State" — a comma joining yes/no legs. Catch yes OR no on both sides.
+        return s.length > 110 || (s.match(/,/g) || []).length >= 3 || /\b(yes|no) .+,\s*(yes|no)\b/i.test(s);
       };
       const centsOf = (m) => (typeof m.last_price === 'number' && m.last_price > 0) ? m.last_price
         : (typeof m.yes_bid === 'number' && typeof m.yes_ask === 'number') ? (m.yes_bid + m.yes_ask) / 2
