@@ -1346,7 +1346,9 @@ a.market-item:hover .market-go { opacity: 1; }
     .map((x) => ({ ...x, n: normalizePolymarket(x.m) }))
     // drop already-decided / irrelevant near-100% markets (e.g. a settled O/U
     // that matched on a city name) — they're noise, not a prediction.
-    .filter((x) => x.n.prob == null || x.n.prob < 0.97)
+    // drop already-decided (~100%) AND near-0% long-shots (e.g. an unlikely
+    // market-cap band): both display as a useless 0%/100% and just add noise.
+    .filter((x) => x.n.prob == null || (x.n.prob >= 0.01 && x.n.prob < 0.97))
     // For a championship event every "Will X win?" outcome ties on relevance, so
     // tie-break by probability (desc) → the favourites surface instead of a wall
     // of 0% long-shots; volume only as a final tie-break.
@@ -1415,7 +1417,7 @@ a.market-item:hover .market-go { opacity: 1; }
       // same dual-threshold idea as Polymarket: the title itself must carry
       // signal so a category like "Politics" can't drag in unrelated markets.
       .filter((x) => x.qOnly >= 5 && x.score >= 10) // keep legit (e.g. 'world cup'=12); noise dropped by prob/combo filters
-      .filter((x) => x.prob < 97) // drop already-decided / irrelevant ~100% markets
+      .filter((x) => x.prob >= 1 && x.prob < 97) // drop ~0% long-shots and ~100% decided markets (both noise)
       // favourites first (prob desc) so championship long-shots don't crowd out
       .sort((a, b) => (b.score - a.score) || (b.prob - a.prob) || (Number(b.m.volume || 0) - Number(a.m.volume || 0)))
       .slice(0, 8);
