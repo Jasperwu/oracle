@@ -2086,6 +2086,31 @@ scouts 陣列必須**剛好 5 個元素**（不可多、不可少），角度彼
     }
   }
 
+  // Per-kind soft caps (as a fraction of the pool) so one angle — e.g. a
+  // finance/funding-heavy gather — can't numerically drown out the social /
+  // cultural / international reads the synthesis sees. Generous on the staples
+  // (general/social) so the common case is essentially unchanged; the cap only
+  // bites to stop a single kind from dominating. Keeps the INPUT multi-dimensional
+  // WITHOUT forcing the OUTPUT to be "balanced".
+  const WEB_KIND_CAP = { general: 0.6, social: 0.32, market: 0.2, geo: 0.22, capital: 0.18 };
+  // Two-pass: pass 1 honours caps (so minority kinds and the newer geo/capital
+  // angles — which the gather appends last — still make the cut); pass 2 backfills
+  // any leftover slots so the pool is NEVER smaller than before (no regression).
+  function balanceWeb(web, total) {
+    web = web || [];
+    const count = {}, picked = new Set(), out = [];
+    for (let i = 0; i < web.length && out.length < total; i++) {
+      const k = web[i].kind || 'general';
+      const cap = Math.max(3, Math.round(total * (WEB_KIND_CAP[k] || 0.3)));
+      if ((count[k] || 0) >= cap) continue;
+      count[k] = (count[k] || 0) + 1; picked.add(i); out.push(web[i]);
+    }
+    for (let i = 0; i < web.length && out.length < total; i++) {
+      if (!picked.has(i)) out.push(web[i]);
+    }
+    return out;
+  }
+
   // Flatten every REAL fetched signal into a numbered list of items, each with
   // its real clickable URL. Scouts cite these by number (#3) so we can map a
   // finding back to a genuine source — no hallucinated citations possible.
@@ -2094,7 +2119,7 @@ scouts 陣列必須**剛好 5 個元素**（不可多、不可少），角度彼
     // Claude web-search findings first — the richest real intel for most topics.
     // Each carries its own real URL, so a scout citing #N gets a clickable source.
     // Capped so a ~100-item pool stays a manageable per-scout prompt.
-    (sig.web || []).slice(0, 80).forEach((it) => items.push({ label: '網路研究', text: it.text, url: it.url || null }));
+    balanceWeb(sig.web, 80).forEach((it) => items.push({ label: '網路研究', text: it.text, url: it.url || null }));
     (sig.markets || []).forEach((m) => {
       // surface depth/heat so the synthesis can weight confidence by how much
       // real money + recent attention backs each market (not just the % itself)
@@ -2300,7 +2325,7 @@ ${digestText}
   function buildEvidenceIndex(sig) {
     const lines = [], map = {};
     let wi = 1;
-    (sig.web || []).slice(0, 40).forEach((it) => { const tag = 'W' + wi++; lines.push(`[${tag}] ${it.text}`); if (it.url) map[tag] = { url: it.url, text: it.text }; });
+    balanceWeb(sig.web, 40).forEach((it) => { const tag = 'W' + wi++; lines.push(`[${tag}] ${it.text}`); if (it.url) map[tag] = { url: it.url, text: it.text }; });
     let mi = 1;
     (sig.markets || []).forEach((m) => { const tag = 'M' + mi++; lines.push(`[${tag}] 預測市場「${m.question}」${m.prob != null ? '：' + Math.round(m.prob * 100) + '%' : ''}`); if (m.url) map[tag] = { url: m.url, text: m.question }; });
     let ni = 1;
@@ -2455,7 +2480,9 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
         // pair each bullet with ITS OWN url only — never borrow another finding's
         // link (that round-robin hack made the source chips mismatch the text).
         const paired = parseFindingsWithUrls(text);
-        return { items: paired, sources: sources || [] };
+        // tag each finding with the angle that produced it, so the evidence pool
+        // can later guard against any single dimension numerically dominating.
+        return { items: paired.map((p) => ({ ...p, kind })), sources: sources || [] };
       } catch (e) { console.warn('[gatherWebMulti] query failed:', q, e.message || e); return { items: [], sources: [] }; }
     };
 
@@ -2475,7 +2502,10 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
       (r.sources || []).forEach((s) => { if (s && s.url && !sSeen.has(s.url)) { sSeen.add(s.url); sources.push(s); } });
     });
     const withUrl = items.filter((it) => it.url).length;
-    console.info(`[gatherWebMulti] ${tasks.length} queries (${social.length} social, ${market.length} market) → ${items.length} findings (${withUrl} with url), ${sources.length} sources`);
+    // composition by angle — so you can SEE if one dimension is dominating the
+    // gather (observability for the "don't let finance/tech drown everything" guard)
+    const comp = {}; items.forEach((it) => { const k = it.kind || 'general'; comp[k] = (comp[k] || 0) + 1; });
+    console.info(`[gatherWebMulti] ${tasks.length} queries → ${items.length} findings (${withUrl} with url), ${sources.length} sources · 組成 ${Object.entries(comp).map(([k, v]) => k + '=' + v).join(' ')}`);
     return { items: items.slice(0, 100), sources: sources.slice(0, 120) };
   }
 
