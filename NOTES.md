@@ -27,6 +27,12 @@
    ① 證據文字帶「總量／近24h／流動性」金額(`collectSignalItems`)；② `buildSynthPrompt` 新增指示「市場熱度/深度＝信心權重」(深市場→高信心/低fringe、薄市場→弱訊號、近24h放大＝即時動能要點名)；
    ③ 結果頁市場卡為「近24h 成交量最高」者加 `🔥 近24h $X` 標籤(`.market-hot`)+ volume 加 tooltip 顯示三項金額拆解。⚠️ Gamma/Kalshi 的 `volume24hr`/`volume_24h`/`liquidity` 欄位需實機 console 確認有值。
    ⚠️ 已知偏誤：用 volume 加權會放大 Polymarket 的美國/加密圈偏斜(熱門題訊號更強、冷門/非英語題更弱)——對應待辦 #2「來源偏誤改善」。
+7. **影音/年輕世代平台 facet(訊號擴充 Phase 1 · 零新增成本)**：`gatherWebMulti` 第 2 條社群查詢**就地擴充**(不新增查詢→不增延遲/API量)：
+   `${ent} emerging trend gen z young early adopters` → `${ent} youtube OR tiktok OR twitch OR podcast gen z young creators emerging trend`;sysSocial prompt 也點名 YouTube/TikTok/Twitch/podcast。讓年輕世代訊號真的搆得到影音平台,不只文字論壇。
+
+**🛡️ 訊號擴充的安全框架(定案,務必遵守)**：在動任何訊號擴充前已建還原點 **`backup/pre-signal-expansion` = `850f522`**(穩定 main)。
+一鍵還原:`git push origin backup/pre-signal-expansion:main --force`。五條鐵律:①只加不改不刪(不碰現有 7 來源)②故障安全(新源 try/catch+回[]+非 load-bearing,沿用 allSettled)③一來源一 commit 可單獨 revert ④主題閘門(niche 源由 understandTopic 依主題開關,守「緊扣主題」)⑤逐步驗證(每加一個用 SpaceX/NBA/台積電 跑 before/after 看 console log)。
+路線:Phase1 零風險查詢 facet(✅影音/年輕世代已做、🌍地理多元待做、💰資本/募資待做)→ Phase2 獨立 fetcher(arXiv/Metaculus,主題閘門)→ Phase3 金融基本面 → Phase4(暫緩:真實機率定位光點/環境感測)。
 
 **還可做（沿用第十四輪候選，未做）**：① backcasting/偏好未來 ② 來源偏誤改善 ③ 對得上市場的事件直接用真實機率% 定位光點。⏳ 全站英文化仍是「功能凍結後才做」。
 
