@@ -26,6 +26,11 @@ rubric 6 項:具體可用性／切題／不被單一訊號主導／沒瞎(跨域
 
 **⏸️ 這批刻意「沒做」(留待驗證過再單獨開批)**：arXiv / Metaculus / 金融基本面等**新結構化 fetcher**——沙箱無法驗證 CORS/欄位、且本身加重金融/技術偏向、會混淆 quality 歸因。
 
+**🔧 重大修(同 session)：市場卡抓錯主題(WNBA/parlay 污染)→ 改用 LLM 相關性閘門**。
+測 NBA 2026 Finals 時市場卡出現「Golden State Valkyries(WNBA)」「no Vegas wins…,yes Golden State(Kalshi parlay)」等完全無關市場,真正的「2026 NBA Champion: Spurs 64%/Knicks 35%($408M量)」反而沒出現。
+**根因**:市場篩選是**字串比對**(`relevanceScore`),不懂語意——「2026 NBA Champion」對「NBA 2026 Finals」只剩「nba」命中(2026/finals 是 stopword)→分數~6 被 `score>=10` 刷掉;垃圾靠 entity「Golden State」兩字命中~12 反而通過。**最相關的分數最低被丟、最不相關的分數最高被留**。(關鍵證明:$408M≫$154K,按量抓一定抓到,是我們自己過濾掉的;API 沒問題。)
+**修法(LLM 相關性閘門,user 拍板)**:① `rankPolymarket`/`fetchKalshi` 把門檻 `score>=10`**放寬到 >=6**(高 recall)、改**按成交量排**、各回 25/15 筆、附 `_score`/`_qOnly`;② `mergeMarkets(a,b,cap)` 加 cap 參數,central 用 cap=28 broad merge;③ 新 `gateMarketsRelevance(keyword, markets)`:一次 Claude 呼叫(maxTokens 300)判斷「哪些真的在預測這主題」回 JSON 編號→留相關、按量排 top8;**故障安全**:無 key/解析失敗/error 一律 fallback 回 `strict`(score>=10 = 舊行為,絕不更糟);LLM 回 [] 則信任(顯示 none,寧空勿錯)。central log 看 `[marketGate] kept N/M`。先前的 isCombo 也已強化擋 `(yes|no)…,(yes|no)` parlay。⚠️ 成本:每次預測多一次便宜 Claude 呼叫。**待 user 實機驗證 NBA/SpaceX/World Cup。**
+
 **🔧 後續修(同 session)：市場卡「一排 0%」問題**。使用者測 SpaceX IPO(當天發生)看到很多 0% 市場。查證:**市場選擇/排序/過濾邏輯這批完全沒動**(git diff 確認),0% 是 Polymarket 真實長尾(0.45% 被 `Math.round` 壓成 0%)+ IPO 當天冒出大量細分市值市場。**真修法**:新增 `fmtProb`(<1% 顯示 0.4%/<0.1%、>99% 顯示 >99%、真零才 0%)+ `fmtMoney`(1,156,468→$1.16M、72,655→$72.7K),套在市場卡 prob/vol/🔥徽章/tooltip + 證據池(`collectSignalItems`/`buildEvidenceIndex`)→ UI 與餵 LLM 的機率一致。
 > ⚠️ **教訓(記下來)**：使用者拿 Gemini 的回答來問,Gemini **謊稱已實裝**「高精度格式化/成交量縮寫/雙層 HOT-ACTIVE 徽章/對稱表頭」等一堆功能——**程式裡根本沒有**(它幻覺)。**別信任何 AI(含 Gemini)自稱『已完成』的功能,一律以 git/程式碼為準**。Gemini 對「為什麼是 0%」的『解釋』正確,但『成果』全是編的;其中高精度顯示是真的好點子,所以我們**真的去做了**。
 

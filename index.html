@@ -1347,20 +1347,20 @@ a.market-item:hover .market-go { opacity: 1; }
           .map((x) => `「${String(x.m.question).slice(0, 46)}」 q${x.qOnly}/s${x.score}/${Math.round((normalizePolymarket(x.m).prob || 0) * 100)}% ${(x.qOnly >= 5 && x.score >= 10) ? '✓' : '✗'}`));
     } catch {}
     const scored = cand
-    // relevance bar kept modest: 'world cup 2026' only scores ~12 ('world' is a
-    // stopword), so a higher bar wrongly hid legit markets. Cross-sport / settled
-    // noise is handled by the prob<0.97 + combo filters instead.
-    .filter((x) => !requireScore || (x.qOnly >= 5 && x.score >= 10))
-    .map((x) => ({ ...x, n: normalizePolymarket(x.m) }))
-    // drop already-decided / irrelevant near-100% markets (e.g. a settled O/U
-    // that matched on a city name) — they're noise, not a prediction.
-    .filter((x) => x.n.prob == null || x.n.prob < 0.97)
-    // For a championship event every "Will X win?" outcome ties on relevance, so
-    // tie-break by probability (desc) → the favourites surface instead of a wall
-    // of 0% long-shots; volume only as a final tie-break.
-    .sort((a, b) => (b.score - a.score) || ((b.n.prob || 0) - (a.n.prob || 0)) || (Number(b.m.volumeNum || b.m.volume || 0) - Number(a.m.volumeNum || a.m.volume || 0)))
-    .slice(0, 8);
-    return scored.map(({ n }) => n);
+    // RELAXED relevance bar (was score>=10). A genuinely-relevant market like
+    // "2026 NBA Champion" scores low after stopwords drop 2026/finals (only "nba"
+    // hits → ~6), so the old bar wrongly dropped it while junk that shared a
+    // 2-token entity fragment ("Golden State") passed at ~12. We now keep anything
+    // with a real token signal and let the downstream LLM gate provide precision.
+    .filter((x) => !requireScore || (x.qOnly >= 5 && x.score >= 6))
+    .map((x) => ({ ...normalizePolymarket(x.m), _score: x.score, _qOnly: x.qOnly }))
+    // drop already-decided near-100% markets — noise, not a prediction
+    .filter((n) => n.prob == null || n.prob < 0.97)
+    // volume-first so the biggest, most-liquid markets surface into the shortlist
+    // the LLM gate then judges (a $408M champion market must reach the gate)
+    .sort((a, b) => (b.volume || 0) - (a.volume || 0))
+    .slice(0, 25);
+    return scored;
   }
 
   async function fetchMarkets(keyword, entities = []) {
@@ -1422,18 +1422,18 @@ a.market-item:hover .market-go { opacity: 1; }
         const both = maxRelevance(m.title, secondary, queries);
         return { m, score: both, qOnly, prob: centsOf(m) || 0 };
       })
-      // same dual-threshold idea as Polymarket: the title itself must carry
-      // signal so a category like "Politics" can't drag in unrelated markets.
-      .filter((x) => x.qOnly >= 5 && x.score >= 10) // keep legit (e.g. 'world cup'=12); noise dropped by prob/combo filters
+      // RELAXED bar (was score>=10) — recall now, precision from the LLM gate.
+      .filter((x) => x.qOnly >= 5 && x.score >= 6)
       .filter((x) => x.prob < 97) // drop already-decided / irrelevant ~100% markets
-      // favourites first (prob desc) so championship long-shots don't crowd out
-      .sort((a, b) => (b.score - a.score) || (b.prob - a.prob) || (Number(b.m.volume || 0) - Number(a.m.volume || 0)))
-      .slice(0, 8);
+      // volume-first so the biggest markets reach the gate
+      .sort((a, b) => (Number(b.m.volume || 0) - Number(a.m.volume || 0)))
+      .slice(0, 15);
 
-      return scored.map(({ m }) => {
+      return scored.map(({ m, score, qOnly }) => {
         const cents = centsOf(m);
         return {
           question: m.title + (m.yes_sub_title ? ' — ' + m.yes_sub_title : ''),
+          _score: score, _qOnly: qOnly,
           prob: cents != null ? cents / 100 : null,
           outcome: 'Yes',
           volume: Number(m.volume || 0),
@@ -1447,16 +1447,53 @@ a.market-item:hover .market-go { opacity: 1; }
     } catch { return []; }
   }
 
-  // Each source returns results already sorted by relevance. Interleave so the
+  // Each source returns results already sorted by volume. Interleave so the
   // final list mixes both exchanges while preserving each one's top picks.
-  function mergeMarkets(a, b) {
+  function mergeMarkets(a, b, cap = 8) {
     const out = [];
     const len = Math.max((a || []).length, (b || []).length);
     for (let i = 0; i < len; i++) {
       if (a && a[i]) out.push(a[i]);
       if (b && b[i]) out.push(b[i]);
     }
-    return out.filter((m) => m && m.question).slice(0, 8);
+    return out.filter((m) => m && m.question).slice(0, cap);
+  }
+
+  // LLM relevance gate — the precision step token-matching can't do. Cheap token
+  // ranking casts a wide (high-recall) net by volume; this one Claude call reads
+  // the shortlist and keeps only markets GENUINELY about the topic, killing the
+  // cross-sport/league/parlay false positives string-matching lets through
+  // (e.g. a WNBA "Golden State Valkyries" market for an "NBA Finals" query).
+  // Fail-safe: any error → fall back to the strict token filter (old behaviour),
+  // so the gate can never make the card worse than before.
+  async function gateMarketsRelevance(keyword, markets) {
+    markets = (markets || []).filter((m) => m && m.question);
+    if (markets.length <= 1) return markets.slice(0, 8);
+    // strict token fallback == previous behaviour (score>=10), volume/score sorted
+    const strict = markets
+      .filter((m) => (m._qOnly || 0) >= 5 && (m._score || 0) >= 10)
+      .sort((a, b) => ((b._score || 0) - (a._score || 0)) || ((b.prob || 0) - (a.prob || 0)) || ((b.volume || 0) - (a.volume || 0)))
+      .slice(0, 8);
+    const byVol = (arr) => [...arr].sort((a, b) => (b.volume || 0) - (a.volume || 0)).slice(0, 8);
+    try {
+      if (!getKey()) return strict; // can't gate without a key → previous behaviour
+      const list = markets.map((m, i) =>
+        `${i + 1}. 「${m.question}」（${m.source}${m.prob != null ? '，' + Math.round(m.prob * 100) + '%' : ''}）`).join('\n');
+      const sys = '你是一個嚴格的相關性過濾器。使用者給一個主題與一份預測市場清單，你只回傳「真的在預測這個主題」的市場編號。務必排除：不同運動或聯盟（例如主題是 NBA 卻出現 WNBA、MLB、NHL、足球）、不同主題、與主題無關、已和主題對不上的多腿混合盤。只輸出 JSON 數字陣列（例如 [1,3,7]）；若沒有任何相關，輸出 []。不要任何解釋或文字。';
+      const user = `主題：「${keyword}」\n\n市場清單：\n${list}\n\n請只回傳「真的在預測『${keyword}』這個主題」的市場編號（JSON 數字陣列）。`;
+      const { text } = await callClaude(sys, user, { maxTokens: 300 });
+      const match = String(text || '').match(/\[[\d,\s]*\]/);
+      if (!match) return strict; // unparseable → previous behaviour (never worse)
+      const picked = JSON.parse(match[0]);
+      if (!Array.isArray(picked)) return strict;
+      const kept = picked.map((n) => markets[Number(n) - 1]).filter(Boolean);
+      const out = byVol(kept); // trust the gate (empty = genuinely none relevant → show none)
+      console.info('[marketGate]', JSON.stringify(keyword), '— kept', out.length, '/', markets.length, 'markets:', out.map((m) => m.question.slice(0, 32)));
+      return out;
+    } catch (e) {
+      console.warn('[marketGate] failed → token fallback:', e && (e.message || e));
+      return strict; // any error → exactly the previous strict-token result
+    }
   }
 
   /* ---------- GDELT: last 3 days of global news ---------- */
@@ -3161,7 +3198,9 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
         fetchHN(keyword, entities), // tech/dev community signal (CORS-ok); sparse for non-tech
       ]);
       const val = (i, fallback) => (settled[i].status === 'fulfilled' ? settled[i].value : fallback);
-      const markets = mergeMarkets(val(0, []), val(1, []));
+      // wide (high-recall) volume-sorted shortlist → LLM relevance gate for precision
+      if (el.sub) el.sub.textContent = '篩選真正相關的預測市場…';
+      const markets = await gateMarketsRelevance(keyword, mergeMarkets(val(0, []), val(1, []), 28));
       const sig = {
         markets,
         news: val(2, []),
