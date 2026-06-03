@@ -1329,7 +1329,7 @@ a.market-item:hover .market-go { opacity: 1; }
     };
   }
   function rankPolymarket(raw, queries, { requireScore = true } = {}) {
-    const scored = raw.map((m) => {
+    const cand = raw.map((m) => {
       const eventTitles = Array.isArray(m.events) ? m.events.map((e) => e.title || '').join(' ') : '';
       const secondary = `${m.description || ''} ${eventTitles} ${m.groupItemTitle || ''}`;
       // Require the question itself to have some signal — secondary alone (a
@@ -1338,7 +1338,15 @@ a.market-item:hover .market-go { opacity: 1; }
       const qOnly = maxRelevance(m.question, '', queries);
       const both = maxRelevance(m.question, secondary, queries);
       return { m, score: both, qOnly };
-    })
+    });
+    // DIAGNOSTIC (temporary): why a market did/didn't make the cut — top scoring
+    // candidates with q-only/combined score, prob, and pass(✓)/fail(✗).
+    try {
+      console.info('[rankPolymarket]', JSON.stringify(queries[0]), '— top candidates:',
+        [...cand].filter((x) => x.score > 0).sort((a, b) => b.score - a.score).slice(0, 18)
+          .map((x) => `「${String(x.m.question).slice(0, 46)}」 q${x.qOnly}/s${x.score}/${Math.round((normalizePolymarket(x.m).prob || 0) * 100)}% ${(x.qOnly >= 5 && x.score >= 10) ? '✓' : '✗'}`));
+    } catch {}
+    const scored = cand
     // relevance bar kept modest: 'world cup 2026' only scores ~12 ('world' is a
     // stopword), so a higher bar wrongly hid legit markets. Cross-sport / settled
     // noise is handled by the prob<0.97 + combo filters instead.
@@ -2079,6 +2087,7 @@ scouts 陣列必須**剛好 5 個元素**（不可多、不可少），角度彼
       const entities = Array.isArray(parsed.entities)
         ? parsed.entities.map((e) => String(e).trim()).filter(Boolean).slice(0, 8) : [];
       const expert = String(parsed.expert || '').trim().slice(0, 40);
+      console.info('[understandTopic]', JSON.stringify(keyword), '→ entities:', entities, '| expert:', expert);
       return { interpretation: String(parsed.interpretation || ''), entities, expert };
     } catch {
       activeScouts = DEFAULT_SCOUTS;
