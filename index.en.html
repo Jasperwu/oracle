@@ -2411,7 +2411,12 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
       : '你是一位頂尖的未來學家（futurist），';
     const system = `${role}擅長把scouts的邊緣訊號、預測市場數據與趨勢轉化為具體、可信、富洞察力的未來情境。請拿出該領域真正的專業判斷（懂門道、用對術語、抓對關鍵變數），語氣冷靜、精準、帶一點神諭的詩意。你的最終回覆必須「只」包含使用者要求的 JSON 物件，不要任何前後說明文字。`;
     const { text, sources } = await callClaude(system, buildSynthPrompt(keyword, sig, scoutResults, deepReport), {
-      webSearch: getWebSearch(), maxTokens: 8000, maxUses: 4,
+      // Synthesis no longer web-searches: gatherWebMulti already pulled the web
+      // evidence into the pool, and an in-synthesis search + 8000 tokens routinely
+      // blew past the 90s timeout → silent abort/retry → looked frozen on the
+      // "Synthesizing…" screen. Off = fast (~30–60s) and reliable. Longer timeout
+      // is just insurance for the 8000-token generation itself.
+      webSearch: false, maxTokens: 8000, maxUses: 0, timeoutMs: 180000,
     });
     return { result: extractJSON(text), sources };
   }
