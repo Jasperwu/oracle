@@ -33,7 +33,9 @@ rubric 6 項:具體可用性／切題／不被單一訊號主導／沒瞎(跨域
 
 **🔧 閘門第二輪(World Cup 暴露)**:閘門「挑相關」沒問題,但接著按**成交量**排 → World Cup 撈出一堆 `<0.1%` 超級冷門(Uzbekistan $55M…),把真正熱門(France 17%/Spain 16%/England 11%,機率低但才是重點)壓掉。根因:奪冠熱門機率僅 10–17%(48 隊瓜分)、冷門「不會贏」盤反而量大。**修法**:① 閘門升級為「**策展人**」——挑「最能代表主題關鍵預測」並**依重要性排序**、明令**排除趨近 0% 冷門**;② 顯示照 AI 重要性順序、`present()` 丟 <2% 雜訊;③ 候選清單放寬(Polymarket 25→40、Kalshi 15→20、merge cap 28→50)確保「中機率中量」熱門(France $34M)不會在進閘門前被切掉。fallback 仍是 strict token(score>=10)+present。
 
-**🔧 後續修(同 session)：市場卡「一排 0%」問題**。使用者測 SpaceX IPO(當天發生)看到很多 0% 市場。查證:**市場選擇/排序/過濾邏輯這批完全沒動**(git diff 確認),0% 是 Polymarket 真實長尾(0.45% 被 `Math.round` 壓成 0%)+ IPO 當天冒出大量細分市值市場。**真修法**:新增 `fmtProb`(<1% 顯示 0.4%/<0.1%、>99% 顯示 >99%、真零才 0%)+ `fmtMoney`(1,156,468→$1.16M、72,655→$72.7K),套在市場卡 prob/vol/🔥徽章/tooltip + 證據池(`collectSignalItems`/`buildEvidenceIndex`)→ UI 與餵 LLM 的機率一致。
+**🔧 閘門第三/四輪修(同 session)**:① NBA 只留 Spurs 漏 Knicks → prompt 加「對決要納入所有主要當事方」;② user 質疑「規則越加越多會擋其他主題」→ **prompt 收斂成精簡通用版**(兩條原則:對決留所有當事方 + 丟不相關/純雜訊,移除 NBA/WNBA 列舉)、硬下限 2%→0.5%(細活交 LLM);③ alphabet stock 只回 1 個(Polymarket 172 個多為 Gemini 產品市場、非股票;真正股價市場如「GOOGL closes above X」量太小被 volume 候選切掉)→ **候選清單改「成交量前段 ∪ 相關性前段」聯集**(Polymarket top30vol∪top20rel→45;Kalshi top12vol∪top10rel),讓小而高度相關的市場也進閘門。
+
+**🔧 市場卡「一排 0%」問題**:使用者測 SpaceX IPO(當天發生)看到很多 0% 市場。查證:**市場選擇/排序/過濾邏輯這批完全沒動**(git diff 確認),0% 是 Polymarket 真實長尾(0.45% 被 `Math.round` 壓成 0%)+ IPO 當天冒出大量細分市值市場。**真修法**:新增 `fmtProb`(<1% 顯示 0.4%/<0.1%、>99% 顯示 >99%、真零才 0%)+ `fmtMoney`(1,156,468→$1.16M、72,655→$72.7K),套在市場卡 prob/vol/🔥徽章/tooltip + 證據池(`collectSignalItems`/`buildEvidenceIndex`)→ UI 與餵 LLM 的機率一致。
 > ⚠️ **教訓(記下來)**：使用者拿 Gemini 的回答來問,Gemini **謊稱已實裝**「高精度格式化/成交量縮寫/雙層 HOT-ACTIVE 徽章/對稱表頭」等一堆功能——**程式裡根本沒有**(它幻覺)。**別信任何 AI(含 Gemini)自稱『已完成』的功能,一律以 git/程式碼為準**。Gemini 對「為什麼是 0%」的『解釋』正確,但『成果』全是編的;其中高精度顯示是真的好點子,所以我們**真的去做了**。
 
 ---

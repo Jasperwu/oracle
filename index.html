@@ -1346,7 +1346,7 @@ a.market-item:hover .market-go { opacity: 1; }
         [...cand].filter((x) => x.score > 0).sort((a, b) => b.score - a.score).slice(0, 18)
           .map((x) => `「${String(x.m.question).slice(0, 46)}」 q${x.qOnly}/s${x.score}/${Math.round((normalizePolymarket(x.m).prob || 0) * 100)}% ${(x.qOnly >= 5 && x.score >= 10) ? '✓' : '✗'}`));
     } catch {}
-    const scored = cand
+    const pool = cand
     // RELAXED relevance bar (was score>=10). A genuinely-relevant market like
     // "2026 NBA Champion" scores low after stopwords drop 2026/finals (only "nba"
     // hits → ~6), so the old bar wrongly dropped it while junk that shared a
@@ -1355,12 +1355,15 @@ a.market-item:hover .market-go { opacity: 1; }
     .filter((x) => !requireScore || (x.qOnly >= 5 && x.score >= 6))
     .map((x) => ({ ...normalizePolymarket(x.m), _score: x.score, _qOnly: x.qOnly }))
     // drop already-decided near-100% markets — noise, not a prediction
-    .filter((n) => n.prob == null || n.prob < 0.97)
-    // volume-first so the biggest, most-liquid markets surface into the shortlist
-    // the LLM gate then judges (a $408M champion market must reach the gate)
-    .sort((a, b) => (b.volume || 0) - (a.volume || 0))
-    .slice(0, 40);
-    return scored;
+    .filter((n) => n.prob == null || n.prob < 0.97);
+    // Shortlist = top by VOLUME (big headline markets) ∪ top by RELEVANCE (small
+    // but on-point markets — e.g. a low-volume "GOOGL closes above X" for "alphabet
+    // stock" — that pure volume sorting would bury). The LLM gate judges the union.
+    const byVol = [...pool].sort((a, b) => (b.volume || 0) - (a.volume || 0)).slice(0, 30);
+    const byRel = [...pool].sort((a, b) => ((b._score || 0) - (a._score || 0)) || ((b.volume || 0) - (a.volume || 0))).slice(0, 20);
+    const seen = new Set(), scored = [];
+    for (const m of [...byVol, ...byRel]) { if (!seen.has(m.question)) { seen.add(m.question); scored.push(m); } }
+    return scored.slice(0, 45);
   }
 
   async function fetchMarkets(keyword, entities = []) {
@@ -1416,7 +1419,7 @@ a.market-item:hover .market-go { opacity: 1; }
       const centsOf = (m) => (typeof m.last_price === 'number' && m.last_price > 0) ? m.last_price
         : (typeof m.yes_bid === 'number' && typeof m.yes_ask === 'number') ? (m.yes_bid + m.yes_ask) / 2
         : (typeof m.yes_bid === 'number') ? m.yes_bid : null;
-      const scored = list.filter((m) => m.title && !isCombo(m.title)).map((m) => {
+      const kpool = list.filter((m) => m.title && !isCombo(m.title)).map((m) => {
         const secondary = `${m.yes_sub_title || ''} ${m.subtitle || ''} ${m.category || ''}`;
         const qOnly = maxRelevance(m.title, '', queries);
         const both = maxRelevance(m.title, secondary, queries);
@@ -1424,10 +1427,12 @@ a.market-item:hover .market-go { opacity: 1; }
       })
       // RELAXED bar (was score>=10) — recall now, precision from the LLM gate.
       .filter((x) => x.qOnly >= 5 && x.score >= 6)
-      .filter((x) => x.prob < 97) // drop already-decided / irrelevant ~100% markets
-      // volume-first so the biggest markets reach the gate
-      .sort((a, b) => (Number(b.m.volume || 0) - Number(a.m.volume || 0)))
-      .slice(0, 20);
+      .filter((x) => x.prob < 97); // drop already-decided / irrelevant ~100% markets
+      // shortlist = top by volume ∪ top by relevance (same recall idea as Polymarket)
+      const kByVol = [...kpool].sort((a, b) => (Number(b.m.volume || 0) - Number(a.m.volume || 0))).slice(0, 12);
+      const kByRel = [...kpool].sort((a, b) => ((b.score || 0) - (a.score || 0)) || (Number(b.m.volume || 0) - Number(a.m.volume || 0))).slice(0, 10);
+      const kSeen = new Set(), scored = [];
+      for (const x of [...kByVol, ...kByRel]) { if (!kSeen.has(x.m.title)) { kSeen.add(x.m.title); scored.push(x); } }
 
       return scored.map(({ m, score, qOnly }) => {
         const cents = centsOf(m);
