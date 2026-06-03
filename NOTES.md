@@ -5,6 +5,50 @@
 
 ---
 
+## 🪧 交接便條（給下一個 session 的你 — 2026-06-03 · 第十六輪 / 大實驗→全數還原 + 英文版誕生 + demo 凍結）
+
+**最重要的一句話**：經歷一輪「市場 LLM 閘門 + 訊號擴充」大實驗,**搞到不穩(來源消失、市場抓到無關 crypto)→ 已全數還原回穩定點 `87d2652`**。然後**新增了獨立英文版 `index.en.html`**。目前 **demo 在即,使用者下令「凍結、不做大改動」**。最新 commit `143ce36`(或更新)。
+
+### ⚠️ 給新 agent 的「現況速讀」(先讀這段)
+- **`index.html`(繁中)= 凍結的穩定版,不要碰。** 內容停在 `87d2652` 等級。
+- **`index.en.html`(英文)= 獨立、手動維護的檔案,從現在起只改這個。** ⚠️ 檔頭有警告:**不要跑 `tools/build-en.mjs`**(它會用中文版重生英文版、蓋掉手改)。產生器只是當初 bootstrap 用,已退役。
+- **部署鐵則照舊**:commit → push branch → 再 `git push origin <branch>:main`。Pages + Vercel 都從 main 部署。用 `mcp__github__list_branches`(owner=jasperwu repo=oracle)確認真 main(本地 origin 是 proxy、可能過期)。
+- **demo 紀律**:撞到「明顯壞掉」只**先診斷、提最小修法、等使用者點頭**才動。**不要大改、不要自作主張。**(這一輪慘痛教訓:多次未確認就動手 → 越改越爛。)
+
+### 還原點 / 封存分支(都在 GitHub)
+- `restore/stable-2026-06-02` = `87d2652` —— 穩定中文版(來源正常、市場用舊的字串比對)。**一鍵還原:`git push origin restore/stable-2026-06-02:main --force`。**
+- `backup/stable-pre-english` = `87d2652` —— 同上,加英文版前的保險。
+- **`parked/signal-and-market-work` = `694f971`** —— **這一輪所有實驗成果都封存在這**,一個 commit 沒丟。要挑回任何東西去這裡 cherry-pick。
+
+### 這一輪「做了又還原」的東西(在 parked,不在 main)
+整套被還原掉:`scan-wide/commit-narrow` 綜合 prompt、`balanceWeb` 證據池每類上限、geo/capital facet、**市場 LLM 相關性閘門(整套)**、`fmtProb`/`fmtMoney`(0% 顯示修正)、**接線檢查器 `tools/validate.mjs` + SessionStart hook**(安全網)。
+- **為什麼還原**:市場閘門一路加(放寬門檻→recall 聯集→balanceWeb)導致 ① 依據來源 chip 消失(balanceWeb 讓無 URL 的 facet 發現擠掉有 URL 的)② One Piece 等主題市場卡抓到一堆無關 crypto FDV。使用者測到「越改越糟」→ 下令還原。
+- **可挑回的安全小東西(未來,使用者沒反對)**:`fmtProb`(0.4% 而非 0% 顯示)、接線檢查器(純工具、零風險)。**市場閘門整套 + balanceWeb 別原樣放回**(不穩根源)。
+
+### 這一輪「保留下來、現在 main 上」的東西
+1. **英文版 `index.en.html`**(commit `5abaa36` 起):
+   - 用產生器 `tools/build-en.mjs` + 對照表 `tools/i18n-en.json` 一次生成(~130 條 UI 字串 + 8 處輸出語言指令翻英文)。**`index.html` 全程沒動。**
+   - 後續英文版手改:探員狀態文字英譯、`understandTopic` schema 改成輸出**英文** scout 名(原本寫死「4 字內」中文短名)。
+   - **網址**:GitHub Pages `jasperwu.github.io/oracle/index.en.html`;Vercel `…vercel.app/index.en.html`。中文版網址不變。**不需要新 API key**(同一個 BYOK)。
+   - 翻譯雷:英文撇號 `'`(can't)會截斷 JS 單引號字串 → 對照表的撇號全用排版引號 `’`。
+2. **`PERSONAS_AND_PROMPTS.md`(英文,commit `143ce36`)** —— 補上規格書缺的那塊:6 個 AI 角色、各自實際 prompt(英譯)、情境矩陣(競技 vs 科技 vs 抽象主題如何變身)。
+
+### 這一輪查清楚、但「沒改/還原」的事(重要認知)
+- **GDELT/Trends 在 Vercel 沒料**:曾把英文版 `proxied()` 改成預設走同源 `/api/*`(想讓 Vercel 上的 serverless 自動供 GDELT)→ 結果**更慢又沒換到 GDELT**(Vercel 函式回空,原因未證實:沒部署?查無資料?500?)→ **已還原 proxied**。要真的搞定 GDELT:先看 Vercel 的 **Network 分頁 `/api/gdelt` 的 status/response** 才知道函式到底有沒有動,別再瞎猜。GitHub Pages 本來就跑不了 serverless,GDELT 注定空。
+- **Gemini 還在用嗎?**:蒐集**早已不用 Gemini**(Claude web search);但 Gemini **沒被完全移除**,還掛在 ① scout 解讀(`runScout`:有 Gemini 金鑰才用,否則 Claude)② Deep Research(選用)。**不設 Gemini 金鑰 → 全程 100% Claude。** 使用者問過要不要拿掉 → 決定 **demo 前不動**。
+- **「卡在 Synthesizing」**:`askOracle` 開 web search + 8000 tokens,偶爾超過 `callClaude` 的 90s 逾時 → 中止靜默重試 → 看起來凍住,但**最後會出結果**(不是壞)。曾想關掉綜合 web search → 使用者制止「別亂刪」→ 已還原。真要改善:只拉長逾時(非破壞性),但 demo 前不動。
+- **context-aware 是真的動態**:`understandTopic` 對**任何**主題即時組隊 + 指派專家,METHODOLOGY 裡的「競技/科技」只是**例子**(這兩類有額外硬規則、最穩;其他領域靠 LLM 通用判斷自適應;失敗才退回 generic `DEFAULT_SCOUTS`)。
+
+### 未來代辦(候選,demo 後再說)
+1. **英文版若要 GDELT**:先用 Network 分頁確認 Vercel serverless 狀態,再決定怎麼修。
+2. **挑回安全小修**(從 parked):`fmtProb`(0% 顯示)、接線檢查器(安全網)。
+3. **Gemini 去留**:要嘛保留(現狀),要嘛在英文版徹底移除(scout 永遠 Claude + 拿掉 Deep Research/Gemini UI)。
+4. **市場卡相關性**:這是真痛點(字串比對門檻高→漏真市場、門檻低→抓無關)。LLM 閘門是對的方向但這次做到不穩;若要重做,**小步、可退回、先驗證**,別再疊一堆。
+5. **booth/pitch 素材**(這 session 在對話裡產出但**沒存進 repo**):booth pitch、poster、5 分鐘 deck 全文、方法論圖 spec、demo 逐字稿。要的話可存成 `PITCH.md`。
+6. **PERSONAS 中文版 / 雙語**(目前只有英文)。
+
+---
+
 ## 🪧 交接便條（給下一個 session 的你 — 2026-06-02 · 第十五輪 / 文案誠實化 + logo 修正 + 社群訊號釐清）
 
 **一句話**：這一輪做了**對外文案誠實化、header logo 修正、社群訊號架構釐清 + 移除空卡**。
