@@ -2049,16 +2049,16 @@ a.market-item:hover .market-go { opacity: 1; }
     const system = '你是一位敏銳的研究主編。使用者給你一個主題關鍵詞，你要做三件事：(1) 判斷這個主題的真正所指與領域，展開出實際可用於檢索的「實體與同義詞」；(2) 為這個主題量身編一支 5 人偵察小隊，每位專精一個與「這個主題」最相關的角度，指派一個 stance（hot＝追主流/當紅/高確定度的重大進展；niche＝挖冷門/早期/被忽視的弱訊號；mixed＝兩者兼顧），並為每位預先擬 2–3 條「具體、彼此不重複」的網路搜尋查詢（query）——查詢要鎖定該偵察員的角度、用上相關實體、且偏好「最新發展、近 6 mo、即將到來」的時效性，避免 5 位查到同一批結果；(3) 指派一位最適合綜合分析這個主題的「領域專家」身分。\n\n**核心原則：主題核心優先**\n如果主題是會「分出勝負/結果」的競技、選舉、比賽、排名類事件（如 World Cup、NBA Finals、總統大選、Oscars、選秀），**絕大多數偵察員（至少 4/5）必須聚焦在「誰會贏、為什麼、關鍵變數」這個本體**——球隊戰力/球員狀態/賠率/教練/陣容/最近表現/傷病、選舉的民調/搖擺州/政策辯論等等。**只可有最多 1 位**處理外緣（地緣政治、經濟脈絡、文化敘事），且這位的 stance 應是 niche 而非主流。\n例如「World Cup 2026」的偵察員應該是：奪冠賠率分析師、強隊戰力/陣容追蹤、東道主表現觀察、黑馬與賽制紅利、賽事熱度與敘事——而**不是**「地緣政治觀察」「中東資本」「移民安全」等與「誰會奪冠」幾乎無關的議題。\n例如「NBA power rank」的偵察角度應是賽季戰績走勢、冠軍賠率、球員傷病與交易、選秀、球迷敘事，專家身分應是「資深 NBA 籃球分析師」——而不是「排名演算法專家」或「產品經理」。\n\n**若主題屬於科技／產品／新興技術類**（如 AI、穿戴裝置、機器人、消費電子、開發者工具、平台），小隊要對「產品團隊」有用，務必涵蓋這些互補角度：(a)**技術突破與成熟度**；(b)**產品落地與商業模式**（誰出了什麼、定價、採用）；(c)**年輕世代／早期採用者視角**（Gen Z、學生、創作者、開發者怎麼用、在玩什麼、抱怨什麼——這位 stance 設 niche，查詢用 Reddit / Hacker News / TikTok / Discord 等社群）；(d)**新興趨勢與弱訊號**（剛冒出來、主流還沒注意到的——stance niche）；(e)**競爭格局、監管或隱私**。專家身分用「資深科技產品分析師／趨勢研究員」這類。\n\n整支小隊的 stance 要刻意平衡——大致 2 個 hot、2 個 niche、1 個 mixed，讓主流與邊緣訊號都有人負責，但**所有人的角度都必須緊扣主題核心**。你只回傳 JSON。';
     const user = `主題關鍵詞：「${keyword}」
 
-只回傳有效 JSON（不要 markdown、不要多餘文字），entirely in English：
+Return valid JSON only (no markdown, no extra text), with ALL values written in English:
 {
-  "interpretation": "一句話說明這個主題實際在問什麼、屬於哪個領域",
-  "entities": ["用於檢索的核心實體或專有名詞，3–8 個，含可能的英文原名與關鍵同義詞。重要：不要列「Los Angeles / New York」這類純城市/地名（會把無關市場拉進來）；地名要跟具體事物組合，例如「Los Angeles Dodgers」「LA Lakers」"],
-  "expert": "最適合綜合分析此主題的領域專家身分（例：資深 NBA 籃球分析師 / 半導體產業分析師），緊扣主題",
+  "interpretation": "one sentence on what this topic is really asking and which domain it belongs to",
+  "entities": ["3–8 core entities or proper nouns useful for retrieval, including likely English names and key synonyms. Important: do NOT list bare cities/places like “Los Angeles / New York” (they drag in unrelated markets); pair a place with a concrete thing, e.g. “Los Angeles Dodgers”, “LA Lakers”"],
+  "expert": "the domain-expert persona best suited to synthesize this topic (e.g. senior NBA basketball analyst / semiconductor industry analyst), tightly tied to the topic",
   "scouts": [
-    {"name":"偵察員名稱（4 字內）","emoji":"一個貼切的 emoji","domain":"這位專精的領域（緊扣主題）","task":"他要找什麼樣的訊號","angle":"特別關注的切入點","stance":"hot 或 niche 或 mixed","queries":["具體搜尋查詢1（含時效，如 2026 / latest / upcoming）","具體搜尋查詢2"]}
+    {"name":"scout name (≤ 3 words, in English)","emoji":"a fitting emoji","domain":"the angle this scout specializes in (tied to the topic)","task":"what kind of signal it hunts for","angle":"its particular focus","stance":"hot or niche or mixed","queries":["specific search query 1 (with recency, e.g. 2026 / latest / upcoming)","specific search query 2"]}
   ]
 }
-scouts 陣列必須**剛好 5 個元素**（不可多、不可少），角度彼此互補、且全部緊扣「${keyword}」這個主題；stance 要平衡（約 2 hot、2 niche、1 mixed）；每位的 queries 要彼此不同、鎖定各自角度。`;
+The scouts array must have EXACTLY 5 elements (no more, no fewer), with complementary angles all tightly tied to “${keyword}”; balance the stances (~2 hot, 2 niche, 1 mixed); each scout’s queries must be distinct and locked to its angle. **Every value you output — names, domains, tasks, angles, expert, entities, queries — MUST be written in English.**`;
     try {
       const { text } = await callClaude(system, user, { maxTokens: 900 });
       const parsed = extractJSON(text);
@@ -2516,7 +2516,7 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
     f.textContent = `Scouts reported ${scoutsDone}/${total}` + (getSoloDebug() ? ' (debug mode)' : '');
   }
   // varied "on the way" phrases so the 5 agents don't look identically parked
-  const SCOUT_DEPART = ['定位中', '前往訊號源', '整裝出發', '鎖定座標', '啟程中'];
+  const SCOUT_DEPART = ['Locating', 'Heading to source', 'Gearing up', 'Locking coordinates', 'Departing'];
   function initScoutBoard() {
     scoutsDone = 0;
     // In solo-debug mode, show only the one fixed-persona scout (DEFAULT_SCOUTS[0])
