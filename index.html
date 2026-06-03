@@ -1359,7 +1359,7 @@ a.market-item:hover .market-go { opacity: 1; }
     // volume-first so the biggest, most-liquid markets surface into the shortlist
     // the LLM gate then judges (a $408M champion market must reach the gate)
     .sort((a, b) => (b.volume || 0) - (a.volume || 0))
-    .slice(0, 25);
+    .slice(0, 40);
     return scored;
   }
 
@@ -1427,7 +1427,7 @@ a.market-item:hover .market-go { opacity: 1; }
       .filter((x) => x.prob < 97) // drop already-decided / irrelevant ~100% markets
       // volume-first so the biggest markets reach the gate
       .sort((a, b) => (Number(b.m.volume || 0) - Number(a.m.volume || 0)))
-      .slice(0, 15);
+      .slice(0, 20);
 
       return scored.map(({ m, score, qOnly }) => {
         const cents = centsOf(m);
@@ -1469,30 +1469,32 @@ a.market-item:hover .market-go { opacity: 1; }
   async function gateMarketsRelevance(keyword, markets) {
     markets = (markets || []).filter((m) => m && m.question);
     if (markets.length <= 1) return markets.slice(0, 8);
-    // strict token fallback == previous behaviour (score>=10), volume/score sorted
-    const strict = markets
-      .filter((m) => (m._qOnly || 0) >= 5 && (m._score || 0) >= 10)
-      .sort((a, b) => ((b._score || 0) - (a._score || 0)) || ((b.prob || 0) - (a.prob || 0)) || ((b.volume || 0) - (a.volume || 0)))
-      .slice(0, 8);
-    const byVol = (arr) => [...arr].sort((a, b) => (b.volume || 0) - (a.volume || 0)).slice(0, 8);
+    // present = drop near-zero longshots (noise, e.g. "Will Cape Verde win the
+    // World Cup?" <0.1%) then biggest-first. Used for the token fallback.
+    const present = (arr) => [...arr]
+      .filter((m) => m.prob == null || m.prob >= 0.02)
+      .sort((a, b) => (b.volume || 0) - (a.volume || 0)).slice(0, 8);
+    // strict token fallback (≈ previous behaviour) for when the LLM gate can't run
+    const strict = present(markets.filter((m) => (m._qOnly || 0) >= 5 && (m._score || 0) >= 10));
     try {
       if (!getKey()) return strict; // can't gate without a key → previous behaviour
       const list = markets.map((m, i) =>
         `${i + 1}. 「${m.question}」（${m.source}${m.prob != null ? '，' + Math.round(m.prob * 100) + '%' : ''}）`).join('\n');
-      const sys = '你是一個嚴格的相關性過濾器。使用者給一個主題與一份預測市場清單，你只回傳「真的在預測這個主題」的市場編號。務必排除：不同運動或聯盟（例如主題是 NBA 卻出現 WNBA、MLB、NHL、足球）、不同主題、與主題無關、已和主題對不上的多腿混合盤。只輸出 JSON 數字陣列（例如 [1,3,7]）；若沒有任何相關，輸出 []。不要任何解釋或文字。';
-      const user = `主題：「${keyword}」\n\n市場清單：\n${list}\n\n請只回傳「真的在預測『${keyword}』這個主題」的市場編號（JSON 數字陣列）。`;
+      const sys = '你是預測市場策展人。使用者給一個主題與一份預測市場清單（含機率）。請挑出「最能代表這個主題關鍵預測」的市場，依重要性排序。規則：① 只選真正在預測這個主題的（排除不同運動或聯盟——例如主題是 NBA 卻出現 WNBA、MLB、NHL、足球——以及不同主題、與主題無關、多腿混合盤 parlay）；② 優先主要／頭條市場與有意義的賠率（明顯領先者、勢均力敵的對決、關鍵里程碑），**排除機率趨近 0% 的超級冷門**（那是雜訊，不是有用的預測）；③ 最多 8 個。只輸出 JSON 數字陣列、依重要性由高到低排序（例如 [3,1,7]）；若沒有任何適合，輸出 []。不要任何解釋或文字。';
+      const user = `主題：「${keyword}」\n\n市場清單：\n${list}\n\n請依重要性挑出最能代表「${keyword}」關鍵預測的市場編號（最多 8 個，JSON 數字陣列，最重要的在前）。`;
       const { text } = await callClaude(sys, user, { maxTokens: 300 });
       const match = String(text || '').match(/\[[\d,\s]*\]/);
       if (!match) return strict; // unparseable → previous behaviour (never worse)
       const picked = JSON.parse(match[0]);
       if (!Array.isArray(picked)) return strict;
-      const kept = picked.map((n) => markets[Number(n) - 1]).filter(Boolean);
-      const out = byVol(kept); // trust the gate (empty = genuinely none relevant → show none)
-      console.info('[marketGate]', JSON.stringify(keyword), '— kept', out.length, '/', markets.length, 'markets:', out.map((m) => m.question.slice(0, 32)));
-      return out;
+      // KEEP the gate's importance order; just guard against any near-0 it included
+      const kept = picked.map((n) => markets[Number(n) - 1]).filter(Boolean)
+        .filter((m) => m.prob == null || m.prob >= 0.01).slice(0, 8);
+      console.info('[marketGate]', JSON.stringify(keyword), '— kept', kept.length, '/', markets.length, ':', kept.map((m) => `${m.question.slice(0, 30)}(${m.prob != null ? Math.round(m.prob * 100) + '%' : '-'})`));
+      return kept.length ? kept : strict;
     } catch (e) {
       console.warn('[marketGate] failed → token fallback:', e && (e.message || e));
-      return strict; // any error → exactly the previous strict-token result
+      return strict; // any error → the previous strict-token result
     }
   }
 
@@ -3200,7 +3202,7 @@ likelihood 只能是 probable、plausible、possible 三者之一。fringe 為 0
       const val = (i, fallback) => (settled[i].status === 'fulfilled' ? settled[i].value : fallback);
       // wide (high-recall) volume-sorted shortlist → LLM relevance gate for precision
       if (el.sub) el.sub.textContent = '篩選真正相關的預測市場…';
-      const markets = await gateMarketsRelevance(keyword, mergeMarkets(val(0, []), val(1, []), 28));
+      const markets = await gateMarketsRelevance(keyword, mergeMarkets(val(0, []), val(1, []), 50));
       const sig = {
         markets,
         news: val(2, []),
