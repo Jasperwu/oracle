@@ -2155,15 +2155,21 @@ scouts 陣列必須**剛好 5 個元素**（不可多、不可少），角度彼
   // any leftover slots so the pool is NEVER smaller than before (no regression).
   function balanceWeb(web, total) {
     web = web || [];
+    // Prefer findings that carry a real URL — only those can become clickable
+    // source chips, so floating them up maximises citable sources WITHOUT changing
+    // which findings exist. Stable otherwise (keeps gather order within each group).
+    const ordered = web.map((m, i) => [m, i])
+      .sort((a, b) => ((a[0].url ? 0 : 1) - (b[0].url ? 0 : 1)) || (a[1] - b[1]))
+      .map((x) => x[0]);
     const count = {}, picked = new Set(), out = [];
-    for (let i = 0; i < web.length && out.length < total; i++) {
-      const k = web[i].kind || 'general';
+    for (let i = 0; i < ordered.length && out.length < total; i++) {
+      const k = ordered[i].kind || 'general';
       const cap = Math.max(3, Math.round(total * (WEB_KIND_CAP[k] || 0.3)));
       if ((count[k] || 0) >= cap) continue;
-      count[k] = (count[k] || 0) + 1; picked.add(i); out.push(web[i]);
+      count[k] = (count[k] || 0) + 1; picked.add(i); out.push(ordered[i]);
     }
-    for (let i = 0; i < web.length && out.length < total; i++) {
-      if (!picked.has(i)) out.push(web[i]);
+    for (let i = 0; i < ordered.length && out.length < total; i++) {
+      if (!picked.has(i)) out.push(ordered[i]);
     }
     return out;
   }
