@@ -73,6 +73,20 @@ Numbers every **real signal** that was gathered, one tag per item:
 
 ---
 
+## 2.5 How the narrative spine is formed (triangulation)
+
+**Every piece of narrative (title / one-liner / main narrative / future events) is produced by a *single* `askOracle` call as one JSON object** — not generated separately. How it forms:
+
+1. **Confluence.** Every source is first flattened into one **numbered evidence pool** (`[W#]` web · `[M#]` market odds · `[N#]` news · `[H#]` HN) + the 5 scouts' readings + Trends/Wiki, and **one model sees all of it at once** — this is the basis for triangulation (not per-source conclusions, but one brain cross-checking them).
+2. **Persona.** Dual role: domain **expert** (`expert`) + **futurist**.
+3. **Reasoning-first ordering (the key move).** The prompt forces: **"work out drivers / depth / crossImpacts first, then derive the horizons *from* them."** → the futures cone **grows on top of the analysis**, not independently.
+4. **Cross-domain linking.** Explicitly instructed to **connect signals across scouts — find synergies/tensions — not list them separately** (policy×market, research×social…).
+5. **The narrative spine (`narrative`).** 3–5 sentences weaving the **latest + most-relevant + best-odds-backed** evidence into one coherent throughline (what's happening now, who's pivotal, which drivers matter most); tied to the real intel (esp. web findings + odds), and it **anchors** the drivers/horizons (which must stay consistent with it).
+
+**Field → page:** `topic` = title · `summary` = one vivid one-line prophecy · `narrative` = the "current narrative" block · `drivers` = key-driver cards · `horizons.events` = futures-cone dots + the three horizon cards.
+
+---
+
 ## 3. How sources / citations attach (the most-misunderstood part)
 
 **There is exactly one path — precise, never guessed:**
