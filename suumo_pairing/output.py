@@ -90,28 +90,30 @@ def format_email_html(result: "DailyResult") -> str:
 
         pair_rows += f"""
         <tr style="background:{'#fafafa' if i % 2 else '#fff'};">
-          <td style="padding:12px 8px;text-align:center;">
+          <td style="padding:12px 8px;text-align:center;vertical-align:top;">
             <span style="background:{tier_badge};color:#fff;
                          font-size:11px;padding:2px 7px;border-radius:10px;">
               {pair.tier}
             </span>
           </td>
-          <td style="padding:12px 8px;">
-            <a href="{pa['url']}" style="color:#1d4ed8;text-decoration:none;font-weight:500;">
-              {pa['name']}
-            </a><br>
-            <span style="color:#6b7280;font-size:13px;">
+          <td style="padding:12px 8px;vertical-align:top;">
+            <div style="font-weight:500;color:#111827;">{pa['name']}</div>
+            <div style="color:#6b7280;font-size:13px;margin:2px 0 4px;">
               {pa['room_type']} · {pa['area_sqm']}㎡ · {_fmt_price(pa['price_jpy'])}
-            </span>
+            </div>
+            <a href="{pa['url']}" style="font-size:12px;color:#1d4ed8;word-break:break-all;">
+              🔗 {pa['url']}
+            </a>
           </td>
-          <td style="padding:12px 8px;text-align:center;color:#9ca3af;font-size:20px;">⇄</td>
-          <td style="padding:12px 8px;">
-            <a href="{pb['url']}" style="color:#1d4ed8;text-decoration:none;font-weight:500;">
-              {pb['name']}
-            </a><br>
-            <span style="color:#6b7280;font-size:13px;">
+          <td style="padding:12px 8px;text-align:center;color:#9ca3af;font-size:20px;vertical-align:top;">⇄</td>
+          <td style="padding:12px 8px;vertical-align:top;">
+            <div style="font-weight:500;color:#111827;">{pb['name']}</div>
+            <div style="color:#6b7280;font-size:13px;margin:2px 0 4px;">
               {pb['room_type']} · {pb['area_sqm']}㎡ · {_fmt_price(pb['price_jpy'])}
-            </span>
+            </div>
+            <a href="{pb['url']}" style="font-size:12px;color:#1d4ed8;word-break:break-all;">
+              🔗 {pb['url']}
+            </a>
           </td>
           <td style="padding:12px 8px;text-align:center;color:#374151;font-size:13px;">
             {pair.price_ratio:.2f}×
