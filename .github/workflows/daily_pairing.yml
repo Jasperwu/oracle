@@ -1,10 +1,8 @@
 name: Daily SUUMO Property Pairing
 
 on:
-  # 06:00 JST = 21:00 UTC previous day
   schedule:
-    - cron: "0 21 * * *"
-  # Allow manual trigger with optional pair override
+    - cron: "0 21 * * *"   # 06:00 JST (UTC+9)
   workflow_dispatch:
     inputs:
       pair:
@@ -18,13 +16,12 @@ jobs:
   pairing:
     runs-on: ubuntu-latest
     permissions:
-      contents: write   # needed to commit seen_pairs.db back to the branch
+      contents: write
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          # Fetch full history so the push back works
           fetch-depth: 0
 
       - name: Set up Python
@@ -45,6 +42,70 @@ jobs:
             ARGS="$ARGS --tier \"${{ github.event.inputs.tier }}\""
           fi
           eval python -m suumo_pairing.main $ARGS
+
+      - name: Generate email body
+        run: |
+          python - <<'EOF'
+          import glob, json, os
+          from suumo_pairing.output import format_email_html
+          from suumo_pairing.models import DailyResult, PropertyPair, Property
+
+          # Load the most recent output JSON
+          files = sorted(glob.glob("suumo_pairing/output/pairs_*.json"))
+          if not files:
+              print("No output file found"); exit(1)
+
+          with open(files[-1], encoding="utf-8") as f:
+              data = json.load(f)
+
+          # Re-hydrate into model objects so format_email_html works
+          pairs = []
+          for p in data.get("pairs", []):
+              def prop(d, area):
+                  import re
+                  nc = re.search(r"/nc_(\d+)/", d["url"])
+                  return Property(
+                      nc_id=nc.group(1) if nc else "",
+                      name=d["name"], price_jpy=d["price_jpy"],
+                      room_type=d["room_type"], area_sqm=d["area_sqm"],
+                      url=d["url"], area_name=area,
+                  )
+              area_a, area_b = data["area_pair_used"].split("-", 1)
+              pair = PropertyPair(
+                  property_a=prop(p["property_a"], area_a),
+                  property_b=prop(p["property_b"], area_b),
+                  tier=p.get("tier", ""),
+              )
+              pairs.append(pair)
+
+          result = DailyResult(
+              run_date=data["run_date"],
+              area_pair_used=data["area_pair_used"],
+              new_pairs_found=data["new_pairs_found"],
+              target_range=data.get("target_range", "8-10"),
+              warnings=data.get("warnings", []),
+              pairs=pairs,
+          )
+
+          html = format_email_html(result)
+          with open("email_body.html", "w", encoding="utf-8") as f:
+              f.write(html)
+          print("Email body written.")
+          EOF
+
+      - name: Send email report
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.GMAIL_USER }}
+          password: ${{ secrets.GMAIL_APP_PASSWORD }}
+          to: jasperwu314@gmail.com
+          from: AiSumai 配對報告 <${{ secrets.GMAIL_USER }}>
+          subject: "🏠 AiSumai 每日配對報告 — ${{ github.run_id }}"
+          html_body: file://email_body.html
+          priority: normal
 
       - name: Upload JSON results
         uses: actions/upload-artifact@v4
