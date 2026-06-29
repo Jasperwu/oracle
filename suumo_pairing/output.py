@@ -97,22 +97,22 @@ def format_email_html(result: "DailyResult") -> str:
             </span>
           </td>
           <td style="padding:12px 8px;vertical-align:top;">
-            <div style="font-weight:500;color:#111827;">{pa['name']}</div>
+            <div style="font-weight:500;color:#111827;">{pa.name}</div>
             <div style="color:#6b7280;font-size:13px;margin:2px 0 4px;">
-              {pa['room_type']} · {pa['area_sqm']}㎡ · {_fmt_price(pa['price_jpy'])}
+              {pa.room_type} · {pa.area_sqm}㎡ · {_fmt_price(pa.price_jpy)}
             </div>
-            <a href="{pa['url']}" style="font-size:12px;color:#1d4ed8;word-break:break-all;">
-              🔗 {pa['url']}
+            <a href="{pa.url}" style="font-size:12px;color:#1d4ed8;word-break:break-all;">
+              🔗 {pa.url}
             </a>
           </td>
           <td style="padding:12px 8px;text-align:center;color:#9ca3af;font-size:20px;vertical-align:top;">⇄</td>
           <td style="padding:12px 8px;vertical-align:top;">
-            <div style="font-weight:500;color:#111827;">{pb['name']}</div>
+            <div style="font-weight:500;color:#111827;">{pb.name}</div>
             <div style="color:#6b7280;font-size:13px;margin:2px 0 4px;">
-              {pb['room_type']} · {pb['area_sqm']}㎡ · {_fmt_price(pb['price_jpy'])}
+              {pb.room_type} · {pb.area_sqm}㎡ · {_fmt_price(pb.price_jpy)}
             </div>
-            <a href="{pb['url']}" style="font-size:12px;color:#1d4ed8;word-break:break-all;">
-              🔗 {pb['url']}
+            <a href="{pb.url}" style="font-size:12px;color:#1d4ed8;word-break:break-all;">
+              🔗 {pb.url}
             </a>
           </td>
           <td style="padding:12px 8px;text-align:center;color:#374151;font-size:13px;">
