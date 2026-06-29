@@ -93,19 +93,42 @@ jobs:
           print("Email body written.")
           EOF
 
-      - name: Send email report
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.gmail.com
-          server_port: 465
-          secure: true
-          username: ${{ secrets.GMAIL_USER }}
-          password: ${{ secrets.GMAIL_APP_PASSWORD }}
-          to: jasperwu314@gmail.com
-          from: AiSumai 配對報告 <${{ secrets.GMAIL_USER }}>
-          subject: "🏠 AiSumai 每日配對報告 — ${{ github.run_id }}"
-          html_body: file://email_body.html
-          priority: normal
+      - name: Send email via Resend
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+        run: |
+          python - <<'EOF'
+          import json, os, sys, urllib.request, urllib.error
+
+          api_key = os.environ.get("RESEND_API_KEY", "")
+          if not api_key:
+              print("RESEND_API_KEY not set — skipping email"); sys.exit(0)
+
+          with open("email_body.html", encoding="utf-8") as f:
+              html = f.read()
+
+          payload = json.dumps({
+              "from":    "AiSumai 配對報告 <onboarding@resend.dev>",
+              "to":      ["jasperwu314@gmail.com"],
+              "subject": "🏠 AiSumai 每日配對報告",
+              "html":    html,
+          }).encode()
+
+          req = urllib.request.Request(
+              "https://api.resend.com/emails",
+              data=payload,
+              headers={
+                  "Authorization": f"Bearer {api_key}",
+                  "Content-Type":  "application/json",
+              },
+          )
+          try:
+              with urllib.request.urlopen(req) as resp:
+                  print("Email sent:", resp.read().decode())
+          except urllib.error.HTTPError as e:
+              print("Send failed:", e.code, e.read().decode())
+              sys.exit(1)
+          EOF
 
       - name: Upload JSON results
         uses: actions/upload-artifact@v4
