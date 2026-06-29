@@ -1,0 +1,62 @@
+name: Daily SUUMO Property Pairing
+
+on:
+  # 06:00 JST = 21:00 UTC previous day
+  schedule:
+    - cron: "0 21 * * *"
+  # Allow manual trigger with optional pair override
+  workflow_dispatch:
+    inputs:
+      pair:
+        description: 'Area pair e.g. "港区-世田谷区" (leave blank for auto-rotate)'
+        required: false
+      tier:
+        description: "Single tier: 入門層 / 中端層 / 高端層 (leave blank for all)"
+        required: false
+
+jobs:
+  pairing:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # needed to commit seen_pairs.db back to the branch
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # Fetch full history so the push back works
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r suumo_pairing/requirements.txt
+
+      - name: Run pairing
+        run: |
+          ARGS="--auto-rotate"
+          if [ -n "${{ github.event.inputs.pair }}" ]; then
+            ARGS="--pair \"${{ github.event.inputs.pair }}\""
+          fi
+          if [ -n "${{ github.event.inputs.tier }}" ]; then
+            ARGS="$ARGS --tier \"${{ github.event.inputs.tier }}\""
+          fi
+          eval python -m suumo_pairing.main $ARGS
+
+      - name: Upload JSON results
+        uses: actions/upload-artifact@v4
+        with:
+          name: pairing-${{ github.run_id }}
+          path: suumo_pairing/output/
+          retention-days: 90
+
+      - name: Commit updated dedup DB
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add suumo_pairing/seen_pairs.db
+          git diff --staged --quiet || git commit -m "chore: update seen_pairs.db [skip ci]"
+          git push
