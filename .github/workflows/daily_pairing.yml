@@ -137,10 +137,10 @@ jobs:
           path: suumo_pairing/output/
           retention-days: 90
 
-      - name: Commit updated dedup DB
+      - name: Commit results and dedup DB
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add suumo_pairing/seen_pairs.db
-          git diff --staged --quiet || git commit -m "chore: update seen_pairs.db [skip ci]"
+          git add suumo_pairing/output/*.json suumo_pairing/seen_pairs.db
+          git diff --staged --quiet || git commit -m "data: pairing results $(date -u +%Y-%m-%d) [skip ci]"
           git push

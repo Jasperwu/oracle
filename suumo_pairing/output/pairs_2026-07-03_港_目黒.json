@@ -1,0 +1,200 @@
+{
+  "run_date": "2026-07-03",
+  "area_pair_used": "港区-目黒区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "物件 nc_21103528",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21103528/"
+      },
+      "property_b": {
+        "name": "物件 nc_21181860",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21181860/"
+      },
+      "price_ratio": 1.0,
+      "note": "backfill-from-dedup-db: property details unavailable"
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "物件 nc_20590038",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20590038/"
+      },
+      "property_b": {
+        "name": "物件 nc_21164659",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21164659/"
+      },
+      "price_ratio": 1.0,
+      "note": "backfill-from-dedup-db: property details unavailable"
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "物件 nc_20602463",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20602463/"
+      },
+      "property_b": {
+        "name": "物件 nc_21164659",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21164659/"
+      },
+      "price_ratio": 1.0,
+      "note": "backfill-from-dedup-db: property details unavailable"
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "物件 nc_20603336",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20603336/"
+      },
+      "property_b": {
+        "name": "物件 nc_21164659",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21164659/"
+      },
+      "price_ratio": 1.0,
+      "note": "backfill-from-dedup-db: property details unavailable"
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "物件 nc_21112316",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21112316/"
+      },
+      "property_b": {
+        "name": "物件 nc_21181501",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21181501/"
+      },
+      "price_ratio": 1.0,
+      "note": "backfill-from-dedup-db: property details unavailable"
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "物件 nc_20452217",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20452217/"
+      },
+      "property_b": {
+        "name": "物件 nc_21181501",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21181501/"
+      },
+      "price_ratio": 1.0,
+      "note": "backfill-from-dedup-db: property details unavailable"
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "物件 nc_20705314",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20705314/"
+      },
+      "property_b": {
+        "name": "物件 nc_21181501",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21181501/"
+      },
+      "price_ratio": 1.0,
+      "note": "backfill-from-dedup-db: property details unavailable"
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "物件 nc_21155272",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21155272/"
+      },
+      "property_b": {
+        "name": "物件 nc_21181501",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21181501/"
+      },
+      "price_ratio": 1.0,
+      "note": "backfill-from-dedup-db: property details unavailable"
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "物件 nc_20976328",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20976328/"
+      },
+      "property_b": {
+        "name": "物件 nc_21181501",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21181501/"
+      },
+      "price_ratio": 1.0,
+      "note": "backfill-from-dedup-db: property details unavailable"
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "物件 nc_20841631",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20841631/"
+      },
+      "property_b": {
+        "name": "物件 nc_21181501",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21181501/"
+      },
+      "price_ratio": 1.0,
+      "note": "backfill-from-dedup-db: property details unavailable"
+    }
+  ],
+  "_note": "backfilled from seen_pairs.db; property details (name/price/room_type/area) not available for historical runs"
+}
