@@ -1,0 +1,200 @@
+{
+  "run_date": "2026-07-05",
+  "area_pair_used": "新宿区-中野区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "物件 nc_20050815",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_20050815/"
+      },
+      "property_b": {
+        "name": "物件 nc_21195346",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_21195346/"
+      },
+      "price_ratio": 1.0,
+      "note": "backfill-from-dedup-db: property details unavailable"
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "物件 nc_20050815",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_20050815/"
+      },
+      "property_b": {
+        "name": "物件 nc_20589346",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_20589346/"
+      },
+      "price_ratio": 1.0,
+      "note": "backfill-from-dedup-db: property details unavailable"
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "物件 nc_20863513",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_20863513/"
+      },
+      "property_b": {
+        "name": "物件 nc_21214538",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_21214538/"
+      },
+      "price_ratio": 1.0,
+      "note": "backfill-from-dedup-db: property details unavailable"
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "物件 nc_21123411",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21123411/"
+      },
+      "property_b": {
+        "name": "物件 nc_21195324",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_21195324/"
+      },
+      "price_ratio": 1.0,
+      "note": "backfill-from-dedup-db: property details unavailable"
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "物件 nc_20992423",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_20992423/"
+      },
+      "property_b": {
+        "name": "物件 nc_21195324",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_21195324/"
+      },
+      "price_ratio": 1.0,
+      "note": "backfill-from-dedup-db: property details unavailable"
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "物件 nc_20636189",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_20636189/"
+      },
+      "property_b": {
+        "name": "物件 nc_21195324",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_21195324/"
+      },
+      "price_ratio": 1.0,
+      "note": "backfill-from-dedup-db: property details unavailable"
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "物件 nc_20286505",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_20286505/"
+      },
+      "property_b": {
+        "name": "物件 nc_21195324",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_21195324/"
+      },
+      "price_ratio": 1.0,
+      "note": "backfill-from-dedup-db: property details unavailable"
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "物件 nc_20618623",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_20618623/"
+      },
+      "property_b": {
+        "name": "物件 nc_21195324",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_21195324/"
+      },
+      "price_ratio": 1.0,
+      "note": "backfill-from-dedup-db: property details unavailable"
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "物件 nc_21123411",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21123411/"
+      },
+      "property_b": {
+        "name": "物件 nc_21198231",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_21198231/"
+      },
+      "price_ratio": 1.0,
+      "note": "backfill-from-dedup-db: property details unavailable"
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "物件 nc_20992423",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_20992423/"
+      },
+      "property_b": {
+        "name": "物件 nc_21198231",
+        "price_jpy": 0,
+        "room_type": "",
+        "area_sqm": 0.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_21198231/"
+      },
+      "price_ratio": 1.0,
+      "note": "backfill-from-dedup-db: property details unavailable"
+    }
+  ],
+  "_note": "backfilled from seen_pairs.db; property details (name/price/room_type/area) not available for historical runs"
+}
