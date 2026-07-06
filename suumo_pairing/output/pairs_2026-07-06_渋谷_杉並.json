@@ -1,0 +1,191 @@
+{
+  "run_date": "2026-07-06",
+  "area_pair_used": "渋谷区-杉並区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [
+    "insufficient_candidates"
+  ],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "令和2年　リノベーション実施済！室内大変きれいにお使いです。",
+        "price_jpy": 38800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.63,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21197502/"
+      },
+      "property_b": {
+        "name": "【Google口コミ4.8】駅徒歩10分の好立地　ご見学予約受付中",
+        "price_jpy": 38800000,
+        "room_type": "1LDK",
+        "area_sqm": 43.74,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_20781461/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "人気の幡ヶ谷駅徒歩4分 静かな立地です 詳しい資料送ります　頭金0円OK",
+        "price_jpy": 43800000,
+        "room_type": "2DK",
+        "area_sqm": 46.98,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21181410/"
+      },
+      "property_b": {
+        "name": "■三井のリハウス■通風良好な南・東角住戸コンビニまで徒歩2分の立地",
+        "price_jpy": 43800000,
+        "room_type": "2LDK",
+        "area_sqm": 56.64,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_20799901/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "幡ヶ谷駅 歩4分　六号通商店街を利用できます　資料だけでも!",
+        "price_jpy": 49990000,
+        "room_type": "1LDK",
+        "area_sqm": 40.43,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21195348/"
+      },
+      "property_b": {
+        "name": "荻窪の洗練を纏う。ダブルオートロックが守る、美しきリノベ済角住戸。",
+        "price_jpy": 49990000,
+        "room_type": "1LDK",
+        "area_sqm": 35.59,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_20976110/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "幡ヶ谷駅 歩4分　六号通商店街を利用できます　資料だけでも!",
+        "price_jpy": 49990000,
+        "room_type": "1LDK",
+        "area_sqm": 40.43,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21195348/"
+      },
+      "property_b": {
+        "name": "新規リノベーション(26年7月完工)◇角部屋住戸◇都心へのアクセス良好",
+        "price_jpy": 49990000,
+        "room_type": "1LDK",
+        "area_sqm": 35.59,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_20926908/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "幡ヶ谷駅 歩4分　六号通商店街を利用できます　資料だけでも!",
+        "price_jpy": 49990000,
+        "room_type": "1LDK",
+        "area_sqm": 40.43,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21195348/"
+      },
+      "property_b": {
+        "name": "■駅から徒歩８分■複数路線利用可■都心アクセス良好",
+        "price_jpy": 49990000,
+        "room_type": "1LDK",
+        "area_sqm": 35.59,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_20929984/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【当日 内覧可能です】南平台の秀和ヴィンテージ×お洒落で収納豊富なリノベ",
+        "price_jpy": 54990000,
+        "room_type": "1LDK",
+        "area_sqm": 40.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21188764/"
+      },
+      "property_b": {
+        "name": "≪本日見学出来ます≫角部屋×ペット可、阿佐ヶ谷駅徒歩3分の上質リノベ空間。",
+        "price_jpy": 54980000,
+        "room_type": "1LDK",
+        "area_sqm": 33.06,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_21217987/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "陽光と風に満たされる 都心の空と調和する住まい◇９階部分　南向き角部屋◇",
+        "price_jpy": 55800000,
+        "room_type": "3DK",
+        "area_sqm": 48.96,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_20799989/"
+      },
+      "property_b": {
+        "name": "都心直結の利便性と、落ち着いた住環境を兼ね備えた２LDK",
+        "price_jpy": 55800000,
+        "room_type": "2LDK",
+        "area_sqm": 57.51,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_20246933/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「広尾」駅徒歩8分×ペット飼育可（犬猫は計2匹まで）",
+        "price_jpy": 58000000,
+        "room_type": "1DK",
+        "area_sqm": 32.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21145464/"
+      },
+      "property_b": {
+        "name": "■駅から徒歩７分■複数路線利用可■最上階角部屋",
+        "price_jpy": 57990000,
+        "room_type": "1LDK",
+        "area_sqm": 35.73,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_20860643/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "～南東向き角住戸 リノベ済1LDK～表参道・渋谷を日常使いできる都心立地",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 42.51,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21043879/"
+      },
+      "property_b": {
+        "name": "■新規リフォーム物件（2026年6月下旬完成）■新耐震基準マンション",
+        "price_jpy": 59800000,
+        "room_type": "2LDK",
+        "area_sqm": 48.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_20669326/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■売主グループ会社につき優先案内可能■内覧予約の方に限定資料さしあげます",
+        "price_jpy": 49990000,
+        "room_type": "1LDK",
+        "area_sqm": 40.43,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_20957457/"
+      },
+      "property_b": {
+        "name": "荻窪の洗練を纏う。ダブルオートロックが守る、美しきリノベ済角住戸。",
+        "price_jpy": 49990000,
+        "room_type": "1LDK",
+        "area_sqm": 35.59,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_20976110/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
