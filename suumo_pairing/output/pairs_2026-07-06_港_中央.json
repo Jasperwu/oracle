@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-07-06",
+  "area_pair_used": "港区-中央区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "人気の『広尾・麻布エリア』　有栖川宮記念公園で休みは自然鑑賞　資料だけも",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.31,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21231073/"
+      },
+      "property_b": {
+        "name": "「～都心の利便性と残る落ち着いた住環境が共存するエリアで暮らす～」",
+        "price_jpy": 39800000,
+        "room_type": "2DK",
+        "area_sqm": 33.16,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_20855972/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "リノベーション済｜5路線4駅利用可能×2024年大規模修繕工事完了",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.05,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20917613/"
+      },
+      "property_b": {
+        "name": "～浜町駅徒歩2分！事務所利用可×新規リフォーム予定物件～",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 42.55,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_20944042/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "プレール浜松町港区アドレス×東京タワー徒歩圏内",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.28,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21007490/"
+      },
+      "property_b": {
+        "name": "◆南西住戸×駅2分×複数路線利用可能◆新規リノベーション物件×1LDK",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 42.55,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21012003/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "東南向き×芝浦運河ビュー。田町駅徒歩10分！開放的な2LDKで上質な暮らし",
+        "price_jpy": 57900000,
+        "room_type": "2LDK",
+        "area_sqm": 48.84,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20531362/"
+      },
+      "property_b": {
+        "name": "角住戸♪室内フルリフォーム中♪8月末完成予定♪お問い合わせはお気軽に♪",
+        "price_jpy": 57900000,
+        "room_type": "1LDK",
+        "area_sqm": 45.63,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21170310/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "慶應義塾大学の近く　専用トランクルーム付の2LDK　資料請求だけでもどうぞ",
+        "price_jpy": 59990000,
+        "room_type": "2LDK",
+        "area_sqm": 45.36,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21195547/"
+      },
+      "property_b": {
+        "name": "◆東急リバブル◆勝どき駅徒歩3分！都市と豊かな潤いが調和する勝どきエリア",
+        "price_jpy": 59990000,
+        "room_type": "2LDK",
+        "area_sqm": 43.74,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21087867/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■3階部分南向きにつき採光良好■内装リノベーションで設備一新！",
+        "price_jpy": 59990000,
+        "room_type": "2LDK",
+        "area_sqm": 45.36,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20705542/"
+      },
+      "property_b": {
+        "name": "◆東急リバブル◆勝どき駅徒歩3分！都市と豊かな潤いが調和する勝どきエリア",
+        "price_jpy": 59990000,
+        "room_type": "2LDK",
+        "area_sqm": 43.74,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21087867/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 70800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20352004/"
+      },
+      "property_b": {
+        "name": "◇進化し続ける「中央区勝どき」、全233世帯の大規模レジデンス",
+        "price_jpy": 70800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.59,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_20492752/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "【当日 ご内覧可能です】白金高輪9分×フルリノベ×角部屋×東京タワービュー",
+        "price_jpy": 76800000,
+        "room_type": "2LDK",
+        "area_sqm": 50.37,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20754583/"
+      },
+      "property_b": {
+        "name": "ペット飼育可能♪(飼育細則有)本日の内覧可能♪",
+        "price_jpy": 76800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_79173387/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "■7階三方向角住戸につき採光良好■内装リノベーション実施■ペット飼育可",
+        "price_jpy": 76800000,
+        "room_type": "2LDK",
+        "area_sqm": 50.37,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20620427/"
+      },
+      "property_b": {
+        "name": "ペット飼育可能♪(飼育細則有)本日の内覧可能♪",
+        "price_jpy": 76800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_79173387/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "■上階のない７階部分！■東京タワーを望みます■ペットOK、三方角住戸！",
+        "price_jpy": 76800000,
+        "room_type": "2LDK",
+        "area_sqm": 50.37,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20967187/"
+      },
+      "property_b": {
+        "name": "ペット飼育可能♪(飼育細則有)本日の内覧可能♪",
+        "price_jpy": 76800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_79173387/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
