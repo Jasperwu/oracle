@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-07-07",
+  "area_pair_used": "千代田区-中央区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "◆複数路線利用可能◆新規内装リノベーション◆角部屋南東向◆日照・通風良好",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.82,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_20530882/"
+      },
+      "property_b": {
+        "name": "～浜町駅徒歩2分！事務所利用可×新規リフォーム予定物件～",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 42.55,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_20944042/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「物件概要」から「諸費用」をご確認ください。",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.82,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_20930535/"
+      },
+      "property_b": {
+        "name": "～浜町駅徒歩2分！事務所利用可×新規リフォーム予定物件～",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 42.55,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_20944042/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.82,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_20826447/"
+      },
+      "property_b": {
+        "name": "～浜町駅徒歩2分！事務所利用可×新規リフォーム予定物件～",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 42.55,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_20944042/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "一番町（半蔵門駅） 5780万円",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.22,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21166449/"
+      },
+      "property_b": {
+        "name": "◆南西住戸×駅2分×複数路線利用可能◆新規リノベーション物件×1LDK",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 42.55,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21012003/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "・2駅2路線利用可・2003年6月建築　新耐震基準マンション",
+        "price_jpy": 73800000,
+        "room_type": "1DK",
+        "area_sqm": 36.62,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_78119138/"
+      },
+      "property_b": {
+        "name": "【 エフローレ日本橋浜町 】ペットと一緒に自分らしい暮らしを愉しむ角住戸！",
+        "price_jpy": 73800000,
+        "room_type": "1LDK",
+        "area_sqm": 41.27,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21176170/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 82800000,
+        "room_type": "1LDK",
+        "area_sqm": 41.3,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_20236251/"
+      },
+      "property_b": {
+        "name": "最上階×月島駅まで徒歩3分×新規リノベーションの45.23㎡広々1LDK！",
+        "price_jpy": 82800000,
+        "room_type": "1LDK",
+        "area_sqm": 45.23,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_20544814/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "７路線３駅ご利用可能につきアクセス良好×最上階につき眺望良好",
+        "price_jpy": 90000000,
+        "room_type": "1DK",
+        "area_sqm": 40.15,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_20396588/"
+      },
+      "property_b": {
+        "name": "11階角部屋に付き眺望良好♪室内リフォーム物件！",
+        "price_jpy": 89990000,
+        "room_type": "1LDK",
+        "area_sqm": 40.67,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_20807511/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "2023年フルリノベ◆49平米1LDK◆半蔵門駅歩1分（3駅5路線利用可）",
+        "price_jpy": 93800000,
+        "room_type": "1LDK",
+        "area_sqm": 49.42,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_20853247/"
+      },
+      "property_b": {
+        "name": "広いウォークインクロゼットは沢山の洋服が収納可能。トランクルームB1F有り",
+        "price_jpy": 93800000,
+        "room_type": "1LDK",
+        "area_sqm": 54.12,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_20891568/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "秋葉原駅徒歩4分。事務所利用可、ペット可。6階北東角部屋を新規リノベ。",
+        "price_jpy": 97800000,
+        "room_type": "1LDK",
+        "area_sqm": 46.76,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_20960442/"
+      },
+      "property_b": {
+        "name": "総武線「馬喰町」駅　徒歩1分　複数駅複数路線利用可能な好立地",
+        "price_jpy": 97800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.93,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21056576/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "大京穴吹不動産のリノベーションマンション「Renoα（リノアルファ）」",
+        "price_jpy": 99800000,
+        "room_type": "1LDK",
+        "area_sqm": 44.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_20637162/"
+      },
+      "property_b": {
+        "name": "■東京タワーや東京スカイツリーを楽しむ開放感のある眺望♪（天候による）",
+        "price_jpy": 99800000,
+        "room_type": "1LDK",
+        "area_sqm": 55.27,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21154353/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
