@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-07-08",
+  "area_pair_used": "品川区-目黒区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【月々7万円～】大森駅歩2分の2DK　賃貸と比較してみてください",
+        "price_jpy": 35000000,
+        "room_type": "2DK",
+        "area_sqm": 44.05,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21231069/"
+      },
+      "property_b": {
+        "name": "～都立大学駅×お好きなリノベーションで「自分だけの一室」を叶える～",
+        "price_jpy": 34990000,
+        "room_type": "2K",
+        "area_sqm": 38.28,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21149438/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【月々7万円～】大森駅歩2分の2DK　賃貸と比較してみてください",
+        "price_jpy": 35000000,
+        "room_type": "2DK",
+        "area_sqm": 44.05,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21231069/"
+      },
+      "property_b": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 34990000,
+        "room_type": "1DK",
+        "area_sqm": 35.89,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_20694297/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "目黒駅8分の池田山エリア、この屋外納戸付き角部屋が4000万円台。",
+        "price_jpy": 41800000,
+        "room_type": "1DK",
+        "area_sqm": 39.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21231126/"
+      },
+      "property_b": {
+        "name": "■新規内装リノベーション中■目黒駅至近×投資用にも■１LDK×角住戸",
+        "price_jpy": 41800000,
+        "room_type": "1LDK",
+        "area_sqm": 31.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21216857/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "2026年7月中旬リフォーム完了予定！南西側バルコニーで日当たり良好！",
+        "price_jpy": 41800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.29,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_20946376/"
+      },
+      "property_b": {
+        "name": "■新規内装リノベーション中■目黒駅至近×投資用にも■１LDK×角住戸",
+        "price_jpy": 41800000,
+        "room_type": "1LDK",
+        "area_sqm": 31.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21216857/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「北品川」駅徒歩５分■和室有■ペット飼育可（細則有り）■南東向き",
+        "price_jpy": 42800000,
+        "room_type": "2DK",
+        "area_sqm": 42.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_20937664/"
+      },
+      "property_b": {
+        "name": "【City Base】◇当日案内OK◇南向き1LDK♪駅徒歩３分♪リノベ済",
+        "price_jpy": 42800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.1,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21191659/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「北品川」駅徒歩５分■和室有■ペット飼育可（細則有り）■南東向き",
+        "price_jpy": 42800000,
+        "room_type": "2DK",
+        "area_sqm": 42.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_20937664/"
+      },
+      "property_b": {
+        "name": "中央町１（学芸大学駅） 4280万円",
+        "price_jpy": 42800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.32,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_20725905/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■4階部分南東向きにつき陽当たり良好！■ペット飼育相談可（細則有り）",
+        "price_jpy": 42800000,
+        "room_type": "2DK",
+        "area_sqm": 42.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21155215/"
+      },
+      "property_b": {
+        "name": "【City Base】◇当日案内OK◇南向き1LDK♪駅徒歩３分♪リノベ済",
+        "price_jpy": 42800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.1,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21191659/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■4階部分南東向きにつき陽当たり良好！■ペット飼育相談可（細則有り）",
+        "price_jpy": 42800000,
+        "room_type": "2DK",
+        "area_sqm": 42.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21155215/"
+      },
+      "property_b": {
+        "name": "中央町１（学芸大学駅） 4280万円",
+        "price_jpy": 42800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.32,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_20725905/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【即内見可・定休日無し】◇全室採光あり◆室内リフォーム",
+        "price_jpy": 44990000,
+        "room_type": "2DK",
+        "area_sqm": 41.39,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_20981561/"
+      },
+      "property_b": {
+        "name": "―Renovation―南西向きにつき陽当り良好【　マンション柿の木坂　】",
+        "price_jpy": 44980000,
+        "room_type": "1LDK",
+        "area_sqm": 42.81,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21218118/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【即内見可・定休日無し】◇全室採光あり◆室内リフォーム",
+        "price_jpy": 44990000,
+        "room_type": "2DK",
+        "area_sqm": 41.39,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_20981561/"
+      },
+      "property_b": {
+        "name": "《すぐにご案内可能！》最上階・2018年リフォーム済・目黒エリア",
+        "price_jpy": 44990000,
+        "room_type": "2DK",
+        "area_sqm": 42.89,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21112316/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
