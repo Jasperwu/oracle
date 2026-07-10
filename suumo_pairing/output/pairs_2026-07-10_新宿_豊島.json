@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-07-10",
+  "area_pair_used": "新宿区-豊島区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「西早稲田」駅歩2分　生活空間を区切れるメゾネットタイプ　資料請求だけでも",
+        "price_jpy": 34800000,
+        "room_type": "2LDK",
+        "area_sqm": 46.76,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21230154/"
+      },
+      "property_b": {
+        "name": "【本日ご見学いただけます！】7階部分南向き角部屋♪新規内装リフォーム物件",
+        "price_jpy": 34800000,
+        "room_type": "1LDK",
+        "area_sqm": 45.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21146806/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「西早稲田」駅歩2分　生活空間を区切れるメゾネットタイプ　資料請求だけでも",
+        "price_jpy": 34800000,
+        "room_type": "2LDK",
+        "area_sqm": 46.76,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21230154/"
+      },
+      "property_b": {
+        "name": "▼▼▼　即日内見可能！車で送迎！▼▼▼事務所利用！7階角日当たり眺望良好",
+        "price_jpy": 34800000,
+        "room_type": "1DK",
+        "area_sqm": 45.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_20929708/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「西早稲田」駅歩2分　生活空間を区切れるメゾネットタイプ　資料請求だけでも",
+        "price_jpy": 34800000,
+        "room_type": "2LDK",
+        "area_sqm": 46.76,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21230154/"
+      },
+      "property_b": {
+        "name": "広々の45㎡越えの1LDK　大型スーパーオリンピックもあります　資料だけでも",
+        "price_jpy": 34800000,
+        "room_type": "1LDK",
+        "area_sqm": 45.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_20355589/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「西早稲田」駅歩2分　生活空間を区切れるメゾネットタイプ　資料請求だけでも",
+        "price_jpy": 34800000,
+        "room_type": "2LDK",
+        "area_sqm": 46.76,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21230154/"
+      },
+      "property_b": {
+        "name": "北大塚３（大塚駅） 3480万円",
+        "price_jpy": 34800000,
+        "room_type": "3DK",
+        "area_sqm": 49.51,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_20551156/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「西早稲田」駅歩2分　生活空間を区切れるメゾネットタイプ　資料請求だけでも",
+        "price_jpy": 34800000,
+        "room_type": "2LDK",
+        "area_sqm": 46.76,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21230154/"
+      },
+      "property_b": {
+        "name": "～当日ご案内可～◇頭金0円からのご提案◇７階角部屋、東向き陽当り◎リノベ済",
+        "price_jpy": 34800000,
+        "room_type": "1LDK",
+        "area_sqm": 45.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21226679/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「西早稲田」駅歩2分　生活空間を区切れるメゾネットタイプ　資料請求だけでも",
+        "price_jpy": 34800000,
+        "room_type": "2LDK",
+        "area_sqm": 46.76,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21230154/"
+      },
+      "property_b": {
+        "name": "■新規リノベーション済■事務所利用可！■耐震補強工事済！",
+        "price_jpy": 34800000,
+        "room_type": "1LDK",
+        "area_sqm": 45.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21145465/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「西早稲田」駅歩2分　生活空間を区切れるメゾネットタイプ　資料請求だけでも",
+        "price_jpy": 34800000,
+        "room_type": "2LDK",
+        "area_sqm": 46.76,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21230154/"
+      },
+      "property_b": {
+        "name": "角部屋×リノベーション×駅徒歩7分明るく開放的なマンションライフ",
+        "price_jpy": 34800000,
+        "room_type": "1LDK",
+        "area_sqm": 45.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21143492/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「西早稲田」駅歩2分　生活空間を区切れるメゾネットタイプ　資料請求だけでも",
+        "price_jpy": 34800000,
+        "room_type": "2LDK",
+        "area_sqm": 46.76,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21230154/"
+      },
+      "property_b": {
+        "name": "中国語＆英語対応可！頭金0で購入可！期間限定サービス有！詳細【諸費用】参照",
+        "price_jpy": 34800000,
+        "room_type": "1LDK",
+        "area_sqm": 45.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21239738/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【いまからのご見学可能です】ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 34800000,
+        "room_type": "3LDK",
+        "area_sqm": 57.6,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_20589346/"
+      },
+      "property_b": {
+        "name": "北大塚３（大塚駅） 3480万円",
+        "price_jpy": 34800000,
+        "room_type": "3DK",
+        "area_sqm": 49.51,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_20551156/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "『牛込柳町』駅 5分　公園向きのお部屋　オートロック＆宅配ボックスあり",
+        "price_jpy": 34990000,
+        "room_type": "1LDK",
+        "area_sqm": 37.18,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21230297/"
+      },
+      "property_b": {
+        "name": "◆◆本日「空き」あり！◆◆リノベーション×複数路線アクセス×眺望良好！",
+        "price_jpy": 34990000,
+        "room_type": "1LDK",
+        "area_sqm": 39.29,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21243999/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
