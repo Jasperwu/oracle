@@ -1,0 +1,191 @@
+{
+  "run_date": "2026-07-11",
+  "area_pair_used": "渋谷区-品川区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [
+    "insufficient_candidates"
+  ],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "令和2年　リノベーション実施済！室内大変きれいにお使いです。",
+        "price_jpy": 38800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.63,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21197502/"
+      },
+      "property_b": {
+        "name": "北品川６（品川駅） 3880万円",
+        "price_jpy": 38800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.83,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21098648/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "月々11万円台～「広尾駅」徒歩7分、眺望良好な明るい最上階・3方向角部屋。",
+        "price_jpy": 41800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21233563/"
+      },
+      "property_b": {
+        "name": "目黒駅8分の池田山エリア、この屋外納戸付き角部屋が4000万円台。",
+        "price_jpy": 41800000,
+        "room_type": "1DK",
+        "area_sqm": 39.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21231126/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "月々11万円台～「広尾駅」徒歩7分、眺望良好な明るい最上階・3方向角部屋。",
+        "price_jpy": 41800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21233563/"
+      },
+      "property_b": {
+        "name": "■「五反田」駅徒歩9分・「目黒」駅徒歩10分の好立地　■リフォーム履歴有",
+        "price_jpy": 41800000,
+        "room_type": "1DK",
+        "area_sqm": 39.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21114360/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "月々11万円台～「広尾駅」徒歩7分、眺望良好な明るい最上階・3方向角部屋。",
+        "price_jpy": 41800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21233563/"
+      },
+      "property_b": {
+        "name": "2026年7月中旬リノベーション完了予定南西側バルコニーで日当たり良好！",
+        "price_jpy": 41800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.29,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_20946376/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【いまからのご見学可能です】ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 41800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21195325/"
+      },
+      "property_b": {
+        "name": "目黒駅8分の池田山エリア、この屋外納戸付き角部屋が4000万円台。",
+        "price_jpy": 41800000,
+        "room_type": "1DK",
+        "area_sqm": 39.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21231126/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【いまからのご見学可能です】ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 41800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21195325/"
+      },
+      "property_b": {
+        "name": "■「五反田」駅徒歩9分・「目黒」駅徒歩10分の好立地　■リフォーム履歴有",
+        "price_jpy": 41800000,
+        "room_type": "1DK",
+        "area_sqm": 39.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21114360/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【いまからのご見学可能です】ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 41800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21195325/"
+      },
+      "property_b": {
+        "name": "2026年7月中旬リノベーション完了予定南西側バルコニーで日当たり良好！",
+        "price_jpy": 41800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.29,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_20946376/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "新規リノベーション物件です。10階建・9階部分！駅まで徒歩4分の好立地！",
+        "price_jpy": 41800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.1,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21018139/"
+      },
+      "property_b": {
+        "name": "目黒駅8分の池田山エリア、この屋外納戸付き角部屋が4000万円台。",
+        "price_jpy": 41800000,
+        "room_type": "1DK",
+        "area_sqm": 39.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21231126/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "新規リノベーション物件です。10階建・9階部分！駅まで徒歩4分の好立地！",
+        "price_jpy": 41800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.1,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21018139/"
+      },
+      "property_b": {
+        "name": "■「五反田」駅徒歩9分・「目黒」駅徒歩10分の好立地　■リフォーム履歴有",
+        "price_jpy": 41800000,
+        "room_type": "1DK",
+        "area_sqm": 39.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21114360/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "新規リノベーション物件です。10階建・9階部分！駅まで徒歩4分の好立地！",
+        "price_jpy": 41800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.1,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21018139/"
+      },
+      "property_b": {
+        "name": "2026年7月中旬リノベーション完了予定南西側バルコニーで日当たり良好！",
+        "price_jpy": 41800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.29,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_20946376/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
