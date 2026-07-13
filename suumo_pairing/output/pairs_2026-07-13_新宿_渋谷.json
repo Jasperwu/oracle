@@ -1,0 +1,11 @@
+{
+  "run_date": "2026-07-13",
+  "area_pair_used": "新宿区-渋谷区",
+  "new_pairs_found": 0,
+  "target_range": "8-10",
+  "warnings": [
+    "below_target_count",
+    "insufficient_candidates"
+  ],
+  "pairs": []
+}
