@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-07-14",
+  "area_pair_used": "新宿区-渋谷区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "◆見学予約受付中◆東新宿駅、西武新宿駅、大久保駅、新大久保駅利用可能！",
+        "price_jpy": 38800000,
+        "room_type": "1LDK",
+        "area_sqm": 46.51,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_20765366/"
+      },
+      "property_b": {
+        "name": "令和2年　リノベーション実施済！室内大変きれいにお使いです。",
+        "price_jpy": 38800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.63,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21197502/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "帰り道に飲食店が充実！忙しい単身や二人暮らしを支える便利な立地です！",
+        "price_jpy": 41800000,
+        "room_type": "1LDK",
+        "area_sqm": 48.34,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21288441/"
+      },
+      "property_b": {
+        "name": "【当日ご見学可能】大切なペットと暮らせる×プライベートテラス",
+        "price_jpy": 41800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.74,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_20637022/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "帰り道に飲食店が充実！忙しい単身や二人暮らしを支える便利な立地です！",
+        "price_jpy": 41800000,
+        "room_type": "1LDK",
+        "area_sqm": 48.34,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21288441/"
+      },
+      "property_b": {
+        "name": "～当日ご案内可～◇頭金0円からのご提案◇６階南西向き、ペット可、リノベ済！",
+        "price_jpy": 41800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.74,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21277343/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "帰り道に飲食店が充実！忙しい単身や二人暮らしを支える便利な立地です！",
+        "price_jpy": 41800000,
+        "room_type": "1LDK",
+        "area_sqm": 48.34,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21288441/"
+      },
+      "property_b": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 41800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.74,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_20637429/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "帰り道に飲食店が充実！忙しい単身や二人暮らしを支える便利な立地です！",
+        "price_jpy": 41800000,
+        "room_type": "1LDK",
+        "area_sqm": 48.34,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21288441/"
+      },
+      "property_b": {
+        "name": "◆◆本日「空き」あり！◆◆ペットOK×リノベ×眺望良好×「笹塚」駅7分",
+        "price_jpy": 41800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.74,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21254199/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【本日ご見学いただけます！】管理体制良好！新規内装リノベ物件！",
+        "price_jpy": 41800000,
+        "room_type": "2DK",
+        "area_sqm": 46.08,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21198231/"
+      },
+      "property_b": {
+        "name": "【当日ご見学可能】大切なペットと暮らせる×プライベートテラス",
+        "price_jpy": 41800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.74,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_20637022/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【本日ご見学いただけます！】管理体制良好！新規内装リノベ物件！",
+        "price_jpy": 41800000,
+        "room_type": "2DK",
+        "area_sqm": 46.08,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21198231/"
+      },
+      "property_b": {
+        "name": "～当日ご案内可～◇頭金0円からのご提案◇６階南西向き、ペット可、リノベ済！",
+        "price_jpy": 41800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.74,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21277343/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【本日ご見学いただけます！】管理体制良好！新規内装リノベ物件！",
+        "price_jpy": 41800000,
+        "room_type": "2DK",
+        "area_sqm": 46.08,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21198231/"
+      },
+      "property_b": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 41800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.74,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_20637429/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【本日ご見学いただけます！】管理体制良好！新規内装リノベ物件！",
+        "price_jpy": 41800000,
+        "room_type": "2DK",
+        "area_sqm": 46.08,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21198231/"
+      },
+      "property_b": {
+        "name": "◆◆本日「空き」あり！◆◆ペットOK×リノベ×眺望良好×「笹塚」駅7分",
+        "price_jpy": 41800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.74,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21254199/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 41800000,
+        "room_type": "2DK",
+        "area_sqm": 46.08,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_20747325/"
+      },
+      "property_b": {
+        "name": "【当日ご見学可能】大切なペットと暮らせる×プライベートテラス",
+        "price_jpy": 41800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.74,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_20637022/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
