@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-07-15",
+  "area_pair_used": "港区-渋谷区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "人気の『広尾・麻布エリア』　有栖川宮記念公園で休みは自然鑑賞　資料だけも",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.31,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21290440/"
+      },
+      "property_b": {
+        "name": "〇当日ご見学可能〇頭金ゼロからのご提案♪南東向き角住戸！アクセス◎リノベ済",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21277200/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "人気の『広尾・麻布エリア』　有栖川宮記念公園で休みは自然鑑賞　資料だけも",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.31,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21290440/"
+      },
+      "property_b": {
+        "name": "【幡ヶ谷駅】徒歩4分　目の前に緑道があり、駅近でありながら緑豊かな住環境",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.1,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21288032/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "人気の『広尾・麻布エリア』　有栖川宮記念公園で休みは自然鑑賞　資料だけも",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.31,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21290440/"
+      },
+      "property_b": {
+        "name": "【当日の見学可能】新品家具・エアコン付き×南東向きの明るい角住戸",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_79202565/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "山手線「田町」駅など４沿線利用可！新耐震設計基準×新規リノベーション住戸",
+        "price_jpy": 47990000,
+        "room_type": "1LDK",
+        "area_sqm": 36.28,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21169775/"
+      },
+      "property_b": {
+        "name": "耐震基準適合　角部屋　急行停止駅徒歩7分!/詳しい資料送ります/頭金0円OK",
+        "price_jpy": 47990000,
+        "room_type": "1LDK",
+        "area_sqm": 39.98,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21288106/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■内装一部リフォーム実施■角住戸につき通風良好、二面バルコニー付き",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.08,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20754829/"
+      },
+      "property_b": {
+        "name": "参宮橋駅徒歩４分■閑静な住宅街■１階部分■南向き■２DＫ■オートロック",
+        "price_jpy": 49800000,
+        "room_type": "2DK",
+        "area_sqm": 41.72,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_20907057/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■内装一部リフォーム実施■角住戸につき通風良好、二面バルコニー付き",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.08,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20754829/"
+      },
+      "property_b": {
+        "name": "◆幡ヶ谷駅徒歩２分◆２LDKの南東角部屋◆フルリノベ済みでペット飼育可能◆",
+        "price_jpy": 49800000,
+        "room_type": "2LDK",
+        "area_sqm": 42.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21090742/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【当日予約OK・本日見学可能】7/18(土)～20(祝)現地集合・平日も可",
+        "price_jpy": 52800000,
+        "room_type": "1LDK",
+        "area_sqm": 41.4,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20877543/"
+      },
+      "property_b": {
+        "name": "≪当日内見予約可能≫代官山に住む。その一言でドヤ顔が止まらない伝説の秀和",
+        "price_jpy": 52800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.7,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_20960363/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【当日予約OK・本日見学可能】7/18(土)～20(祝)現地集合・平日も可",
+        "price_jpy": 52800000,
+        "room_type": "1LDK",
+        "area_sqm": 41.4,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20877543/"
+      },
+      "property_b": {
+        "name": "■JR山手線「渋谷」駅徒歩6分、東急東横線「代官山」駅徒歩10分",
+        "price_jpy": 52800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.18,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21266662/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【当日予約OK・本日見学可能】7/18(土)～20(祝)現地集合・平日も可",
+        "price_jpy": 52800000,
+        "room_type": "1LDK",
+        "area_sqm": 41.4,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20877543/"
+      },
+      "property_b": {
+        "name": "■恵比寿駅徒歩4分■南東向きにつき採光良好■フルリノベーション履歴有り",
+        "price_jpy": 52800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.79,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_20657665/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "リノベーション済｜5路線4駅利用可能×2024年大規模修繕工事完了",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.05,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20917613/"
+      },
+      "property_b": {
+        "name": "―　渋谷徒歩圏 × 神泉3分 × 事務所利用可　―",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 43.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21270100/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
