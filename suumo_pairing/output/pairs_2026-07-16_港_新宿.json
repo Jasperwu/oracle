@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-07-16",
+  "area_pair_used": "港区-新宿区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "人気の『広尾・麻布エリア』　有栖川宮記念公園で休みは自然鑑賞　資料だけも",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.31,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21290440/"
+      },
+      "property_b": {
+        "name": "～学びの鼓動と穏やかな時間が寄り添う街、「早稲田鶴巻町」に住まう～",
+        "price_jpy": 39800000,
+        "room_type": "2DK",
+        "area_sqm": 39.39,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_20591519/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■南向きの大型専用庭付き■一部リフォーム実施済■ペット飼育可（細則有）",
+        "price_jpy": 45800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21106928/"
+      },
+      "property_b": {
+        "name": "最上階・北西角部屋×リフォーム済！若松河田駅徒歩4分の好立地1LDK",
+        "price_jpy": 45800000,
+        "room_type": "1LDK",
+        "area_sqm": 43.1,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21006797/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■南向きの大型専用庭付き■一部リフォーム実施済■ペット飼育可（細則有）",
+        "price_jpy": 45800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21106928/"
+      },
+      "property_b": {
+        "name": "〈購入者特典〉弊社から当物件のご成約でアフターサービス最長10年に！",
+        "price_jpy": 45800000,
+        "room_type": "1LDK",
+        "area_sqm": 42.55,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_20735625/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【当日予約OK・本日見学可能】7/18(土)～20(祝)現地集合・平日も可",
+        "price_jpy": 52800000,
+        "room_type": "1LDK",
+        "area_sqm": 41.4,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20877543/"
+      },
+      "property_b": {
+        "name": "JR山手線「高田馬場」駅徒歩5分！～耐震基準適合大規模レジデンス～",
+        "price_jpy": 52800000,
+        "room_type": "2LDK",
+        "area_sqm": 49.85,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21185526/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "―　always ON YOUR SIDE　―穏やかで充実・安心の暮らし",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 33.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20856683/"
+      },
+      "property_b": {
+        "name": "「牛込柳町駅」徒歩1分という好立地！内装・設備フルリフォーム済みです！！",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.94,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_78807593/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "リノベーション済｜5路線4駅利用可能×2024年大規模修繕工事完了",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.05,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20917613/"
+      },
+      "property_b": {
+        "name": "「牛込柳町駅」徒歩1分という好立地！内装・設備フルリフォーム済みです！！",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.94,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_78807593/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "リノベーション済｜5路線4駅利用可能×2024年大規模修繕工事完了",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.05,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20917613/"
+      },
+      "property_b": {
+        "name": "新規リノベーション(26年4月完工)南向き・陽当り良好です◎",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 45.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_20753651/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "リノベーション済｜5路線4駅利用可能×2024年大規模修繕工事完了",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.05,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20917613/"
+      },
+      "property_b": {
+        "name": "◆住宅ローン控除利用可◆新耐震基準◆閑静な室内◆リノベ履歴有室内状況良好◆",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 47.26,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_20239821/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "プレール浜松町港区アドレス×東京タワー徒歩圏内",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.28,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21007490/"
+      },
+      "property_b": {
+        "name": "＊シングル・DINKSおすすめ＊WIＣ付き＊宅配ボックス・AL完備",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_20755944/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "新規リノベーション物件です！即入居可能♪駅まで徒歩2分の立地♪",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 42.88,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20432774/"
+      },
+      "property_b": {
+        "name": "【売主】■バス停から新宿・池袋・飯田橋・上野公園へ直通アクセス",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 42.64,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21167343/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
