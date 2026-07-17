@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-07-17",
+  "area_pair_used": "渋谷区-世田谷区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「幡ヶ谷駅」徒歩10分。商店街を抜けた先に佇む、渋谷区のデザイナーズ物件。",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.42,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21247428/"
+      },
+      "property_b": {
+        "name": "三軒茶屋駅徒3分。耐震補強済み　3000万円台で三茶に住める特別感",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 46.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21290363/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「幡ヶ谷駅」徒歩10分。商店街を抜けた先に佇む、渋谷区のデザイナーズ物件。",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.42,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21247428/"
+      },
+      "property_b": {
+        "name": "≪本日見学出来ます≫三軒茶屋駅徒歩3分×リノベ、陽光と眺望を纏う上質空間。",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 46.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21182326/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「幡ヶ谷駅」徒歩10分。商店街を抜けた先に佇む、渋谷区のデザイナーズ物件。",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.42,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21247428/"
+      },
+      "property_b": {
+        "name": "【当日ご見学可能です】三軒茶屋駅徒歩3分×新耐震基準×9階の開放感",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 46.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21207855/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「幡ヶ谷駅」徒歩10分。商店街を抜けた先に佇む、渋谷区のデザイナーズ物件。",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.42,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21247428/"
+      },
+      "property_b": {
+        "name": "■■■　三連休も即！見学！　■■■【金利に差がつく！】頭金ゼロ可／50年可",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 46.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21146160/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「幡ヶ谷駅」徒歩10分。商店街を抜けた先に佇む、渋谷区のデザイナーズ物件。",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.42,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21247428/"
+      },
+      "property_b": {
+        "name": "▼▼▼　即日内見可能！車で送迎！▼▼▼耐震補強済♪角部屋！オートロック有",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 46.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21146940/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■2026年7月内装リフォーム実施■ペット飼育可（細則有り）",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.42,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21259938/"
+      },
+      "property_b": {
+        "name": "三軒茶屋駅徒3分。耐震補強済み　3000万円台で三茶に住める特別感",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 46.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21290363/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■2026年7月内装リフォーム実施■ペット飼育可（細則有り）",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.42,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21259938/"
+      },
+      "property_b": {
+        "name": "≪本日見学出来ます≫三軒茶屋駅徒歩3分×リノベ、陽光と眺望を纏う上質空間。",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 46.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21182326/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■2026年7月内装リフォーム実施■ペット飼育可（細則有り）",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.42,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21259938/"
+      },
+      "property_b": {
+        "name": "【当日ご見学可能です】三軒茶屋駅徒歩3分×新耐震基準×9階の開放感",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 46.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21207855/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■2026年7月内装リフォーム実施■ペット飼育可（細則有り）",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.42,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21259938/"
+      },
+      "property_b": {
+        "name": "■■■　三連休も即！見学！　■■■【金利に差がつく！】頭金ゼロ可／50年可",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 46.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21146160/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■2026年7月内装リフォーム実施■ペット飼育可（細則有り）",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.42,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21259938/"
+      },
+      "property_b": {
+        "name": "▼▼▼　即日内見可能！車で送迎！▼▼▼耐震補強済♪角部屋！オートロック有",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 46.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21146940/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
