@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-07-20",
+  "area_pair_used": "新宿区-中野区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "哲学堂公園が目の前！春は桜、秋は紅葉と、家族で四季を楽しめる立地です！",
+        "price_jpy": 34800000,
+        "room_type": "3LDK",
+        "area_sqm": 57.6,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21296459/"
+      },
+      "property_b": {
+        "name": "【本日ご見学いただけます！】角部屋×南西向き×両面バルコニー！",
+        "price_jpy": 34800000,
+        "room_type": "2LDK",
+        "area_sqm": 49.71,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_21121968/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "哲学堂公園が目の前！春は桜、秋は紅葉と、家族で四季を楽しめる立地です！",
+        "price_jpy": 34800000,
+        "room_type": "3LDK",
+        "area_sqm": 57.6,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21296459/"
+      },
+      "property_b": {
+        "name": "江原町３（新江古田駅） 3480万円",
+        "price_jpy": 34800000,
+        "room_type": "2LDK",
+        "area_sqm": 49.71,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_20881600/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「西早稲田」駅歩2分　生活空間を区切れるメゾネットタイプ　資料請求だけでも",
+        "price_jpy": 34800000,
+        "room_type": "2LDK",
+        "area_sqm": 46.76,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21322221/"
+      },
+      "property_b": {
+        "name": "【本日ご見学いただけます！】角部屋×南西向き×両面バルコニー！",
+        "price_jpy": 34800000,
+        "room_type": "2LDK",
+        "area_sqm": 49.71,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_21121968/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「西早稲田」駅歩2分　生活空間を区切れるメゾネットタイプ　資料請求だけでも",
+        "price_jpy": 34800000,
+        "room_type": "2LDK",
+        "area_sqm": 46.76,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21322221/"
+      },
+      "property_b": {
+        "name": "新規リフォーム実施南西向き 専用庭付き～陽当り・通風良好～",
+        "price_jpy": 34800000,
+        "room_type": "2DK",
+        "area_sqm": 44.48,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_20780651/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「西早稲田」駅歩2分　生活空間を区切れるメゾネットタイプ　資料請求だけでも",
+        "price_jpy": 34800000,
+        "room_type": "2LDK",
+        "area_sqm": 46.76,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21322221/"
+      },
+      "property_b": {
+        "name": "江原町３（新江古田駅） 3480万円",
+        "price_jpy": 34800000,
+        "room_type": "2LDK",
+        "area_sqm": 49.71,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_20881600/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【いまからのご見学可能です】ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 34800000,
+        "room_type": "3LDK",
+        "area_sqm": 57.6,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_20589346/"
+      },
+      "property_b": {
+        "name": "【本日ご見学いただけます！】角部屋×南西向き×両面バルコニー！",
+        "price_jpy": 34800000,
+        "room_type": "2LDK",
+        "area_sqm": 49.71,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_21121968/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【いまからのご見学可能です】ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 34800000,
+        "room_type": "3LDK",
+        "area_sqm": 57.6,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_20589346/"
+      },
+      "property_b": {
+        "name": "江原町３（新江古田駅） 3480万円",
+        "price_jpy": 34800000,
+        "room_type": "2LDK",
+        "area_sqm": 49.71,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_20881600/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "大京穴吹不動産のリノベーションマンション「Renoα（リノアルファ）」",
+        "price_jpy": 38980000,
+        "room_type": "1DK",
+        "area_sqm": 37.35,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21072253/"
+      },
+      "property_b": {
+        "name": "《売主物件》大規模修繕2026年6月完了！駅チカ♪〇リノベーション",
+        "price_jpy": 38990000,
+        "room_type": "1LDK",
+        "area_sqm": 32.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_21174511/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "『動画・写真』30枚以上フルで掲載してます！詳細資料あり  資料請求だけでも！",
+        "price_jpy": 39800000,
+        "room_type": "2DK",
+        "area_sqm": 55.51,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21322184/"
+      },
+      "property_b": {
+        "name": "◆◆本日ご案内枠あり！◆◆駅チカ5分！最上階×リフォーム履歴あり",
+        "price_jpy": 39800000,
+        "room_type": "2LDK",
+        "area_sqm": 55.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_21224562/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "『動画・写真』30枚以上フルで掲載してます！詳細資料あり  資料請求だけでも！",
+        "price_jpy": 39800000,
+        "room_type": "2DK",
+        "area_sqm": 55.51,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21322184/"
+      },
+      "property_b": {
+        "name": "中央１（東中野駅） 3980万円",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 45.94,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_20863513/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
