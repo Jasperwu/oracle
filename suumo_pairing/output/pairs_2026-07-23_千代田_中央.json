@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-07-23",
+  "area_pair_used": "千代田区-中央区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "市ケ谷駅・半蔵門駅が歩7分 新宿・大手町へダイレクトアクセスの好立地",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.82,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21336713/"
+      },
+      "property_b": {
+        "name": "～浜町駅徒歩2分！事務所利用可×新規内装リフォーム予定物件～",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 42.55,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21319008/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "市ケ谷駅・半蔵門駅が歩7分 新宿・大手町へダイレクトアクセスの好立地",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.82,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21336713/"
+      },
+      "property_b": {
+        "name": "◆◇本日「空き」あり◇◆「東日本橋」駅5分×アクセス重視の方におすすめ",
+        "price_jpy": 54800000,
+        "room_type": "2DK",
+        "area_sqm": 45.1,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21312485/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【当日ご見学可能です】千代田区アドレス×最大の魅力は移動の時短！",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.82,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_20907011/"
+      },
+      "property_b": {
+        "name": "～浜町駅徒歩2分！事務所利用可×新規内装リフォーム予定物件～",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 42.55,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21319008/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【当日ご見学可能です】千代田区アドレス×最大の魅力は移動の時短！",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.82,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_20907011/"
+      },
+      "property_b": {
+        "name": "◆◇本日「空き」あり◇◆「東日本橋」駅5分×アクセス重視の方におすすめ",
+        "price_jpy": 54800000,
+        "room_type": "2DK",
+        "area_sqm": 45.1,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21312485/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21200298/"
+      },
+      "property_b": {
+        "name": "■南西向きにつき採光良好■内装リノベーションで設備一新",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 41.11,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21336972/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21200298/"
+      },
+      "property_b": {
+        "name": "◆◆本日「空き」あり！◆◆駅チカ4分×リノベ×角住戸×日本橋浜町アドレス",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 41.11,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21319567/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21200298/"
+      },
+      "property_b": {
+        "name": "〈購入者特典〉弊社から当物件のご成約でアフターサービス最長10年に！",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 48.25,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21322800/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21200298/"
+      },
+      "property_b": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 41.11,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21324018/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「飯田橋駅」歩2分　15.8㎡のルーフバルコニー付き　資料請求だけでもどうぞ",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21336733/"
+      },
+      "property_b": {
+        "name": "■南西向きにつき採光良好■内装リノベーションで設備一新",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 41.11,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21336972/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「飯田橋駅」歩2分　15.8㎡のルーフバルコニー付き　資料請求だけでもどうぞ",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21336733/"
+      },
+      "property_b": {
+        "name": "◆◆本日「空き」あり！◆◆駅チカ4分×リノベ×角住戸×日本橋浜町アドレス",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 41.11,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21319567/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
