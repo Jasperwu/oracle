@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-07-24",
+  "area_pair_used": "品川区-目黒区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "家具・エアコン付■リノベーション済■南東向き■陽当たり眺望良好",
+        "price_jpy": 35990000,
+        "room_type": "1LDK",
+        "area_sqm": 44.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_20870508/"
+      },
+      "property_b": {
+        "name": "南側バルコニーのため、陽当り良好！複数路線利用可。",
+        "price_jpy": 36000000,
+        "room_type": "1LDK",
+        "area_sqm": 45.73,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21026397/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "家具・エアコン付■リノベーション済■南東向き■陽当たり眺望良好",
+        "price_jpy": 35990000,
+        "room_type": "1LDK",
+        "area_sqm": 44.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_20870508/"
+      },
+      "property_b": {
+        "name": "◆本日のご見学可能！０１２０－１５５－８８３までお気軽にお電話を！",
+        "price_jpy": 36000000,
+        "room_type": "1LDK",
+        "area_sqm": 45.73,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21015706/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "家具・エアコン付■リノベーション済■南東向き■陽当たり眺望良好",
+        "price_jpy": 35990000,
+        "room_type": "1LDK",
+        "area_sqm": 44.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_20870508/"
+      },
+      "property_b": {
+        "name": "「都立大学駅」南口より中根公園方面へ徒歩7分　資料請求だけでも！",
+        "price_jpy": 36000000,
+        "room_type": "1LDK",
+        "area_sqm": 45.73,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21315526/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "家具・エアコン付■リノベーション済■南東向き■陽当たり眺望良好",
+        "price_jpy": 35990000,
+        "room_type": "1LDK",
+        "area_sqm": 44.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_20870508/"
+      },
+      "property_b": {
+        "name": "【5階×リノベ向き】都立大徒歩6分の好立地◇南面バルコニー◇中根公園近く",
+        "price_jpy": 36000000,
+        "room_type": "1LDK",
+        "area_sqm": 45.73,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21010762/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "家具・エアコン付■リノベーション済■南東向き■陽当たり眺望良好",
+        "price_jpy": 35990000,
+        "room_type": "1LDK",
+        "area_sqm": 44.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_20870508/"
+      },
+      "property_b": {
+        "name": "中根２（都立大学駅） 3600万円",
+        "price_jpy": 36000000,
+        "room_type": "1LDK",
+        "area_sqm": 45.73,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21221991/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "家具・エアコン付■リノベーション済■南東向き■陽当たり眺望良好",
+        "price_jpy": 35990000,
+        "room_type": "1LDK",
+        "area_sqm": 44.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_20870508/"
+      },
+      "property_b": {
+        "name": "中国語＆英語対応可能！住宅＋リフォーム提案可能！詳細【諸費用】参照",
+        "price_jpy": 36000000,
+        "room_type": "1LDK",
+        "area_sqm": 45.73,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21327115/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "◆◇新馬場駅徒歩6分！大崎も歩ける複数路線利用可能リノベ物件♪◇◆",
+        "price_jpy": 35990000,
+        "room_type": "1LDK",
+        "area_sqm": 44.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_20868905/"
+      },
+      "property_b": {
+        "name": "南側バルコニーのため、陽当り良好！複数路線利用可。",
+        "price_jpy": 36000000,
+        "room_type": "1LDK",
+        "area_sqm": 45.73,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21026397/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "◆◇新馬場駅徒歩6分！大崎も歩ける複数路線利用可能リノベ物件♪◇◆",
+        "price_jpy": 35990000,
+        "room_type": "1LDK",
+        "area_sqm": 44.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_20868905/"
+      },
+      "property_b": {
+        "name": "◆本日のご見学可能！０１２０－１５５－８８３までお気軽にお電話を！",
+        "price_jpy": 36000000,
+        "room_type": "1LDK",
+        "area_sqm": 45.73,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21015706/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "◆◇新馬場駅徒歩6分！大崎も歩ける複数路線利用可能リノベ物件♪◇◆",
+        "price_jpy": 35990000,
+        "room_type": "1LDK",
+        "area_sqm": 44.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_20868905/"
+      },
+      "property_b": {
+        "name": "「都立大学駅」南口より中根公園方面へ徒歩7分　資料請求だけでも！",
+        "price_jpy": 36000000,
+        "room_type": "1LDK",
+        "area_sqm": 45.73,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21315526/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "◆◇新馬場駅徒歩6分！大崎も歩ける複数路線利用可能リノベ物件♪◇◆",
+        "price_jpy": 35990000,
+        "room_type": "1LDK",
+        "area_sqm": 44.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_20868905/"
+      },
+      "property_b": {
+        "name": "【5階×リノベ向き】都立大徒歩6分の好立地◇南面バルコニー◇中根公園近く",
+        "price_jpy": 36000000,
+        "room_type": "1LDK",
+        "area_sqm": 45.73,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21010762/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
