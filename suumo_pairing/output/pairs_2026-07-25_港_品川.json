@@ -1,0 +1,191 @@
+{
+  "run_date": "2026-07-25",
+  "area_pair_used": "港区-品川区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [
+    "insufficient_candidates"
+  ],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "◆5階南向きにつき日照・眺望良好　◆リフォーム履歴有（2024年3月上旬）",
+        "price_jpy": 56800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21308252/"
+      },
+      "property_b": {
+        "name": "【本日内覧可能】収納スペース充実の居室×リフォーム済で清潔感あるお部屋",
+        "price_jpy": 56800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.44,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21207863/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "新規リノベーション物件です！即入居可能♪駅まで徒歩2分の立地♪",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 42.88,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20432774/"
+      },
+      "property_b": {
+        "name": "☆3駅2路線利用可　☆2026年6月新規内装リフォーム完了",
+        "price_jpy": 59800000,
+        "room_type": "2LDK",
+        "area_sqm": 52.23,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21021325/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "◇新規リノベ物件・空室のお部屋◇即日見学可能、お気軽にお問合せください",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 42.88,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21259745/"
+      },
+      "property_b": {
+        "name": "☆3駅2路線利用可　☆2026年6月新規内装リフォーム完了",
+        "price_jpy": 59800000,
+        "room_type": "2LDK",
+        "area_sqm": 52.23,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21021325/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "『The Grand Residence』～威厳と品格を纏う重厚な邸宅～",
+        "price_jpy": 74990000,
+        "room_type": "1LDK",
+        "area_sqm": 51.12,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21360728/"
+      },
+      "property_b": {
+        "name": "『Skyline Luxury』～都心を見晴らす洗礼、光と景観を愉しむ～",
+        "price_jpy": 74990000,
+        "room_type": "2LDK",
+        "area_sqm": 57.51,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21301746/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "『The Grand Residence』～威厳と品格を纏う重厚な邸宅～",
+        "price_jpy": 74990000,
+        "room_type": "1LDK",
+        "area_sqm": 51.12,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21360728/"
+      },
+      "property_b": {
+        "name": "陽光たっぷりの贅沢な最上階2LDK角住戸！【 モリス大井町南 】",
+        "price_jpy": 74990000,
+        "room_type": "2LDK",
+        "area_sqm": 57.51,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21301409/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "憧れの港区で3LDKに住まう。JR山手線「田町駅」徒歩11分です。",
+        "price_jpy": 74990000,
+        "room_type": "3LDK",
+        "area_sqm": 56.89,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21290504/"
+      },
+      "property_b": {
+        "name": "『Skyline Luxury』～都心を見晴らす洗礼、光と景観を愉しむ～",
+        "price_jpy": 74990000,
+        "room_type": "2LDK",
+        "area_sqm": 57.51,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21301746/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "憧れの港区で3LDKに住まう。JR山手線「田町駅」徒歩11分です。",
+        "price_jpy": 74990000,
+        "room_type": "3LDK",
+        "area_sqm": 56.89,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21290504/"
+      },
+      "property_b": {
+        "name": "陽光たっぷりの贅沢な最上階2LDK角住戸！【 モリス大井町南 】",
+        "price_jpy": 74990000,
+        "room_type": "2LDK",
+        "area_sqm": 57.51,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21301409/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "【見学予約受付中】最上階７階部分の南西角部屋！コーディネート家具付き住戸！",
+        "price_jpy": 74990000,
+        "room_type": "1LDK",
+        "area_sqm": 51.12,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21363387/"
+      },
+      "property_b": {
+        "name": "『Skyline Luxury』～都心を見晴らす洗礼、光と景観を愉しむ～",
+        "price_jpy": 74990000,
+        "room_type": "2LDK",
+        "area_sqm": 57.51,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21301746/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "【見学予約受付中】最上階７階部分の南西角部屋！コーディネート家具付き住戸！",
+        "price_jpy": 74990000,
+        "room_type": "1LDK",
+        "area_sqm": 51.12,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21363387/"
+      },
+      "property_b": {
+        "name": "陽光たっぷりの贅沢な最上階2LDK角住戸！【 モリス大井町南 】",
+        "price_jpy": 74990000,
+        "room_type": "2LDK",
+        "area_sqm": 57.51,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21301409/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 74990000,
+        "room_type": "1LDK",
+        "area_sqm": 51.12,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21267379/"
+      },
+      "property_b": {
+        "name": "『Skyline Luxury』～都心を見晴らす洗礼、光と景観を愉しむ～",
+        "price_jpy": 74990000,
+        "room_type": "2LDK",
+        "area_sqm": 57.51,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21301746/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
