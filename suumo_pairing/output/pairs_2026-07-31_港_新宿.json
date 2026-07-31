@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-07-31",
+  "area_pair_used": "港区-新宿区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪当日内見予約可能≫白金高輪駅5分！最上階リノベ空間",
+        "price_jpy": 32980000,
+        "room_type": "1LDK",
+        "area_sqm": 40.41,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21308507/"
+      },
+      "property_b": {
+        "name": "≪当日内見予約可能≫家具・エアコン付！公園を望む角部屋で都心暮らしを謳歌",
+        "price_jpy": 32990000,
+        "room_type": "1LDK",
+        "area_sqm": 37.18,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_20949088/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪当日内見予約可能≫白金高輪駅5分！最上階リノベ空間",
+        "price_jpy": 32980000,
+        "room_type": "1LDK",
+        "area_sqm": 40.41,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21308507/"
+      },
+      "property_b": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 32990000,
+        "room_type": "1LDK",
+        "area_sqm": 37.18,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_20896234/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪当日内見予約可能≫白金高輪駅5分！最上階リノベ空間",
+        "price_jpy": 32980000,
+        "room_type": "1LDK",
+        "area_sqm": 40.41,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21308507/"
+      },
+      "property_b": {
+        "name": "【即日内見可能】新宿にある不動産会社です♪",
+        "price_jpy": 32990000,
+        "room_type": "1LDK",
+        "area_sqm": 37.18,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21362742/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 32980000,
+        "room_type": "1LDK",
+        "area_sqm": 40.41,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21017228/"
+      },
+      "property_b": {
+        "name": "≪当日内見予約可能≫家具・エアコン付！公園を望む角部屋で都心暮らしを謳歌",
+        "price_jpy": 32990000,
+        "room_type": "1LDK",
+        "area_sqm": 37.18,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_20949088/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 32980000,
+        "room_type": "1LDK",
+        "area_sqm": 40.41,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21017228/"
+      },
+      "property_b": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 32990000,
+        "room_type": "1LDK",
+        "area_sqm": 37.18,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_20896234/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 32980000,
+        "room_type": "1LDK",
+        "area_sqm": 40.41,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21017228/"
+      },
+      "property_b": {
+        "name": "【即日内見可能】新宿にある不動産会社です♪",
+        "price_jpy": 32990000,
+        "room_type": "1LDK",
+        "area_sqm": 37.18,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21362742/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "人気の『広尾・麻布エリア』　有栖川宮記念公園で休みは自然鑑賞　資料だけも",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.31,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21386974/"
+      },
+      "property_b": {
+        "name": "■東京メトロ丸ノ内線『新宿御苑前』駅徒歩６分！新宿が生活圏内の１ＬＤＫ■",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.23,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21359033/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■南向きの大型専用庭付き■一部リフォーム実施済■ペット飼育可（細則有）",
+        "price_jpy": 45800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21106928/"
+      },
+      "property_b": {
+        "name": "～当日ご案内可～◇頭金0円からのご提案◇最上階角部屋◇新耐震、リノベ済！",
+        "price_jpy": 45800000,
+        "room_type": "1LDK",
+        "area_sqm": 43.1,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21374497/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■内装一部リフォーム実施■角住戸につき通風良好、二面バルコニー付き",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.08,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20754829/"
+      },
+      "property_b": {
+        "name": "≪今からのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 49800000,
+        "room_type": "2LDK",
+        "area_sqm": 41.94,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21376947/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■内装一部リフォーム実施■角住戸につき通風良好、二面バルコニー付き",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.08,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20754829/"
+      },
+      "property_b": {
+        "name": "～当日ご案内可～◇頭金0円からのご提案◇南向き角部屋◇好立地、リノベ済！",
+        "price_jpy": 49800000,
+        "room_type": "2LDK",
+        "area_sqm": 41.94,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21377195/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
