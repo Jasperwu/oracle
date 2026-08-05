@@ -1,0 +1,191 @@
+{
+  "run_date": "2026-08-05",
+  "area_pair_used": "渋谷区-杉並区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [
+    "insufficient_candidates"
+  ],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "・北参道駅徒歩2分×事務所利用可の千駄ヶ谷アドレス住戸・",
+        "price_jpy": 35800000,
+        "room_type": "ワンルーム",
+        "area_sqm": 31.33,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21355581/"
+      },
+      "property_b": {
+        "name": "固定概念をリノベ！既存1LDKの常識を覆す、ここから始まる新しい暮らし。",
+        "price_jpy": 35800000,
+        "room_type": "ワンルーム",
+        "area_sqm": 33.82,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_20517329/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "・北参道駅徒歩2分×事務所利用可の千駄ヶ谷アドレス住戸・",
+        "price_jpy": 35800000,
+        "room_type": "ワンルーム",
+        "area_sqm": 31.33,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21355581/"
+      },
+      "property_b": {
+        "name": "【当日ご見学可能】南東向き角住戸×眺望良好×オートロック×新規フルリノベ",
+        "price_jpy": 35800000,
+        "room_type": "ワンルーム",
+        "area_sqm": 33.67,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_21292113/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "・北参道駅徒歩2分×事務所利用可の千駄ヶ谷アドレス住戸・",
+        "price_jpy": 35800000,
+        "room_type": "ワンルーム",
+        "area_sqm": 31.33,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21355581/"
+      },
+      "property_b": {
+        "name": "梅里２（新高円寺駅） 3580万円",
+        "price_jpy": 35800000,
+        "room_type": "ワンルーム",
+        "area_sqm": 33.67,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_20665211/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■2026年7月内装リフォーム実施■ペット飼育可（細則有り）",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.42,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21259938/"
+      },
+      "property_b": {
+        "name": "◆空室・いつでもご内覧可能です×新規リノベーション（令和8年7月完成済み）",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.43,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_21097042/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■2026年7月内装リフォーム実施■ペット飼育可（細則有り）",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.42,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21259938/"
+      },
+      "property_b": {
+        "name": "上荻１（荻窪駅） 3680万円",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.43,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_21064150/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■2026年7月内装リフォーム実施■ペット飼育可（細則有り）",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.42,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21259938/"
+      },
+      "property_b": {
+        "name": "最上階・上階なし、ルーフバルコニー、ペット相談、南向き、システムキッチン",
+        "price_jpy": 36800000,
+        "room_type": "1K",
+        "area_sqm": 33.2,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_21296006/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■2026年7月内装リフォーム実施■ペット飼育可（細則有り）",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.42,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21259938/"
+      },
+      "property_b": {
+        "name": "～新耐震×角部屋×オートロック～■JR中央線「荻窪」駅徒歩2分",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.43,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_21113308/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■2026年7月内装リフォーム実施■ペット飼育可（細則有り）",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.42,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21259938/"
+      },
+      "property_b": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 36800000,
+        "room_type": "2LDK",
+        "area_sqm": 40.68,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_78799875/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■2026年7月内装リフォーム実施■ペット飼育可（細則有り）",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.42,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21259938/"
+      },
+      "property_b": {
+        "name": "中国語＆英語対応可能！住宅＋リフォーム提案可能！詳細【諸費用】参照",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.43,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_21399771/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■2026年7月内装リフォーム実施■ペット飼育可（細則有り）",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.42,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21259938/"
+      },
+      "property_b": {
+        "name": "上荻１（荻窪駅） 3680万円",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.43,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_21103870/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
