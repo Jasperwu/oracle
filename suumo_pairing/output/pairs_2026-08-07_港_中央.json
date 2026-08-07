@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-08-07",
+  "area_pair_used": "港区-中央区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "人気の『広尾・麻布エリア』　有栖川宮記念公園で休みは自然鑑賞　資料だけも",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.31,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21438118/"
+      },
+      "property_b": {
+        "name": "「～都心の利便性と残る落ち着いた住環境が共存するエリアで暮らす～」",
+        "price_jpy": 39800000,
+        "room_type": "2DK",
+        "area_sqm": 33.16,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_20855972/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■南向きの大型専用庭付き■一部リフォーム実施済■ペット飼育可（細則有）",
+        "price_jpy": 44800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21106928/"
+      },
+      "property_b": {
+        "name": "JR京葉線「八丁堀」駅徒歩4分×室内リフォーム済み×投資用にも最適",
+        "price_jpy": 44800000,
+        "room_type": "2DK",
+        "area_sqm": 33.3,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21234344/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■南向きの大型専用庭付き■一部リフォーム実施済■ペット飼育可（細則有）",
+        "price_jpy": 44800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21106928/"
+      },
+      "property_b": {
+        "name": "■令和8年7月内装リフォーム完了、即内覧可■南西向き・日照良好",
+        "price_jpy": 44800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.33,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_20795484/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "『最上階　角部屋』プレミアム住戸　「赤羽橋駅」5分　資料請求だけでもどうぞ",
+        "price_jpy": 73990000,
+        "room_type": "1LDK",
+        "area_sqm": 42.12,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21437857/"
+      },
+      "property_b": {
+        "name": "■複数路線利用可■駅徒歩５分圏内■中央区アドレス",
+        "price_jpy": 73990000,
+        "room_type": "1LDK",
+        "area_sqm": 40.93,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_20749650/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "憧れの港区で3LDKに住まう。JR山手線「田町駅」徒歩11分です。",
+        "price_jpy": 74990000,
+        "room_type": "3LDK",
+        "area_sqm": 56.89,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21437905/"
+      },
+      "property_b": {
+        "name": "＼お盆も対応可能／陽光と眺望を独占する角住戸！都心で感じるゆとり暮らし",
+        "price_jpy": 74980000,
+        "room_type": "2LDK",
+        "area_sqm": 54.81,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_20481096/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "憧れの港区で3LDKに住まう。JR山手線「田町駅」徒歩11分です。",
+        "price_jpy": 74990000,
+        "room_type": "3LDK",
+        "area_sqm": 56.89,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21437905/"
+      },
+      "property_b": {
+        "name": "陽当り・眺望良好■複数駅利用可■南西向き■角部屋■新規内装リフォーム済",
+        "price_jpy": 74980000,
+        "room_type": "2LDK",
+        "area_sqm": 54.81,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21292131/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "憧れの港区で3LDKに住まう。JR山手線「田町駅」徒歩11分です。",
+        "price_jpy": 74990000,
+        "room_type": "3LDK",
+        "area_sqm": 56.89,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21437905/"
+      },
+      "property_b": {
+        "name": "水天宮前駅徒歩6分！眺望良好な9階南西向き♪複数路線利用の好立地！",
+        "price_jpy": 74980000,
+        "room_type": "2LDK",
+        "area_sqm": 54.81,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_20503495/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "『The Grand Residence』～威厳と品格を纏う重厚な邸宅～",
+        "price_jpy": 74990000,
+        "room_type": "1LDK",
+        "area_sqm": 51.12,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21360728/"
+      },
+      "property_b": {
+        "name": "＼お盆も対応可能／陽光と眺望を独占する角住戸！都心で感じるゆとり暮らし",
+        "price_jpy": 74980000,
+        "room_type": "2LDK",
+        "area_sqm": 54.81,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_20481096/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "『The Grand Residence』～威厳と品格を纏う重厚な邸宅～",
+        "price_jpy": 74990000,
+        "room_type": "1LDK",
+        "area_sqm": 51.12,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21360728/"
+      },
+      "property_b": {
+        "name": "陽当り・眺望良好■複数駅利用可■南西向き■角部屋■新規内装リフォーム済",
+        "price_jpy": 74980000,
+        "room_type": "2LDK",
+        "area_sqm": 54.81,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21292131/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "『The Grand Residence』～威厳と品格を纏う重厚な邸宅～",
+        "price_jpy": 74990000,
+        "room_type": "1LDK",
+        "area_sqm": 51.12,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21360728/"
+      },
+      "property_b": {
+        "name": "水天宮前駅徒歩6分！眺望良好な9階南西向き♪複数路線利用の好立地！",
+        "price_jpy": 74980000,
+        "room_type": "2LDK",
+        "area_sqm": 54.81,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_20503495/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
