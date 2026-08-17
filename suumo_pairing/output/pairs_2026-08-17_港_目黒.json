@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-08-17",
+  "area_pair_used": "港区-目黒区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "人気の『広尾・麻布エリア』　有栖川宮記念公園で休みは自然鑑賞　資料だけも",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.31,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21481999/"
+      },
+      "property_b": {
+        "name": "「中目黒」駅まで徒歩5分・3駅4路線利用可☆ペット可☆室内大変きれいです☆",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 33.97,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21103528/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■南向きの大型専用庭付き■一部リフォーム実施済■ペット飼育可（細則有）",
+        "price_jpy": 44800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21106928/"
+      },
+      "property_b": {
+        "name": "駒場の閑静な住宅街に佇む低層レジデンス♪",
+        "price_jpy": 44800000,
+        "room_type": "2DK",
+        "area_sqm": 37.02,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21056703/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■南向きの大型専用庭付き■一部リフォーム実施済■ペット飼育可（細則有）",
+        "price_jpy": 44800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21106928/"
+      },
+      "property_b": {
+        "name": "～東横線「都立大学」駅徒歩3分の利便性と、新規リノベーションの快適空間～",
+        "price_jpy": 44800000,
+        "room_type": "1K",
+        "area_sqm": 33.98,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21095605/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■南向きの大型専用庭付き■一部リフォーム実施済■ペット飼育可（細則有）",
+        "price_jpy": 44800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21106928/"
+      },
+      "property_b": {
+        "name": "柿の木坂１（都立大学駅） 4480万円",
+        "price_jpy": 44800000,
+        "room_type": "1LDK",
+        "area_sqm": 33.98,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21504097/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■南向きの大型専用庭付き■一部リフォーム実施済■ペット飼育可（細則有）",
+        "price_jpy": 44800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21106928/"
+      },
+      "property_b": {
+        "name": "中央町１（学芸大学駅） 4480万円",
+        "price_jpy": 44800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.96,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_20815905/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 57990000,
+        "room_type": "1LDK",
+        "area_sqm": 38.83,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21378942/"
+      },
+      "property_b": {
+        "name": "■10階部分南西向きにつき採光・眺望良好！■内装リノベーションで設備一新",
+        "price_jpy": 57990000,
+        "room_type": "1LDK",
+        "area_sqm": 46.74,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_20271688/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 57990000,
+        "room_type": "1LDK",
+        "area_sqm": 38.83,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21378942/"
+      },
+      "property_b": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 57990000,
+        "room_type": "1LDK",
+        "area_sqm": 46.74,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21408010/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 57990000,
+        "room_type": "1LDK",
+        "area_sqm": 38.83,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21378942/"
+      },
+      "property_b": {
+        "name": "南西向き■陽当り良好■全居室収納付き■リフォーム済物件■即引渡し可能",
+        "price_jpy": 57990000,
+        "room_type": "1LDK",
+        "area_sqm": 46.74,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_20758572/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 57990000,
+        "room_type": "1LDK",
+        "area_sqm": 38.83,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21378942/"
+      },
+      "property_b": {
+        "name": "☆ 『中目黒』駅徒歩約12分の好立地☆ ◆46.74平米・1LDK♪",
+        "price_jpy": 57990000,
+        "room_type": "1LDK",
+        "area_sqm": 46.74,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_20680868/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「麻布十番」駅徒歩約９分■複数路線利用可能■陽当たり良好■リフォーム完了",
+        "price_jpy": 57990000,
+        "room_type": "2LDK",
+        "area_sqm": 45.36,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21292134/"
+      },
+      "property_b": {
+        "name": "南西向き■陽当り良好■全居室収納付き■リフォーム済物件■即引渡し可能",
+        "price_jpy": 57990000,
+        "room_type": "1LDK",
+        "area_sqm": 46.74,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_20758572/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
