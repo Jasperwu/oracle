@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-08-19",
+  "area_pair_used": "新宿区-中野区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "《月々8.4万～》大江戸線の駅4分 西新宿ビル群まで徒歩約12分です",
+        "price_jpy": 30800000,
+        "room_type": "1LDK",
+        "area_sqm": 33.43,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21510698/"
+      },
+      "property_b": {
+        "name": "【いまからのご見学可能です】ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 30800000,
+        "room_type": "1LDK",
+        "area_sqm": 41.64,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_21353726/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "《月々8.4万～》大江戸線の駅4分 西新宿ビル群まで徒歩約12分です",
+        "price_jpy": 30800000,
+        "room_type": "1LDK",
+        "area_sqm": 33.43,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21510698/"
+      },
+      "property_b": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 30800000,
+        "room_type": "1LDK",
+        "area_sqm": 41.64,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_21349321/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "《月々8.4万～》大江戸線の駅4分 西新宿ビル群まで徒歩約12分です",
+        "price_jpy": 30800000,
+        "room_type": "1LDK",
+        "area_sqm": 33.43,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21510698/"
+      },
+      "property_b": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 30800000,
+        "room_type": "1LDK",
+        "area_sqm": 41.64,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_20667740/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "《月々8.4万～》大江戸線の駅4分 西新宿ビル群まで徒歩約12分です",
+        "price_jpy": 30800000,
+        "room_type": "1LDK",
+        "area_sqm": 33.43,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21510698/"
+      },
+      "property_b": {
+        "name": "東中野１（東中野駅） 3080万円",
+        "price_jpy": 30800000,
+        "room_type": "1LDK",
+        "area_sqm": 41.63,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_21510224/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "《月々8.4万～》大江戸線の駅4分 西新宿ビル群まで徒歩約12分です",
+        "price_jpy": 30800000,
+        "room_type": "1LDK",
+        "area_sqm": 33.43,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21510698/"
+      },
+      "property_b": {
+        "name": "▼▼▼　即日内見可能！車で送迎！▼▼▼南西角部屋♪事務所利用！駅徒歩6分",
+        "price_jpy": 30800000,
+        "room_type": "1LDK",
+        "area_sqm": 41.64,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_20668726/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "《月々8.4万～》大江戸線の駅4分 西新宿ビル群まで徒歩約12分です",
+        "price_jpy": 30800000,
+        "room_type": "1LDK",
+        "area_sqm": 33.43,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21510698/"
+      },
+      "property_b": {
+        "name": "東中野１（東中野駅） 3080万円",
+        "price_jpy": 30800000,
+        "room_type": "1LDK",
+        "area_sqm": 41.64,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_21377421/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "7/26価格下がりました 3299万より100万円↓ 初購入を丁寧にサポートします",
+        "price_jpy": 31990000,
+        "room_type": "1DK",
+        "area_sqm": 33.34,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21510747/"
+      },
+      "property_b": {
+        "name": "南台２（中野富士見町駅） 3200万円",
+        "price_jpy": 32000000,
+        "room_type": "1DK",
+        "area_sqm": 30.85,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_21401997/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【お盆も通常営業しております！】都電荒川線「面影橋」駅徒歩1分の好立地♪",
+        "price_jpy": 38000000,
+        "room_type": "2DK",
+        "area_sqm": 37.15,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21464861/"
+      },
+      "property_b": {
+        "name": "《売主物件》大規模修繕2026年6月完了！駅チカ♪〇リノベーション",
+        "price_jpy": 37990000,
+        "room_type": "1LDK",
+        "area_sqm": 32.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_21174511/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "7/23価格下がりました 4180万より200万円↓ 初購入を丁寧にサポートします",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 48.34,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21510796/"
+      },
+      "property_b": {
+        "name": "江原町２（新江古田駅） 3980万円",
+        "price_jpy": 39800000,
+        "room_type": "2LDK",
+        "area_sqm": 51.26,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_21392520/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【やり取り無し2分で予約】2駅2路線利用可能×新規フルリノべ×4階角部屋",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 45.57,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21315471/"
+      },
+      "property_b": {
+        "name": "江原町２（新江古田駅） 3980万円",
+        "price_jpy": 39800000,
+        "room_type": "2LDK",
+        "area_sqm": 51.26,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_21392520/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
