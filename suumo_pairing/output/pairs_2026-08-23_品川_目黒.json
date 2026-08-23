@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-08-23",
+  "area_pair_used": "品川区-目黒区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■「五反田」駅徒歩9分・「目黒」駅徒歩10分の好立地　■リフォーム履歴有",
+        "price_jpy": 41800000,
+        "room_type": "1DK",
+        "area_sqm": 39.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21114360/"
+      },
+      "property_b": {
+        "name": "■新規内装リノベーション済■目黒駅至近×投資用にも■１LDK×角住戸",
+        "price_jpy": 41800000,
+        "room_type": "1LDK",
+        "area_sqm": 31.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21216857/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "8/20価格下がりました  4499万より200万円↓　初購入をやさしくサポートします",
+        "price_jpy": 42990000,
+        "room_type": "2LDK",
+        "area_sqm": 41.39,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21518974/"
+      },
+      "property_b": {
+        "name": "≪本日見学出来ます≫当日予約OK!◆新規リノベーション工事完了♪",
+        "price_jpy": 42980000,
+        "room_type": "1LDK",
+        "area_sqm": 42.81,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_20844272/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 42990000,
+        "room_type": "2DK",
+        "area_sqm": 41.39,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_20934852/"
+      },
+      "property_b": {
+        "name": "≪本日見学出来ます≫当日予約OK!◆新規リノベーション工事完了♪",
+        "price_jpy": 42980000,
+        "room_type": "1LDK",
+        "area_sqm": 42.81,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_20844272/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【本日ご見学いただけます！】4駅3路線利用可能な好立地！",
+        "price_jpy": 42990000,
+        "room_type": "2LDK",
+        "area_sqm": 41.39,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21261421/"
+      },
+      "property_b": {
+        "name": "≪本日見学出来ます≫当日予約OK!◆新規リノベーション工事完了♪",
+        "price_jpy": 42980000,
+        "room_type": "1LDK",
+        "area_sqm": 42.81,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_20844272/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【即内見可・定休日無し】◇全室採光あり◆室内リフォーム",
+        "price_jpy": 42990000,
+        "room_type": "2DK",
+        "area_sqm": 41.39,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_20981561/"
+      },
+      "property_b": {
+        "name": "≪本日見学出来ます≫当日予約OK!◆新規リノベーション工事完了♪",
+        "price_jpy": 42980000,
+        "room_type": "1LDK",
+        "area_sqm": 42.81,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_20844272/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "リノベーション物件■五反田駅より徒歩１０分■上層階８階部分■食洗機付き",
+        "price_jpy": 42990000,
+        "room_type": "2LDK",
+        "area_sqm": 41.39,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_20945056/"
+      },
+      "property_b": {
+        "name": "≪本日見学出来ます≫当日予約OK!◆新規リノベーション工事完了♪",
+        "price_jpy": 42980000,
+        "room_type": "1LDK",
+        "area_sqm": 42.81,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_20844272/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【当社売主・優先してご案内が可能！】見学予約より即日ご案内！",
+        "price_jpy": 44800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.15,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21350465/"
+      },
+      "property_b": {
+        "name": "駒場の閑静な住宅街に佇む低層レジデンス♪",
+        "price_jpy": 44800000,
+        "room_type": "2DK",
+        "area_sqm": 37.02,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21056703/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【当社売主・優先してご案内が可能！】見学予約より即日ご案内！",
+        "price_jpy": 44800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.15,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21350465/"
+      },
+      "property_b": {
+        "name": "～東横線「都立大学」駅徒歩3分の利便性と、新規リノベーションの快適空間～",
+        "price_jpy": 44800000,
+        "room_type": "1K",
+        "area_sqm": 33.98,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21095605/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【当社売主・優先してご案内が可能！】見学予約より即日ご案内！",
+        "price_jpy": 44800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.15,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21350465/"
+      },
+      "property_b": {
+        "name": "即日内見可能！随時お問合せ受付中！（直通：070-8415-4751）",
+        "price_jpy": 44800000,
+        "room_type": "1LDK",
+        "area_sqm": 33.98,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21504097/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【当社売主・優先してご案内が可能！】見学予約より即日ご案内！",
+        "price_jpy": 44800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.15,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21350465/"
+      },
+      "property_b": {
+        "name": "中央町１（学芸大学駅） 4480万円",
+        "price_jpy": 44800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.96,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_20815905/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
