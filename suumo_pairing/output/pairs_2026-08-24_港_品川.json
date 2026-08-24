@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-08-24",
+  "area_pair_used": "港区-品川区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■南向きの大型専用庭付き■一部リフォーム実施済■ペット飼育可（細則有）",
+        "price_jpy": 44800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21106928/"
+      },
+      "property_b": {
+        "name": "当日見学可能！頭金0円でも安心♪現況販売！リノベーションご提案可♪",
+        "price_jpy": 44800000,
+        "room_type": "2DK",
+        "area_sqm": 37.96,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21549967/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■内装一部リフォーム実施■角住戸につき通風良好、二面バルコニー付き",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.08,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20754829/"
+      },
+      "property_b": {
+        "name": "「五反田駅」8分 12.4畳リビングの南西角部屋です ペットＯＫです",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 44.96,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21510441/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 56800000,
+        "room_type": "2LDK",
+        "area_sqm": 42.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21445774/"
+      },
+      "property_b": {
+        "name": "【希少!!】1フロア1住戸 最上階、角部屋のプレミアム住戸です！",
+        "price_jpy": 56800000,
+        "room_type": "2LDK",
+        "area_sqm": 44.87,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21510279/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "◇新規リノベ物件・空室のお部屋◇即日見学可能、お気軽にお問合せください",
+        "price_jpy": 56800000,
+        "room_type": "2LDK",
+        "area_sqm": 42.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21449300/"
+      },
+      "property_b": {
+        "name": "【希少!!】1フロア1住戸 最上階、角部屋のプレミアム住戸です！",
+        "price_jpy": 56800000,
+        "room_type": "2LDK",
+        "area_sqm": 44.87,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21510279/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "◆5階南向きにつき日照・眺望良好　◆リフォーム履歴有（2024年3月上旬）",
+        "price_jpy": 56800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21308252/"
+      },
+      "property_b": {
+        "name": "【希少!!】1フロア1住戸 最上階、角部屋のプレミアム住戸です！",
+        "price_jpy": 56800000,
+        "room_type": "2LDK",
+        "area_sqm": 44.87,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21510279/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "新規リノベーション物件です！即入居可能♪駅まで徒歩2分の立地♪",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 42.88,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20432774/"
+      },
+      "property_b": {
+        "name": "大崎駅 徒歩６分×３駅６路線利用可能なロケーション",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 44.28,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21346548/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 59990000,
+        "room_type": "1LDK",
+        "area_sqm": 42.54,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21456156/"
+      },
+      "property_b": {
+        "name": "五反田駅より徒歩１２分■南東向きリビング■リフォーム物件■対面キッチン",
+        "price_jpy": 59980000,
+        "room_type": "1LDK",
+        "area_sqm": 46.05,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21057189/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 59990000,
+        "room_type": "1LDK",
+        "area_sqm": 42.54,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21456156/"
+      },
+      "property_b": {
+        "name": "【ANAのマイレージプレゼント】4駅4路線利用可能、収納充実の1SLDK",
+        "price_jpy": 59980000,
+        "room_type": "1LDK",
+        "area_sqm": 46.05,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21248142/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "◇新規リノベ物件・空室のお部屋◇即日見学可能、お気軽にお問合せください",
+        "price_jpy": 74990000,
+        "room_type": "3LDK",
+        "area_sqm": 56.89,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21281287/"
+      },
+      "property_b": {
+        "name": "【即内見可・定休日無し】◇南西向き！13階・2LDK◆最上階・角部屋！",
+        "price_jpy": 74990000,
+        "room_type": "2LDK",
+        "area_sqm": 57.51,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21349611/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "◇新規リノベ物件・空室のお部屋◇即日見学可能、お気軽にお問合せください",
+        "price_jpy": 74990000,
+        "room_type": "3LDK",
+        "area_sqm": 56.89,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21281287/"
+      },
+      "property_b": {
+        "name": "『Skyline Luxury』～都心を見晴らす洗礼、光と景観を愉しむ～",
+        "price_jpy": 74990000,
+        "room_type": "2LDK",
+        "area_sqm": 57.51,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21301746/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
