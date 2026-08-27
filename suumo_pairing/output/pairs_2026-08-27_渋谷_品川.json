@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-08-27",
+  "area_pair_used": "渋谷区-品川区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪当日内見予約可能≫―日当たり・眺望良好―10階最上階の開放的な三方角住戸",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21470671/"
+      },
+      "property_b": {
+        "name": "2駅2路線利用可能な好立地◎南向きバルコニー＆ペアガラス＆エアコン完備",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 42.12,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21419075/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "大京穴吹不動産が売主のリノベーション物件「Renoa（リノアルファ）」",
+        "price_jpy": 45980000,
+        "room_type": "1LDK",
+        "area_sqm": 34.23,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_20851062/"
+      },
+      "property_b": {
+        "name": "■売主グループ会社につき優先案内可能■内覧予約の方に限定資料さしあげます",
+        "price_jpy": 45990000,
+        "room_type": "1LDK",
+        "area_sqm": 38.88,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_20867058/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "売主グループ直接販売リノベーション物件!南東向きにつき陽当り良好！",
+        "price_jpy": 46800000,
+        "room_type": "1LDK",
+        "area_sqm": 43.82,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21551334/"
+      },
+      "property_b": {
+        "name": "利便性と住みやすさを兼ね備えた西五反田。東南向き角住戸の開放感ある住まい。",
+        "price_jpy": 46800000,
+        "room_type": "1LDK",
+        "area_sqm": 46.05,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21164347/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■最上階（10階）につき採光・通風良好！■内装リノベーションで設備一新",
+        "price_jpy": 47800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21512155/"
+      },
+      "property_b": {
+        "name": "リフォーム済■ペット飼育可■複数路線利用可「五反田」駅まで徒歩3分■ＷＩＣ",
+        "price_jpy": 47800000,
+        "room_type": "1LDK",
+        "area_sqm": 45.35,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21153469/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■最上階（10階）につき採光・通風良好！■内装リノベーションで設備一新",
+        "price_jpy": 47800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21512155/"
+      },
+      "property_b": {
+        "name": "【ANAのマイレージプレゼント】五反田12分×3路線3駅×リノベ済1LDK",
+        "price_jpy": 47800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.35,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21544305/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■三井のリハウス■最上階10階、南西向き令和8年4月室内リフォーム済",
+        "price_jpy": 47800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_20919416/"
+      },
+      "property_b": {
+        "name": "リフォーム済■ペット飼育可■複数路線利用可「五反田」駅まで徒歩3分■ＷＩＣ",
+        "price_jpy": 47800000,
+        "room_type": "1LDK",
+        "area_sqm": 45.35,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21153469/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■三井のリハウス■最上階10階、南西向き令和8年4月室内リフォーム済",
+        "price_jpy": 47800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_20919416/"
+      },
+      "property_b": {
+        "name": "【ANAのマイレージプレゼント】五反田12分×3路線3駅×リノベ済1LDK",
+        "price_jpy": 47800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.35,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21544305/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "4階東南角部屋につき日当たり通風良好×総戸数46戸もあり、安心の管理体制",
+        "price_jpy": 49800000,
+        "room_type": "2LDK",
+        "area_sqm": 42.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21400467/"
+      },
+      "property_b": {
+        "name": "【当日ご見学可能です】再開発で人気×「大井町」×2ベッドルームのゆとり",
+        "price_jpy": 49800000,
+        "room_type": "2LDK",
+        "area_sqm": 45.91,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_20955369/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "4階東南角部屋につき日当たり通風良好×総戸数46戸もあり、安心の管理体制",
+        "price_jpy": 49800000,
+        "room_type": "2LDK",
+        "area_sqm": 42.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21400467/"
+      },
+      "property_b": {
+        "name": "《 平日含め内覧受付中！ 》大井町駅徒歩圏内×2LDK×新耐震基準！",
+        "price_jpy": 49800000,
+        "room_type": "2LDK",
+        "area_sqm": 45.91,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_20570238/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【現地販売会】― 駅チカ × 千駄ヶ谷 × 南向き ―",
+        "price_jpy": 51800000,
+        "room_type": "2LDK",
+        "area_sqm": 45.1,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21307534/"
+      },
+      "property_b": {
+        "name": "■ 武蔵小山も徒歩圏内！新耐震基準・南東向き角部屋のリノベーション住戸",
+        "price_jpy": 51800000,
+        "room_type": "2LDK",
+        "area_sqm": 44.89,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21407679/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
