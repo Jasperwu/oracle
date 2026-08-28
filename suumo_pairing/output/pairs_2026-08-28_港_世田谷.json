@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-08-28",
+  "area_pair_used": "港区-世田谷区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【月々10万円台～】「田町駅」東口の「ムスブ田町」に続き西口でも再開発進行中",
+        "price_jpy": 42800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.88,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21558266/"
+      },
+      "property_b": {
+        "name": "≪本日ご見学出来ます≫当日予約OK！まずは気軽にお問合せください♪",
+        "price_jpy": 42800000,
+        "room_type": "2DK",
+        "area_sqm": 46.62,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21537121/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【月々10万円台～】「田町駅」東口の「ムスブ田町」に続き西口でも再開発進行中",
+        "price_jpy": 42800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.88,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21558266/"
+      },
+      "property_b": {
+        "name": "新規リノベーション■南西向き■３階部分■２ＤＫ■Ｌ字型キッチン■２駅利用可",
+        "price_jpy": 42800000,
+        "room_type": "2DK",
+        "area_sqm": 46.62,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21323459/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【月々10万円台～】「田町駅」東口の「ムスブ田町」に続き西口でも再開発進行中",
+        "price_jpy": 42800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.88,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21558266/"
+      },
+      "property_b": {
+        "name": "【ANAのマイレージプレゼント】駒沢大学駅徒歩11分・新規リノベーション済",
+        "price_jpy": 42800000,
+        "room_type": "2DK",
+        "area_sqm": 46.62,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21538566/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【月々10万円台～】「田町駅」東口の「ムスブ田町」に続き西口でも再開発進行中",
+        "price_jpy": 42800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.88,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21558266/"
+      },
+      "property_b": {
+        "name": "◇新規リノベ物件・空室のお部屋◇即日見学可能、お気軽にお問合せください",
+        "price_jpy": 42800000,
+        "room_type": "2DK",
+        "area_sqm": 46.62,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21303605/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 42800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.88,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21544704/"
+      },
+      "property_b": {
+        "name": "≪本日ご見学出来ます≫当日予約OK！まずは気軽にお問合せください♪",
+        "price_jpy": 42800000,
+        "room_type": "2DK",
+        "area_sqm": 46.62,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21537121/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 42800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.88,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21544704/"
+      },
+      "property_b": {
+        "name": "新規リノベーション■南西向き■３階部分■２ＤＫ■Ｌ字型キッチン■２駅利用可",
+        "price_jpy": 42800000,
+        "room_type": "2DK",
+        "area_sqm": 46.62,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21323459/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 42800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.88,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21544704/"
+      },
+      "property_b": {
+        "name": "【ANAのマイレージプレゼント】駒沢大学駅徒歩11分・新規リノベーション済",
+        "price_jpy": 42800000,
+        "room_type": "2DK",
+        "area_sqm": 46.62,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21538566/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 42800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.88,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21544704/"
+      },
+      "property_b": {
+        "name": "◇新規リノベ物件・空室のお部屋◇即日見学可能、お気軽にお問合せください",
+        "price_jpy": 42800000,
+        "room_type": "2DK",
+        "area_sqm": 46.62,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21303605/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "◇新規リノベ物件・空室のお部屋◇即日見学可能、お気軽にお問合せください",
+        "price_jpy": 42800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.88,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21543101/"
+      },
+      "property_b": {
+        "name": "≪本日ご見学出来ます≫当日予約OK！まずは気軽にお問合せください♪",
+        "price_jpy": 42800000,
+        "room_type": "2DK",
+        "area_sqm": 46.62,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21537121/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "◇新規リノベ物件・空室のお部屋◇即日見学可能、お気軽にお問合せください",
+        "price_jpy": 42800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.88,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21543101/"
+      },
+      "property_b": {
+        "name": "新規リノベーション■南西向き■３階部分■２ＤＫ■Ｌ字型キッチン■２駅利用可",
+        "price_jpy": 42800000,
+        "room_type": "2DK",
+        "area_sqm": 46.62,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21323459/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
