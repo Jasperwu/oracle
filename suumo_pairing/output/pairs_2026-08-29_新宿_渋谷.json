@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-08-29",
+  "area_pair_used": "新宿区-渋谷区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "～神楽坂の風情と新宿の利便性を享受する、眺望良好の住まい～",
+        "price_jpy": 45800000,
+        "room_type": "1LDK",
+        "area_sqm": 44.94,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21297375/"
+      },
+      "property_b": {
+        "name": "◆◆本日「空き」あり！◆◆笹塚で暮らす、光あふれるリノベ空間",
+        "price_jpy": 45800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21574297/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「曙橋駅」歩2分 ダイエー歩5分 三面採光で明るい角部屋です 資料請求だけでも",
+        "price_jpy": 46800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.38,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21576026/"
+      },
+      "property_b": {
+        "name": "売主グループ直接販売リノベーション物件!南東向きにつき陽当り良好！",
+        "price_jpy": 46800000,
+        "room_type": "1LDK",
+        "area_sqm": 43.82,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21551334/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 46800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.38,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21553110/"
+      },
+      "property_b": {
+        "name": "売主グループ直接販売リノベーション物件!南東向きにつき陽当り良好！",
+        "price_jpy": 46800000,
+        "room_type": "1LDK",
+        "area_sqm": 43.82,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21551334/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪見学予約＆当日予約OK!≫◆駅徒歩5分×暮らし整う上質リノベ住戸",
+        "price_jpy": 47800000,
+        "room_type": "1LDK",
+        "area_sqm": 33.12,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21501667/"
+      },
+      "property_b": {
+        "name": "■最上階（10階）につき採光・通風良好！■内装リノベーションで設備一新",
+        "price_jpy": 47800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21512155/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪見学予約＆当日予約OK!≫◆駅徒歩5分×暮らし整う上質リノベ住戸",
+        "price_jpy": 47800000,
+        "room_type": "1LDK",
+        "area_sqm": 33.12,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21501667/"
+      },
+      "property_b": {
+        "name": "■三井のリハウス■最上階10階、南西向き令和8年4月室内リフォーム済",
+        "price_jpy": 47800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_20919416/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【即内見可・定休日無し】◇南向き！4階・2LDK◆室内リフォーム実施！",
+        "price_jpy": 49800000,
+        "room_type": "2LDK",
+        "area_sqm": 41.94,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21397435/"
+      },
+      "property_b": {
+        "name": "4階東南角部屋につき日当たり通風良好×総戸数46戸もあり、安心の管理体制",
+        "price_jpy": 49800000,
+        "room_type": "2LDK",
+        "area_sqm": 42.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21400467/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.91,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21529516/"
+      },
+      "property_b": {
+        "name": "4階東南角部屋につき日当たり通風良好×総戸数46戸もあり、安心の管理体制",
+        "price_jpy": 49800000,
+        "room_type": "2LDK",
+        "area_sqm": 42.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21400467/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪今からのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.91,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21536224/"
+      },
+      "property_b": {
+        "name": "4階東南角部屋につき日当たり通風良好×総戸数46戸もあり、安心の管理体制",
+        "price_jpy": 49800000,
+        "room_type": "2LDK",
+        "area_sqm": 42.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21400467/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「牛込柳町」駅まで徒歩約３分■南向き■陽当たり良好■角住戸■豊富な収納",
+        "price_jpy": 49800000,
+        "room_type": "2LDK",
+        "area_sqm": 48.25,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21330769/"
+      },
+      "property_b": {
+        "name": "4階東南角部屋につき日当たり通風良好×総戸数46戸もあり、安心の管理体制",
+        "price_jpy": 49800000,
+        "room_type": "2LDK",
+        "area_sqm": 42.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21400467/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 51800000,
+        "room_type": "1LDK",
+        "area_sqm": 45.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_20578293/"
+      },
+      "property_b": {
+        "name": "【現地販売会】― 駅チカ × 千駄ヶ谷 × 南向き ―",
+        "price_jpy": 51800000,
+        "room_type": "2LDK",
+        "area_sqm": 45.1,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21307534/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
