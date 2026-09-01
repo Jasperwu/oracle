@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-09-01",
+  "area_pair_used": "港区-目黒区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "人気の『広尾・麻布エリア』　有栖川宮記念公園で休みは自然鑑賞　資料だけも",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.31,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21611353/"
+      },
+      "property_b": {
+        "name": "「中目黒」駅まで徒歩5分・3駅4路線利用可☆ペット可☆室内大変きれいです☆",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 33.97,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21103528/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【月々10万円台～】「田町駅」東口の「ムスブ田町」に続き西口でも再開発進行中",
+        "price_jpy": 42800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.88,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21612049/"
+      },
+      "property_b": {
+        "name": "目黒川沿いに建つマンション！四季の移り変わりを感じられる緑豊かな住環境。",
+        "price_jpy": 42800000,
+        "room_type": "1LDK",
+        "area_sqm": 32.16,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21574814/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 42800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.88,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21544704/"
+      },
+      "property_b": {
+        "name": "目黒川沿いに建つマンション！四季の移り変わりを感じられる緑豊かな住環境。",
+        "price_jpy": 42800000,
+        "room_type": "1LDK",
+        "area_sqm": 32.16,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21574814/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "◇新規リノベ物件・空室のお部屋◇即日見学可能、お気軽にお問合せください",
+        "price_jpy": 42800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.88,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21543101/"
+      },
+      "property_b": {
+        "name": "目黒川沿いに建つマンション！四季の移り変わりを感じられる緑豊かな住環境。",
+        "price_jpy": 42800000,
+        "room_type": "1LDK",
+        "area_sqm": 32.16,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21574814/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 42800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.88,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21547222/"
+      },
+      "property_b": {
+        "name": "目黒川沿いに建つマンション！四季の移り変わりを感じられる緑豊かな住環境。",
+        "price_jpy": 42800000,
+        "room_type": "1LDK",
+        "area_sqm": 32.16,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21574814/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■8階部分南西角住戸につき採光・通風良好■内装リノベーション実施済み",
+        "price_jpy": 43980000,
+        "room_type": "1K",
+        "area_sqm": 38.03,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21553019/"
+      },
+      "property_b": {
+        "name": "【フルリノベーション】自由が丘に佇むヴィンテージマンション。",
+        "price_jpy": 43990000,
+        "room_type": "1LDK",
+        "area_sqm": 47.41,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21480007/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■8階部分南西角住戸につき採光・通風良好■内装リノベーション実施済み",
+        "price_jpy": 43980000,
+        "room_type": "1K",
+        "area_sqm": 38.03,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21553019/"
+      },
+      "property_b": {
+        "name": "自由が丘再開発エリア　南西角住戸　フルリノベ済",
+        "price_jpy": 43990000,
+        "room_type": "1LDK",
+        "area_sqm": 47.41,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21565423/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■8階部分南西角住戸につき採光・通風良好■内装リノベーション実施済み",
+        "price_jpy": 43980000,
+        "room_type": "1K",
+        "area_sqm": 38.03,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21553019/"
+      },
+      "property_b": {
+        "name": "自由が丘２（自由が丘駅） 4399万円",
+        "price_jpy": 43990000,
+        "room_type": "1LDK",
+        "area_sqm": 47.41,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21463830/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■8階部分南西角住戸につき採光・通風良好■内装リノベーション実施済み",
+        "price_jpy": 43980000,
+        "room_type": "1K",
+        "area_sqm": 38.03,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21553019/"
+      },
+      "property_b": {
+        "name": "自由が丘２（自由が丘駅） 4399万円",
+        "price_jpy": 43990000,
+        "room_type": "1LDK",
+        "area_sqm": 47.41,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21463006/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■8階部分南西角住戸につき採光・通風良好■内装リノベーション実施済み",
+        "price_jpy": 43980000,
+        "room_type": "1K",
+        "area_sqm": 38.03,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21553019/"
+      },
+      "property_b": {
+        "name": "●南西角部屋・陽当たり、眺望、通風良好●",
+        "price_jpy": 43990000,
+        "room_type": "1LDK",
+        "area_sqm": 47.41,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_79066317/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
