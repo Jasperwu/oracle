@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-09-01",
+  "area_pair_used": "渋谷区-世田谷区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■2026年7月内装リフォーム実施■ペット飼育可（細則有り）",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.42,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21259938/"
+      },
+      "property_b": {
+        "name": "〓〓＼即日見学可能／〓〓◆新規フルリノベーション♪◆オートロック完備♪",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 46.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21152925/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■2026年7月内装リフォーム実施■ペット飼育可（細則有り）",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.42,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21259938/"
+      },
+      "property_b": {
+        "name": "〇フルリノベーション（R8年10月末頃完成予定）〇耐震基準適合マンション",
+        "price_jpy": 36800000,
+        "room_type": "1DK",
+        "area_sqm": 32.62,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21550989/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.42,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21248487/"
+      },
+      "property_b": {
+        "name": "〓〓＼即日見学可能／〓〓◆新規フルリノベーション♪◆オートロック完備♪",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 46.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21152925/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.42,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21248487/"
+      },
+      "property_b": {
+        "name": "〇フルリノベーション（R8年10月末頃完成予定）〇耐震基準適合マンション",
+        "price_jpy": 36800000,
+        "room_type": "1DK",
+        "area_sqm": 32.62,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21550989/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21378947/"
+      },
+      "property_b": {
+        "name": "◆3路線4駅利用可能な好立地◆東急建設株式会社施工◆新耐震基準（1988年7",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.72,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21394657/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪当日内見予約可能≫―日当たり・眺望良好―10階最上階の開放的な三方角住戸",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21470671/"
+      },
+      "property_b": {
+        "name": "◆3路線4駅利用可能な好立地◆東急建設株式会社施工◆新耐震基準（1988年7",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.72,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21394657/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■最上階・三方向角住戸につき採光・眺望良好！■内装リノベーション実施済",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21339960/"
+      },
+      "property_b": {
+        "name": "■「経堂」駅徒歩1分！■大型ルーフバルコニー付き■内装リフォーム実施",
+        "price_jpy": 39800000,
+        "room_type": "1DK",
+        "area_sqm": 31.65,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21288955/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■最上階・三方向角住戸につき採光・眺望良好！■内装リノベーション実施済",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21339960/"
+      },
+      "property_b": {
+        "name": "◆3路線4駅利用可能な好立地◆東急建設株式会社施工◆新耐震基準（1988年7",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.72,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21394657/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "新規リノベーション物件です。10階建・9階部分！駅まで徒歩4分の好立地！",
+        "price_jpy": 41800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.1,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21018139/"
+      },
+      "property_b": {
+        "name": "【新規フルリフォーム実施物件】2026年7月完成！☆現況空室・内覧可能 ☆京王",
+        "price_jpy": 41800000,
+        "room_type": "1LDK",
+        "area_sqm": 41.55,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21330339/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■最上階（10階）につき採光・通風良好！■内装リノベーションで設備一新",
+        "price_jpy": 47800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21512155/"
+      },
+      "property_b": {
+        "name": "等々力の高台に建つマンション！南向きの明るい角部屋です。",
+        "price_jpy": 47800000,
+        "room_type": "1DK",
+        "area_sqm": 35.42,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21311909/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
