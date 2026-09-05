@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-09-05",
+  "area_pair_used": "港区-中央区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "人気の『広尾・麻布エリア』　有栖川宮記念公園で休みは自然鑑賞　資料だけも",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.31,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21611353/"
+      },
+      "property_b": {
+        "name": "室内クリーニング済。セカンドハウス、投資用にも対応。",
+        "price_jpy": 39800000,
+        "room_type": "1K",
+        "area_sqm": 28.83,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21570313/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【月々10万円台～】「田町駅」東口の「ムスブ田町」に続き西口でも再開発進行中",
+        "price_jpy": 42800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.88,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21612049/"
+      },
+      "property_b": {
+        "name": "JR京葉線「八丁堀」駅徒歩4分×室内リフォーム済み×投資用にも最適",
+        "price_jpy": 42800000,
+        "room_type": "2DK",
+        "area_sqm": 33.3,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21234344/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 42800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.88,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21544704/"
+      },
+      "property_b": {
+        "name": "JR京葉線「八丁堀」駅徒歩4分×室内リフォーム済み×投資用にも最適",
+        "price_jpy": 42800000,
+        "room_type": "2DK",
+        "area_sqm": 33.3,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21234344/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "◇新規リノベ物件・空室のお部屋◇即日見学可能、お気軽にお問合せください",
+        "price_jpy": 42800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.88,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21543101/"
+      },
+      "property_b": {
+        "name": "JR京葉線「八丁堀」駅徒歩4分×室内リフォーム済み×投資用にも最適",
+        "price_jpy": 42800000,
+        "room_type": "2DK",
+        "area_sqm": 33.3,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21234344/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 42800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.88,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21547222/"
+      },
+      "property_b": {
+        "name": "JR京葉線「八丁堀」駅徒歩4分×室内リフォーム済み×投資用にも最適",
+        "price_jpy": 42800000,
+        "room_type": "2DK",
+        "area_sqm": 33.3,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21234344/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■南向きの大型専用庭付き■一部リフォーム実施済■ペット飼育可（細則有）",
+        "price_jpy": 44800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21106928/"
+      },
+      "property_b": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 44800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.33,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21621258/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪当日内見予約可能≫専用庭付き―都心の利便性を享受する―",
+        "price_jpy": 44800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21598514/"
+      },
+      "property_b": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 44800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.33,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21621258/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "５路線３駅利用可能で通勤・通学も快適×２０２２年４月内装リノベーション歴有",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.02,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21305555/"
+      },
+      "property_b": {
+        "name": "〈購入者特典〉弊社から当物件のご成約でアフターサービス最長10年に！",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 48.25,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21322800/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「麻布十番」駅徒歩約９分■複数路線利用可能■陽当たり良好■リフォーム完了",
+        "price_jpy": 57990000,
+        "room_type": "2LDK",
+        "area_sqm": 45.36,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21292134/"
+      },
+      "property_b": {
+        "name": "◆【全室リフォーム済】ぜひ現地にてきれいな住まいをご覧ください。",
+        "price_jpy": 57990000,
+        "room_type": "2LDK",
+        "area_sqm": 52.58,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21511146/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "赤坂９（乃木坂駅） 7000万円",
+        "price_jpy": 70000000,
+        "room_type": "1K",
+        "area_sqm": 46.38,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21638562/"
+      },
+      "property_b": {
+        "name": "「勝どき駅」徒歩10分。銀座を身近に、晴海運河の開放感を楽しむ都心暮らし",
+        "price_jpy": 70000000,
+        "room_type": "1LDK",
+        "area_sqm": 42.9,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21644237/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
