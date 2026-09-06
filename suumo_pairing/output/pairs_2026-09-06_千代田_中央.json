@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-09-06",
+  "area_pair_used": "千代田区-中央区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "◆現在空室◆最寄り駅から徒歩２分、８駅１０路線のマルチアクセス",
+        "price_jpy": 39800000,
+        "room_type": "1K",
+        "area_sqm": 25.98,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21457575/"
+      },
+      "property_b": {
+        "name": "◆◆本日「空き」あり◆◆駅チカ5分♪上質な街並みと優れた交通利便性を満喫",
+        "price_jpy": 39800000,
+        "room_type": "1K",
+        "area_sqm": 26.28,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21643920/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "◆現在空室◆最寄り駅から徒歩２分、８駅１０路線のマルチアクセス",
+        "price_jpy": 39800000,
+        "room_type": "1K",
+        "area_sqm": 25.98,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21457575/"
+      },
+      "property_b": {
+        "name": "室内クリーニング済。セカンドハウス、投資用にも対応。",
+        "price_jpy": 39800000,
+        "room_type": "1K",
+        "area_sqm": 28.83,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21570313/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "飯田橋駅徒歩2分。千代田区アドレス×ルーフバルコニー×新規リノベーション済",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21285423/"
+      },
+      "property_b": {
+        "name": "～新規リノベーション物件（令和8年9月下旬完成予定）～",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.64,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21254602/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【即内見可・定休日無し】◇新規リノベーション◆広々ルーフバルコニー",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21561558/"
+      },
+      "property_b": {
+        "name": "～新規リノベーション物件（令和8年9月下旬完成予定）～",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.64,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21254602/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【即内見可・定休日無し】◇新規リノベーション◆広々ルーフバルコニー",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21561558/"
+      },
+      "property_b": {
+        "name": "〈購入者特典〉弊社から当物件のご成約でアフターサービス最長10年に！",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 48.25,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21322800/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■【都心好立地×南東向きルーバル付×事務所利用可能×千代田区アドレス♪】■",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21631229/"
+      },
+      "property_b": {
+        "name": "～新規リノベーション物件（令和8年9月下旬完成予定）～",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.64,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21254602/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■【都心好立地×南東向きルーバル付×事務所利用可能×千代田区アドレス♪】■",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21631229/"
+      },
+      "property_b": {
+        "name": "〈購入者特典〉弊社から当物件のご成約でアフターサービス最長10年に！",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 48.25,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21322800/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "外神田３（末広町駅） 5780万円",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 33.01,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_20931101/"
+      },
+      "property_b": {
+        "name": "～新規リノベーション物件（令和8年9月下旬完成予定）～",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.64,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21254602/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "◆◆本日「空き」あり！◆◆駅チカ2分　ルーバル付きリノベ空間",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21598594/"
+      },
+      "property_b": {
+        "name": "～新規リノベーション物件（令和8年9月下旬完成予定）～",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.64,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21254602/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "◆◆本日「空き」あり！◆◆駅チカ2分　ルーバル付きリノベ空間",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21598594/"
+      },
+      "property_b": {
+        "name": "〈購入者特典〉弊社から当物件のご成約でアフターサービス最長10年に！",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 48.25,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21322800/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
