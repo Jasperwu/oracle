@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-09-09",
+  "area_pair_used": "新宿区-豊島区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■駅徒歩4分の好立地■内装リノベーション実施■ペット飼育可（細則有り）",
+        "price_jpy": 31990000,
+        "room_type": "1DK",
+        "area_sqm": 42.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21553022/"
+      },
+      "property_b": {
+        "name": "【南向き５階】椎名町駅徒歩８分×耐震改修済！新規デザインリフォーム２ＬＤＫ",
+        "price_jpy": 31980000,
+        "room_type": "2LDK",
+        "area_sqm": 45.56,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21118532/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■駅徒歩4分の好立地■内装リノベーション実施■ペット飼育可（細則有り）",
+        "price_jpy": 31990000,
+        "room_type": "1DK",
+        "area_sqm": 42.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21553022/"
+      },
+      "property_b": {
+        "name": "≪当日内見予約可能≫南向き陽光溢れる絶品空間！洗練のデザインリノベ",
+        "price_jpy": 31980000,
+        "room_type": "2LDK",
+        "area_sqm": 45.56,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21462459/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■駅徒歩4分の好立地■内装リノベーション実施■ペット飼育可（細則有り）",
+        "price_jpy": 31990000,
+        "room_type": "1DK",
+        "area_sqm": 42.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21553022/"
+      },
+      "property_b": {
+        "name": "【新規内装デザインリフォーム】椎名町歩8、耐震改修工事実施済み！",
+        "price_jpy": 31980000,
+        "room_type": "2LDK",
+        "area_sqm": 45.56,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21219668/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■駅徒歩4分の好立地■内装リノベーション実施■ペット飼育可（細則有り）",
+        "price_jpy": 31990000,
+        "room_type": "1DK",
+        "area_sqm": 42.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21553022/"
+      },
+      "property_b": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 31980000,
+        "room_type": "2LDK",
+        "area_sqm": 45.56,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21408029/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■駅徒歩4分の好立地■内装リノベーション実施■ペット飼育可（細則有り）",
+        "price_jpy": 31990000,
+        "room_type": "1DK",
+        "area_sqm": 42.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21553022/"
+      },
+      "property_b": {
+        "name": "8/31 リノベーション完成(予定) 案内受付します 資料請求だけでもどうぞ",
+        "price_jpy": 31980000,
+        "room_type": "2LDK",
+        "area_sqm": 45.56,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21023162/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■駅徒歩4分の好立地■内装リノベーション実施■ペット飼育可（細則有り）",
+        "price_jpy": 31990000,
+        "room_type": "1DK",
+        "area_sqm": 42.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21553022/"
+      },
+      "property_b": {
+        "name": "南長崎１（椎名町駅） 3198万円",
+        "price_jpy": 31980000,
+        "room_type": "2LDK",
+        "area_sqm": 45.56,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21404004/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■駅徒歩4分の好立地■内装リノベーション実施■ペット飼育可（細則有り）",
+        "price_jpy": 31990000,
+        "room_type": "1DK",
+        "area_sqm": 42.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21553022/"
+      },
+      "property_b": {
+        "name": "永住無でも金利0.92％！中国語対応可！期間限定サービス有！【諸費用】参照",
+        "price_jpy": 31980000,
+        "room_type": "1LDK",
+        "area_sqm": 45.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21670204/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■駅徒歩4分の好立地■内装リノベーション実施■ペット飼育可（細則有り）",
+        "price_jpy": 31990000,
+        "room_type": "1DK",
+        "area_sqm": 42.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21553022/"
+      },
+      "property_b": {
+        "name": "【9/7更新♪】現地案内のご予約はお電話でのお問合せがスムーズです♪",
+        "price_jpy": 31980000,
+        "room_type": "2LDK",
+        "area_sqm": 45.56,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21516677/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪当日内見予約可能≫家具・エアコン付！公園を望む角部屋で都心暮らしを謳歌",
+        "price_jpy": 31990000,
+        "room_type": "1LDK",
+        "area_sqm": 37.18,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_20949088/"
+      },
+      "property_b": {
+        "name": "永住無でも金利0.92％！中国語対応可！期間限定サービス有！【諸費用】参照",
+        "price_jpy": 31980000,
+        "room_type": "1LDK",
+        "area_sqm": 45.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21670204/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪当日内見予約可能≫家具・エアコン付！公園を望む角部屋で都心暮らしを謳歌",
+        "price_jpy": 31990000,
+        "room_type": "1LDK",
+        "area_sqm": 37.18,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_20949088/"
+      },
+      "property_b": {
+        "name": "【9/7更新♪】現地案内のご予約はお電話でのお問合せがスムーズです♪",
+        "price_jpy": 31980000,
+        "room_type": "2LDK",
+        "area_sqm": 45.56,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21516677/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
