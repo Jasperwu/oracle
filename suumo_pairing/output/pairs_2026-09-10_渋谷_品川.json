@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-09-10",
+  "area_pair_used": "渋谷区-品川区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "最上階・3面採光のお部屋です　「広尾」駅から恵比寿方面へ徒歩7分",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21662664/"
+      },
+      "property_b": {
+        "name": "2駅2路線利用可能な好立地◎南向きバルコニー＆ペアガラス＆エアコン完備",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 42.12,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21419075/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "◇角部屋住戸◇Ｌ字バルコニー駅まで徒歩5分・複数路線利用可",
+        "price_jpy": 44990000,
+        "room_type": "1LDK",
+        "area_sqm": 40.43,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21352271/"
+      },
+      "property_b": {
+        "name": "◇新規リノベ物件・空室のお部屋◇即日見学可能、お気軽にお問合せください",
+        "price_jpy": 44990000,
+        "room_type": "2LDK",
+        "area_sqm": 46.55,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21585583/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "◇角部屋住戸◇Ｌ字バルコニー駅まで徒歩5分・複数路線利用可",
+        "price_jpy": 44990000,
+        "room_type": "1LDK",
+        "area_sqm": 40.43,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21352271/"
+      },
+      "property_b": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 44990000,
+        "room_type": "2LDK",
+        "area_sqm": 46.55,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21582980/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "◇角部屋住戸◇Ｌ字バルコニー駅まで徒歩5分・複数路線利用可",
+        "price_jpy": 44990000,
+        "room_type": "1LDK",
+        "area_sqm": 40.43,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21352271/"
+      },
+      "property_b": {
+        "name": "■6階部分・南西向き角住戸につき採光良好！■内装リノベーションで設備一新",
+        "price_jpy": 44990000,
+        "room_type": "2LDK",
+        "area_sqm": 46.55,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21605253/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "◇角部屋住戸◇Ｌ字バルコニー駅まで徒歩5分・複数路線利用可",
+        "price_jpy": 44990000,
+        "room_type": "1LDK",
+        "area_sqm": 40.43,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21352271/"
+      },
+      "property_b": {
+        "name": "大森駅より徒歩８分■リフォーム済■食洗機付■ＷＩＣ付き■６階南西角部屋",
+        "price_jpy": 44990000,
+        "room_type": "2LDK",
+        "area_sqm": 46.55,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21606043/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "売主グループ直接販売リノベーション物件!南東向きにつき陽当り良好！",
+        "price_jpy": 46800000,
+        "room_type": "1LDK",
+        "area_sqm": 43.82,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21551334/"
+      },
+      "property_b": {
+        "name": "リフォーム済■ペット飼育可■複数路線利用可「五反田」駅まで徒歩3分■ＷＩＣ",
+        "price_jpy": 46800000,
+        "room_type": "1LDK",
+        "area_sqm": 45.35,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21153469/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「幡ヶ谷駅」徒歩2分　「代々木上原」も徒歩12分　ペット飼育可能です",
+        "price_jpy": 49800000,
+        "room_type": "2LDK",
+        "area_sqm": 42.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21662835/"
+      },
+      "property_b": {
+        "name": "「五反田駅」8分 12.4畳リビングの南西角部屋です ペットＯＫです",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 44.96,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21662760/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「幡ヶ谷駅」徒歩2分　「代々木上原」も徒歩12分　ペット飼育可能です",
+        "price_jpy": 49800000,
+        "room_type": "2LDK",
+        "area_sqm": 42.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21662835/"
+      },
+      "property_b": {
+        "name": "JR五反田駅徒歩5分の新耐震基準マンション",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.17,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_20969429/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「幡ヶ谷駅」徒歩2分　「代々木上原」も徒歩12分　ペット飼育可能です",
+        "price_jpy": 49800000,
+        "room_type": "2LDK",
+        "area_sqm": 42.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21662835/"
+      },
+      "property_b": {
+        "name": "■ 武蔵小山も徒歩圏内！新耐震基準・南東向き角部屋のリノベーション住戸",
+        "price_jpy": 49800000,
+        "room_type": "2LDK",
+        "area_sqm": 44.89,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21407679/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「幡ヶ谷駅」徒歩2分　「代々木上原」も徒歩12分　ペット飼育可能です",
+        "price_jpy": 49800000,
+        "room_type": "2LDK",
+        "area_sqm": 42.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21662835/"
+      },
+      "property_b": {
+        "name": "≪居住中の為事前予約が必要≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 49800000,
+        "room_type": "2LDK",
+        "area_sqm": 45.91,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_20813490/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
