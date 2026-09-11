@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-09-11",
+  "area_pair_used": "港区-世田谷区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「広尾駅」徒歩1分　麻布ガーデンヒルズのすぐ近く！ペットの飼育可能です！",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.31,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21662610/"
+      },
+      "property_b": {
+        "name": "準急停車駅「用賀」南口から徒歩2分　新耐震基準のきれいなマンションです",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 36.4,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21662632/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「広尾駅」徒歩1分　麻布ガーデンヒルズのすぐ近く！ペットの飼育可能です！",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.31,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21662610/"
+      },
+      "property_b": {
+        "name": "■「経堂」駅徒歩1分！■大型ルーフバルコニー付き■内装リフォーム実施",
+        "price_jpy": 39800000,
+        "room_type": "1DK",
+        "area_sqm": 31.65,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21288955/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「広尾駅」徒歩1分　麻布ガーデンヒルズのすぐ近く！ペットの飼育可能です！",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.31,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21662610/"
+      },
+      "property_b": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 36.4,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21626135/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 42800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.88,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21547222/"
+      },
+      "property_b": {
+        "name": "新規リノベーション■南西向き■３階部分■２ＤＫ■Ｌ字型キッチン■２駅利用可",
+        "price_jpy": 42800000,
+        "room_type": "2DK",
+        "area_sqm": 46.62,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21323459/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "―　always ON YOUR SIDE　―穏やかで充実・安心の暮らし",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 33.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20856683/"
+      },
+      "property_b": {
+        "name": "【いまからのご見学可能です】ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21653724/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "◆有栖川公園歩約4分◆麻布十番・広尾・六本木が生活圏◆最上階角住戸",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.34,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21444605/"
+      },
+      "property_b": {
+        "name": "【いまからのご見学可能です】ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21653724/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "５路線３駅利用可能で通勤・通学も快適×２０２２年４月内装リノベーション歴有",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.02,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21305555/"
+      },
+      "property_b": {
+        "name": "■JOURNAL STANDARD FURNITUREの家具付物件■",
+        "price_jpy": 57800000,
+        "room_type": "2LDK",
+        "area_sqm": 44.72,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21543606/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "５路線３駅利用可能で通勤・通学も快適×２０２２年４月内装リノベーション歴有",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.02,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21305555/"
+      },
+      "property_b": {
+        "name": "駅徒歩約３分×池尻アドレス▼２０２５年６月リフォーム実施住戸",
+        "price_jpy": 57800000,
+        "room_type": "2LDK",
+        "area_sqm": 45.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21560664/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "新規リノベーション物件です！即入居可能♪駅まで徒歩2分の立地♪",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 42.88,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20432774/"
+      },
+      "property_b": {
+        "name": "「池尻大橋駅」歩3分　オオゼキも歩4分です　耐震補強工事済で安心の構造です",
+        "price_jpy": 59800000,
+        "room_type": "2LDK",
+        "area_sqm": 45.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21651413/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "新規リノベーション物件です！即入居可能♪駅まで徒歩2分の立地♪",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 42.88,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20432774/"
+      },
+      "property_b": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 59800000,
+        "room_type": "2LDK",
+        "area_sqm": 45.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21637428/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
