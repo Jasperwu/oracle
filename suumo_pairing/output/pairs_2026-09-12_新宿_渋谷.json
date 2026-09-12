@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-09-12",
+  "area_pair_used": "新宿区-渋谷区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 37800000,
+        "room_type": "1LDK",
+        "area_sqm": 45.41,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21631594/"
+      },
+      "property_b": {
+        "name": "ペットとの散歩コースに嬉しい「新宿中央公園」まで徒歩9分です/詳しい資料あり",
+        "price_jpy": 37800000,
+        "room_type": "2DK",
+        "area_sqm": 47.2,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21657819/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 37800000,
+        "room_type": "1LDK",
+        "area_sqm": 45.41,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21631594/"
+      },
+      "property_b": {
+        "name": "本町３（西新宿五丁目駅） 3780万円",
+        "price_jpy": 37800000,
+        "room_type": "2DK",
+        "area_sqm": 47.2,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21059904/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 37800000,
+        "room_type": "1LDK",
+        "area_sqm": 45.41,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21626129/"
+      },
+      "property_b": {
+        "name": "ペットとの散歩コースに嬉しい「新宿中央公園」まで徒歩9分です/詳しい資料あり",
+        "price_jpy": 37800000,
+        "room_type": "2DK",
+        "area_sqm": 47.2,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21657819/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 37800000,
+        "room_type": "1LDK",
+        "area_sqm": 45.41,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21626129/"
+      },
+      "property_b": {
+        "name": "本町３（西新宿五丁目駅） 3780万円",
+        "price_jpy": 37800000,
+        "room_type": "2DK",
+        "area_sqm": 47.2,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21059904/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「西新宿五丁目駅」歩1分 1階にラウンジがあります 12階で富士山も望めます",
+        "price_jpy": 44900000,
+        "room_type": "1DK",
+        "area_sqm": 32.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21662743/"
+      },
+      "property_b": {
+        "name": "「幡ヶ谷駅」徒歩6分 「代々木上原駅」も徒歩圏内！資料請求だけでもどうぞ",
+        "price_jpy": 44900000,
+        "room_type": "1LDK",
+        "area_sqm": 30.1,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21657697/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 44900000,
+        "room_type": "1LDK",
+        "area_sqm": 37.38,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21589750/"
+      },
+      "property_b": {
+        "name": "「幡ヶ谷駅」徒歩6分 「代々木上原駅」も徒歩圏内！資料請求だけでもどうぞ",
+        "price_jpy": 44900000,
+        "room_type": "1LDK",
+        "area_sqm": 30.1,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21657697/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "[5000万以下] 人気の神楽坂に住める！ 詳細資料あり 頭金ゼロOKです",
+        "price_jpy": 49800000,
+        "room_type": "2LDK",
+        "area_sqm": 48.25,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21662693/"
+      },
+      "property_b": {
+        "name": "4階東南角部屋につき日当たり通風良好×総戸数46戸もあり、安心の管理体制",
+        "price_jpy": 49800000,
+        "room_type": "2LDK",
+        "area_sqm": 42.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21400467/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "[5000万以下] 人気の神楽坂に住める！ 詳細資料あり 頭金ゼロOKです",
+        "price_jpy": 49800000,
+        "room_type": "2LDK",
+        "area_sqm": 48.25,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21662693/"
+      },
+      "property_b": {
+        "name": "◆幡ヶ谷駅徒歩２分◆２LDKの南東角部屋◆フルリノベ済みでペット飼育可能◆",
+        "price_jpy": 49800000,
+        "room_type": "2LDK",
+        "area_sqm": 42.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21090742/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.91,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21529516/"
+      },
+      "property_b": {
+        "name": "◆幡ヶ谷駅徒歩２分◆２LDKの南東角部屋◆フルリノベ済みでペット飼育可能◆",
+        "price_jpy": 49800000,
+        "room_type": "2LDK",
+        "area_sqm": 42.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21090742/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「牛込柳町」駅まで徒歩約３分■南向き■陽当たり良好■角住戸■豊富な収納",
+        "price_jpy": 49800000,
+        "room_type": "2LDK",
+        "area_sqm": 48.25,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21330769/"
+      },
+      "property_b": {
+        "name": "◆幡ヶ谷駅徒歩２分◆２LDKの南東角部屋◆フルリノベ済みでペット飼育可能◆",
+        "price_jpy": 49800000,
+        "room_type": "2LDK",
+        "area_sqm": 42.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21090742/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
