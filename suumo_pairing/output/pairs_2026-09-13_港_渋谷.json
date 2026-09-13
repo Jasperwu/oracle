@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-09-13",
+  "area_pair_used": "港区-渋谷区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "◆有栖川公園歩約4分◆麻布十番・広尾・六本木が生活圏◆最上階角住戸",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.34,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21444605/"
+      },
+      "property_b": {
+        "name": "【当日ご見学可能です】竹中工務店施工×内廊下設計×ペットと一緒に×専用庭",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21494445/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "◆有栖川公園歩約4分◆麻布十番・広尾・六本木が生活圏◆最上階角住戸",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.34,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21444605/"
+      },
+      "property_b": {
+        "name": "〈購入者特典〉弊社から当物件のご成約でアフターサービス最長10年に！",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.32,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21581224/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "◆有栖川公園歩約4分◆麻布十番・広尾・六本木が生活圏◆最上階角住戸",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.34,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21444605/"
+      },
+      "property_b": {
+        "name": "―　渋谷徒歩圏 × 神泉3分 × 事務所利用可　―",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 43.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21307356/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 55990000,
+        "room_type": "1LDK",
+        "area_sqm": 38.83,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21378942/"
+      },
+      "property_b": {
+        "name": "≪当日内見予約可能≫奥渋を日常にする贅沢。代々木公園徒歩圏・南東角部屋！",
+        "price_jpy": 55990000,
+        "room_type": "1LDK",
+        "area_sqm": 33.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21622995/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 55990000,
+        "room_type": "1LDK",
+        "area_sqm": 38.83,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21378942/"
+      },
+      "property_b": {
+        "name": "■駅から徒歩１２分■複数路線利用可■「渋谷エリア」が生活圏",
+        "price_jpy": 55990000,
+        "room_type": "1LDK",
+        "area_sqm": 33.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_20318492/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "５路線３駅利用可能で通勤・通学も快適×２０２２年４月内装リノベーション歴有",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.02,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21305555/"
+      },
+      "property_b": {
+        "name": "◆第２エビスハイツ◆恵比寿駅4分◆フルリノベーション◆ホテルライクな内装",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 48.52,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_78457345/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "～当日ご案内可～◇頭金0円からのご提案◇駅１分◇希少立地、現況販売！",
+        "price_jpy": 74800000,
+        "room_type": "1LDK",
+        "area_sqm": 43.15,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21653059/"
+      },
+      "property_b": {
+        "name": "渋谷区西新宿エリア近接駅徒歩5分利便性と住み心地を両立した都心1LDK",
+        "price_jpy": 74800000,
+        "room_type": "1LDK",
+        "area_sqm": 47.28,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21190608/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 75800000,
+        "room_type": "1LDK",
+        "area_sqm": 52.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21394282/"
+      },
+      "property_b": {
+        "name": "～戸建て感覚の専用庭を備えた開放的なプライベート住空間～　◇新耐震基準◇",
+        "price_jpy": 75800000,
+        "room_type": "1LDK",
+        "area_sqm": 52.15,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21148865/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "【即日内覧予約可！】売主グループ直接販売リノベ物件/専用庭付き角部屋",
+        "price_jpy": 75980000,
+        "room_type": "2LDK",
+        "area_sqm": 51.84,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21257397/"
+      },
+      "property_b": {
+        "name": "2023年フルリノヴェーション完了ゆとりを感じる1LDK＋W.I.C",
+        "price_jpy": 76000000,
+        "room_type": "1LDK",
+        "area_sqm": 48.53,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21616067/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "「白金台」駅歩2分　プラチナ通りを抜けると目黒駅まで８分港区白金台アドレス",
+        "price_jpy": 75990000,
+        "room_type": "1LDK",
+        "area_sqm": 44.16,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21700891/"
+      },
+      "property_b": {
+        "name": "2023年フルリノヴェーション完了ゆとりを感じる1LDK＋W.I.C",
+        "price_jpy": 76000000,
+        "room_type": "1LDK",
+        "area_sqm": 48.53,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21616067/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
