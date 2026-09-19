@@ -1,0 +1,191 @@
+{
+  "run_date": "2026-09-19",
+  "area_pair_used": "渋谷区-杉並区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [
+    "insufficient_candidates"
+  ],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【幡ヶ谷駅】徒歩4分 目の前に緑道があり、駅近でありながら緑豊かな住環境",
+        "price_jpy": 37800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.1,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21701311/"
+      },
+      "property_b": {
+        "name": "耐震補強工事実施済み（耐震基準適合）×リノベーション×ペット飼育可能",
+        "price_jpy": 37800000,
+        "room_type": "1LDK",
+        "area_sqm": 29.37,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_21695882/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "ペットとの散歩コースに嬉しい「新宿中央公園」まで徒歩9分です/詳しい資料あり",
+        "price_jpy": 37800000,
+        "room_type": "2DK",
+        "area_sqm": 47.2,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21700950/"
+      },
+      "property_b": {
+        "name": "【3780万円/久我山駅徒歩2分】水回り新調の快適な住空間で始める新生活",
+        "price_jpy": 37800000,
+        "room_type": "2DK",
+        "area_sqm": 46.17,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_21706827/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "ペットとの散歩コースに嬉しい「新宿中央公園」まで徒歩9分です/詳しい資料あり",
+        "price_jpy": 37800000,
+        "room_type": "2DK",
+        "area_sqm": 47.2,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21700950/"
+      },
+      "property_b": {
+        "name": "◆◆本日「空き」あり！◆◆久我山2分！渋谷・吉祥寺へ直結の南向き2DK",
+        "price_jpy": 37800000,
+        "room_type": "2DK",
+        "area_sqm": 46.17,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_21739677/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "本町３（西新宿五丁目駅） 3780万円",
+        "price_jpy": 37800000,
+        "room_type": "2DK",
+        "area_sqm": 47.2,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21059904/"
+      },
+      "property_b": {
+        "name": "【3780万円/久我山駅徒歩2分】水回り新調の快適な住空間で始める新生活",
+        "price_jpy": 37800000,
+        "room_type": "2DK",
+        "area_sqm": 46.17,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_21706827/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "本町３（西新宿五丁目駅） 3780万円",
+        "price_jpy": 37800000,
+        "room_type": "2DK",
+        "area_sqm": 47.2,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21059904/"
+      },
+      "property_b": {
+        "name": "◆◆本日「空き」あり！◆◆久我山2分！渋谷・吉祥寺へ直結の南向き2DK",
+        "price_jpy": 37800000,
+        "room_type": "2DK",
+        "area_sqm": 46.17,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_21739677/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "代々木八幡駅徒歩１１分■最上階角部屋■眺望良好■代々木公園まで徒歩１３分",
+        "price_jpy": 40000000,
+        "room_type": "2LDK",
+        "area_sqm": 59.59,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21039913/"
+      },
+      "property_b": {
+        "name": "1973年築。窓の外は、今日です。",
+        "price_jpy": 39990000,
+        "room_type": "2LDK",
+        "area_sqm": 57.97,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_21540132/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "代々木八幡駅徒歩１１分■最上階角部屋■眺望良好■代々木公園まで徒歩１３分",
+        "price_jpy": 40000000,
+        "room_type": "2LDK",
+        "area_sqm": 59.59,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21039913/"
+      },
+      "property_b": {
+        "name": "■売主グループ会社につき優先案内可能■内覧予約の方に限定資料さしあげます",
+        "price_jpy": 39990000,
+        "room_type": "2LDK",
+        "area_sqm": 57.97,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_21310913/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "売主物件◆新規リノベーション◆地下室付きの1LDK",
+        "price_jpy": 42980000,
+        "room_type": "1LDK",
+        "area_sqm": 34.23,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21613869/"
+      },
+      "property_b": {
+        "name": "■三井のリハウス■10階・南向き、陽当り・眺望良好スーパーまで徒歩4分",
+        "price_jpy": 42980000,
+        "room_type": "1LDK",
+        "area_sqm": 35.64,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_21411548/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【当日ご見学可能】南東向き×フルリノベ×日常に寄り添う商店街も身近に",
+        "price_jpy": 47800000,
+        "room_type": "2LDK",
+        "area_sqm": 48.6,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_20014649/"
+      },
+      "property_b": {
+        "name": "【当日ご見学可能です】南向き×ペットと一緒に×丸の内線始発×閑静な住宅街",
+        "price_jpy": 47800000,
+        "room_type": "2LDK",
+        "area_sqm": 48.07,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_21282711/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "幡ヶ谷駅徒歩8分■リフォーム済み■安心のオートロック■新宿へアクセス良好",
+        "price_jpy": 47800000,
+        "room_type": "2LDK",
+        "area_sqm": 48.6,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_79009458/"
+      },
+      "property_b": {
+        "name": "【当日ご見学可能です】南向き×ペットと一緒に×丸の内線始発×閑静な住宅街",
+        "price_jpy": 47800000,
+        "room_type": "2LDK",
+        "area_sqm": 48.07,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_21282711/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
