@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-09-21",
+  "area_pair_used": "千代田区-中央区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "◆◆本日「空き」あり！◆◆駅チカ2分　ルーバル付きリノベ空間",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21706740/"
+      },
+      "property_b": {
+        "name": "～新規リノベーション物件（令和8年9月下旬完成）～",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.64,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21254602/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "◆◆本日「空き」あり！◆◆駅チカ2分　ルーバル付きリノベ空間",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21706740/"
+      },
+      "property_b": {
+        "name": "〈購入者特典〉弊社から当物件のご成約でアフターサービス最長10年に！",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 48.25,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21322800/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■飯田橋アドレス■事務所利用可■バルコニー約9.7帖ぶん■リノベーション",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21196203/"
+      },
+      "property_b": {
+        "name": "～新規リノベーション物件（令和8年9月下旬完成）～",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.64,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21254602/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■飯田橋アドレス■事務所利用可■バルコニー約9.7帖ぶん■リノベーション",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21196203/"
+      },
+      "property_b": {
+        "name": "〈購入者特典〉弊社から当物件のご成約でアフターサービス最長10年に！",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 48.25,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21322800/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "神田神保町２（神保町駅） 3980万円",
+        "price_jpy": 39800000,
+        "room_type": "ワンルーム",
+        "area_sqm": 30.87,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21686230/"
+      },
+      "property_b": {
+        "name": "【当社売主】-水天宮前徒歩1分、その一歩が都心を自在にする。-",
+        "price_jpy": 39800000,
+        "room_type": "ワンルーム",
+        "area_sqm": 29.28,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21667427/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「飯田橋駅」歩2分 15.8㎡のルーフバルコニー付き 資料請求だけでもどうぞ",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21383423/"
+      },
+      "property_b": {
+        "name": "～新規リノベーション物件（令和8年9月下旬完成）～",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.64,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21254602/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「飯田橋駅」歩2分 15.8㎡のルーフバルコニー付き 資料請求だけでもどうぞ",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21383423/"
+      },
+      "property_b": {
+        "name": "〈購入者特典〉弊社から当物件のご成約でアフターサービス最長10年に！",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 48.25,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21322800/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "飯田橋２（飯田橋駅） 5780万円",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.74,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21740503/"
+      },
+      "property_b": {
+        "name": "～新規リノベーション物件（令和8年9月下旬完成）～",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.64,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21254602/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "飯田橋２（飯田橋駅） 5780万円",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.74,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21740503/"
+      },
+      "property_b": {
+        "name": "〈購入者特典〉弊社から当物件のご成約でアフターサービス最長10年に！",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 48.25,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21322800/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "～８階部分×南東向き×１LDK～■東京メトロ東西線「飯田橋」駅徒歩２分",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21367194/"
+      },
+      "property_b": {
+        "name": "～新規リノベーション物件（令和8年9月下旬完成）～",
+        "price_jpy": 57800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.64,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21254602/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
