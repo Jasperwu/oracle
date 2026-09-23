@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-09-23",
+  "area_pair_used": "港区-品川区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「広尾駅」徒歩1分　麻布ガーデンヒルズのすぐ近く！ペットの飼育可能です！",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.31,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21762979/"
+      },
+      "property_b": {
+        "name": "【　シャンボール第2南品川　】最寄り駅徒歩2分の好立地！南向きのリノベ住戸",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 36.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21737437/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「広尾駅」徒歩1分　麻布ガーデンヒルズのすぐ近く！ペットの飼育可能です！",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.31,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21762979/"
+      },
+      "property_b": {
+        "name": "11階建て６階部分南東向き",
+        "price_jpy": 39800000,
+        "room_type": "1DK",
+        "area_sqm": 32.54,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21724266/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "－３駅５路線利用可能×４階角住戸－",
+        "price_jpy": 39900000,
+        "room_type": "2DK",
+        "area_sqm": 36.67,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21720116/"
+      },
+      "property_b": {
+        "name": "令和6年1月リフォーム済み御殿山に佇むヴィンテージマンション",
+        "price_jpy": 39900000,
+        "room_type": "1LDK",
+        "area_sqm": 43.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21693896/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■内装一部リフォーム実施■角住戸につき通風良好、二面バルコニー付き",
+        "price_jpy": 48800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.08,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20754829/"
+      },
+      "property_b": {
+        "name": "JR五反田駅徒歩5分の新耐震基準マンション",
+        "price_jpy": 48800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.17,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_20969429/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "4駅5路線利用可能×リノベーション物件",
+        "price_jpy": 49800000,
+        "room_type": "1DK",
+        "area_sqm": 26.68,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21237723/"
+      },
+      "property_b": {
+        "name": "■山手線「五反田」駅徒歩9分■南向き角住戸■内装リノベーション実施",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 33.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21671696/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "◆有栖川公園歩約4分◆麻布十番・広尾・六本木が生活圏◆最上階角住戸",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.34,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21444605/"
+      },
+      "property_b": {
+        "name": "「北品川駅」徒歩5分　独立性の高い上階住戸無しのお部屋です　ペットもOKです",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 45.14,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21767863/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "◆5階南向きにつき日照・眺望良好　◆リフォーム履歴有（2024年3月上旬）",
+        "price_jpy": 56800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21308252/"
+      },
+      "property_b": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 56800000,
+        "room_type": "1LDK",
+        "area_sqm": 45.36,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21679183/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "新規リノベーション物件です！即入居可能♪駅まで徒歩2分の立地♪",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 42.88,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20432774/"
+      },
+      "property_b": {
+        "name": "≪本日見学出来ます≫品川駅も徒歩圏、ペットと暮らせる上質リノベ住戸。",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 42.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21670340/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "新規リノベーション物件です！即入居可能♪駅まで徒歩2分の立地♪",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 42.88,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20432774/"
+      },
+      "property_b": {
+        "name": "◇即入居◎◇月々のお支払い１７万円台～◇２LDK◇住宅ローン控除利用可！",
+        "price_jpy": 59800000,
+        "room_type": "2LDK",
+        "area_sqm": 44.82,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21735800/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "新規リノベーション物件です！即入居可能♪駅まで徒歩2分の立地♪",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 42.88,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20432774/"
+      },
+      "property_b": {
+        "name": "●多路線利用可能な好立地！通勤、通学便利です！●リフォーム済！即入居可！",
+        "price_jpy": 59800000,
+        "room_type": "2LDK",
+        "area_sqm": 44.82,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21346367/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
