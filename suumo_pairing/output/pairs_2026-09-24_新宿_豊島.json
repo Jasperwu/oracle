@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-09-24",
+  "area_pair_used": "新宿区-豊島区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "山手線「高田馬場駅」まで徒歩9分です　神田川沿いの閑静な住環境",
+        "price_jpy": 31800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.59,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21762977/"
+      },
+      "property_b": {
+        "name": "巣鴨４（巣鴨駅） 3180万円",
+        "price_jpy": 31800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.82,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21363309/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "大久保・新大久保駅徒歩4分!大久保通りにはドンキや業スーなど生活委環境充実!",
+        "price_jpy": 31990000,
+        "room_type": "1DK",
+        "area_sqm": 42.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21734612/"
+      },
+      "property_b": {
+        "name": "【9/21更新♪】現地案内のご予約はお電話でのお問合せがスムーズです♪",
+        "price_jpy": 31980000,
+        "room_type": "2LDK",
+        "area_sqm": 45.56,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21516677/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "ビッグターミナル「新宿」駅から西新宿方面へ徒歩9分　36.50㎡の1DKです",
+        "price_jpy": 33000000,
+        "room_type": "1DK",
+        "area_sqm": 36.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21763143/"
+      },
+      "property_b": {
+        "name": "山手線「大塚駅」北口から徒歩3分、5階部分の角部屋でペット飼育も可能です",
+        "price_jpy": 33000000,
+        "room_type": "2DK",
+        "area_sqm": 36.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21763227/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "ビッグターミナル「新宿」駅から西新宿方面へ徒歩9分　36.50㎡の1DKです",
+        "price_jpy": 33000000,
+        "room_type": "1DK",
+        "area_sqm": 36.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21763143/"
+      },
+      "property_b": {
+        "name": "◆当日案内OK◇即入居可◆月々お支払９万４０００円～◇駅徒歩３分◇リノベ済",
+        "price_jpy": 33000000,
+        "room_type": "2DK",
+        "area_sqm": 36.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21726744/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "ビッグターミナル「新宿」駅から西新宿方面へ徒歩9分　36.50㎡の1DKです",
+        "price_jpy": 33000000,
+        "room_type": "1DK",
+        "area_sqm": 36.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21763143/"
+      },
+      "property_b": {
+        "name": "～当日ご案内可～◇頭金0円からのご提案◇角部屋、５階◇ペット可、リノベ済！",
+        "price_jpy": 33000000,
+        "room_type": "2DK",
+        "area_sqm": 36.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21764167/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "ビッグターミナル「新宿」駅から西新宿方面へ徒歩9分　36.50㎡の1DKです",
+        "price_jpy": 33000000,
+        "room_type": "1DK",
+        "area_sqm": 36.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21763143/"
+      },
+      "property_b": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 33000000,
+        "room_type": "2DK",
+        "area_sqm": 36.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21311190/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "ビッグターミナル「新宿」駅から西新宿方面へ徒歩9分　36.50㎡の1DKです",
+        "price_jpy": 33000000,
+        "room_type": "1DK",
+        "area_sqm": 36.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21763143/"
+      },
+      "property_b": {
+        "name": "中国語＆英語対応可！頭金0で購入可！期間限定サービス有！詳細【諸費用】参照",
+        "price_jpy": 33000000,
+        "room_type": "2DK",
+        "area_sqm": 36.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21768161/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "ビッグターミナル「新宿」駅から西新宿方面へ徒歩9分　36.50㎡の1DKです",
+        "price_jpy": 33000000,
+        "room_type": "1DK",
+        "area_sqm": 36.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21763143/"
+      },
+      "property_b": {
+        "name": "北大塚２（大塚駅） 3300万円",
+        "price_jpy": 33000000,
+        "room_type": "2DK",
+        "area_sqm": 36.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21153650/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "ビッグターミナル「新宿」駅から西新宿方面へ徒歩9分　36.50㎡の1DKです",
+        "price_jpy": 33000000,
+        "room_type": "1DK",
+        "area_sqm": 36.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21763143/"
+      },
+      "property_b": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 33000000,
+        "room_type": "1DK",
+        "area_sqm": 34.01,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21408012/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "ビッグターミナル「新宿」駅から西新宿方面へ徒歩9分　36.50㎡の1DKです",
+        "price_jpy": 33000000,
+        "room_type": "1DK",
+        "area_sqm": 36.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21763143/"
+      },
+      "property_b": {
+        "name": "～豊島区北大塚～複数路線利用可能！通風良好で暮らしやすい間取り",
+        "price_jpy": 33000000,
+        "room_type": "2DK",
+        "area_sqm": 34.01,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_20670046/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
