@@ -1,0 +1,191 @@
+{
+  "run_date": "2026-09-26",
+  "area_pair_used": "港区-世田谷区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [
+    "insufficient_candidates"
+  ],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「広尾駅」徒歩1分　麻布ガーデンヒルズのすぐ近く！ペットの飼育可能です！",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.31,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21762979/"
+      },
+      "property_b": {
+        "name": "■「経堂」駅徒歩1分！■大型ルーフバルコニー付き■内装リフォーム実施",
+        "price_jpy": 39800000,
+        "room_type": "1DK",
+        "area_sqm": 31.65,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21288955/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「広尾駅」徒歩1分　麻布ガーデンヒルズのすぐ近く！ペットの飼育可能です！",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.31,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21762979/"
+      },
+      "property_b": {
+        "name": "経堂1分。部屋の外にも16㎡あります。",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 31.65,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21244541/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■南向きの大型専用庭付き■一部リフォーム実施済■ペット飼育可（細則有）",
+        "price_jpy": 44800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21106928/"
+      },
+      "property_b": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 44800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.96,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21714273/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■南向きの大型専用庭付き■一部リフォーム実施済■ペット飼育可（細則有）",
+        "price_jpy": 44800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21106928/"
+      },
+      "property_b": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 44800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.96,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21707791/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■南向きの大型専用庭付き■一部リフォーム実施済■ペット飼育可（細則有）",
+        "price_jpy": 44800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21106928/"
+      },
+      "property_b": {
+        "name": "【「ペット可」だけで終わらせない開放感】6階南向きで光あふれる1LDK！",
+        "price_jpy": 44800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.96,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21743201/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■南向きの大型専用庭付き■一部リフォーム実施済■ペット飼育可（細則有）",
+        "price_jpy": 44800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21106928/"
+      },
+      "property_b": {
+        "name": "■6階部分南西向きにつき採光良好■内装リノベーション済み■ペット飼育可",
+        "price_jpy": 44800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.96,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21724540/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「白金高輪」10分　三面採光の1LDKです　庭園美術館やプラチナ通りが身近に",
+        "price_jpy": 47800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.08,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21777967/"
+      },
+      "property_b": {
+        "name": "等々力の高台に建つマンション！南向きの明るい角部屋です。",
+        "price_jpy": 47800000,
+        "room_type": "1DK",
+        "area_sqm": 35.42,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21311909/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■内装一部リフォーム実施■角住戸につき通風良好、二面バルコニー付き",
+        "price_jpy": 47800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.08,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20754829/"
+      },
+      "property_b": {
+        "name": "等々力の高台に建つマンション！南向きの明るい角部屋です。",
+        "price_jpy": 47800000,
+        "room_type": "1DK",
+        "area_sqm": 35.42,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21311909/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "新規リノベーション物件です！即入居可能♪駅まで徒歩2分の立地♪",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 42.88,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20432774/"
+      },
+      "property_b": {
+        "name": "『明大前』駅歩７分　専用テラスでお子様と有意義な時間を過ごせます！",
+        "price_jpy": 59800000,
+        "room_type": "2LDK",
+        "area_sqm": 45.77,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21715228/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "新規リノベーション物件です！即入居可能♪駅まで徒歩2分の立地♪",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 42.88,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20432774/"
+      },
+      "property_b": {
+        "name": "≪当日内見予約可能≫エキチカ！あたたかな陽射しに包まれる2LDKの角部屋",
+        "price_jpy": 59800000,
+        "room_type": "2LDK",
+        "area_sqm": 45.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21697526/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
