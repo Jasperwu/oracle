@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-10-02",
+  "area_pair_used": "港区-目黒区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "8階角部屋のペットが飼えるお部屋です　山手線「田町駅」まで徒歩10分の立地",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.34,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21817742/"
+      },
+      "property_b": {
+        "name": "■2025年4月内装リノベーション実施済■室内コンディション良好です！",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.1,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21512156/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "8階角部屋のペットが飼えるお部屋です　山手線「田町駅」まで徒歩10分の立地",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.34,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21817742/"
+      },
+      "property_b": {
+        "name": "下目黒２（目黒駅） 3680万円",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 47.84,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21707994/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "8階角部屋のペットが飼えるお部屋です　山手線「田町駅」まで徒歩10分の立地",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.34,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21817742/"
+      },
+      "property_b": {
+        "name": "【　チサンマンション祐天寺　】～南東向き明るい住空間～",
+        "price_jpy": 36800000,
+        "room_type": "2DK",
+        "area_sqm": 43.06,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21449209/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "8階角部屋のペットが飼えるお部屋です　山手線「田町駅」まで徒歩10分の立地",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.34,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21817742/"
+      },
+      "property_b": {
+        "name": "中目黒生活圏　2026年5月リフォーム済　収納充実",
+        "price_jpy": 36800000,
+        "room_type": "2DK",
+        "area_sqm": 43.06,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21826928/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "8階角部屋のペットが飼えるお部屋です　山手線「田町駅」まで徒歩10分の立地",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.34,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21817742/"
+      },
+      "property_b": {
+        "name": "【いまからのご見学可能です】ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 36800000,
+        "room_type": "2DK",
+        "area_sqm": 43.06,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21093669/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "－３駅５路線利用可能×４階角住戸－",
+        "price_jpy": 39900000,
+        "room_type": "2DK",
+        "area_sqm": 36.67,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21720116/"
+      },
+      "property_b": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 39900000,
+        "room_type": "1LDK",
+        "area_sqm": 31.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21015510/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "－３駅５路線利用可能×４階角住戸－",
+        "price_jpy": 39900000,
+        "room_type": "2DK",
+        "area_sqm": 36.67,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21720116/"
+      },
+      "property_b": {
+        "name": "■最上階・三方向角住戸につき採光・通風良好！■内装リノベーション実施済み",
+        "price_jpy": 39900000,
+        "room_type": "1LDK",
+        "area_sqm": 31.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21033140/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "－３駅５路線利用可能×４階角住戸－",
+        "price_jpy": 39900000,
+        "room_type": "2DK",
+        "area_sqm": 36.67,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21720116/"
+      },
+      "property_b": {
+        "name": "当日ご見学可能！頭金0円でも安心♪最適プランをご提案２０２５年８月リノベ済",
+        "price_jpy": 39900000,
+        "room_type": "1LDK",
+        "area_sqm": 31.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21808907/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "－３駅５路線利用可能×４階角住戸－",
+        "price_jpy": 39900000,
+        "room_type": "2DK",
+        "area_sqm": 36.67,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21720116/"
+      },
+      "property_b": {
+        "name": "最上階のペントハウス 「目黒」駅から権之助坂沿いを歩いて9分です",
+        "price_jpy": 39900000,
+        "room_type": "1LDK",
+        "area_sqm": 31.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21356517/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "－３駅５路線利用可能×４階角住戸－",
+        "price_jpy": 39900000,
+        "room_type": "2DK",
+        "area_sqm": 36.67,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21720116/"
+      },
+      "property_b": {
+        "name": "◆◆本日「空き」あり！◆◆最上階ペントハウスにペットと暮らせる快適空間",
+        "price_jpy": 39900000,
+        "room_type": "1LDK",
+        "area_sqm": 31.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21793210/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
