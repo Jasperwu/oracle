@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-10-07",
+  "area_pair_used": "千代田区-中央区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "神田神保町２（神保町駅） 3980万円",
+        "price_jpy": 39800000,
+        "room_type": "ワンルーム",
+        "area_sqm": 30.87,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21686230/"
+      },
+      "property_b": {
+        "name": "【当社売主】-水天宮前徒歩1分、その一歩が都心を自在にする。-",
+        "price_jpy": 39800000,
+        "room_type": "ワンルーム",
+        "area_sqm": 29.28,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21819269/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "市ケ谷駅徒歩4分　２駅６路線利用可　４９平米",
+        "price_jpy": 74800000,
+        "room_type": "1LDK",
+        "area_sqm": 49.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21863490/"
+      },
+      "property_b": {
+        "name": "複数路線利用可■水天宮前駅より徒歩約３分■角部屋■開放感有■南東向き",
+        "price_jpy": 74800000,
+        "room_type": "2LDK",
+        "area_sqm": 50.6,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21803577/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "市ケ谷駅徒歩4分　２駅６路線利用可　４９平米",
+        "price_jpy": 74800000,
+        "room_type": "1LDK",
+        "area_sqm": 49.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21863490/"
+      },
+      "property_b": {
+        "name": "【当社売主】利便の中心で、景色に癒される暮らし。",
+        "price_jpy": 74800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.83,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_20812064/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "【神田・神保町】都心の利便性と歴史のある街並み",
+        "price_jpy": 77800000,
+        "room_type": "1LDK",
+        "area_sqm": 43.74,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21674253/"
+      },
+      "property_b": {
+        "name": "【　アクシア日本橋　】エキチカ！隅田川やスカイツリーを望む1LDK角住戸",
+        "price_jpy": 77800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.83,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21573746/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "【神田・神保町】都心の利便性と歴史のある街並み",
+        "price_jpy": 77800000,
+        "room_type": "1LDK",
+        "area_sqm": 43.74,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21674253/"
+      },
+      "property_b": {
+        "name": "■使い勝手のよい約50m2の2LDK！■南東向きで陽当り・通風良好！",
+        "price_jpy": 77800000,
+        "room_type": "2LDK",
+        "area_sqm": 50.01,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21282290/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "【南西・北西採光面の角住戸】【複数路線利用可】",
+        "price_jpy": 79800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.4,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21233449/"
+      },
+      "property_b": {
+        "name": "12階建ての11階部分専有面積43.46平米　2DK",
+        "price_jpy": 79800000,
+        "room_type": "2DK",
+        "area_sqm": 43.46,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21690451/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "【南西・北西採光面の角住戸】【複数路線利用可】",
+        "price_jpy": 79800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.4,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21233449/"
+      },
+      "property_b": {
+        "name": "◇室内クリーニング実施済◇ペット飼育可能（細則有）◇電気式床暖房",
+        "price_jpy": 79800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.17,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21259080/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "【南西・北西採光面の角住戸】【複数路線利用可】",
+        "price_jpy": 79800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.4,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21233449/"
+      },
+      "property_b": {
+        "name": "～新規リノベーション物件（2026年7月上旬完成）～",
+        "price_jpy": 79800000,
+        "room_type": "1LDK",
+        "area_sqm": 42.18,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21178589/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "【南西・北西採光面の角住戸】【複数路線利用可】",
+        "price_jpy": 79800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.4,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21233449/"
+      },
+      "property_b": {
+        "name": "◇大和ハウス工業(株)既分譲プレミストシリーズ◇南向き・大規模修繕工事実施済",
+        "price_jpy": 79800000,
+        "room_type": "1LDK",
+        "area_sqm": 41.51,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_20669624/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "「神田」駅徒歩2分×2012年築・南向き角部屋×最上階",
+        "price_jpy": 79800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.99,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21552600/"
+      },
+      "property_b": {
+        "name": "12階建ての11階部分専有面積43.46平米　2DK",
+        "price_jpy": 79800000,
+        "room_type": "2DK",
+        "area_sqm": 43.46,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21690451/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
