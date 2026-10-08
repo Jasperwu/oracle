@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-10-08",
+  "area_pair_used": "品川区-目黒区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "京浜東北線「大森」駅まで徒歩６分、京浜急行線「大森海岸」駅まで徒歩４分",
+        "price_jpy": 36800000,
+        "room_type": "2DK",
+        "area_sqm": 44.91,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21777777/"
+      },
+      "property_b": {
+        "name": "■2025年4月内装リノベーション実施済■室内コンディション良好です！",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.1,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21512156/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "京浜東北線「大森」駅まで徒歩６分、京浜急行線「大森海岸」駅まで徒歩４分",
+        "price_jpy": 36800000,
+        "room_type": "2DK",
+        "area_sqm": 44.91,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21777777/"
+      },
+      "property_b": {
+        "name": "【　チサンマンション祐天寺　】～南東向き明るい住空間～",
+        "price_jpy": 36800000,
+        "room_type": "2DK",
+        "area_sqm": 43.06,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21449209/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "京浜東北線「大森」駅まで徒歩６分、京浜急行線「大森海岸」駅まで徒歩４分",
+        "price_jpy": 36800000,
+        "room_type": "2DK",
+        "area_sqm": 44.91,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21777777/"
+      },
+      "property_b": {
+        "name": "【いまからのご見学可能です】ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 36800000,
+        "room_type": "2DK",
+        "area_sqm": 43.06,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21093669/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "京浜東北線「大森」駅まで徒歩６分、京浜急行線「大森海岸」駅まで徒歩４分",
+        "price_jpy": 36800000,
+        "room_type": "2DK",
+        "area_sqm": 44.91,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21777777/"
+      },
+      "property_b": {
+        "name": "中目黒生活圏　2026年5月リフォーム済　収納充実",
+        "price_jpy": 36800000,
+        "room_type": "2DK",
+        "area_sqm": 43.06,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21826928/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "京浜東北線「大森」駅まで徒歩６分、京浜急行線「大森海岸」駅まで徒歩４分",
+        "price_jpy": 36800000,
+        "room_type": "2DK",
+        "area_sqm": 44.91,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21777777/"
+      },
+      "property_b": {
+        "name": "下目黒２（目黒駅） 3680万円",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 47.84,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21707994/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "大森海岸駅徒歩４分■陽当たり良好■１階部分２ＬＤＫ■専用庭付き",
+        "price_jpy": 36800000,
+        "room_type": "2LDK",
+        "area_sqm": 42.33,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21855066/"
+      },
+      "property_b": {
+        "name": "■2025年4月内装リノベーション実施済■室内コンディション良好です！",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.1,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21512156/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "大森海岸駅徒歩４分■陽当たり良好■１階部分２ＬＤＫ■専用庭付き",
+        "price_jpy": 36800000,
+        "room_type": "2LDK",
+        "area_sqm": 42.33,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21855066/"
+      },
+      "property_b": {
+        "name": "【　チサンマンション祐天寺　】～南東向き明るい住空間～",
+        "price_jpy": 36800000,
+        "room_type": "2DK",
+        "area_sqm": 43.06,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21449209/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "大森海岸駅徒歩４分■陽当たり良好■１階部分２ＬＤＫ■専用庭付き",
+        "price_jpy": 36800000,
+        "room_type": "2LDK",
+        "area_sqm": 42.33,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21855066/"
+      },
+      "property_b": {
+        "name": "【いまからのご見学可能です】ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 36800000,
+        "room_type": "2DK",
+        "area_sqm": 43.06,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21093669/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "大森海岸駅徒歩４分■陽当たり良好■１階部分２ＬＤＫ■専用庭付き",
+        "price_jpy": 36800000,
+        "room_type": "2LDK",
+        "area_sqm": 42.33,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21855066/"
+      },
+      "property_b": {
+        "name": "中目黒生活圏　2026年5月リフォーム済　収納充実",
+        "price_jpy": 36800000,
+        "room_type": "2DK",
+        "area_sqm": 43.06,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21826928/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "大森海岸駅徒歩４分■陽当たり良好■１階部分２ＬＤＫ■専用庭付き",
+        "price_jpy": 36800000,
+        "room_type": "2LDK",
+        "area_sqm": 42.33,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21855066/"
+      },
+      "property_b": {
+        "name": "下目黒２（目黒駅） 3680万円",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 47.84,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21707994/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
