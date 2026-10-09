@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-10-09",
+  "area_pair_used": "港区-品川区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■内装一部リフォーム実施■角住戸につき通風良好、二面バルコニー付き",
+        "price_jpy": 47800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.08,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20754829/"
+      },
+      "property_b": {
+        "name": "■■■　三連休も即！見学！　■■■【金利に差がつく！】頭金ゼロ可／50年可",
+        "price_jpy": 47800000,
+        "room_type": "1LDK",
+        "area_sqm": 36.99,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21847345/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■内装一部リフォーム実施■角住戸につき通風良好、二面バルコニー付き",
+        "price_jpy": 47800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.08,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20754829/"
+      },
+      "property_b": {
+        "name": "【当日ご見学可能】角部屋×新規リノベ×駅チカ3分×目の前に桜並木のある生活",
+        "price_jpy": 47800000,
+        "room_type": "1LDK",
+        "area_sqm": 36.99,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21880033/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■内装一部リフォーム実施■角住戸につき通風良好、二面バルコニー付き",
+        "price_jpy": 47800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.08,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20754829/"
+      },
+      "property_b": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 47800000,
+        "room_type": "1LDK",
+        "area_sqm": 36.99,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21855843/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「麻布十番駅」徒歩３分■リフォーム工事済■長期修繕計画案あり■宅配ボックス",
+        "price_jpy": 47800000,
+        "room_type": "1LDK",
+        "area_sqm": 36.23,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21802696/"
+      },
+      "property_b": {
+        "name": "■■■　三連休も即！見学！　■■■【金利に差がつく！】頭金ゼロ可／50年可",
+        "price_jpy": 47800000,
+        "room_type": "1LDK",
+        "area_sqm": 36.99,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21847345/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「麻布十番駅」徒歩３分■リフォーム工事済■長期修繕計画案あり■宅配ボックス",
+        "price_jpy": 47800000,
+        "room_type": "1LDK",
+        "area_sqm": 36.23,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21802696/"
+      },
+      "property_b": {
+        "name": "【当日ご見学可能】角部屋×新規リノベ×駅チカ3分×目の前に桜並木のある生活",
+        "price_jpy": 47800000,
+        "room_type": "1LDK",
+        "area_sqm": 36.99,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21880033/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「麻布十番駅」徒歩３分■リフォーム工事済■長期修繕計画案あり■宅配ボックス",
+        "price_jpy": 47800000,
+        "room_type": "1LDK",
+        "area_sqm": 36.23,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21802696/"
+      },
+      "property_b": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 47800000,
+        "room_type": "1LDK",
+        "area_sqm": 36.99,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21855843/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■三井のリハウス■8階、採光・通風良好2026年9月室内リフォーム済",
+        "price_jpy": 48800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21796386/"
+      },
+      "property_b": {
+        "name": "●1983年9月築　新耐震基準マンション",
+        "price_jpy": 48800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.17,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_20969429/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　三連休も即！見学！　■■■【金利に差がつく！】頭金ゼロ可／50年可",
+        "price_jpy": 49800000,
+        "room_type": "1DK",
+        "area_sqm": 26.68,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21832400/"
+      },
+      "property_b": {
+        "name": "「高輪台駅」5分・「五反田駅」も9分　南向きの1LDKです　資料だけでも",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 33.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21875843/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　三連休も即！見学！　■■■【金利に差がつく！】頭金ゼロ可／50年可",
+        "price_jpy": 49800000,
+        "room_type": "1DK",
+        "area_sqm": 26.68,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21832400/"
+      },
+      "property_b": {
+        "name": "【VECS】3駅5路線利用可！五反田・白金台も徒歩圏＆南向き1LDK♪",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 33.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21656550/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【当日ご見学可能】南西向きの角住戸×駅チカ2分×2面採光×新規フルリノベ",
+        "price_jpy": 49800000,
+        "room_type": "1DK",
+        "area_sqm": 26.68,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21854807/"
+      },
+      "property_b": {
+        "name": "「高輪台駅」5分・「五反田駅」も9分　南向きの1LDKです　資料だけでも",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 33.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21875843/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
