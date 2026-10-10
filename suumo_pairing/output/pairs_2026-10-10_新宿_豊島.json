@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-10-10",
+  "area_pair_used": "新宿区-豊島区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "『牛込柳町』駅 5分 公園向きのお部屋 オートロック＆宅配ボックスあり",
+        "price_jpy": 30990000,
+        "room_type": "1LDK",
+        "area_sqm": 37.18,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21876494/"
+      },
+      "property_b": {
+        "name": "山手線「大塚駅」北口から徒歩3分、5階部分の角部屋でペット飼育も可能です",
+        "price_jpy": 31000000,
+        "room_type": "2DK",
+        "area_sqm": 36.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21724095/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "『牛込柳町』駅 5分 公園向きのお部屋 オートロック＆宅配ボックスあり",
+        "price_jpy": 30990000,
+        "room_type": "1LDK",
+        "area_sqm": 37.18,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21876494/"
+      },
+      "property_b": {
+        "name": "中国語＆英語対応可！頭金0で購入可！期間限定サービス有！詳細【諸費用】参照",
+        "price_jpy": 31000000,
+        "room_type": "2DK",
+        "area_sqm": 36.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21883217/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "『牛込柳町』駅 5分 公園向きのお部屋 オートロック＆宅配ボックスあり",
+        "price_jpy": 30990000,
+        "room_type": "1LDK",
+        "area_sqm": 37.18,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21876494/"
+      },
+      "property_b": {
+        "name": "■■■【山手線「大塚駅3分」×5階部分×角部屋住戸×事務所利用可♪】■■■",
+        "price_jpy": 31000000,
+        "room_type": "2DK",
+        "area_sqm": 37.52,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21888015/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "『牛込柳町』駅 5分 公園向きのお部屋 オートロック＆宅配ボックスあり",
+        "price_jpy": 30990000,
+        "room_type": "1LDK",
+        "area_sqm": 37.18,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21876494/"
+      },
+      "property_b": {
+        "name": "■■■　三連休も即！見学！　■■■【金利に差がつく！】頭金ゼロ可／50年可",
+        "price_jpy": 31000000,
+        "room_type": "1DK",
+        "area_sqm": 34.01,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21408012/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "◆見学予約受付中◆東新宿駅、西武新宿駅、大久保駅、新大久保駅利用可能！",
+        "price_jpy": 38800000,
+        "room_type": "1LDK",
+        "area_sqm": 46.51,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_20765366/"
+      },
+      "property_b": {
+        "name": "■■■　三連休も即！見学！　■■■【金利に差がつく！】頭金ゼロ可／50年可",
+        "price_jpy": 38800000,
+        "room_type": "2LDK",
+        "area_sqm": 50.7,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_20630599/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "新生活応援企画。10月末日迄、成約特典。詳細はプレゼント欄をご確認ください！",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.16,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21812118/"
+      },
+      "property_b": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21652854/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "内見無料！送迎無料！FP相談無料！住宅ローン事前審査無料！",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.16,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21802437/"
+      },
+      "property_b": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21652854/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　三連休も即！見学！　■■■【金利に差がつく！】頭金ゼロ可／50年可",
+        "price_jpy": 39990000,
+        "room_type": "1LDK",
+        "area_sqm": 38.61,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21873461/"
+      },
+      "property_b": {
+        "name": "■■■　三連休も即！見学！　■■■【金利に差がつく！】頭金ゼロ可／50年可",
+        "price_jpy": 39980000,
+        "room_type": "1LDK",
+        "area_sqm": 37.85,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_20396753/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "月々8万円台～で新宿区に住まう 新規リノベ×新耐震マンション 即日案内OK!",
+        "price_jpy": 39990000,
+        "room_type": "1LDK",
+        "area_sqm": 38.61,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21870088/"
+      },
+      "property_b": {
+        "name": "■■■　三連休も即！見学！　■■■【金利に差がつく！】頭金ゼロ可／50年可",
+        "price_jpy": 39980000,
+        "room_type": "1LDK",
+        "area_sqm": 37.85,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_20396753/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【7階角部屋×視界が抜ける開放感！】大久保6分＆新宿徒歩圏！",
+        "price_jpy": 42800000,
+        "room_type": "2LDK",
+        "area_sqm": 48.27,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21871587/"
+      },
+      "property_b": {
+        "name": "駅近リノベ！圧倒的な日当たりで全室に窓がある南向きの開放的な2LDK空間。",
+        "price_jpy": 42800000,
+        "room_type": "2LDK",
+        "area_sqm": 52.01,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21200497/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
