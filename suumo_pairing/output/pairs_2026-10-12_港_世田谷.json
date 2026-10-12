@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-10-12",
+  "area_pair_used": "港区-世田谷区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「浜松町駅」7分 「大門駅」4分　事務所利用も可能です　資料請求だけでも",
+        "price_jpy": 41800000,
+        "room_type": "1DK",
+        "area_sqm": 30.3,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21875372/"
+      },
+      "property_b": {
+        "name": "◆◇三軒茶屋6分「利便性あり」◇◆◆◇南向き「日当たり良好」◇◆",
+        "price_jpy": 41800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.55,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21904214/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【居住中の為事前予約が必要】ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 41800000,
+        "room_type": "1DK",
+        "area_sqm": 30.3,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21829178/"
+      },
+      "property_b": {
+        "name": "◆◇三軒茶屋6分「利便性あり」◇◆◆◇南向き「日当たり良好」◇◆",
+        "price_jpy": 41800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.55,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21904214/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "◆有栖川公園歩約4分◆麻布十番・広尾・六本木が生活圏◆最上階角住戸",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.34,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21444605/"
+      },
+      "property_b": {
+        "name": "■JOURNAL STANDARD FURNITUREの家具付物件■",
+        "price_jpy": 54800000,
+        "room_type": "2LDK",
+        "area_sqm": 44.72,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21543606/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "◆有栖川公園歩約4分◆麻布十番・広尾・六本木が生活圏◆最上階角住戸",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.34,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21444605/"
+      },
+      "property_b": {
+        "name": "■三井のリハウス■最寄り駅まで徒歩3分の好立地各洋室にWICを設置",
+        "price_jpy": 54800000,
+        "room_type": "2LDK",
+        "area_sqm": 48.1,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21703043/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪本日見学OK≫ACCESS田町♪リノベ済×南東向き×運河を望む眺望！",
+        "price_jpy": 59800000,
+        "room_type": "2LDK",
+        "area_sqm": 44.2,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21911378/"
+      },
+      "property_b": {
+        "name": "■内装リフォーム実施済■二面採光で陽当たりの良いリビングダイニングルーム",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 48.71,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21259939/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪本日見学OK≫ACCESS田町♪リノベ済×南東向き×運河を望む眺望！",
+        "price_jpy": 59800000,
+        "room_type": "2LDK",
+        "area_sqm": 44.2,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21911378/"
+      },
+      "property_b": {
+        "name": "世田谷駅より徒歩５分■リフォーム済■２面バルコニー■１ＬＤＫ■食洗機付",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 48.71,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21820274/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪本日見学OK≫ACCESS田町♪リノベ済×南東向き×運河を望む眺望！",
+        "price_jpy": 59800000,
+        "room_type": "2LDK",
+        "area_sqm": 44.2,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21911378/"
+      },
+      "property_b": {
+        "name": "◇新規リノベ物件・空室のお部屋◇即日見学可能、お気軽にお問合せください",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.85,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21850185/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "－大京穴吹不動産－事務所利用可×再開発エリア近接×リノベーション履歴有",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.68,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21855904/"
+      },
+      "property_b": {
+        "name": "◇新規リノベ物件・空室のお部屋◇即日見学可能、お気軽にお問合せください",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.85,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21850185/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■南東角住戸、運河を臨みます■家具・エアコン付■敷地内駐車場空き有！",
+        "price_jpy": 59990000,
+        "room_type": "1LDK",
+        "area_sqm": 47.47,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21697340/"
+      },
+      "property_b": {
+        "name": "■駅徒歩5分の好立地！■床暖房など設備充実■ペット飼育可（細則有り）",
+        "price_jpy": 59990000,
+        "room_type": "1LDK",
+        "area_sqm": 53.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21237824/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■南東角住戸、運河を臨みます■家具・エアコン付■敷地内駐車場空き有！",
+        "price_jpy": 59990000,
+        "room_type": "1LDK",
+        "area_sqm": 47.47,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21697340/"
+      },
+      "property_b": {
+        "name": "世田谷１（松陰神社前駅） 5999万円",
+        "price_jpy": 59990000,
+        "room_type": "1LDK",
+        "area_sqm": 53.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21862796/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
