@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-10-14",
+  "area_pair_used": "港区-渋谷区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "－３駅５路線利用可能×４階角住戸－",
+        "price_jpy": 39900000,
+        "room_type": "2DK",
+        "area_sqm": 36.67,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21720116/"
+      },
+      "property_b": {
+        "name": "「幡ヶ谷駅」4分 六号通り商店街すぐ近く 資料請求だけでも",
+        "price_jpy": 39900000,
+        "room_type": "1DK",
+        "area_sqm": 35.64,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21931520/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "―　always ON YOUR SIDE　―穏やかで充実・安心の暮らし",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 33.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20856683/"
+      },
+      "property_b": {
+        "name": "◆◆弊社売主物件◆◆憧れの代々木エリア！専用庭つきリノべーション",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21925188/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "◆有栖川公園歩約4分◆麻布十番・広尾・六本木が生活圏◆最上階角住戸",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.34,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21444605/"
+      },
+      "property_b": {
+        "name": "◆◆弊社売主物件◆◆憧れの代々木エリア！専用庭つきリノべーション",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21925188/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 54990000,
+        "room_type": "1LDK",
+        "area_sqm": 38.45,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21929624/"
+      },
+      "property_b": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 54980000,
+        "room_type": "1DK",
+        "area_sqm": 36.31,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21855932/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 54990000,
+        "room_type": "1LDK",
+        "area_sqm": 38.45,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21929624/"
+      },
+      "property_b": {
+        "name": "渋谷駅徒歩14分■複数路線利用可■角部屋■リフォーム■陽当たり良好",
+        "price_jpy": 54980000,
+        "room_type": "1DK",
+        "area_sqm": 36.31,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21862798/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 54990000,
+        "room_type": "1LDK",
+        "area_sqm": 38.45,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21929624/"
+      },
+      "property_b": {
+        "name": "◆◆本日「空き」あり！◆◆憧れの表参道エリア♪ペット可リフォーム角住戸",
+        "price_jpy": 54980000,
+        "room_type": "1DK",
+        "area_sqm": 36.31,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21897072/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 54990000,
+        "room_type": "1LDK",
+        "area_sqm": 38.45,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21929624/"
+      },
+      "property_b": {
+        "name": "☆『表参道駅』徒歩8分☆即引き渡し可能☆内見可能☆ペット飼育可能☆駐車場有",
+        "price_jpy": 54980000,
+        "room_type": "1DK",
+        "area_sqm": 36.31,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21854095/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 54990000,
+        "room_type": "1LDK",
+        "area_sqm": 42.54,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21456156/"
+      },
+      "property_b": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 54980000,
+        "room_type": "1DK",
+        "area_sqm": 36.31,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21855932/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 54990000,
+        "room_type": "1LDK",
+        "area_sqm": 42.54,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21456156/"
+      },
+      "property_b": {
+        "name": "渋谷駅徒歩14分■複数路線利用可■角部屋■リフォーム■陽当たり良好",
+        "price_jpy": 54980000,
+        "room_type": "1DK",
+        "area_sqm": 36.31,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21862798/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 54990000,
+        "room_type": "1LDK",
+        "area_sqm": 42.54,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21456156/"
+      },
+      "property_b": {
+        "name": "◆◆本日「空き」あり！◆◆憧れの表参道エリア♪ペット可リフォーム角住戸",
+        "price_jpy": 54980000,
+        "room_type": "1DK",
+        "area_sqm": 36.31,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21897072/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
