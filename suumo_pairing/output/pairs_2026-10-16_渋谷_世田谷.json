@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-10-16",
+  "area_pair_used": "渋谷区-世田谷区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "ペットとの散歩コースに嬉しい「新宿中央公園」まで徒歩9分です/詳しい資料あり",
+        "price_jpy": 37800000,
+        "room_type": "2DK",
+        "area_sqm": 47.2,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21933337/"
+      },
+      "property_b": {
+        "name": "〈購入者特典〉弊社から当物件のご成約でアフターサービス最長10年に！",
+        "price_jpy": 37800000,
+        "room_type": "2LDK",
+        "area_sqm": 52.09,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21750817/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "代々木・新宿駅徒歩圏！都心の利便を享受する角住戸◆トランクルーム専用使用権",
+        "price_jpy": 39800000,
+        "room_type": "1DK",
+        "area_sqm": 27.22,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21939756/"
+      },
+      "property_b": {
+        "name": "■「経堂」駅徒歩1分！■大型ルーフバルコニー付き■内装リフォーム実施",
+        "price_jpy": 39800000,
+        "room_type": "1DK",
+        "area_sqm": 31.65,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21288955/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "代々木・新宿駅徒歩圏！都心の利便を享受する角住戸◆トランクルーム専用使用権",
+        "price_jpy": 39800000,
+        "room_type": "1DK",
+        "area_sqm": 27.22,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21939756/"
+      },
+      "property_b": {
+        "name": "大型ルーフバルコニー付プレミアム住戸 【経堂駅】歩1分 資料請求だけでも",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 31.65,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21932869/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "代々木・新宿駅徒歩圏！都心の利便を享受する角住戸◆トランクルーム専用使用権",
+        "price_jpy": 39800000,
+        "room_type": "1DK",
+        "area_sqm": 27.22,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21939756/"
+      },
+      "property_b": {
+        "name": "経堂駅より徒歩１分■リフォーム済■ペット可■ルーフバルコニー",
+        "price_jpy": 39800000,
+        "room_type": "1DK",
+        "area_sqm": 31.65,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21813614/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "代々木・新宿駅徒歩圏！都心の利便を享受する角住戸◆トランクルーム専用使用権",
+        "price_jpy": 39800000,
+        "room_type": "1DK",
+        "area_sqm": 27.22,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21939756/"
+      },
+      "property_b": {
+        "name": "◆◆弊社売主物件◆◆駅チカ経堂1分♪ペットと暮らすルーフバルコニー付",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 31.65,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21925164/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "売主物件◆新規リノベーション◆地下室付きの1LDK",
+        "price_jpy": 39980000,
+        "room_type": "1LDK",
+        "area_sqm": 34.23,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21613869/"
+      },
+      "property_b": {
+        "name": "新規リノベーション(26年7月完工)角部屋住戸・管理体制良好！",
+        "price_jpy": 39990000,
+        "room_type": "1LDK",
+        "area_sqm": 39.71,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21352225/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "売主物件◆新規リノベーション◆地下室付きの1LDK",
+        "price_jpy": 39980000,
+        "room_type": "1LDK",
+        "area_sqm": 34.23,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21613869/"
+      },
+      "property_b": {
+        "name": "◆◆本日「空き」あり！◆◆明大前5分！賑わいと利便を楽しむ南向き角部屋",
+        "price_jpy": 39990000,
+        "room_type": "1LDK",
+        "area_sqm": 39.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21851947/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪本日見学OK!≫駅5分×南東向き×14.3帖LDK×新規リノベ1LDK",
+        "price_jpy": 44980000,
+        "room_type": "1LDK",
+        "area_sqm": 43.82,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21729060/"
+      },
+      "property_b": {
+        "name": "■駅から徒歩分■複数路線利用可■京王線快速特急・急行停車駅",
+        "price_jpy": 44990000,
+        "room_type": "2DK",
+        "area_sqm": 47.82,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_20881444/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "売主グループ直接販売リノベーション物件!南東向きにつき陽当り良好！",
+        "price_jpy": 44980000,
+        "room_type": "1LDK",
+        "area_sqm": 43.82,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21551334/"
+      },
+      "property_b": {
+        "name": "■駅から徒歩分■複数路線利用可■京王線快速特急・急行停車駅",
+        "price_jpy": 44990000,
+        "room_type": "2DK",
+        "area_sqm": 47.82,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_20881444/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■恵比寿駅徒歩4分■フルリノベーション履歴有り■防音対策済み",
+        "price_jpy": 52800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.79,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_20657665/"
+      },
+      "property_b": {
+        "name": "三軒茶屋に住まう/すずらん通りも徒歩圏内/詳しい資料送ります/頭金0円OK",
+        "price_jpy": 52800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21931558/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
