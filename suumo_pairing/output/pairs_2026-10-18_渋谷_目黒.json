@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-10-18",
+  "area_pair_used": "渋谷区-目黒区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "代々木・新宿駅徒歩圏！都心の利便を享受する角住戸◆トランクルーム専用使用権",
+        "price_jpy": 39800000,
+        "room_type": "1DK",
+        "area_sqm": 27.22,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21939756/"
+      },
+      "property_b": {
+        "name": "「中目黒」駅まで徒歩5分・3駅4路線利用可☆ペット可☆室内大変きれいです☆",
+        "price_jpy": 39800000,
+        "room_type": "1LDK",
+        "area_sqm": 33.97,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21103528/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「幡ヶ谷駅」4分 六号通り商店街すぐ近く 資料請求だけでも",
+        "price_jpy": 39900000,
+        "room_type": "1DK",
+        "area_sqm": 35.64,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21931520/"
+      },
+      "property_b": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 39900000,
+        "room_type": "1LDK",
+        "area_sqm": 31.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21015510/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「幡ヶ谷駅」4分 六号通り商店街すぐ近く 資料請求だけでも",
+        "price_jpy": 39900000,
+        "room_type": "1DK",
+        "area_sqm": 35.64,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21931520/"
+      },
+      "property_b": {
+        "name": "【いまからのご見学可能です】ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 39900000,
+        "room_type": "1LDK",
+        "area_sqm": 37.32,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21891392/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「幡ヶ谷駅」4分 六号通り商店街すぐ近く 資料請求だけでも",
+        "price_jpy": 39900000,
+        "room_type": "1DK",
+        "area_sqm": 35.64,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21931520/"
+      },
+      "property_b": {
+        "name": "◆◆本日「空き」あり！◆◆最上階ペントハウスにペットと暮らせる快適空間",
+        "price_jpy": 39900000,
+        "room_type": "1LDK",
+        "area_sqm": 31.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21962040/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「幡ヶ谷駅」4分 六号通り商店街すぐ近く 資料請求だけでも",
+        "price_jpy": 39900000,
+        "room_type": "1DK",
+        "area_sqm": 35.64,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21931520/"
+      },
+      "property_b": {
+        "name": "最上階のペントハウス 「目黒」駅から権之助坂沿いを歩いて9分です",
+        "price_jpy": 39900000,
+        "room_type": "1LDK",
+        "area_sqm": 31.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21356517/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「幡ヶ谷駅」4分 六号通り商店街すぐ近く 資料請求だけでも",
+        "price_jpy": 39900000,
+        "room_type": "1DK",
+        "area_sqm": 35.64,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21931520/"
+      },
+      "property_b": {
+        "name": "青葉台４（渋谷駅） 3990万円",
+        "price_jpy": 39900000,
+        "room_type": "1LDK",
+        "area_sqm": 33.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21046812/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「幡ヶ谷駅」4分 六号通り商店街すぐ近く 資料請求だけでも",
+        "price_jpy": 39900000,
+        "room_type": "1DK",
+        "area_sqm": 35.64,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21931520/"
+      },
+      "property_b": {
+        "name": "目黒２（目黒駅） 3990万円",
+        "price_jpy": 39900000,
+        "room_type": "1LDK",
+        "area_sqm": 31.74,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21962046/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「幡ヶ谷駅」4分 六号通り商店街すぐ近く 資料請求だけでも",
+        "price_jpy": 39900000,
+        "room_type": "1DK",
+        "area_sqm": 35.64,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21931520/"
+      },
+      "property_b": {
+        "name": "最上階ペントハウス！山手線「目黒」のリノベーションマンション登場駅徒歩9分",
+        "price_jpy": 39900000,
+        "room_type": "1LDK",
+        "area_sqm": 31.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21042988/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「幡ヶ谷駅」4分 六号通り商店街すぐ近く 資料請求だけでも",
+        "price_jpy": 39900000,
+        "room_type": "1DK",
+        "area_sqm": 35.64,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21931520/"
+      },
+      "property_b": {
+        "name": "目黒２（目黒駅） 3990万円",
+        "price_jpy": 39900000,
+        "room_type": "1LDK",
+        "area_sqm": 31.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21410348/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「幡ヶ谷駅」4分 六号通り商店街すぐ近く 資料請求だけでも",
+        "price_jpy": 39900000,
+        "room_type": "1DK",
+        "area_sqm": 35.64,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21931520/"
+      },
+      "property_b": {
+        "name": "目黒２（目黒駅） 3990万円",
+        "price_jpy": 39900000,
+        "room_type": "1LDK",
+        "area_sqm": 31.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21128044/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
