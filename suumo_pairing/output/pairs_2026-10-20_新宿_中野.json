@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-10-20",
+  "area_pair_used": "新宿区-中野区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "山手線「高田馬場駅」まで徒歩9分です　神田川沿いの閑静な住環境",
+        "price_jpy": 31800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.59,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21980088/"
+      },
+      "property_b": {
+        "name": "◆◆本日「空き」あり！◆◆窓越しに広がる桜景色をペットと愉しむ暮らし",
+        "price_jpy": 31800000,
+        "room_type": "1DK",
+        "area_sqm": 38.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_21974735/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "山手線「高田馬場駅」まで徒歩9分です　神田川沿いの閑静な住環境",
+        "price_jpy": 31800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.59,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21980088/"
+      },
+      "property_b": {
+        "name": "【即内見可・定休日無し】◇5階・南西向き◆陽あたり・眺望良好！",
+        "price_jpy": 31800000,
+        "room_type": "1DK",
+        "area_sqm": 38.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_21681242/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "山手線「高田馬場駅」まで徒歩9分です　神田川沿いの閑静な住環境",
+        "price_jpy": 31800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.59,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21980088/"
+      },
+      "property_b": {
+        "name": "『The Grand Residence』～威厳と品格を纏う重厚な邸宅～",
+        "price_jpy": 31800000,
+        "room_type": "1DK",
+        "area_sqm": 38.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_21910913/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 45.41,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21631594/"
+      },
+      "property_b": {
+        "name": "New「沼袋駅」徒歩8分月々10万円台から始まる新生活※ご送迎可能♪",
+        "price_jpy": 36800000,
+        "room_type": "2DK",
+        "area_sqm": 48.21,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_21946398/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 45.41,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21631594/"
+      },
+      "property_b": {
+        "name": "◇中野富士見町駅徒歩５分、便利な東京と落ち着く日常、両方を叶える邸宅◇",
+        "price_jpy": 36800000,
+        "room_type": "2LDK",
+        "area_sqm": 55.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_21708718/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 45.41,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21631594/"
+      },
+      "property_b": {
+        "name": "◆◆本日「空き」あり！◆◆駅チカ5分、最上階×2面採光の住まい",
+        "price_jpy": 36800000,
+        "room_type": "2LDK",
+        "area_sqm": 55.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_21974980/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 45.41,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21631594/"
+      },
+      "property_b": {
+        "name": "【中野富士見町駅】徒歩5分。南向きのLDKで光差し込むお部屋です。",
+        "price_jpy": 36800000,
+        "room_type": "2LDK",
+        "area_sqm": 55.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_21817855/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 45.41,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21631594/"
+      },
+      "property_b": {
+        "name": "野方３（野方駅） 3680万円",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 50.6,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_20220965/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 45.41,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21631594/"
+      },
+      "property_b": {
+        "name": "■弊社売主物件■内装リフォーム物件■中古物件は弊社エーティーオースに！",
+        "price_jpy": 36800000,
+        "room_type": "2LDK",
+        "area_sqm": 48.21,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_21459047/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 45.41,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21631594/"
+      },
+      "property_b": {
+        "name": "【いまからのご見学可能です】ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 36800000,
+        "room_type": "2LDK",
+        "area_sqm": 55.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_20992423/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
