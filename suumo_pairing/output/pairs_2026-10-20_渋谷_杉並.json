@@ -1,0 +1,191 @@
+{
+  "run_date": "2026-10-20",
+  "area_pair_used": "渋谷区-杉並区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [
+    "insufficient_candidates"
+  ],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "ペットとの散歩コースに嬉しい「新宿中央公園」まで徒歩9分です/詳しい資料あり",
+        "price_jpy": 37800000,
+        "room_type": "2DK",
+        "area_sqm": 47.2,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21987534/"
+      },
+      "property_b": {
+        "name": "◆◆本日「空き」あり◆◆駅チカ2分！便利さと穏やかさを叶える久我山ライフ",
+        "price_jpy": 37800000,
+        "room_type": "2DK",
+        "area_sqm": 46.17,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_21950851/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "10/19価格下がりました 4498万より200万円↓ 初購入をやさしくサポートします",
+        "price_jpy": 42980000,
+        "room_type": "1LDK",
+        "area_sqm": 43.82,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21987472/"
+      },
+      "property_b": {
+        "name": "■三井のリハウス■10階・南向き、陽当り・眺望良好スーパーまで徒歩4分",
+        "price_jpy": 42980000,
+        "room_type": "1LDK",
+        "area_sqm": 35.64,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_21411548/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "売主グループ直接販売リノベーション物件!南東向きにつき陽当り良好！",
+        "price_jpy": 42980000,
+        "room_type": "1LDK",
+        "area_sqm": 43.82,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21551334/"
+      },
+      "property_b": {
+        "name": "■三井のリハウス■10階・南向き、陽当り・眺望良好スーパーまで徒歩4分",
+        "price_jpy": 42980000,
+        "room_type": "1LDK",
+        "area_sqm": 35.64,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_21411548/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "－大京穴吹不動産が売主のリノベーション物件－千駄ヶ谷駅徒歩5分の立地",
+        "price_jpy": 44980000,
+        "room_type": "1K",
+        "area_sqm": 28.69,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_20829528/"
+      },
+      "property_b": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可能／可以用中文服務",
+        "price_jpy": 44990000,
+        "room_type": "1DK",
+        "area_sqm": 31.22,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_21966271/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "－大京穴吹不動産が売主のリノベーション物件－千駄ヶ谷駅徒歩5分の立地",
+        "price_jpy": 44980000,
+        "room_type": "1K",
+        "area_sqm": 28.69,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_20829528/"
+      },
+      "property_b": {
+        "name": "◆当社売主◆新規リノベーション◆アフターサービス保証付◆",
+        "price_jpy": 44980000,
+        "room_type": "1DK",
+        "area_sqm": 31.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_21782356/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可能／可以用中文服務",
+        "price_jpy": 44990000,
+        "room_type": "1LDK",
+        "area_sqm": 33.97,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21571533/"
+      },
+      "property_b": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可能／可以用中文服務",
+        "price_jpy": 44990000,
+        "room_type": "1DK",
+        "area_sqm": 31.22,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_21966271/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「原宿駅」歩5分　休日は原宿・表参道を使いこなせる立地です　オーケーも歩2分",
+        "price_jpy": 44990000,
+        "room_type": "1LDK",
+        "area_sqm": 33.97,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21979437/"
+      },
+      "property_b": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可能／可以用中文服務",
+        "price_jpy": 44990000,
+        "room_type": "1DK",
+        "area_sqm": 31.22,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_21966271/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「原宿駅」歩5分　休日は原宿・表参道を使いこなせる立地です　オーケーも歩2分",
+        "price_jpy": 44990000,
+        "room_type": "1LDK",
+        "area_sqm": 33.97,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21979437/"
+      },
+      "property_b": {
+        "name": "◆当社売主◆新規リノベーション◆アフターサービス保証付◆",
+        "price_jpy": 44980000,
+        "room_type": "1DK",
+        "area_sqm": 31.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_21782356/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "原宿駅徒歩５分■陽当たり良好■３階部分■１ＬＤＫ■内装フルリフォーム済み",
+        "price_jpy": 44990000,
+        "room_type": "1LDK",
+        "area_sqm": 33.97,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21904470/"
+      },
+      "property_b": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可能／可以用中文服務",
+        "price_jpy": 44990000,
+        "room_type": "1DK",
+        "area_sqm": 31.22,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_21966271/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "原宿駅徒歩５分■陽当たり良好■３階部分■１ＬＤＫ■内装フルリフォーム済み",
+        "price_jpy": 44990000,
+        "room_type": "1LDK",
+        "area_sqm": 33.97,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21904470/"
+      },
+      "property_b": {
+        "name": "◆当社売主◆新規リノベーション◆アフターサービス保証付◆",
+        "price_jpy": 44980000,
+        "room_type": "1DK",
+        "area_sqm": 31.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_21782356/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
