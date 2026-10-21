@@ -1,0 +1,11 @@
+{
+  "run_date": "2026-10-21",
+  "area_pair_used": "港区-中央区",
+  "new_pairs_found": 0,
+  "target_range": "8-10",
+  "warnings": [
+    "below_target_count",
+    "insufficient_candidates"
+  ],
+  "pairs": []
+}
