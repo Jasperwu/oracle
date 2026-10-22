@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-10-22",
+  "area_pair_used": "港区-中央区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "3駅・複数路線利用可能の好立地◎生活利便性の高いエリア＆南向き住戸",
+        "price_jpy": 53990000,
+        "room_type": "2LDK",
+        "area_sqm": 41.14,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21912902/"
+      },
+      "property_b": {
+        "name": "10/19価格下がりました 5699万より300万円↓ 初購入をやさしくサポートします",
+        "price_jpy": 53990000,
+        "room_type": "2LDK",
+        "area_sqm": 43.74,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21987954/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "3駅・複数路線利用可能の好立地◎生活利便性の高いエリア＆南向き住戸",
+        "price_jpy": 53990000,
+        "room_type": "2LDK",
+        "area_sqm": 41.14,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21912902/"
+      },
+      "property_b": {
+        "name": "【即内見可・定休日無し】◇7階・南西向き！◆内装リノベーション済み！",
+        "price_jpy": 53990000,
+        "room_type": "2LDK",
+        "area_sqm": 43.74,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21990442/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 59800000,
+        "room_type": "2LDK",
+        "area_sqm": 44.2,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21936071/"
+      },
+      "property_b": {
+        "name": "■新規リノベーション■角住戸■水天宮前駅徒歩6分■前面棟無し陽当たり良好",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 44.25,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21920633/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 59800000,
+        "room_type": "2LDK",
+        "area_sqm": 44.2,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21936071/"
+      },
+      "property_b": {
+        "name": "◆当日案内OK◆頭金0円可◆駅６分◆南方角部屋◆リノベ済◆ペット可",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 44.25,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21927660/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "南東角住戸■陽当たり良好■開放感有■運河が望めるバルコニー■エアコン付",
+        "price_jpy": 59990000,
+        "room_type": "1LDK",
+        "area_sqm": 47.47,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21947475/"
+      },
+      "property_b": {
+        "name": "◇新規リノベ物件・空室のお部屋◇即日見学可能、お気軽にお問合せください",
+        "price_jpy": 59990000,
+        "room_type": "1LDK",
+        "area_sqm": 45.45,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21541855/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "【本日ご見学いただけます！】麻布エリア×南東向き×4駅4路線利用可能！",
+        "price_jpy": 71800000,
+        "room_type": "2LDK",
+        "area_sqm": 50.22,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21645913/"
+      },
+      "property_b": {
+        "name": "月島駅徒歩２分。角住戸×2WICを備えた、新規リノベーション1LDK。",
+        "price_jpy": 71800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.36,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21850260/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "◇新規リノベ物件・空室のお部屋◇即日見学可能、お気軽にお問合せください",
+        "price_jpy": 71990000,
+        "room_type": "2LDK",
+        "area_sqm": 46.55,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21839152/"
+      },
+      "property_b": {
+        "name": "◆◆本日「空き」あり！◆◆情緒あふれる浜町♪駅チカ徒歩3分の快適リノベ",
+        "price_jpy": 71980000,
+        "room_type": "2LDK",
+        "area_sqm": 52.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21975288/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "◇新規リノベ物件・空室のお部屋◇即日見学可能、お気軽にお問合せください",
+        "price_jpy": 71990000,
+        "room_type": "2LDK",
+        "area_sqm": 46.55,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21839152/"
+      },
+      "property_b": {
+        "name": "■駅から徒歩３分■複数路線利用可■日本橋が生活圏",
+        "price_jpy": 71990000,
+        "room_type": "1LDK",
+        "area_sqm": 40.23,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21348289/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "◇新規リノベ物件・空室のお部屋◇即日見学可能、お気軽にお問合せください",
+        "price_jpy": 72990000,
+        "room_type": "3LDK",
+        "area_sqm": 56.89,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21281287/"
+      },
+      "property_b": {
+        "name": "■売主グループ会社につき優先案内可能■内覧予約の方に限定資料さしあげます",
+        "price_jpy": 72990000,
+        "room_type": "3LDK",
+        "area_sqm": 58.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21874478/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "≪見学予約＆当日予約OK!≫◆駅徒歩4分×暮らし整う上質リノベ住戸",
+        "price_jpy": 74800000,
+        "room_type": "1LDK",
+        "area_sqm": 48.67,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21967766/"
+      },
+      "property_b": {
+        "name": "利便性と豊かな緑を兼ね備えたペットと暮らせるお部屋5駅5路線利用できます",
+        "price_jpy": 74800000,
+        "room_type": "1LDK",
+        "area_sqm": 41.05,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21196093/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
