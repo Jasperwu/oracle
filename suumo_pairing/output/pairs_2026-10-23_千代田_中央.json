@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-10-23",
+  "area_pair_used": "千代田区-中央区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「秋葉原駅」9分/山手線内側 まいばすけっとがすぐ向かい 資料だけでもどうぞ",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 33.01,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21840143/"
+      },
+      "property_b": {
+        "name": "「八丁堀駅」から川沿いを歩いて4分 銀座・築地が生活圏です スーパーも歩2分!",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.26,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21987966/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「秋葉原駅」9分/山手線内側 まいばすけっとがすぐ向かい 資料だけでもどうぞ",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 33.01,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21840143/"
+      },
+      "property_b": {
+        "name": "「浜町駅」徒歩3分 ペットのお散歩コースにも最適な隅田川テラスもすぐ近くです",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.78,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21987536/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「秋葉原駅」9分/山手線内側 まいばすけっとがすぐ向かい 資料だけでもどうぞ",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 33.01,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21840143/"
+      },
+      "property_b": {
+        "name": "【当社売主】浜町公園が普段の散歩道。都会の利便と自然が交差する心地よい拠点",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.78,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21811413/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「秋葉原駅」9分/山手線内側 まいばすけっとがすぐ向かい 資料だけでもどうぞ",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 33.01,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21840143/"
+      },
+      "property_b": {
+        "name": "八丁堀駅より徒歩４分■３路線利用可■６階南西バルコニー■リフォーム済",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.26,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21880342/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 33.01,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21892729/"
+      },
+      "property_b": {
+        "name": "「八丁堀駅」から川沿いを歩いて4分 銀座・築地が生活圏です スーパーも歩2分!",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.26,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21987966/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 33.01,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21892729/"
+      },
+      "property_b": {
+        "name": "「浜町駅」徒歩3分 ペットのお散歩コースにも最適な隅田川テラスもすぐ近くです",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.78,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21987536/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 33.01,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21892729/"
+      },
+      "property_b": {
+        "name": "【当社売主】浜町公園が普段の散歩道。都会の利便と自然が交差する心地よい拠点",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.78,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21811413/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 33.01,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_21892729/"
+      },
+      "property_b": {
+        "name": "八丁堀駅より徒歩４分■３路線利用可■６階南西バルコニー■リフォーム済",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.26,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21880342/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "外神田３（末広町駅） 4980万円",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 33.01,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_20931101/"
+      },
+      "property_b": {
+        "name": "「八丁堀駅」から川沿いを歩いて4分 銀座・築地が生活圏です スーパーも歩2分!",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.26,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21987966/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "外神田３（末広町駅） 4980万円",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 33.01,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chiyoda/nc_20931101/"
+      },
+      "property_b": {
+        "name": "「浜町駅」徒歩3分 ペットのお散歩コースにも最適な隅田川テラスもすぐ近くです",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.78,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_chuo/nc_21987536/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
