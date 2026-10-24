@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-10-24",
+  "area_pair_used": "品川区-目黒区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "京浜東北線「大森」駅まで徒歩６分、京浜急行線「大森海岸」駅まで徒歩４分",
+        "price_jpy": 34800000,
+        "room_type": "2DK",
+        "area_sqm": 44.91,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21777777/"
+      },
+      "property_b": {
+        "name": "陽当り良好な最上階・角部屋 広々ルーフバルコニー ペット可",
+        "price_jpy": 34800000,
+        "room_type": "1LDK",
+        "area_sqm": 44.96,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21644449/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【　シャンボール第2南品川　】最寄り駅徒歩2分の好立地！南向きのリノベ住戸",
+        "price_jpy": 35800000,
+        "room_type": "1LDK",
+        "area_sqm": 36.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21737437/"
+      },
+      "property_b": {
+        "name": "青葉台１（中目黒駅） 3580万円",
+        "price_jpy": 35800000,
+        "room_type": "1DK",
+        "area_sqm": 29.15,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_22005917/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 36800000,
+        "room_type": "2LDK",
+        "area_sqm": 42.33,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21863022/"
+      },
+      "property_b": {
+        "name": "■駅徒歩3分の好立地！■南向き・三方向角住戸■内装リノベーション実施",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.1,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_20251578/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 36800000,
+        "room_type": "2LDK",
+        "area_sqm": 42.33,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21863022/"
+      },
+      "property_b": {
+        "name": "■2025年4月内装リノベーション実施済■室内コンディション良好です！",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.1,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21512156/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 36800000,
+        "room_type": "2LDK",
+        "area_sqm": 42.33,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21863022/"
+      },
+      "property_b": {
+        "name": "祐天寺・中目黒駅が生活圏、リコスやローソンが日々の快適支える低層住戸。",
+        "price_jpy": 36800000,
+        "room_type": "2DK",
+        "area_sqm": 43.06,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21988039/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 36800000,
+        "room_type": "2LDK",
+        "area_sqm": 42.33,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21863022/"
+      },
+      "property_b": {
+        "name": "【　チサンマンション祐天寺　】～南東向き明るい住空間～",
+        "price_jpy": 36800000,
+        "room_type": "2DK",
+        "area_sqm": 43.06,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21449209/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 36800000,
+        "room_type": "2LDK",
+        "area_sqm": 42.33,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21863022/"
+      },
+      "property_b": {
+        "name": "中目黒生活圏　2026年5月リフォーム済　収納充実",
+        "price_jpy": 36800000,
+        "room_type": "2DK",
+        "area_sqm": 43.06,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21951297/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 36800000,
+        "room_type": "2LDK",
+        "area_sqm": 42.33,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21863022/"
+      },
+      "property_b": {
+        "name": "鷹番２（学芸大学駅） 3680万円",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.1,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21621700/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 36800000,
+        "room_type": "2LDK",
+        "area_sqm": 42.33,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21863022/"
+      },
+      "property_b": {
+        "name": "【いまからのご見学可能です】ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 36800000,
+        "room_type": "2DK",
+        "area_sqm": 43.06,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21093669/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 36800000,
+        "room_type": "2LDK",
+        "area_sqm": 42.33,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21863022/"
+      },
+      "property_b": {
+        "name": "下目黒２（目黒駅） 3680万円",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 47.84,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21707994/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
