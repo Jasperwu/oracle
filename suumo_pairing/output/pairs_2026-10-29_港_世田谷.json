@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-10-29",
+  "area_pair_used": "港区-世田谷区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "憧れの『麻布十番』に住まう 麻布十番に初めて持ち家を持つならここ！",
+        "price_jpy": 43800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_22032729/"
+      },
+      "property_b": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 43800000,
+        "room_type": "1LDK",
+        "area_sqm": 43.32,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21679187/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "憧れの『麻布十番』に住まう 麻布十番に初めて持ち家を持つならここ！",
+        "price_jpy": 43800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_22032729/"
+      },
+      "property_b": {
+        "name": "【本日内覧可能です】角部屋×南西向き×フルリノベ×駅徒歩5分の立地",
+        "price_jpy": 43800000,
+        "room_type": "1LDK",
+        "area_sqm": 43.32,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21845806/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "憧れの『麻布十番』に住まう 麻布十番に初めて持ち家を持つならここ！",
+        "price_jpy": 43800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_22032729/"
+      },
+      "property_b": {
+        "name": "【即内見可・定休日無し】◇南西向き・角部屋◆室内リノベーション実施",
+        "price_jpy": 43800000,
+        "room_type": "1LDK",
+        "area_sqm": 43.32,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21990368/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "4駅5路線利用可能×西麻布の静かな住環境～2017年耐震補強工事実施～",
+        "price_jpy": 56000000,
+        "room_type": "2LDK",
+        "area_sqm": 68.4,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21695145/"
+      },
+      "property_b": {
+        "name": "『The Grand Residence』～威厳と品格を纏う重厚な邸宅～",
+        "price_jpy": 55980000,
+        "room_type": "3LDK",
+        "area_sqm": 78.65,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21493911/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "4駅5路線利用可能×西麻布の静かな住環境～2017年耐震補強工事実施～",
+        "price_jpy": 56000000,
+        "room_type": "2LDK",
+        "area_sqm": 68.4,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21695145/"
+      },
+      "property_b": {
+        "name": "「広すぎてついダンス18.7帖特大LDKと暮らすフルリノベーション生活！」",
+        "price_jpy": 55980000,
+        "room_type": "3LDK",
+        "area_sqm": 78.65,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21974195/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "－大京穴吹不動産－事務所利用可×再開発エリア近接×リノベーション履歴有",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.68,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21855904/"
+      },
+      "property_b": {
+        "name": "≪本日見学出来ます≫6階南向き×ペット飼育可、光と眺望を愉しむリノベ住戸",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 43.2,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21931355/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "南東角住戸■陽当たり良好■開放感有■運河が望めるバルコニー■エアコン付",
+        "price_jpy": 59990000,
+        "room_type": "1LDK",
+        "area_sqm": 47.47,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21947475/"
+      },
+      "property_b": {
+        "name": "【即日見学対応可能】3階建て最上階南向き角住戸・2LDK＋S",
+        "price_jpy": 59980000,
+        "room_type": "2LDK",
+        "area_sqm": 50.56,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21454618/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "南東角住戸■陽当たり良好■開放感有■運河が望めるバルコニー■エアコン付",
+        "price_jpy": 59990000,
+        "room_type": "1LDK",
+        "area_sqm": 47.47,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21947475/"
+      },
+      "property_b": {
+        "name": "東急田園都市線「駒沢大学」駅徒歩12分　40.64m2×1LDK",
+        "price_jpy": 59980000,
+        "room_type": "1LDK",
+        "area_sqm": 40.64,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21604573/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "南東角住戸■陽当たり良好■開放感有■運河が望めるバルコニー■エアコン付",
+        "price_jpy": 59990000,
+        "room_type": "1LDK",
+        "area_sqm": 47.47,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21947475/"
+      },
+      "property_b": {
+        "name": "≪見学予約＆当日予約OK!≫◆駅徒歩4分×新耐震×眺望良好",
+        "price_jpy": 59990000,
+        "room_type": "1LDK",
+        "area_sqm": 40.68,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21977541/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "南東角住戸■陽当たり良好■開放感有■運河が望めるバルコニー■エアコン付",
+        "price_jpy": 59990000,
+        "room_type": "1LDK",
+        "area_sqm": 47.47,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21947475/"
+      },
+      "property_b": {
+        "name": "世田谷１（松陰神社前駅） 5999万円",
+        "price_jpy": 59990000,
+        "room_type": "1LDK",
+        "area_sqm": 53.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21862796/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
