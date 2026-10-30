@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-10-30",
+  "area_pair_used": "新宿区-渋谷区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【即日内覧予約可！】売主グループ直接販売リノベ物件/陽当り良好な角部屋",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 45.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_20570271/"
+      },
+      "property_b": {
+        "name": "「幡ヶ谷駅」徒歩2分　「代々木上原」も徒歩12分　ペット飼育可能です",
+        "price_jpy": 49800000,
+        "room_type": "2LDK",
+        "area_sqm": 42.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_22033413/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【即日内覧予約可！】売主グループ直接販売リノベ物件/陽当り良好な角部屋",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 45.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_20570271/"
+      },
+      "property_b": {
+        "name": "新規リノベーション済■ペット可■ＷＩＣ■シューズクローク■複数路線利用可",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.7,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_22042122/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「東新宿駅」から東側へ徒歩9分 5階・南東向きで陽当たり良好 頭金0円OK",
+        "price_jpy": 52800000,
+        "room_type": "1LDK",
+        "area_sqm": 44.55,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21895452/"
+      },
+      "property_b": {
+        "name": "■恵比寿駅徒歩4分■フルリノベーション履歴有り■防音対策済み",
+        "price_jpy": 52800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.79,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_20657665/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「東新宿駅」から東側へ徒歩9分 5階・南東向きで陽当たり良好 頭金0円OK",
+        "price_jpy": 52800000,
+        "room_type": "1LDK",
+        "area_sqm": 44.55,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21895452/"
+      },
+      "property_b": {
+        "name": "2015年室内フルリフォーム■ペット飼育可能■1階部分・事務所利用可能",
+        "price_jpy": 52800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.7,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_20590783/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【当日内覧可】新耐震基準×南東向き×豊富な収納スペース×リノベ後・未入居",
+        "price_jpy": 52800000,
+        "room_type": "1LDK",
+        "area_sqm": 44.55,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21992215/"
+      },
+      "property_b": {
+        "name": "■恵比寿駅徒歩4分■フルリノベーション履歴有り■防音対策済み",
+        "price_jpy": 52800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.79,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_20657665/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【当日内覧可】新耐震基準×南東向き×豊富な収納スペース×リノベ後・未入居",
+        "price_jpy": 52800000,
+        "room_type": "1LDK",
+        "area_sqm": 44.55,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21992215/"
+      },
+      "property_b": {
+        "name": "2015年室内フルリフォーム■ペット飼育可能■1階部分・事務所利用可能",
+        "price_jpy": 52800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.7,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_20590783/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【即日内覧予約可！】売主グループ直接販売リノベーション物件/ペット飼育相談",
+        "price_jpy": 52980000,
+        "room_type": "1LDK",
+        "area_sqm": 34.98,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_20877999/"
+      },
+      "property_b": {
+        "name": "ONもOFFも充実の代々木ライフ。2005年築、過ごしやすい1DK！",
+        "price_jpy": 53000000,
+        "room_type": "1DK",
+        "area_sqm": 33.57,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21333185/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "『新宿駅』歩11分 伊勢丹やルミネ新宿が利用できる抜群な立地 資料だけでも",
+        "price_jpy": 53990000,
+        "room_type": "1LDK",
+        "area_sqm": 40.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_22032447/"
+      },
+      "property_b": {
+        "name": "10/29価格下がりました 5599万より200万円↓ 初購入をやさしくサポートします",
+        "price_jpy": 53990000,
+        "room_type": "1LDK",
+        "area_sqm": 33.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_22049481/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "『新宿駅』歩11分 伊勢丹やルミネ新宿が利用できる抜群な立地 資料だけでも",
+        "price_jpy": 53990000,
+        "room_type": "1LDK",
+        "area_sqm": 40.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_22032447/"
+      },
+      "property_b": {
+        "name": "■駅から徒歩１２分■複数路線利用可■「渋谷エリア」が生活圏",
+        "price_jpy": 53990000,
+        "room_type": "1LDK",
+        "area_sqm": 33.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_20318492/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "お仕事帰りの19時開始の内覧予約まで受付中、お気軽にお問い合わせください。",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.94,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_78807593/"
+      },
+      "property_b": {
+        "name": "「代々木八幡駅」歩8分/ドッグランがある代々木公園まで徒歩7分/庭付きです！",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_22032732/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
