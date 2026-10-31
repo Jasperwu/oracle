@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-10-31",
+  "area_pair_used": "港区-渋谷区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■8階部分南西角住戸につき採光・通風良好■内装リノベーション実施済み",
+        "price_jpy": 42980000,
+        "room_type": "1K",
+        "area_sqm": 38.03,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21553019/"
+      },
+      "property_b": {
+        "name": "10/19価格下がりました 4498万より200万円↓ 初購入をやさしくサポートします",
+        "price_jpy": 42980000,
+        "room_type": "1LDK",
+        "area_sqm": 43.82,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_22032707/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■8階部分南西角住戸につき採光・通風良好■内装リノベーション実施済み",
+        "price_jpy": 42980000,
+        "room_type": "1K",
+        "area_sqm": 38.03,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21553019/"
+      },
+      "property_b": {
+        "name": "売主グループ直接販売リノベーション物件!南東向きにつき陽当り良好！",
+        "price_jpy": 42980000,
+        "room_type": "1LDK",
+        "area_sqm": 43.82,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21551334/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可能／可以用中文服務",
+        "price_jpy": 42980000,
+        "room_type": "1K",
+        "area_sqm": 38.03,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21532034/"
+      },
+      "property_b": {
+        "name": "10/19価格下がりました 4498万より200万円↓ 初購入をやさしくサポートします",
+        "price_jpy": 42980000,
+        "room_type": "1LDK",
+        "area_sqm": 43.82,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_22032707/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可能／可以用中文服務",
+        "price_jpy": 42980000,
+        "room_type": "1K",
+        "area_sqm": 38.03,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21532034/"
+      },
+      "property_b": {
+        "name": "売主グループ直接販売リノベーション物件!南東向きにつき陽当り良好！",
+        "price_jpy": 42980000,
+        "room_type": "1LDK",
+        "area_sqm": 43.82,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21551334/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "憧れの「麻布十番」7分 開放的な二面バルコニーの1LDK 資料だけでも",
+        "price_jpy": 52990000,
+        "room_type": "1LDK",
+        "area_sqm": 38.83,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_22032451/"
+      },
+      "property_b": {
+        "name": "ONもOFFも充実の代々木ライフ。2005年築、過ごしやすい1DK！",
+        "price_jpy": 53000000,
+        "room_type": "1DK",
+        "area_sqm": 33.57,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21333185/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "耐震基準適合■南西向き■陽当たり良好■ペット飼育可■フルリノベーション物件",
+        "price_jpy": 52990000,
+        "room_type": "1LDK",
+        "area_sqm": 38.83,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21913152/"
+      },
+      "property_b": {
+        "name": "ONもOFFも充実の代々木ライフ。2005年築、過ごしやすい1DK！",
+        "price_jpy": 53000000,
+        "room_type": "1DK",
+        "area_sqm": 33.57,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21333185/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【即内見可・定休日無し】◇南西向き！4階・1LDK◆リノベーション実施",
+        "price_jpy": 52990000,
+        "room_type": "1LDK",
+        "area_sqm": 38.83,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21937671/"
+      },
+      "property_b": {
+        "name": "ONもOFFも充実の代々木ライフ。2005年築、過ごしやすい1DK！",
+        "price_jpy": 53000000,
+        "room_type": "1DK",
+        "area_sqm": 33.57,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21333185/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "3駅・複数路線利用可能の好立地◎生活利便性の高いエリア＆南向き住戸",
+        "price_jpy": 53990000,
+        "room_type": "2LDK",
+        "area_sqm": 41.14,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21912902/"
+      },
+      "property_b": {
+        "name": "10/29価格下がりました 5599万より200万円↓ 初購入をやさしくサポートします",
+        "price_jpy": 53990000,
+        "room_type": "1LDK",
+        "area_sqm": 33.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_22049481/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "3駅・複数路線利用可能の好立地◎生活利便性の高いエリア＆南向き住戸",
+        "price_jpy": 53990000,
+        "room_type": "2LDK",
+        "area_sqm": 41.14,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21912902/"
+      },
+      "property_b": {
+        "name": "■駅から徒歩１２分■複数路線利用可■「渋谷エリア」が生活圏",
+        "price_jpy": 53990000,
+        "room_type": "1LDK",
+        "area_sqm": 33.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_20318492/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "―　always ON YOUR SIDE　―穏やかで充実・安心の暮らし",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 33.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20856683/"
+      },
+      "property_b": {
+        "name": "「代々木八幡駅」歩8分/ドッグランがある代々木公園まで徒歩7分/庭付きです！",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_22032732/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
