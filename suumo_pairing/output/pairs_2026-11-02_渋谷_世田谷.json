@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-11-02",
+  "area_pair_used": "渋谷区-世田谷区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可能／可以用中文服務",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21378947/"
+      },
+      "property_b": {
+        "name": "≪見学予約＆当日予約OK!≫◆閑静な住宅地×暮らし整う上質リノベ住戸",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.13,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21916528/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可能／可以用中文服務",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21378947/"
+      },
+      "property_b": {
+        "name": "住みたい街ランキング上位　憧れの三軒茶屋に住まう　商店街を通り駅から7分!",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.13,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_22032150/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "最上階・3面採光のお部屋です　「広尾」駅から恵比寿方面へ徒歩7分",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_22032681/"
+      },
+      "property_b": {
+        "name": "≪見学予約＆当日予約OK!≫◆閑静な住宅地×暮らし整う上質リノベ住戸",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.13,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21916528/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "最上階・3面採光のお部屋です　「広尾」駅から恵比寿方面へ徒歩7分",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_22032681/"
+      },
+      "property_b": {
+        "name": "住みたい街ランキング上位　憧れの三軒茶屋に住まう　商店街を通り駅から7分!",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.13,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_22032150/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【いまからのご見学可能です】ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21195325/"
+      },
+      "property_b": {
+        "name": "≪見学予約＆当日予約OK!≫◆閑静な住宅地×暮らし整う上質リノベ住戸",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.13,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21916528/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【いまからのご見学可能です】ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21195325/"
+      },
+      "property_b": {
+        "name": "住みたい街ランキング上位　憧れの三軒茶屋に住まう　商店街を通り駅から7分!",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.13,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_22032150/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "ペットとの散歩コースに嬉しい「新宿中央公園」まで徒歩9分です/詳しい資料あり",
+        "price_jpy": 37800000,
+        "room_type": "2DK",
+        "area_sqm": 47.2,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_22033300/"
+      },
+      "property_b": {
+        "name": "≪見学予約＆当日予約OK!≫◆駅徒歩9分×暮らし整う上質リノベ住戸",
+        "price_jpy": 37800000,
+        "room_type": "2LDK",
+        "area_sqm": 52.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21469189/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "ペットとの散歩コースに嬉しい「新宿中央公園」まで徒歩9分です/詳しい資料あり",
+        "price_jpy": 37800000,
+        "room_type": "2DK",
+        "area_sqm": 47.2,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_22033300/"
+      },
+      "property_b": {
+        "name": "【当日内覧可】南東向き×ペットと暮らす×2面バルコニー付きの快適な住まい",
+        "price_jpy": 37800000,
+        "room_type": "2LDK",
+        "area_sqm": 52.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21438449/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "4階東南角部屋につき日当たり通風良好×総戸数46戸もあり、安心の管理体制",
+        "price_jpy": 49800000,
+        "room_type": "2LDK",
+        "area_sqm": 42.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21400467/"
+      },
+      "property_b": {
+        "name": "≪当日内見予約可能≫～開放的な眺望を愉しむな角住戸♪～",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 45.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_22008418/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "4階東南角部屋につき日当たり通風良好×総戸数46戸もあり、安心の管理体制",
+        "price_jpy": 49800000,
+        "room_type": "2LDK",
+        "area_sqm": 42.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21400467/"
+      },
+      "property_b": {
+        "name": "【本日　内覧可能】東京タワービューの上層階角部屋×2面バルコニー×リノベ",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 45.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_22066046/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
