@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-11-03",
+  "area_pair_used": "港区-目黒区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "憧れの『麻布十番』に住まう 麻布十番に初めて持ち家を持つならここ！",
+        "price_jpy": 43800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_22032729/"
+      },
+      "property_b": {
+        "name": "学芸大学駅徒歩８分■陽当たり良好■フルリフォーム物件■無償専用庭付き",
+        "price_jpy": 43800000,
+        "room_type": "1LDK",
+        "area_sqm": 36.48,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_22013917/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【本日内覧可能】駅徒歩1分×2面採光の明るいリビング×リノベ後・未入居",
+        "price_jpy": 44980000,
+        "room_type": "1LDK",
+        "area_sqm": 30.77,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21789938/"
+      },
+      "property_b": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可能／可以用中文服務",
+        "price_jpy": 44990000,
+        "room_type": "1LDK",
+        "area_sqm": 35.59,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_22090655/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【本日内覧可能】駅徒歩1分×2面採光の明るいリビング×リノベ後・未入居",
+        "price_jpy": 44980000,
+        "room_type": "1LDK",
+        "area_sqm": 30.77,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21789938/"
+      },
+      "property_b": {
+        "name": "【都心×リノベ】　利便性とデザインを両立した、賢い住まいの選択肢。",
+        "price_jpy": 44990000,
+        "room_type": "1LDK",
+        "area_sqm": 35.59,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_22000534/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【本日内覧可能】駅徒歩1分×2面採光の明るいリビング×リノベ後・未入居",
+        "price_jpy": 44980000,
+        "room_type": "1LDK",
+        "area_sqm": 30.77,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21789938/"
+      },
+      "property_b": {
+        "name": "◆◆本日「空き」あり！◆◆目黒区八雲♪ペットと始める南向きの新生活",
+        "price_jpy": 44990000,
+        "room_type": "1LDK",
+        "area_sqm": 35.59,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_22081721/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■内装一部リフォーム実施■角住戸につき通風良好、二面バルコニー付き",
+        "price_jpy": 46800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.08,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_20754829/"
+      },
+      "property_b": {
+        "name": "【即案内可能】×【当社売主物件】×【ペット飼育可】×【現在リフォーム中】",
+        "price_jpy": 46800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.7,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21299552/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "角住戸■２沿線利用可■新耐震基準■南東向き■両面バルコニー■豊富な収納",
+        "price_jpy": 46800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.08,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21880335/"
+      },
+      "property_b": {
+        "name": "【即案内可能】×【当社売主物件】×【ペット飼育可】×【現在リフォーム中】",
+        "price_jpy": 46800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.7,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21299552/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【　マリンシティダイヤモンドパレス　】陽当りの良い南向き1LDKの角住戸♪",
+        "price_jpy": 47900000,
+        "room_type": "1LDK",
+        "area_sqm": 39.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_22058324/"
+      },
+      "property_b": {
+        "name": "「学芸大学駅」徒歩2分　都心のアクセスと商店街の賑わいで盛り上がる暮らし",
+        "price_jpy": 47900000,
+        "room_type": "1LDK",
+        "area_sqm": 41.14,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_22038309/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "－３駅５路線利用可能×８階南向き住戸－",
+        "price_jpy": 47900000,
+        "room_type": "1LDK",
+        "area_sqm": 39.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21222508/"
+      },
+      "property_b": {
+        "name": "「学芸大学駅」徒歩2分　都心のアクセスと商店街の賑わいで盛り上がる暮らし",
+        "price_jpy": 47900000,
+        "room_type": "1LDK",
+        "area_sqm": 41.14,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_22038309/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 49800000,
+        "room_type": "1DK",
+        "area_sqm": 26.68,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21832400/"
+      },
+      "property_b": {
+        "name": "都立大学駅徒歩3分×南西南東角住戸×南西向き住戸",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 31.97,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21915678/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "南東角住戸■陽当たり良好■開放感有■運河が望めるバルコニー■エアコン付",
+        "price_jpy": 59990000,
+        "room_type": "1LDK",
+        "area_sqm": 47.47,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21947475/"
+      },
+      "property_b": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可能／可以用中文服務",
+        "price_jpy": 59980000,
+        "room_type": "1LDK",
+        "area_sqm": 38.4,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21982264/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
