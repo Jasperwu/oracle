@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-11-04",
+  "area_pair_used": "渋谷区-目黒区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可能／可以用中文服務",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21378947/"
+      },
+      "property_b": {
+        "name": "祐天寺・中目黒駅が生活圏、リコスやローソンが日々の快適支える低層住戸。",
+        "price_jpy": 36800000,
+        "room_type": "2DK",
+        "area_sqm": 43.06,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_22083663/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可能／可以用中文服務",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21378947/"
+      },
+      "property_b": {
+        "name": "■2025年4月内装リノベーション実施済■室内コンディション良好です！",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.1,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21512156/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可能／可以用中文服務",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21378947/"
+      },
+      "property_b": {
+        "name": "中目黒生活圏　2026年5月リフォーム済　収納充実",
+        "price_jpy": 36800000,
+        "room_type": "2DK",
+        "area_sqm": 43.06,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_22027177/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可能／可以用中文服務",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21378947/"
+      },
+      "property_b": {
+        "name": "【いまからのご見学可能です】ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 36800000,
+        "room_type": "2DK",
+        "area_sqm": 43.06,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21093669/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "最上階・3面採光のお部屋です　「広尾」駅から恵比寿方面へ徒歩7分",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_22032681/"
+      },
+      "property_b": {
+        "name": "祐天寺・中目黒駅が生活圏、リコスやローソンが日々の快適支える低層住戸。",
+        "price_jpy": 36800000,
+        "room_type": "2DK",
+        "area_sqm": 43.06,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_22083663/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "最上階・3面採光のお部屋です　「広尾」駅から恵比寿方面へ徒歩7分",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_22032681/"
+      },
+      "property_b": {
+        "name": "■2025年4月内装リノベーション実施済■室内コンディション良好です！",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.1,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21512156/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "最上階・3面採光のお部屋です　「広尾」駅から恵比寿方面へ徒歩7分",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_22032681/"
+      },
+      "property_b": {
+        "name": "中目黒生活圏　2026年5月リフォーム済　収納充実",
+        "price_jpy": 36800000,
+        "room_type": "2DK",
+        "area_sqm": 43.06,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_22027177/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "最上階・3面採光のお部屋です　「広尾」駅から恵比寿方面へ徒歩7分",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_22032681/"
+      },
+      "property_b": {
+        "name": "【いまからのご見学可能です】ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 36800000,
+        "room_type": "2DK",
+        "area_sqm": 43.06,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21093669/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■最上階・三方向角住戸につき採光・眺望良好！■内装リノベーション実施済",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21339960/"
+      },
+      "property_b": {
+        "name": "祐天寺・中目黒駅が生活圏、リコスやローソンが日々の快適支える低層住戸。",
+        "price_jpy": 36800000,
+        "room_type": "2DK",
+        "area_sqm": 43.06,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_22083663/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■最上階・三方向角住戸につき採光・眺望良好！■内装リノベーション実施済",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21339960/"
+      },
+      "property_b": {
+        "name": "■2025年4月内装リノベーション実施済■室内コンディション良好です！",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.1,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21512156/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
