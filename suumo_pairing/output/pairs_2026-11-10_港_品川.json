@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-11-10",
+  "area_pair_used": "港区-品川区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "角住戸■２沿線利用可■新耐震基準■南東向き■両面バルコニー■豊富な収納",
+        "price_jpy": 46800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.08,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21880335/"
+      },
+      "property_b": {
+        "name": "≪居住中の為事前予約が必要≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 46800000,
+        "room_type": "2LDK",
+        "area_sqm": 45.91,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_20813490/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "角住戸■２沿線利用可■新耐震基準■南東向き■両面バルコニー■豊富な収納",
+        "price_jpy": 46800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.08,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21880335/"
+      },
+      "property_b": {
+        "name": "【内覧可】大井町駅徒歩圏×最寄駅6分！新耐震×リフォーム履歴有2LDK！",
+        "price_jpy": 46800000,
+        "room_type": "2LDK",
+        "area_sqm": 45.91,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_20570238/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【　マリンシティダイヤモンドパレス　】陽当りの良い南向き1LDKの角住戸♪",
+        "price_jpy": 47900000,
+        "room_type": "1LDK",
+        "area_sqm": 39.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_22058324/"
+      },
+      "property_b": {
+        "name": "複数沿線利用可×最寄り駅まで徒歩9分◎2026年9月内装リフォーム完了！",
+        "price_jpy": 47900000,
+        "room_type": "1LDK",
+        "area_sqm": 41.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21549019/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "－３駅５路線利用可能×８階南向き住戸－",
+        "price_jpy": 47900000,
+        "room_type": "1LDK",
+        "area_sqm": 39.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21222508/"
+      },
+      "property_b": {
+        "name": "複数沿線利用可×最寄り駅まで徒歩9分◎2026年9月内装リフォーム完了！",
+        "price_jpy": 47900000,
+        "room_type": "1LDK",
+        "area_sqm": 41.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21549019/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可能／可以用中文服務",
+        "price_jpy": 48800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_22033599/"
+      },
+      "property_b": {
+        "name": "北西・北東向き角住戸×目黒川沿いに佇む「東京建物株式会社」旧分譲マンション",
+        "price_jpy": 48800000,
+        "room_type": "2DK",
+        "area_sqm": 38.88,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_22135352/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪本日見学出来ます≫田町駅徒歩圏！◇８階・リノベ済ペット可マンション♪",
+        "price_jpy": 48800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_22091969/"
+      },
+      "property_b": {
+        "name": "北西・北東向き角住戸×目黒川沿いに佇む「東京建物株式会社」旧分譲マンション",
+        "price_jpy": 48800000,
+        "room_type": "2DK",
+        "area_sqm": 38.88,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_22135352/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【当日内覧可能です】フルリノベ×開放的な角住戸×南西向きの明るい住まい",
+        "price_jpy": 49990000,
+        "room_type": "1LDK",
+        "area_sqm": 37.76,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21988463/"
+      },
+      "property_b": {
+        "name": "【本日ご見学いただけます！】駅徒歩5分の最上階新規内装リノベ物件！",
+        "price_jpy": 49990000,
+        "room_type": "2LDK",
+        "area_sqm": 44.09,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_22034425/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【当日内覧可能です】フルリノベ×開放的な角住戸×南西向きの明るい住まい",
+        "price_jpy": 49990000,
+        "room_type": "1LDK",
+        "area_sqm": 37.76,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21988463/"
+      },
+      "property_b": {
+        "name": "≪本日見学出来ます≫戸越銀座駅徒歩5分、8階の開放感ある上質リノベ空間",
+        "price_jpy": 49990000,
+        "room_type": "2LDK",
+        "area_sqm": 44.76,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_22117190/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【当日内覧可能です】フルリノベ×開放的な角住戸×南西向きの明るい住まい",
+        "price_jpy": 49990000,
+        "room_type": "1LDK",
+        "area_sqm": 37.76,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21988463/"
+      },
+      "property_b": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可能／可以用中文服務",
+        "price_jpy": 49990000,
+        "room_type": "2LDK",
+        "area_sqm": 44.09,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21988980/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【当日内覧可能です】フルリノベ×開放的な角住戸×南西向きの明るい住まい",
+        "price_jpy": 49990000,
+        "room_type": "1LDK",
+        "area_sqm": 37.76,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21988463/"
+      },
+      "property_b": {
+        "name": "≪当日内見予約可能≫利便性の高い好立地～Renovation～",
+        "price_jpy": 49990000,
+        "room_type": "2LDK",
+        "area_sqm": 44.09,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_22018267/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
