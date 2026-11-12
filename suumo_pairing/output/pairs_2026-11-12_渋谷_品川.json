@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-11-12",
+  "area_pair_used": "渋谷区-品川区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "11/9価格下がりました 3430万より150万円↓ 初購入をやさしくサポートします",
+        "price_jpy": 32800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.42,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_22157050/"
+      },
+      "property_b": {
+        "name": "■見学予約受付中■京浜東北線「大井町」駅徒歩1分■内装リノベーション済",
+        "price_jpy": 32800000,
+        "room_type": "2DK",
+        "area_sqm": 30.78,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21988646/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "11/9価格下がりました 3430万より150万円↓ 初購入をやさしくサポートします",
+        "price_jpy": 32800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.42,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_22157050/"
+      },
+      "property_b": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可能／可以用中文服務",
+        "price_jpy": 32800000,
+        "room_type": "2DK",
+        "area_sqm": 30.78,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_22009181/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可能／可以用中文服務",
+        "price_jpy": 32800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.42,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21248487/"
+      },
+      "property_b": {
+        "name": "■見学予約受付中■京浜東北線「大井町」駅徒歩1分■内装リノベーション済",
+        "price_jpy": 32800000,
+        "room_type": "2DK",
+        "area_sqm": 30.78,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21988646/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可能／可以用中文服務",
+        "price_jpy": 32800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.42,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21248487/"
+      },
+      "property_b": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可能／可以用中文服務",
+        "price_jpy": 32800000,
+        "room_type": "2DK",
+        "area_sqm": 30.78,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_22009181/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可能／可以用中文服務",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21378947/"
+      },
+      "property_b": {
+        "name": "スケルトンから一新。新築のような美しさを、すぐにあなたの暮らしへ。",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.63,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_22158201/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "最上階・3面採光のお部屋です　「広尾」駅から恵比寿方面へ徒歩7分",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_22157564/"
+      },
+      "property_b": {
+        "name": "スケルトンから一新。新築のような美しさを、すぐにあなたの暮らしへ。",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.63,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_22158201/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■最上階・三方向角住戸につき採光・眺望良好！■内装リノベーション実施済",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21339960/"
+      },
+      "property_b": {
+        "name": "スケルトンから一新。新築のような美しさを、すぐにあなたの暮らしへ。",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.63,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_22158201/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【いまからのご見学可能です】ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21195325/"
+      },
+      "property_b": {
+        "name": "スケルトンから一新。新築のような美しさを、すぐにあなたの暮らしへ。",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.63,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_22158201/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可能／可以用中文服務",
+        "price_jpy": 38800000,
+        "room_type": "1LDK",
+        "area_sqm": 33.71,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21947744/"
+      },
+      "property_b": {
+        "name": "【当日ご見学可能】角部屋×新規リノベ×駅チカ3分×目の前に桜並木のある生活",
+        "price_jpy": 38800000,
+        "room_type": "1LDK",
+        "area_sqm": 36.99,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21880033/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「恵比寿駅」まで徒歩14分の優れた立地です　広尾商店街がすぐそばにあります",
+        "price_jpy": 38800000,
+        "room_type": "1LDK",
+        "area_sqm": 33.71,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_22083680/"
+      },
+      "property_b": {
+        "name": "【当日ご見学可能】角部屋×新規リノベ×駅チカ3分×目の前に桜並木のある生活",
+        "price_jpy": 38800000,
+        "room_type": "1LDK",
+        "area_sqm": 36.99,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21880033/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
