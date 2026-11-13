@@ -1,0 +1,191 @@
+{
+  "run_date": "2026-11-13",
+  "area_pair_used": "港区-世田谷区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [
+    "insufficient_candidates"
+  ],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "憧れの『麻布十番』に住まう 麻布十番に初めて持ち家を持つならここ！",
+        "price_jpy": 43800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_22157379/"
+      },
+      "property_b": {
+        "name": "三軒茶屋駅徒歩7分！南東向きで陽の光が入り込む一室！資料請求からどうぞ！",
+        "price_jpy": 43800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.98,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_22157153/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "憧れの『麻布十番』に住まう 麻布十番に初めて持ち家を持つならここ！",
+        "price_jpy": 43800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_22157379/"
+      },
+      "property_b": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可能／可以用中文服務",
+        "price_jpy": 43800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.98,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_22071875/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "憧れの『麻布十番』に住まう 麻布十番に初めて持ち家を持つならここ！",
+        "price_jpy": 43800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_22157379/"
+      },
+      "property_b": {
+        "name": "≪本日見学OK!≫アクセス三軒茶屋♪リノベ済×駅近×陽当り良好♪",
+        "price_jpy": 43800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.98,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_22095559/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "憧れの『麻布十番』に住まう 麻布十番に初めて持ち家を持つならここ！",
+        "price_jpy": 43800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_22157379/"
+      },
+      "property_b": {
+        "name": "【本日内覧可能です】角部屋×南西向き×フルリノベ×駅徒歩5分の立地",
+        "price_jpy": 43800000,
+        "room_type": "1LDK",
+        "area_sqm": 43.32,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21845806/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "憧れの『麻布十番』に住まう 麻布十番に初めて持ち家を持つならここ！",
+        "price_jpy": 43800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_22157379/"
+      },
+      "property_b": {
+        "name": "【即内見可・定休日無し】◇南西向き・角部屋◆室内リノベーション実施",
+        "price_jpy": 43800000,
+        "room_type": "1LDK",
+        "area_sqm": 43.32,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21990368/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "憧れの『麻布十番』に住まう 麻布十番に初めて持ち家を持つならここ！",
+        "price_jpy": 43800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_22157379/"
+      },
+      "property_b": {
+        "name": "「三軒茶屋」駅徒歩7分■リノベーション物件■1LDK■陽当たり・通風良好",
+        "price_jpy": 43800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.98,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_22079004/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【　マリンシティダイヤモンドパレス　】陽当りの良い南向き1LDKの角住戸♪",
+        "price_jpy": 45980000,
+        "room_type": "1LDK",
+        "area_sqm": 39.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_22058324/"
+      },
+      "property_b": {
+        "name": "11/9価格下がりました 4699万より100万円↓ 初購入をやさしくサポートします",
+        "price_jpy": 45990000,
+        "room_type": "2DK",
+        "area_sqm": 42.51,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_22157072/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可能／可以用中文服務",
+        "price_jpy": 46800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_22033599/"
+      },
+      "property_b": {
+        "name": "「駒沢大学駅」から徒歩2分 人気の『三軒茶屋』も生活圏です 耐震補強実施済み!",
+        "price_jpy": 46800000,
+        "room_type": "1LDK",
+        "area_sqm": 41.29,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_22157248/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "角住戸■２沿線利用可■新耐震基準■南東向き■両面バルコニー■豊富な収納",
+        "price_jpy": 46800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.08,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21880335/"
+      },
+      "property_b": {
+        "name": "「駒沢大学駅」から徒歩2分 人気の『三軒茶屋』も生活圏です 耐震補強実施済み!",
+        "price_jpy": 46800000,
+        "room_type": "1LDK",
+        "area_sqm": 41.29,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_22157248/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪本日見学出来ます≫田町駅徒歩圏！◇８階・リノベ済ペット可マンション♪",
+        "price_jpy": 48800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_22091969/"
+      },
+      "property_b": {
+        "name": "駅徒歩1分。渋谷1駅の利便性×フルリノベの上質空間。48㎡超のゆとりある1LDK",
+        "price_jpy": 48800000,
+        "room_type": "1LDK",
+        "area_sqm": 48.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21709446/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
