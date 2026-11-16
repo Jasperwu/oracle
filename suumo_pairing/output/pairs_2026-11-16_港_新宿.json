@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-11-16",
+  "area_pair_used": "港区-新宿区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【居住中の為事前予約が必要】ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 41800000,
+        "room_type": "1DK",
+        "area_sqm": 30.3,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21829178/"
+      },
+      "property_b": {
+        "name": "◆◆本日「空き」あり！◆◆住まいにも仕事場にも♪西新宿のリノベ物件",
+        "price_jpy": 41800000,
+        "room_type": "1LDK",
+        "area_sqm": 33.1,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_22187602/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "憧れの『麻布十番』に住まう 麻布十番に初めて持ち家を持つならここ！",
+        "price_jpy": 43800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_22157379/"
+      },
+      "property_b": {
+        "name": "フルリノベーション済■新品家具付■５路線利用可■ホテルライクな内廊下設計",
+        "price_jpy": 43800000,
+        "room_type": "1DK",
+        "area_sqm": 32.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_22109022/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "憧れの『麻布十番』に住まう 麻布十番に初めて持ち家を持つならここ！",
+        "price_jpy": 43800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_22157379/"
+      },
+      "property_b": {
+        "name": "最寄り駅徒歩3分■眺望良好■新規リノベーション済■南東向きバルコニー",
+        "price_jpy": 43800000,
+        "room_type": "1LDK",
+        "area_sqm": 30.6,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_22192419/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "憧れの『麻布十番』に住まう 麻布十番に初めて持ち家を持つならここ！",
+        "price_jpy": 43800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_22157379/"
+      },
+      "property_b": {
+        "name": "◆８階所在！陽当たり・通風良好♪",
+        "price_jpy": 43800000,
+        "room_type": "2DK",
+        "area_sqm": 40.88,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21755800/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "憧れの『麻布十番』に住まう 麻布十番に初めて持ち家を持つならここ！",
+        "price_jpy": 43800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_22157379/"
+      },
+      "property_b": {
+        "name": "◆◆弊社売主物件◆◆御苑前5分！都心の利便と緑に包まれる1LDK",
+        "price_jpy": 43800000,
+        "room_type": "1LDK",
+        "area_sqm": 33.12,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_22139429/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "憧れの『麻布十番』に住まう 麻布十番に初めて持ち家を持つならここ！",
+        "price_jpy": 43800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_22157379/"
+      },
+      "property_b": {
+        "name": "当社は新宿の会社です。即日見学可能。簡単予約でGO！ご希望の日程を選択！",
+        "price_jpy": 43800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.38,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21975804/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "憧れの『麻布十番』に住まう 麻布十番に初めて持ち家を持つならここ！",
+        "price_jpy": 43800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_22157379/"
+      },
+      "property_b": {
+        "name": "◇4駅5路線利用可能な立地◇新規内装リノベーション済",
+        "price_jpy": 43800000,
+        "room_type": "1DK",
+        "area_sqm": 32.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_22059089/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "憧れの『麻布十番』に住まう 麻布十番に初めて持ち家を持つならここ！",
+        "price_jpy": 43800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_22157379/"
+      },
+      "property_b": {
+        "name": "◆◆弊社売主物件◆◆「新宿御苑前」3分！緑あふれる眺望＆リノベ",
+        "price_jpy": 43800000,
+        "room_type": "1LDK",
+        "area_sqm": 30.6,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_22139631/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "憧れの『麻布十番』に住まう 麻布十番に初めて持ち家を持つならここ！",
+        "price_jpy": 43800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_22157379/"
+      },
+      "property_b": {
+        "name": "〈購入者特典〉弊社から当物件のご成約でアフターサービス最長10年に！",
+        "price_jpy": 43800000,
+        "room_type": "1LDK",
+        "area_sqm": 42.55,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21707811/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可／新卒可／50年可",
+        "price_jpy": 49800000,
+        "room_type": "1DK",
+        "area_sqm": 26.68,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21832400/"
+      },
+      "property_b": {
+        "name": "【即日内覧予約可】売主グループ直接販売リノベーション物件",
+        "price_jpy": 49800000,
+        "room_type": "1K",
+        "area_sqm": 25.13,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21767666/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
