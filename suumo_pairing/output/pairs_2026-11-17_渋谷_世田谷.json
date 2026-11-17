@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-11-17",
+  "area_pair_used": "渋谷区-世田谷区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可能／可以用中文服務",
+        "price_jpy": 32800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.42,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21248487/"
+      },
+      "property_b": {
+        "name": "2018年リノベーション履歴あり！最上階×角部屋！充実した仕様・設備♪",
+        "price_jpy": 32800000,
+        "room_type": "1LDK",
+        "area_sqm": 47.7,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21489637/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「幡ヶ谷駅」徒歩10分。商店街を抜けた先に佇む、渋谷区のデザイナーズ物件。",
+        "price_jpy": 32800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.42,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_22201806/"
+      },
+      "property_b": {
+        "name": "2018年リノベーション履歴あり！最上階×角部屋！充実した仕様・設備♪",
+        "price_jpy": 32800000,
+        "room_type": "1LDK",
+        "area_sqm": 47.7,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21489637/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "☆広尾駅徒歩7分☆恵比寿駅も徒歩10分♪最上階3面角部屋が魅力の3680万円！",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_22157564/"
+      },
+      "property_b": {
+        "name": "☆憧れの街、三軒茶屋に住む♪駅徒歩10分で3680万円！リノベ済みの南東向き1LDK",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.13,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_22157157/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "☆広尾駅徒歩7分☆恵比寿駅も徒歩10分♪最上階3面角部屋が魅力の3680万円！",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_22157564/"
+      },
+      "property_b": {
+        "name": "＼2026年 フルリノベーション済／明大前・直通2駅・フルリノベ1LDK",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 43.68,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_22131838/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可能／可以用中文服務",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21378947/"
+      },
+      "property_b": {
+        "name": "☆憧れの街、三軒茶屋に住む♪駅徒歩10分で3680万円！リノベ済みの南東向き1LDK",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.13,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_22157157/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可能／可以用中文服務",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21378947/"
+      },
+      "property_b": {
+        "name": "＼2026年 フルリノベーション済／明大前・直通2駅・フルリノベ1LDK",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 43.68,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_22131838/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■最上階・三方向角住戸につき採光・眺望良好！■内装リノベーション実施済",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21339960/"
+      },
+      "property_b": {
+        "name": "☆憧れの街、三軒茶屋に住む♪駅徒歩10分で3680万円！リノベ済みの南東向き1LDK",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.13,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_22157157/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■最上階・三方向角住戸につき採光・眺望良好！■内装リノベーション実施済",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21339960/"
+      },
+      "property_b": {
+        "name": "＼2026年 フルリノベーション済／明大前・直通2駅・フルリノベ1LDK",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 43.68,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_22131838/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "ペットとの散歩コースに嬉しい「新宿中央公園」まで徒歩9分です/詳しい資料あり",
+        "price_jpy": 37800000,
+        "room_type": "2DK",
+        "area_sqm": 47.2,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_22157435/"
+      },
+      "property_b": {
+        "name": "☆「明大前駅」5分☆新規内装の40㎡の1LDK♪頭金不要！物件カタログ送ります♪",
+        "price_jpy": 37800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.32,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_22201788/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "ペットとの散歩コースに嬉しい「新宿中央公園」まで徒歩9分です/詳しい資料あり",
+        "price_jpy": 37800000,
+        "room_type": "2DK",
+        "area_sqm": 47.2,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_22157435/"
+      },
+      "property_b": {
+        "name": "明大前駅からスズラン通りを抜けた先！帰路につきながら買い物ができる利便性を",
+        "price_jpy": 37800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.92,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_22201668/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
