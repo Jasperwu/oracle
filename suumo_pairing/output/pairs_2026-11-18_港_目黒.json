@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-11-18",
+  "area_pair_used": "港区-目黒区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "－３駅５路線利用可能×４階角住戸－",
+        "price_jpy": 39900000,
+        "room_type": "2DK",
+        "area_sqm": 36.67,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21720116/"
+      },
+      "property_b": {
+        "name": "◆3連休ご見学予約受付中！◆最上階ペントハウスにペットと暮らせる快適空間",
+        "price_jpy": 39900000,
+        "room_type": "1LDK",
+        "area_sqm": 31.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_22180075/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "－３駅５路線利用可能×４階角住戸－",
+        "price_jpy": 39900000,
+        "room_type": "2DK",
+        "area_sqm": 36.67,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21720116/"
+      },
+      "property_b": {
+        "name": "【ライオンズマンション目黒第2】最上階・2面バルコニーで心地よく暮らす",
+        "price_jpy": 39900000,
+        "room_type": "1LDK",
+        "area_sqm": 31.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_21431225/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "－３駅５路線利用可能×４階角住戸－",
+        "price_jpy": 39900000,
+        "room_type": "2DK",
+        "area_sqm": 36.67,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21720116/"
+      },
+      "property_b": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 39900000,
+        "room_type": "1LDK",
+        "area_sqm": 31.75,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_22009980/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【居住中の為事前予約が必要】ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 41800000,
+        "room_type": "1DK",
+        "area_sqm": 30.3,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21829178/"
+      },
+      "property_b": {
+        "name": "【いまからのご見学可能です】ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 41800000,
+        "room_type": "1LDK",
+        "area_sqm": 31.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_22139150/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可能／可以用中文服務",
+        "price_jpy": 42980000,
+        "room_type": "1K",
+        "area_sqm": 38.03,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21532034/"
+      },
+      "property_b": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可能／可以用中文服務",
+        "price_jpy": 42990000,
+        "room_type": "1LDK",
+        "area_sqm": 35.59,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_22090655/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可能／可以用中文服務",
+        "price_jpy": 42980000,
+        "room_type": "1K",
+        "area_sqm": 38.03,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21532034/"
+      },
+      "property_b": {
+        "name": "憧れの自由が丘に住む！日当たりのいい南西角部屋・ルーフバルコニー付きです！",
+        "price_jpy": 42990000,
+        "room_type": "1LDK",
+        "area_sqm": 35.59,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_22157094/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可能／可以用中文服務",
+        "price_jpy": 42980000,
+        "room_type": "1K",
+        "area_sqm": 38.03,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21532034/"
+      },
+      "property_b": {
+        "name": "■7階南東×南西角住戸につき採光・眺望良好！■内装リノベーション実施済",
+        "price_jpy": 42990000,
+        "room_type": "1LDK",
+        "area_sqm": 35.59,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_22112738/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可能／可以用中文服務",
+        "price_jpy": 42980000,
+        "room_type": "1K",
+        "area_sqm": 38.03,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21532034/"
+      },
+      "property_b": {
+        "name": "【都心×リノベ】　利便性とデザインを両立した、賢い住まいの選択肢。",
+        "price_jpy": 42990000,
+        "room_type": "1LDK",
+        "area_sqm": 35.59,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_22169574/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【当日内覧可能です】フルリノベ×開放的な角住戸×南西向きの明るい住まい",
+        "price_jpy": 49990000,
+        "room_type": "1LDK",
+        "area_sqm": 37.76,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21988463/"
+      },
+      "property_b": {
+        "name": "【即入居可】目黒駅12分/不動前駅15分！２階1LDKデザインリフォーム済み☆",
+        "price_jpy": 49990000,
+        "room_type": "1LDK",
+        "area_sqm": 39.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_22025503/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【　　霞町コーポ　　】4駅3路線利用可能な立地に佇む1LDKのお住まい",
+        "price_jpy": 49990000,
+        "room_type": "1LDK",
+        "area_sqm": 38.45,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21474443/"
+      },
+      "property_b": {
+        "name": "【即入居可】目黒駅12分/不動前駅15分！２階1LDKデザインリフォーム済み☆",
+        "price_jpy": 49990000,
+        "room_type": "1LDK",
+        "area_sqm": 39.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_meguro/nc_22025503/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
