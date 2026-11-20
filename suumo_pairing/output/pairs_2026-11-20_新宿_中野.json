@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-11-20",
+  "area_pair_used": "新宿区-中野区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "☆山手線「高田馬場」徒歩9分☆南向き・日照良好♪新規リノベ済1LDK！",
+        "price_jpy": 31800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.59,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_22157227/"
+      },
+      "property_b": {
+        "name": "東中野５（落合駅） 3180万円",
+        "price_jpy": 31800000,
+        "room_type": "1DK",
+        "area_sqm": 38.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_21667035/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "・最寄駅まで徒歩2分・南西向きかつ7階部分につき、眺望・陽当り良好",
+        "price_jpy": 32800000,
+        "room_type": "1LDK",
+        "area_sqm": 41.6,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21537882/"
+      },
+      "property_b": {
+        "name": "新井１（中野駅） 3280万円",
+        "price_jpy": 32800000,
+        "room_type": "2LDK",
+        "area_sqm": 49.89,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_20050815/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "月々8万円台～で新宿区に住まう 新規リノベ×新耐震マンション 即日案内OK!",
+        "price_jpy": 37990000,
+        "room_type": "1LDK",
+        "area_sqm": 38.61,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_22157284/"
+      },
+      "property_b": {
+        "name": "空室　即日内覧可能♪ 新規リフォーム物件 6階、角部屋で日当り良好",
+        "price_jpy": 37980000,
+        "room_type": "2LDK",
+        "area_sqm": 46.87,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_21910042/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "フルリノベーション済■新品家具付■５路線利用可■ホテルライクな内廊下設計",
+        "price_jpy": 43800000,
+        "room_type": "1DK",
+        "area_sqm": 32.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_22109022/"
+      },
+      "property_b": {
+        "name": "中央２（中野坂上駅） 4380万円",
+        "price_jpy": 43800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_21906438/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "フルリノベーション済■新品家具付■５路線利用可■ホテルライクな内廊下設計",
+        "price_jpy": 43800000,
+        "room_type": "1DK",
+        "area_sqm": 32.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_22109022/"
+      },
+      "property_b": {
+        "name": "≪ご内覧予約承り中≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 43800000,
+        "room_type": "1DK",
+        "area_sqm": 39.53,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_21924807/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "フルリノベーション済■新品家具付■５路線利用可■ホテルライクな内廊下設計",
+        "price_jpy": 43800000,
+        "room_type": "1DK",
+        "area_sqm": 32.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_22109022/"
+      },
+      "property_b": {
+        "name": "中央２（中野坂上駅） 4380万円",
+        "price_jpy": 43800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_21918479/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "最寄り駅徒歩3分■眺望良好■新規リノベーション済■南東向きバルコニー",
+        "price_jpy": 43800000,
+        "room_type": "1LDK",
+        "area_sqm": 30.6,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_22192419/"
+      },
+      "property_b": {
+        "name": "中央２（中野坂上駅） 4380万円",
+        "price_jpy": 43800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_21906438/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "最寄り駅徒歩3分■眺望良好■新規リノベーション済■南東向きバルコニー",
+        "price_jpy": 43800000,
+        "room_type": "1LDK",
+        "area_sqm": 30.6,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_22192419/"
+      },
+      "property_b": {
+        "name": "中央２（中野坂上駅） 4380万円",
+        "price_jpy": 43800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.8,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_21918479/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "☆早稲田エリアで駅徒歩1分☆新規リノベ済♪49㎡の2LDK!",
+        "price_jpy": 44800000,
+        "room_type": "2LDK",
+        "area_sqm": 49.09,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_22157273/"
+      },
+      "property_b": {
+        "name": "◆令和4年9月フルリフォーム履歴有、室内大変綺麗です◆3駅3路線利用可能",
+        "price_jpy": 44800000,
+        "room_type": "1DK",
+        "area_sqm": 41.21,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_77735033/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "～南向きの陽光が彩る住空間 、都心の利便を身近にする暮らし～",
+        "price_jpy": 44800000,
+        "room_type": "1LDK",
+        "area_sqm": 44.1,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21127620/"
+      },
+      "property_b": {
+        "name": "JR中央線「中野」駅徒歩5分の立地、2階部分39.21平米1LDK",
+        "price_jpy": 44800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.21,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_nakano/nc_21921272/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
