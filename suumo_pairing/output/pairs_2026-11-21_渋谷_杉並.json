@@ -1,0 +1,191 @@
+{
+  "run_date": "2026-11-21",
+  "area_pair_used": "渋谷区-杉並区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [
+    "insufficient_candidates"
+  ],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【すぐ見学できます!】☆3連休はゆっくり住まい探し♪見るだけでも大歓迎!",
+        "price_jpy": 49800000,
+        "room_type": "2LDK",
+        "area_sqm": 42.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_22201687/"
+      },
+      "property_b": {
+        "name": "≪本日見学出来ます≫新高円寺駅徒歩7分、眺望と利便性を愉しむ上質リノベ空間",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.46,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_21665121/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【すぐ見学できます!】☆3連休はゆっくり住まい探し♪見るだけでも大歓迎!",
+        "price_jpy": 49800000,
+        "room_type": "2LDK",
+        "area_sqm": 42.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_22201687/"
+      },
+      "property_b": {
+        "name": "【北東角住戸×駅徒歩3分】2020年築・2面採光の明るく爽やかなお部屋！",
+        "price_jpy": 49800000,
+        "room_type": "1K",
+        "area_sqm": 34.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_22216201/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "4階東南角部屋につき日当たり通風良好×総戸数46戸もあり、安心の管理体制",
+        "price_jpy": 49800000,
+        "room_type": "2LDK",
+        "area_sqm": 42.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21400467/"
+      },
+      "property_b": {
+        "name": "≪本日見学出来ます≫新高円寺駅徒歩7分、眺望と利便性を愉しむ上質リノベ空間",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.46,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_21665121/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "4階東南角部屋につき日当たり通風良好×総戸数46戸もあり、安心の管理体制",
+        "price_jpy": 49800000,
+        "room_type": "2LDK",
+        "area_sqm": 42.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21400467/"
+      },
+      "property_b": {
+        "name": "【北東角住戸×駅徒歩3分】2020年築・2面採光の明るく爽やかなお部屋！",
+        "price_jpy": 49800000,
+        "room_type": "1K",
+        "area_sqm": 34.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_22216201/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【3連休も内見受付中】写真では伝わらないお部屋の広さや動線を、ぜひ現地で。",
+        "price_jpy": 53800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_22201737/"
+      },
+      "property_b": {
+        "name": "☆ 荻窪駅徒歩８分 ☆野村不動産（株）旧分譲 ☆安心の新耐震基準マンション☆",
+        "price_jpy": 53800000,
+        "room_type": "2DK",
+        "area_sqm": 45.06,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_22016289/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "「代々木八幡」駅徒歩7分■専用庭付き■新規リノベーション済み■ペット飼育可",
+        "price_jpy": 53800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_22192423/"
+      },
+      "property_b": {
+        "name": "☆ 荻窪駅徒歩８分 ☆野村不動産（株）旧分譲 ☆安心の新耐震基準マンション☆",
+        "price_jpy": 53800000,
+        "room_type": "2DK",
+        "area_sqm": 45.06,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_22016289/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【当日ご見学可能】壁一面の収納×専用庭でペットと×リノベ後未入居",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21494445/"
+      },
+      "property_b": {
+        "name": "JR中央線「阿佐ヶ谷」駅徒歩6分×5階建て最上階の1LDK",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 36.19,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_22034955/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【当日ご見学可能】壁一面の収納×専用庭でペットと×リノベ後未入居",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21494445/"
+      },
+      "property_b": {
+        "name": "◎2018年11月築　JR中央線「中野」駅徒歩12分の内廊下設計マンション！",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_22046141/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "【当日ご見学可能】壁一面の収納×専用庭でペットと×リノベ後未入居",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21494445/"
+      },
+      "property_b": {
+        "name": "◇グローベルザプレイス東高円寺◇中野駅徒歩12分◇1階部分◇1LDK◇",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_22027489/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "－大京穴吹不動産－室内リフォーム履有×角住戸×ペット飼育可（細則有）",
+        "price_jpy": 54800000,
+        "room_type": "1DK",
+        "area_sqm": 43.2,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21679525/"
+      },
+      "property_b": {
+        "name": "JR中央線「阿佐ヶ谷」駅徒歩6分×5階建て最上階の1LDK",
+        "price_jpy": 54800000,
+        "room_type": "1LDK",
+        "area_sqm": 36.19,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_suginami/nc_22034955/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
