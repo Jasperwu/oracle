@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-11-25",
+  "area_pair_used": "港区-品川区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "３駅５路線利用可■新規リフォーム済■ＴＶモニターインターホン■浄水器付き",
+        "price_jpy": 46800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_22177139/"
+      },
+      "property_b": {
+        "name": "≪居住中の為事前予約が必要≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 46800000,
+        "room_type": "2LDK",
+        "area_sqm": 45.91,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_20813490/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "３駅５路線利用可■新規リフォーム済■ＴＶモニターインターホン■浄水器付き",
+        "price_jpy": 46800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_22177139/"
+      },
+      "property_b": {
+        "name": "【内覧可】大井町駅徒歩圏×最寄駅6分！新耐震×リフォーム履歴有2LDK！",
+        "price_jpy": 46800000,
+        "room_type": "2LDK",
+        "area_sqm": 45.91,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_20570238/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "３駅５路線利用可■新規リフォーム済■ＴＶモニターインターホン■浄水器付き",
+        "price_jpy": 46800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_22177139/"
+      },
+      "property_b": {
+        "name": "■東急池上線・東急大井町線「旗の台」駅まで徒歩3分■最上階・眺望良好",
+        "price_jpy": 46800000,
+        "room_type": "1LDK",
+        "area_sqm": 45.65,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_22202467/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "角住戸■２沿線利用可■新耐震基準■南東向き■両面バルコニー■豊富な収納",
+        "price_jpy": 46800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.08,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21880335/"
+      },
+      "property_b": {
+        "name": "■東急池上線・東急大井町線「旗の台」駅まで徒歩3分■最上階・眺望良好",
+        "price_jpy": 46800000,
+        "room_type": "1LDK",
+        "area_sqm": 45.65,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_22202467/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "－大京穴吹不動産－事務所利用可×再開発エリア近接×リノベーション履歴有",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.68,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21855904/"
+      },
+      "property_b": {
+        "name": "■令和7年フルリフォーム済で室内状況大変良好■南東向き採光×大きな開口窓",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.22,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_22218505/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "－大京穴吹不動産－事務所利用可×再開発エリア近接×リノベーション履歴有",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 34.68,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21855904/"
+      },
+      "property_b": {
+        "name": "【当社売主】不動前駅3分！美しく暮らすフルリノベ邸",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 42.12,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_22078825/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "≪本日見学OK!≫表参道駅徒歩9分、骨董通り沿いのリノベ済2LDK",
+        "price_jpy": 79800000,
+        "room_type": "2LDK",
+        "area_sqm": 58.95,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21729993/"
+      },
+      "property_b": {
+        "name": "「大井町」駅 徒歩８分×２駅４路線以上利用可のロケーション×新耐震基準適合",
+        "price_jpy": 79800000,
+        "room_type": "1LDK",
+        "area_sqm": 51.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_20677303/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "≪本日見学OK!≫表参道駅徒歩9分、骨董通り沿いのリノベ済2LDK",
+        "price_jpy": 79800000,
+        "room_type": "2LDK",
+        "area_sqm": 58.95,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21729993/"
+      },
+      "property_b": {
+        "name": "■２０１８年（平成３０年）築■ペット飼育可(飼育細則有)",
+        "price_jpy": 79800000,
+        "room_type": "1LDK",
+        "area_sqm": 54.34,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21814134/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "◆南青山アドレスのヴィンテージマンション◆2026年8月リフォーム完成済",
+        "price_jpy": 79800000,
+        "room_type": "1LDK",
+        "area_sqm": 43.74,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21714902/"
+      },
+      "property_b": {
+        "name": "「大井町」駅 徒歩８分×２駅４路線以上利用可のロケーション×新耐震基準適合",
+        "price_jpy": 79800000,
+        "room_type": "1LDK",
+        "area_sqm": 51.24,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_20677303/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "◆南青山アドレスのヴィンテージマンション◆2026年8月リフォーム完成済",
+        "price_jpy": 79800000,
+        "room_type": "1LDK",
+        "area_sqm": 43.74,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21714902/"
+      },
+      "property_b": {
+        "name": "■２０１８年（平成３０年）築■ペット飼育可(飼育細則有)",
+        "price_jpy": 79800000,
+        "room_type": "1LDK",
+        "area_sqm": 54.34,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21814134/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
