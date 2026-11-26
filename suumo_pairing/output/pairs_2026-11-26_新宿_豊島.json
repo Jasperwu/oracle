@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-11-26",
+  "area_pair_used": "新宿区-豊島区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "お買い物やお仕事帰りに、ふらっと見学してみませんか？まずは見るだけ歓迎！",
+        "price_jpy": 34990000,
+        "room_type": "1LDK",
+        "area_sqm": 43.65,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_22157237/"
+      },
+      "property_b": {
+        "name": "上池袋３（北池袋駅） 3498万円",
+        "price_jpy": 34980000,
+        "room_type": "2DK",
+        "area_sqm": 41.25,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21134577/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "≪いまからのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 34990000,
+        "room_type": "1LDK",
+        "area_sqm": 43.65,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_22069383/"
+      },
+      "property_b": {
+        "name": "上池袋３（北池袋駅） 3498万円",
+        "price_jpy": 34980000,
+        "room_type": "2DK",
+        "area_sqm": 41.25,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21134577/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "お買い物やお仕事帰りに、ふらっと見学してみませんか？まずは見るだけ歓迎！",
+        "price_jpy": 38800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.23,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_22157135/"
+      },
+      "property_b": {
+        "name": "≪今からのご見学可能です≫ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 38800000,
+        "room_type": "1DK",
+        "area_sqm": 31.18,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21763531/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "お買い物やお仕事帰りに、ふらっと見学してみませんか？まずは見るだけ歓迎！",
+        "price_jpy": 38800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.23,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_22157135/"
+      },
+      "property_b": {
+        "name": "東池袋２（池袋駅） 3880万円",
+        "price_jpy": 38800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.91,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21084455/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "お買い物やお仕事帰りに、ふらっと見学してみませんか？まずは見るだけ歓迎！",
+        "price_jpy": 38800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.23,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_22157135/"
+      },
+      "property_b": {
+        "name": "【いまからのご見学可能です】ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 38800000,
+        "room_type": "1DK",
+        "area_sqm": 31.18,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21694182/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "お買い物やお仕事帰りに、ふらっと見学してみませんか？まずは見るだけ歓迎！",
+        "price_jpy": 38800000,
+        "room_type": "1LDK",
+        "area_sqm": 37.23,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_22157135/"
+      },
+      "property_b": {
+        "name": "巣鴨１（巣鴨駅） 3880万円",
+        "price_jpy": 38800000,
+        "room_type": "1DK",
+        "area_sqm": 31.19,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_22232282/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "～南向きの陽光が彩る住空間 、都心の利便を身近にする暮らし～",
+        "price_jpy": 44800000,
+        "room_type": "1LDK",
+        "area_sqm": 44.1,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_21127620/"
+      },
+      "property_b": {
+        "name": "〈購入者特典〉弊社から当物件のご成約でアフターサービス最長10年に！",
+        "price_jpy": 44800000,
+        "room_type": "1LDK",
+        "area_sqm": 40.15,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21975556/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "お買い物やお仕事帰りに、ふらっと見学してみませんか？まずは見るだけ歓迎！",
+        "price_jpy": 44900000,
+        "room_type": "1DK",
+        "area_sqm": 32.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_22146793/"
+      },
+      "property_b": {
+        "name": "＊3駅利用可能な好立地＊生活施設徒歩圏に充実＊カップボード・WIC完備",
+        "price_jpy": 44900000,
+        "room_type": "1LDK",
+        "area_sqm": 39.06,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21861245/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "～12階部分ならではの開放的な眺望が魅力的なお部屋です～",
+        "price_jpy": 44900000,
+        "room_type": "1DK",
+        "area_sqm": 32.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_22180712/"
+      },
+      "property_b": {
+        "name": "＊3駅利用可能な好立地＊生活施設徒歩圏に充実＊カップボード・WIC完備",
+        "price_jpy": 44900000,
+        "room_type": "1LDK",
+        "area_sqm": 39.06,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_21861245/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "お買い物やお仕事帰りに、ふらっと見学してみませんか？まずは見るだけ歓迎！",
+        "price_jpy": 49980000,
+        "room_type": "1LDK",
+        "area_sqm": 34.98,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinjuku/nc_22157342/"
+      },
+      "property_b": {
+        "name": "【当日の見学可能】ペットと暮らせる×最上階×角部屋",
+        "price_jpy": 49990000,
+        "room_type": "1DK",
+        "area_sqm": 36.29,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_toshima/nc_20428183/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
