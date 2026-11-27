@@ -1,0 +1,189 @@
+{
+  "run_date": "2026-11-27",
+  "area_pair_used": "渋谷区-品川区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "お買い物やお仕事帰りに、ふらっと見学してみませんか？まずは見るだけ歓迎！",
+        "price_jpy": 32800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.42,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_22254815/"
+      },
+      "property_b": {
+        "name": "■見学予約受付中■京浜東北線「大井町」駅徒歩1分■内装リノベーション済",
+        "price_jpy": 32800000,
+        "room_type": "2DK",
+        "area_sqm": 30.78,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21988646/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "お買い物やお仕事帰りに、ふらっと見学してみませんか？まずは見るだけ歓迎！",
+        "price_jpy": 32800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.42,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_22254815/"
+      },
+      "property_b": {
+        "name": "大井町駅徒歩１分■即入居可■リフォーム済■２路線以上利用可■エレベーター有",
+        "price_jpy": 32800000,
+        "room_type": "2DK",
+        "area_sqm": 30.78,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_22240861/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "お買い物やお仕事帰りに、ふらっと見学してみませんか？まずは見るだけ歓迎！",
+        "price_jpy": 32800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.42,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_22254815/"
+      },
+      "property_b": {
+        "name": "■■7階部分×リフォーム済みの快適な2DK■■☆即日内覧・引き渡し可能！",
+        "price_jpy": 32800000,
+        "room_type": "2DK",
+        "area_sqm": 30.78,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_22233753/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "お買い物やお仕事帰りに、ふらっと見学してみませんか？まずは見るだけ歓迎！",
+        "price_jpy": 32800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.42,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_22254815/"
+      },
+      "property_b": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可能／可以用中文服務",
+        "price_jpy": 32800000,
+        "room_type": "2DK",
+        "area_sqm": 30.78,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_22009181/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "お買い物やお仕事帰りに、ふらっと見学してみませんか？まずは見るだけ歓迎！",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 35.86,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_22254546/"
+      },
+      "property_b": {
+        "name": "スケルトンから一新。新築のような美しさを、すぐにあなたの暮らしへ。",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.63,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_22158201/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "新規内装リノベーション！２階南側バルコニーにつき日照良好！",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 33.55,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_22242317/"
+      },
+      "property_b": {
+        "name": "スケルトンから一新。新築のような美しさを、すぐにあなたの暮らしへ。",
+        "price_jpy": 36800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.63,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_22158201/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "お買い物やお仕事帰りに、ふらっと見学してみませんか？まずは見るだけ歓迎！",
+        "price_jpy": 38800000,
+        "room_type": "1LDK",
+        "area_sqm": 33.71,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_22230753/"
+      },
+      "property_b": {
+        "name": "2階部分・角部屋、全室採光設計の明るく開放感あるお部屋です。",
+        "price_jpy": 38800000,
+        "room_type": "1LDK",
+        "area_sqm": 36.99,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21925114/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可能／可以用中文服務",
+        "price_jpy": 38800000,
+        "room_type": "1LDK",
+        "area_sqm": 33.71,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_21947744/"
+      },
+      "property_b": {
+        "name": "2階部分・角部屋、全室採光設計の明るく開放感あるお部屋です。",
+        "price_jpy": 38800000,
+        "room_type": "1LDK",
+        "area_sqm": 36.99,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21925114/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可能／可以用中文服務",
+        "price_jpy": 43980000,
+        "room_type": "1LDK",
+        "area_sqm": 40.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_22071876/"
+      },
+      "property_b": {
+        "name": "◇新規リノベ物件・空室のお部屋◇即日見学可能、お気軽にお問合せください",
+        "price_jpy": 43990000,
+        "room_type": "2LDK",
+        "area_sqm": 46.55,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_21585583/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "お買い物やお仕事帰りに、ふらっと見学してみませんか？まずは見るだけ歓迎！",
+        "price_jpy": 49800000,
+        "room_type": "2LDK",
+        "area_sqm": 42.0,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shibuya/nc_22254768/"
+      },
+      "property_b": {
+        "name": "北品川駅徒歩５分■３階部分■１ＤＫ■新耐震■徒歩圏スーパーとコンビニあり",
+        "price_jpy": 49800000,
+        "room_type": "1LDK",
+        "area_sqm": 45.14,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_shinagawa/nc_22062616/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
