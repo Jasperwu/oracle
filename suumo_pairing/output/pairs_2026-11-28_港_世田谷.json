@@ -1,0 +1,191 @@
+{
+  "run_date": "2026-11-28",
+  "area_pair_used": "港区-世田谷区",
+  "new_pairs_found": 10,
+  "target_range": "8-10",
+  "warnings": [
+    "insufficient_candidates"
+  ],
+  "pairs": [
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "－３駅５路線利用可能×４階角住戸－",
+        "price_jpy": 39900000,
+        "room_type": "2DK",
+        "area_sqm": 36.67,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21720116/"
+      },
+      "property_b": {
+        "name": "【いまからのご見学可能です】ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 39900000,
+        "room_type": "1LDK",
+        "area_sqm": 42.35,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_22269685/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "広尾駅まで徒歩約１０分■４階角部屋■食洗機■浴室乾燥機■家具付■エアコン",
+        "price_jpy": 46990000,
+        "room_type": "1LDK",
+        "area_sqm": 42.54,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21988480/"
+      },
+      "property_b": {
+        "name": "千歳烏山駅徒歩圏！ルーフバルコニーを備えた５階部分の開放的な２ＬＤＫ邸",
+        "price_jpy": 46990000,
+        "room_type": "2LDK",
+        "area_sqm": 52.08,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21741594/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■■■　即！見学　■■■【金利に差がつく！】頭金ゼロ可能／可以用中文服務",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 38.02,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_22270056/"
+      },
+      "property_b": {
+        "name": "◇新規リノベ物件・空室のお部屋◇即日見学可能、お気軽にお問合せください",
+        "price_jpy": 59800000,
+        "room_type": "1LDK",
+        "area_sqm": 39.85,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21850185/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "入門層",
+      "property_a": {
+        "name": "■複数路線徒歩圏内で利用可能　■東麻布一丁目×南・西角住戸",
+        "price_jpy": 59900000,
+        "room_type": "1DK",
+        "area_sqm": 34.56,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21980398/"
+      },
+      "property_b": {
+        "name": "＼本日見学可／■内装リノベーションで設備一新！■ペット2匹飼育可",
+        "price_jpy": 59900000,
+        "room_type": "1LDK",
+        "area_sqm": 37.22,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_22265889/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "【いまからのご見学可能です】ご自宅送迎によるご来店・ご内覧サービス実施中",
+        "price_jpy": 72800000,
+        "room_type": "2LDK",
+        "area_sqm": 56.39,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_22269482/"
+      },
+      "property_b": {
+        "name": "「成城」の街に融和する、瀟洒なタイル張りの外観",
+        "price_jpy": 72800000,
+        "room_type": "2LDK",
+        "area_sqm": 68.1,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21906837/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "◆当社売主◆新規リノベーション◆アフターサービス保証付◆",
+        "price_jpy": 74980000,
+        "room_type": "2LDK",
+        "area_sqm": 54.67,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21782355/"
+      },
+      "property_b": {
+        "name": "◇新規リノベ物件・空室のお部屋◇即日見学可能、お気軽にお問合せください",
+        "price_jpy": 74980000,
+        "room_type": "3LDK",
+        "area_sqm": 64.13,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21943754/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "◆当社売主◆新規リノベーション◆アフターサービス保証付◆",
+        "price_jpy": 74980000,
+        "room_type": "2LDK",
+        "area_sqm": 54.67,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21782355/"
+      },
+      "property_b": {
+        "name": "ペットと暮らす収納豊富な新規リノベ邸宅～世田谷区で心地よく整う洗練の住まい",
+        "price_jpy": 74990000,
+        "room_type": "3LDK",
+        "area_sqm": 67.89,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21795858/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "◆当社売主◆新規リノベーション◆アフターサービス保証付◆",
+        "price_jpy": 74980000,
+        "room_type": "2LDK",
+        "area_sqm": 54.67,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_21782355/"
+      },
+      "property_b": {
+        "name": "◇新規リノベ物件・空室のお部屋◇即日見学可能、お気軽にお問合せください",
+        "price_jpy": 74990000,
+        "room_type": "2LDK",
+        "area_sqm": 56.02,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_22129228/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "＼24時間内覧予約可／南東角部屋の開放感！４駅５路線を使いこなす港区の拠点",
+        "price_jpy": 74990000,
+        "room_type": "2LDK",
+        "area_sqm": 58.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_22078375/"
+      },
+      "property_b": {
+        "name": "◇新規リノベ物件・空室のお部屋◇即日見学可能、お気軽にお問合せください",
+        "price_jpy": 74980000,
+        "room_type": "3LDK",
+        "area_sqm": 64.13,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21943754/"
+      },
+      "price_ratio": 1.0
+    },
+    {
+      "tier": "中端層",
+      "property_a": {
+        "name": "＼24時間内覧予約可／南東角部屋の開放感！４駅５路線を使いこなす港区の拠点",
+        "price_jpy": 74990000,
+        "room_type": "2LDK",
+        "area_sqm": 58.5,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_minato/nc_22078375/"
+      },
+      "property_b": {
+        "name": "ペットと暮らす収納豊富な新規リノベ邸宅～世田谷区で心地よく整う洗練の住まい",
+        "price_jpy": 74990000,
+        "room_type": "3LDK",
+        "area_sqm": 67.89,
+        "url": "https://suumo.jp/ms/chuko/tokyo/sc_setagaya/nc_21795858/"
+      },
+      "price_ratio": 1.0
+    }
+  ]
+}
